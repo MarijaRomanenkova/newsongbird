@@ -1,0 +1,120 @@
+@import 'scss-source/variables.scss';
+@import 'scss-source/mixins.scss';
+
+.Answers_Container {    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: max-content(400px);
+    grid-column-gap: 1.75rem;
+    margin: 0px;
+    max-width: 100%;
+    overflow: hidden;
+    margin-bottom: 1.56rem;
+    @include mobile {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-row-gap: 1.56rem;            
+    }    
+}
+.AnswersList_Container {  
+    list-style-type: disc;
+    list-style-position: inside;
+    padding: 0px; 
+    margin: auto 0px;  
+    .AnswersList_Item {
+        border: 1px solid $dark-mode-border;
+        border-bottom: none;
+        background-color:$dark; 
+        padding: 0.85rem 1.25rem;
+        font-weight: 400; 
+        @include mini {
+            font-size: 1.25rem;
+            padding: 1rem;
+        } 
+        &:focus {
+            background-color:$dark-mode-border;
+        }
+        &:hover {
+            background-color:$dark-mode-border;
+        }
+        &::marker {
+            color: $dark-mode-border;
+            font-size: 1.75rem;        
+        }
+        &:first-child {
+            border-top-left-radius: 0.25rem;
+            border-top-right-radius: 0.25rem;
+        }
+        &:last-child {
+            border-bottom-left-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+            border-bottom: 1px solid $dark-mode-border;
+        }
+        &__correct{
+            @extend .AnswersList_Item ;
+            &::marker {
+                color: $green;
+                font-size: 1.75rem;     
+            }
+        }    
+        &__incorrect{
+            @extend .AnswersList_Item ;
+            &::marker {
+                color: $red;
+                font-size: 1.75rem;     
+            }
+        }      
+    }    
+}
+.Hidden {
+    display: none;
+}
+.AnswerDetails_Dummy {
+    border: 1px solid $dark-mode-border;
+    border-radius: 0.25rem;
+    background-color:$dark; 
+    padding: 1rem;    
+    font-weight: 400; 
+    &_Text {
+        display:block;
+    }
+    @include mini {
+        display: none;
+    }
+}
+
+.Disabled {
+    display:inline-block;
+    margin-bottom: 2rem;
+    color: $white;    
+    font-family: "Lato", Arial, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    border-radius: 0.25rem;
+    border: 1px solid $dark-mode-border;    
+    background-color: $dark;
+    box-shadow: none;
+    width: 100%;
+    cursor: not-allowed;
+    line-height: 22.5 px;    
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    @include mini {
+        font-size: 1.25rem;
+        padding: 1.25rem;
+    }  
+}
+.Btn {
+    @extend .Disabled;
+    background-color: $green;
+    transition: 0.3s ease;      
+    -webkit-appearance: button;
+    &:focus {
+        box-shadow: none;
+    }
+    &:hover {
+        background-color: $teal;
+    }
+}
+

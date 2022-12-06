@@ -1,0 +1,74 @@
+@import 'scss-source/variables.scss';
+@import 'scss-source/mixins.scss';
+
+.Hidden {
+    display: none;
+}
+.GameOver{
+    &_Container  { 
+        display: flex;
+        margin: 0rem auto ;
+        flex-direction: column;
+        justify-content: center;  
+        align-items: center;
+        border-radius: 0.313rem;
+        background-color:$dark;         
+        font-weight: 400;
+        max-width: 90%;
+        overflow:hidden;
+        height: 100vh;
+        text-align: center;
+            @include mobile {
+                padding: 1rem;
+        }
+    }
+    &_Title {
+        font-size: 4.5rem;
+        font-weight: 400;
+        margin-bottom: 0.5rem;
+            @include mobile {
+                font-size: 2rem;
+                
+            }
+    }
+    &_Text {
+        font-size: 1.172rem;
+        margin-bottom: 1.5rem;
+        font-weight: 400;
+        @include mobile {
+            font-size: 1.5rem;
+        }
+    }
+    &_Btn {
+        display:inline-block;
+        margin: 3rem auto;
+        color: $white;    
+        font-family: "Lato", Arial, sans-serif;
+        font-size: 0.9375rem;
+        font-weight: 400;    
+        border-radius: 0.25rem;
+        border:none;    
+        box-shadow: none;
+        width: 92%;
+        cursor: pointer;
+        line-height: 22.5 px;    
+        padding: 1rem;
+        text-align: center;
+        vertical-align: middle;
+        background-color: $teal;
+        transition: 0.3s ease;      
+        -webkit-appearance: button;
+            @include mobile {
+                padding: 1.5rem;
+                font-size: 1.5rem;
+            }        
+        &:focus {
+            box-shadow: none;
+        }
+        &:hover {
+            background-color: $green;
+        }
+    }
+}
+
+
