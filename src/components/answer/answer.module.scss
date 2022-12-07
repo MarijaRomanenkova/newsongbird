@@ -14,7 +14,10 @@
         grid-template-columns: 1fr;
         grid-template-rows: auto;
         grid-row-gap: 1.56rem;            
-    }    
+    } 
+    .Hidden {
+        display: none;
+    }   
 }
 .AnswersList_Container {  
     list-style-type: disc;
@@ -118,3 +121,6 @@
     }
 }
 
+.Hidden {
+    display: none;
+}

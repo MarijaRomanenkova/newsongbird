@@ -1,13 +1,13 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/function-component-definition */
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { QuestionContext } from 'contexts/questionContext';
 import useSound from 'use-sound';
 import cx from 'classnames';
 import correct from 'assets/sounds/correct.ogg';
 import incorrect from 'assets/sounds/incorrect.ogg';
 import AnswerDetails from 'components/answerDetails/answerDetails.component';
-import styles from './answer.module.scss';
+import styles from 'components/answer/answer.module.scss';
 
 const Answer = () => {
   const [questionState, dispatch] = useContext(QuestionContext);
@@ -19,8 +19,10 @@ const Answer = () => {
   const chosenAnswer = thisLevelQuestionsArray[
     questionState.chosenAnswerId
   ] || { id: undefined };
-  const { level } = questionState.level;
-  const { isGameOver } = questionState.isGameOver || {};
+  // eslint-disable-next-line prefer-destructuring
+  const level = questionState.level;
+  // eslint-disable-next-line prefer-destructuring
+  const isGameOver = questionState.isGameOver;
   const [playCorrect] = useSound(correct);
   const [playIncorrect] = useSound(incorrect);
   const initialAnswersListStyles = thisLevelQuestionsArray.map((item) => ({
@@ -40,7 +42,7 @@ const Answer = () => {
 
   useEffect(() => {
     setAnswersListStyles(initialAnswersListStyles);
-  }, [level]);
+  }, [level, isGameOver]);
 
   const nextButtonClasses = cx({
     button: true,
@@ -95,7 +97,6 @@ const Answer = () => {
         }))
       );
       dispatch({ type: 'NEW_GAME' });
-      return;
     }
     setAnswersListStyles(
       nextLevelQuestionsArray.map((item) => ({
@@ -120,8 +121,8 @@ const Answer = () => {
   ));
 
   return (
-    <>
-      <div className={!isGameOver ? styles.Answers_Container : styles.Hidden}>
+    <div className={isGameOver ? styles.Hidden : ''}>
+      <div className={styles.Answers_Container}>
         <ul className={styles.AnswersList_Container}>{answersList}</ul>
         {chosenAnswer.id !== undefined ? (
           <AnswerDetails
@@ -148,10 +149,9 @@ const Answer = () => {
         className={nextButtonClasses}
         onClick={handleNextButtonClick}
       >
-        {' '}
         Next Level
       </button>
-    </>
+    </div>
   );
 };
 

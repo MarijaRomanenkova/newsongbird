@@ -36,9 +36,10 @@
         border-bottom: 1px solid $dark-mode-border;
         
     }
+    &_Hidden {
+        display: none;
+    }
 }
 
-.Hidden {
-    display: none;
-}
+
 

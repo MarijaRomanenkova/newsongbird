@@ -9,11 +9,13 @@ function Question() {
   const [questionState] = useContext(QuestionContext);
   const question =
     questionState.birdsData[questionState.level][
-      questionState.randomQuestionID || {}
+      questionState.randomQuestionID
     ];
-
-  const { isGameOver } = questionState.isGameOver;
-  const { isCorrectAnswer } = questionState.isCorrectAnswer;
+  
+  // eslint-disable-next-line prefer-destructuring
+  const isGameOver = questionState.isGameOver;
+  // eslint-disable-next-line prefer-destructuring
+  const isCorrectAnswer = questionState.isCorrectAnswer;
   const HIDDEN__ANSWER = '******';
 
   const player = useRef();
@@ -26,17 +28,19 @@ function Question() {
   }
 
   return (
-    <div className={!isGameOver ? styles.Question_Container : styles.Hidden}>
+    <div
+      className={
+        !isGameOver ? styles.Question_Container : styles.Question_Hidden
+      }
+    >
       <img
         className={styles.Question_Image}
         src={questionState.isCorrectAnswer ? question.image : MockUp}
-        alt={question.name !== undefined ? question.name : ''}
+        alt={question.name ? question.name : 'bird'}
       />
       <div className={styles.Question_Box}>
         <h1 className={styles.Question_Title}>
-          {questionState.isCorrectAnswer === false
-            ? HIDDEN__ANSWER
-            : question.name}
+          {!isCorrectAnswer ? HIDDEN__ANSWER : question.name}
         </h1>
         <AudioPlayer
           layout="horizontal-reverse"

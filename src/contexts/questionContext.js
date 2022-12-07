@@ -1,5 +1,6 @@
+/* eslint-disable import/no-unresolved */
 import React, { createContext, useReducer } from 'react';
-import birdsData from '../data';
+import birdsData from 'data.js';
 
 export const QuestionContext = createContext();
 
