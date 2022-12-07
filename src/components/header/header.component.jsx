@@ -2,6 +2,7 @@
 import React, { useContext } from 'react';
 import { QuestionContext } from 'contexts/questionContext';
 import styles from 'components/header/header.module.scss';
+// TODO: need to use absolute path
 import logo from '../../assets/logo.svg';
 
 function Header() {

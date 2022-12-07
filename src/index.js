@@ -4,6 +4,7 @@ import { QuestionProvider } from './contexts/questionContext';
 import App from './App';
 import './index.scss';
 import reportWebVitals from './reportWebVitals';
+// TODO: imports order
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
