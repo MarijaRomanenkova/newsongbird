@@ -26,7 +26,7 @@ const initialState = {
   birdsData,
   level: 0,
   randomQuestionID: getRandomQuestionId(0),
-  chosenAnswerId: null,
+  chosenAnswerId: {},
   numberOfAttempts: 0,
   score: 0,
   numberOfCorrectAnswers: 0,

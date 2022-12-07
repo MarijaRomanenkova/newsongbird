@@ -16,9 +16,11 @@ const Answer = () => {
     questionState.birdsData[questionState.level + 1];
   const currentQuestionObject =
     thisLevelQuestionsArray[questionState.randomQuestionID] || {};
-  const chosenAnswer = thisLevelQuestionsArray[questionState.chosenAnswerId];
-  const { level } = questionState;
-  const { isGameOver } = questionState;
+  const chosenAnswer = thisLevelQuestionsArray[
+    questionState.chosenAnswerId
+  ] || { id: undefined };
+  const { level } = questionState.level;
+  const { isGameOver } = questionState.isGameOver || {};
   const [playCorrect] = useSound(correct);
   const [playIncorrect] = useSound(incorrect);
   const initialAnswersListStyles = thisLevelQuestionsArray.map((item) => ({
@@ -58,7 +60,10 @@ const Answer = () => {
     );
   };
 
-  const chooseAnswer = (event) => {
+  function chooseAnswer(event) {
+    if (isNextButtonDisabled === false) {
+      return false;
+    }
     dispatch({ type: 'CHOOSE', payload: event.target.value - 1 });
     if (currentQuestionObject.id === event.target.value) {
       dispatch({ type: 'WIN', payload: event.target.value - 1 });
@@ -68,16 +73,17 @@ const Answer = () => {
         styles.AnswersList_Item__correct
       );
       setIsNextButtonDisabled(false);
-    } else {
-      playIncorrect();
-      changeAnswersListStyles(
-        event.target.value,
-        styles.AnswersList_Item__incorrect
-      );
+      return true;
     }
-  };
+    playIncorrect();
+    changeAnswersListStyles(
+      event.target.value,
+      styles.AnswersList_Item__incorrect
+    );
+    return true;
+  }
 
-  const handleNextButtonClick = () => {
+  function handleNextButtonClick() {
     setIsNextButtonDisabled(true);
     dispatch({ type: 'NEXT_LEVEL' });
     if (isGameOver === true) {
@@ -89,6 +95,7 @@ const Answer = () => {
         }))
       );
       dispatch({ type: 'NEW_GAME' });
+      return;
     }
     setAnswersListStyles(
       nextLevelQuestionsArray.map((item) => ({
@@ -97,7 +104,7 @@ const Answer = () => {
         isAlreadyChosen: false,
       }))
     );
-  };
+  }
 
   const answersList = answersListStyles.map((item) => (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
@@ -105,9 +112,7 @@ const Answer = () => {
       className={item.itemClass}
       key={item.id}
       value={item.id}
-      onClick={
-        item.isAlreadyChosen ? null : isNextButtonDisabled ? chooseAnswer : null
-      }
+      onClick={!item.isAlreadyChosen ? chooseAnswer : null}
     >
       {' '}
       {item.name}
@@ -118,7 +123,7 @@ const Answer = () => {
     <>
       <div className={!isGameOver ? styles.Answers_Container : styles.Hidden}>
         <ul className={styles.AnswersList_Container}>{answersList}</ul>
-        {chosenAnswer ? (
+        {chosenAnswer.id !== undefined ? (
           <AnswerDetails
             name={chosenAnswer.name}
             image={chosenAnswer.image}

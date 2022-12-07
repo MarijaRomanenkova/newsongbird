@@ -5,11 +5,10 @@ import AudioPlayer from 'react-h5-audio-player';
 
 import styles from 'components/answerDetails/answerDetails.module.scss';
 
-function AnswerDetails() {
+function AnswerDetails(props) {
+  const { image, name, description, species, audio } = props;
   const [questionState] = useContext(QuestionContext);
-  const { isCorrectAnswer } = questionState;
-  const { chosenAnswer } = questionState.chosenAnswer;
-
+  const { isCorrectAnswer } = questionState.isCorrectAnswer || {};
   const player = useRef();
   const pausePlayer = () => {
     player.current.audio.current.pause();
@@ -21,19 +20,13 @@ function AnswerDetails() {
 
   return (
     <div className={styles.AnswerDetails_Container}>
-      <img
-        className={styles.AnswerDetails_Image}
-        src={chosenAnswer.image}
-        alt={`${chosenAnswer.name}`}
-      />
+      <img className={styles.AnswerDetails_Image} src={image} alt={`${name}`} />
       <div>
-        <h2 className={styles.AnswerDetails_Name_Text}>{chosenAnswer.name}</h2>
-        <h4 className={styles.AnswerDetails_Species_Text}>
-          {chosenAnswer.species}
-        </h4>
+        <h2 className={styles.AnswerDetails_Name_Text}>{name}</h2>
+        <h4 className={styles.AnswerDetails_Species_Text}>{species}</h4>
         <AudioPlayer
           layout="horizontal-reverse"
-          src={chosenAnswer.audio}
+          src={audio}
           autoPlay={false}
           autoPlayAfterSrcChange={false}
           showJumpControls={false}
@@ -43,9 +36,7 @@ function AnswerDetails() {
           ref={player}
         />
       </div>
-      <div className={styles.AnswerDetails_Description}>
-        {chosenAnswer.description}
-      </div>
+      <div className={styles.AnswerDetails_Description}>{description}</div>
     </div>
   );
 }

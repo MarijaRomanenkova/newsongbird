@@ -7,9 +7,13 @@ import styles from 'components/question/question.module.scss';
 
 function Question() {
   const [questionState] = useContext(QuestionContext);
-  const question = questionState.currentQuestionObject || {};
-  const { isGameOver } = questionState;
-  const { isCorrectAnswer } = questionState;
+  const question =
+    questionState.birdsData[questionState.level][
+      questionState.randomQuestionID || {}
+    ];
+
+  const { isGameOver } = questionState.isGameOver;
+  const { isCorrectAnswer } = questionState.isCorrectAnswer;
   const HIDDEN__ANSWER = '******';
 
   const player = useRef();
@@ -26,7 +30,7 @@ function Question() {
       <img
         className={styles.Question_Image}
         src={questionState.isCorrectAnswer ? question.image : MockUp}
-        alt={question.name ? question.name : ''}
+        alt={question.name !== undefined ? question.name : ''}
       />
       <div className={styles.Question_Box}>
         <h1 className={styles.Question_Title}>
