@@ -1,9 +1,13 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/function-component-definition */
+// TODO: remove all eslint-disable
+// TODO: everywhere redo imports order
+// TODO: everywhere remove eslint-disable
 import React, { useContext, useEffect, useState } from 'react';
 import { QuestionContext } from 'contexts/questionContext';
 import useSound from 'use-sound';
 import cx from 'classnames';
+// TODO: rename variables for sounds
 import correct from 'assets/sounds/correct.ogg';
 import incorrect from 'assets/sounds/incorrect.ogg';
 import AnswerDetails from 'components/answerDetails/answerDetails.component';
@@ -11,6 +15,8 @@ import styles from 'components/answer/answer.module.scss';
 
 const Answer = () => {
   const [questionState, dispatch] = useContext(QuestionContext);
+  // TODO: can we rename it? to something like currentQuestionsForLevelArray or something like this. rename this -> to current. it more meaningful.
+  // TODO: or looks like we have thisLevelQuestionsArray and currentQuestionObject, it is tricky to understand why we need each of them
   const thisLevelQuestionsArray = questionState.birdsData[questionState.level];
   const nextLevelQuestionsArray =
     questionState.birdsData[questionState.level + 1];
@@ -18,13 +24,17 @@ const Answer = () => {
     thisLevelQuestionsArray[questionState.randomQuestionID] || {};
   const chosenAnswer = thisLevelQuestionsArray[
     questionState.chosenAnswerId
+    // TODO: looked tricky, try to redo
   ] || { id: undefined };
   // eslint-disable-next-line prefer-destructuring
+  // TODO: rename this variable to more specific one
   const level = questionState.level;
   // eslint-disable-next-line prefer-destructuring
   const isGameOver = questionState.isGameOver;
+  // TODO: try to not change variables. if you name some variable -> try to name it everewhere in this pattern
   const [playCorrect] = useSound(correct);
   const [playIncorrect] = useSound(incorrect);
+  // TODO: redo this logic with styles. need to discuss. looked tricky
   const initialAnswersListStyles = thisLevelQuestionsArray.map((item) => ({
     ...item,
     itemClass: styles.AnswersList_Item,
@@ -44,6 +54,7 @@ const Answer = () => {
     setAnswersListStyles(initialAnswersListStyles);
   }, [level, isGameOver]);
 
+  // TODO: 1. let use this cx inside JSX 2. remove "button", use only styles from classes, 3. if something true move it from object
   const nextButtonClasses = cx({
     button: true,
     [styles.Hidden]: isGameOver,
@@ -51,6 +62,7 @@ const Answer = () => {
     [styles.Btn]: !isNextButtonDisabled,
   });
 
+  // TODO: logic looks tricky a little bit
   const changeAnswersListStyles = (id, newClassName) => {
     setAnswersListStyles((listStyles) =>
       listStyles.map((item) => {
@@ -62,14 +74,18 @@ const Answer = () => {
     );
   };
 
+  // TODO: naming for this func looked incorrect
   function chooseAnswer(event) {
+    // TODO: simplify condition
     if (isNextButtonDisabled === false) {
       return false;
     }
     dispatch({ type: 'CHOOSE', payload: event.target.value - 1 });
     if (currentQuestionObject.id === event.target.value) {
       dispatch({ type: 'WIN', payload: event.target.value - 1 });
+      // TODO: because naming for sound is not specific, not obvious about what playCorrect will do. in example if this variable had naming playCorrectSound or playCorrectMusic or soundPlayCorrect or something else, it would be clearer
       playCorrect();
+      // TODO: not sure about store styles in state. it looks like we need store only variable/s and using this/these variable/s add appropriate classnames
       changeAnswersListStyles(
         event.target.value,
         styles.AnswersList_Item__correct
@@ -113,8 +129,10 @@ const Answer = () => {
       className={item.itemClass}
       key={item.id}
       value={item.id}
+      // TODO: remove : null 
       onClick={!item.isAlreadyChosen ? chooseAnswer : null}
     >
+      {/* TODO: do we really need ' ' in the bottom line? */}
       {' '}
       {item.name}
     </li>
@@ -122,8 +140,10 @@ const Answer = () => {
 
   return (
     <div className={isGameOver ? styles.Hidden : ''}>
+      {/* TODO: not sure about logic. can we show or hide gameover using condition in JSX instead of turn on/off classes */}
       <div className={styles.Answers_Container}>
         <ul className={styles.AnswersList_Container}>{answersList}</ul>
+        {/* looks tricky with undefined */}
         {chosenAnswer.id !== undefined ? (
           <AnswerDetails
             name={chosenAnswer.name}

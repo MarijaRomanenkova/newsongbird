@@ -4,6 +4,7 @@ import birdsData from 'data.js';
 
 export const QuestionContext = createContext();
 
+// TODO: wrong func naming (look at input variable naming) it is not obvious
 const getRandomQuestionId = (level) => {
   const maximumNumber = birdsData[level].length;
   const minimumNumber = 1;
@@ -13,8 +14,10 @@ const getRandomQuestionId = (level) => {
   return randomNumber;
 };
 
+// TODO: move it to top
 const MAXIMUM__SCORE__PER__LEVEL = 5;
 
+// TODO: simplify logic here. it looks like we do not need to iterate through all answers to determine amount of score. 2. naming for function looks like it not cover for the functionality inside
 const setScore = (prevScore, numberOfAttempts) => {
   let score = 0;
   for (let i = numberOfAttempts; i < MAXIMUM__SCORE__PER__LEVEL + 1; i += 1) {
@@ -30,6 +33,7 @@ const initialState = {
   chosenAnswerId: {},
   numberOfAttempts: 0,
   score: 0,
+  // TODO: naming for variable below, can we rename it?
   numberOfCorrectAnswers: 0,
   isCorrectAnswer: false,
   isGameOver: false,

@@ -1,6 +1,10 @@
 @import 'scss-source/variables.scss';
 @import 'scss-source/mixins.scss';
 
+// TODO: just rem looks tricky, can we use rem(40px) or something like this?
+// TODO: redo everywhere in styles 0px to 0
+// TODO: add correct indents to the styles (will discuss)
+
 .Categories__Container {
     display: flex;
     justify-content: space-between;

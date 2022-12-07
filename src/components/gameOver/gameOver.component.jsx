@@ -18,6 +18,8 @@ function GameOver() {
       <h5 className={styles.GameOver_Text}>
         Вы прошли викторину и набрали {score} из 30 возможных баллов
       </h5>
+      {/* TODO: redo static 29 and 30. use appropriate variables using MAXIMUM_SCORE_VALUE * all questionaries */}
+      {/* TODO: remove everewhere ' ' -> if this not needed */}
       <h5 className={score < 29 ? styles.GameOver_Text : styles.Hidden}>
         Попробуете набрать больше?{' '}
       </h5>
