@@ -1,11 +1,11 @@
 /* eslint-disable import/no-unresolved */
 import React, { useContext } from 'react';
-import { QuestionContext } from 'contexts/questionContext';
+import { QuizContext } from 'contexts/QuizContext';
 import styles from 'components/categories/categories.module.scss';
 
 function Categories() {
-  const [questionState] = useContext(QuestionContext);
-  const { level } = questionState;
+  const [QuizState] = useContext(QuizContext);
+  const { level } = QuizState;
   // TODO: can we move these data to .json file and make it less static?
   const categoriesArray = [
     'Разминка',

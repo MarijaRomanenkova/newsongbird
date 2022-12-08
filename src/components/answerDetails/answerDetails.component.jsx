@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
 import React, { useContext, useRef } from 'react';
-import { QuestionContext } from 'contexts/questionContext';
+import { QuizContext } from 'contexts/QuizContext';
 import AudioPlayer from 'react-h5-audio-player';
 
 import styles from 'components/answerDetails/answerDetails.module.scss';
@@ -8,8 +8,8 @@ import styles from 'components/answerDetails/answerDetails.module.scss';
 function AnswerDetails(props) {
   // TODO: better to make destruction in the props (line above)
   const { image, name, description, species, audio } = props;
-  const [questionState] = useContext(QuestionContext);
-  const { isCorrectAnswer } = questionState.isCorrectAnswer || {};
+  const [QuizState] = useContext(QuizContext);
+  const { isCorrectAnswer } = QuizState.isCorrectAnswer || {};
   // TODO: rename variable for better understanding what is player is, it very common. 2. and add 'Ref' to the end of variable to add understandable flag that this variable is Ref variable
   const player = useRef();
   // TODO: can we rename to pauseAudioPlayer ?

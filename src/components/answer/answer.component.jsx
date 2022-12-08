@@ -2,31 +2,31 @@ import React, { useContext, useEffect, useState } from 'react';
 import useSound from 'use-sound';
 import cx from 'classnames';
 // TODO: rename variables for sounds
-import { QuestionContext } from 'contexts/questionContext';
+import { QuizContext } from 'contexts/quizContext';
 import correct from 'assets/sounds/correct.ogg';
 import incorrect from 'assets/sounds/incorrect.ogg';
 import AnswerDetails from 'components/answerDetails/answerDetails.component';
 
-import styles from 'components/answer/answer.module.scss';
+import styles from './answer.module.scssanswer.module.scss';
 
 const Answer = () => {
-  const [questionState, dispatch] = useContext(QuestionContext);
+  const [QuizState, dispatch] = useContext(QuizContext);
   // TODO: can we rename it? to something like currentQuestionsForLevelArray or something like this. rename this -> to current. it more meaningful.
   // TODO: or looks like we have thisLevelQuestionsArray and currentQuestionObject, it is tricky to understand why we need each of them
-  const thisLevelQuestionsArray = questionState.birdsData[questionState.level];
+  const thisLevelQuestionsArray = QuizState.birdsData[QuizState.level];
   const nextLevelQuestionsArray =
-    questionState.birdsData[questionState.level + 1];
+    QuizState.birdsData[QuizState.level + 1];
   const currentQuestionObject =
-    thisLevelQuestionsArray[questionState.randomQuestionID] || {};
+    thisLevelQuestionsArray[QuizState.randomQuestionID] || {};
   const chosenAnswer = thisLevelQuestionsArray[
-    questionState.chosenAnswerId
+    QuizState.chosenAnswerId
     // TODO: looked tricky, try to redo
   ] || { id: undefined };
   // eslint-disable-next-line prefer-destructuring
   // TODO: rename this variable to more specific one
-  const level = questionState.level;
+  const level = QuizState.level;
   // eslint-disable-next-line prefer-destructuring
-  const isGameOver = questionState.isGameOver;
+  const isGameOver = QuizState.isGameOver;
   // TODO: try to not change variables. if you name some variable -> try to name it everewhere in this pattern
   const [playCorrect] = useSound(correct);
   const [playIncorrect] = useSound(incorrect);

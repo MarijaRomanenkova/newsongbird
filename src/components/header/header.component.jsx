@@ -1,13 +1,13 @@
 /* eslint-disable import/no-unresolved */
 import React, { useContext } from 'react';
-import { QuestionContext } from 'contexts/questionContext';
+import { QuizContext } from 'contexts/QuizContext';
 import styles from 'components/header/header.module.scss';
 // TODO: need to use absolute path
 import logo from '../../assets/logo.svg';
 
 function Header() {
-  const [questionState] = useContext(QuestionContext);
-  const { score } = questionState.score;
+  const [QuizState] = useContext(QuizContext);
+  const { score } = QuizState.score;
 
   return (
     <div className={styles.Header_Container}>

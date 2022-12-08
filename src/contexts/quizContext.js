@@ -2,7 +2,7 @@
 import React, { createContext, useReducer } from 'react';
 import birdsData from 'data.js';
 
-export const QuestionContext = createContext();
+export const QuizContext = createContext();
 
 // TODO: wrong func naming (look at input variable naming) it is not obvious
 const getRandomQuestionId = (level) => {
@@ -99,8 +99,8 @@ const reducer = (state, action) => {
 export function QuestionProvider({ children }) {
   const value = useReducer(reducer, initialState);
   return (
-    <QuestionContext.Provider value={value}>
+    <QuizContext.Provider value={value}>
       {children}
-    </QuestionContext.Provider>
+    </QuizContext.Provider>
   );
 }

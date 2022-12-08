@@ -2,25 +2,25 @@
 // TODO: imports order
 /* eslint-disable import/no-unresolved */
 import React, { useContext, useRef } from 'react';
-import { QuestionContext } from 'contexts/questionContext';
+import { QuizContext } from 'contexts/QuizContext';
 import AudioPlayer from 'react-h5-audio-player';
 // TODO: add more meaningful naming
 import MockUp from 'assets/bird-mock-up.jpg';
 import styles from 'components/question/question.module.scss';
 
 function Question() {
-  const [questionState] = useContext(QuestionContext);
+  const [QuizState] = useContext(QuizContext);
   // TODO: add something specific to naming
   const question =
-    questionState.birdsData[questionState.level][
-      questionState.randomQuestionID
+    QuizState.birdsData[QuizState.level][
+      QuizState.randomQuestionID
     ];
   
     // TODO: remove everewhere eslint-disable
   // eslint-disable-next-line prefer-destructuring
-  const isGameOver = questionState.isGameOver;
+  const isGameOver = QuizState.isGameOver;
   // eslint-disable-next-line prefer-destructuring
-  const isCorrectAnswer = questionState.isCorrectAnswer;
+  const isCorrectAnswer = QuizState.isCorrectAnswer;
   // TODO: move it from Component above
   const HIDDEN__ANSWER = '******';
 
@@ -45,7 +45,7 @@ function Question() {
     >
       <img
         className={styles.Question_Image}
-        src={questionState.isCorrectAnswer ? question.image : MockUp}
+        src={QuizState.isCorrectAnswer ? question.image : MockUp}
         // TODO : simplify condition
         alt={question.name ? question.name : 'bird'}
       />

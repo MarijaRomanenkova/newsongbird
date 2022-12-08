@@ -1,13 +1,13 @@
 /* eslint-disable import/no-unresolved */
 import React, { useContext } from 'react';
 import Confetti from 'react-confetti';
-import { QuestionContext } from 'contexts/questionContext';
+import { QuizContext } from 'contexts/QuizContext';
 import styles from 'components/gameOver/gameOver.module.scss';
 
 function GameOver() {
-  const [questionState, dispatch] = useContext(QuestionContext);
-  const { isGameOver } = questionState;
-  const { score } = questionState;
+  const [QuizState, dispatch] = useContext(QuizContext);
+  const { isGameOver } = QuizState;
+  const { score } = QuizState;
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
 
