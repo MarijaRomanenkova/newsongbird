@@ -1,16 +1,12 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable react/function-component-definition */
-// TODO: remove all eslint-disable
-// TODO: everywhere redo imports order
-// TODO: everywhere remove eslint-disable
 import React, { useContext, useEffect, useState } from 'react';
-import { QuestionContext } from 'contexts/questionContext';
 import useSound from 'use-sound';
 import cx from 'classnames';
 // TODO: rename variables for sounds
+import { QuestionContext } from 'contexts/questionContext';
 import correct from 'assets/sounds/correct.ogg';
 import incorrect from 'assets/sounds/incorrect.ogg';
 import AnswerDetails from 'components/answerDetails/answerDetails.component';
+
 import styles from 'components/answer/answer.module.scss';
 
 const Answer = () => {
