@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { QuestionProvider } from './contexts/QuizContext';
+import { QuizProvider } from './contexts/QuizContext';
 import App from './App';
 import './index.scss';
 import reportWebVitals from './reportWebVitals';
@@ -9,9 +9,9 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <QuestionProvider>
+    <QuizProvider>
       <App />
-    </QuestionProvider>
+    </QuizProvider>
   </React.StrictMode>
 );
 

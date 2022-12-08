@@ -13,7 +13,7 @@ function Question() {
   // TODO: add something specific to naming
   const question =
     QuizState.birdsData[QuizState.level][
-      QuizState.randomQuestionID
+      QuizState.correctAnswerID
     ];
   
     // TODO: remove everewhere eslint-disable

@@ -17,9 +17,9 @@ const Answer = () => {
   const nextLevelQuestionsArray =
     QuizState.birdsData[QuizState.level + 1];
   const currentQuestionObject =
-    thisLevelQuestionsArray[QuizState.randomQuestionID] || {};
+    thisLevelQuestionsArray[QuizState.correctAnswerID] || {};
   const chosenAnswer = thisLevelQuestionsArray[
-    QuizState.chosenAnswerId
+    QuizState.chosenAnswerOptionId
     // TODO: looked tricky, try to redo
   ] || { id: undefined };
   // eslint-disable-next-line prefer-destructuring
