@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import { QuizContext } from 'contexts/QuizContext';
 import Header from 'components/header/header.component';
 import Categories from 'components/categories/categories.component';
-import Question from 'components/question/question.component';
+import CorrectAnswer from 'components/correctAnswer/correctAnswer.component';
 import AnswerOptions from 'components/answerOptions/answerOptions.component';
 import GameOver from 'components/gameOver/gameOver.component';
 
@@ -19,7 +19,7 @@ function App() {
         <>
           <Header />
           <Categories />
-          <Question />
+          <CorrectAnswer/>
           <AnswerOptions />
         </>
       ) : (

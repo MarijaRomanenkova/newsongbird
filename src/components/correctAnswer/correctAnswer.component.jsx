@@ -1,20 +1,17 @@
 import React, { useContext, useRef } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 
-import { QuizContext } from 'contexts/QuizContext';
-// TODO: add more meaningful naming
-import MockUp from 'assets/bird-mock-up.jpg';
-import styles from 'components/question/question.module.scss';
+import { QuizContext } from 'contexts/quizContext';
+import imageHiddenCorrectAnswerJPG from 'assets/imageHiddenCorrectAnswerJPG.jpg';
+
+import styles from 'components/correctAnswer/correctAnswer.module.scss';
 
 const HIDDEN__ANSWER = '******';
 
-function Question() {
+function CorrectAnswer() {
   const [QuizState] = useContext(QuizContext);
-  // TODO: add something specific to naming
-  const question =
+  const correctAnswer =
     QuizState.birdsData[QuizState.level][QuizState.correctAnswerID];
-
-  const { isGameOver } = QuizState;
 
   const { isCorrectAnswer } = QuizState;
 
@@ -28,21 +25,23 @@ function Question() {
     pauseAudioPlayer();
   }
 
-  !isGameOver && return (
-    <div className={styles.Question_Container}>
+  return (
+    <div className={styles.correctAnswer_Container}>
       <img
-        className={styles.Question_Image}
-        src={QuizState.isCorrectAnswer ? question.image : MockUp}
+        className={styles.correctAnswer_Image}
+        src={
+          isCorrectAnswer ? correctAnswer.image : imageHiddenCorrectAnswerJPG
+        }
         // TODO : simplify condition
-        alt={question.name ? question.name : 'bird'}
+        alt={correctAnswer.name ? correctAnswer.name : 'bird'}
       />
-      <div className={styles.Question_Box}>
-        <h1 className={styles.Question_Title}>          
-          {isCorrectAnswer ? question.name : HIDDEN__ANSWER }
+      <div className={styles.correctAnswer_Box}>
+        <h1 className={styles.correctAnswer_Title}>
+          {isCorrectAnswer ? correctAnswer.name : HIDDEN__ANSWER}
         </h1>
         <AudioPlayer
           layout="horizontal-reverse"
-          src={question.audio}
+          src={correctAnswer.audio}
           autoPlay={false}
           autoPlayAfterSrcChange={false}
           showJumpControls={false}
@@ -56,4 +55,4 @@ function Question() {
     </div>
   );
 }
-export default Question;
+export default CorrectAnswer;

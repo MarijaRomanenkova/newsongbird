@@ -5,7 +5,7 @@ import { QuizContext } from 'contexts/quizContext';
 
 import styles from './answerOptionDetails.module.scss';
 
-function AnswerOptionDetails({ image, name, description, species, audio } ) {
+function AnswerOptionDetails({ image, name, description, species, audio }) {
   const [QuizState] = useContext(QuizContext);
   const { isCorrectAnswer } = QuizState.isCorrectAnswer || {};
   const AudioPlayerREF = useRef();
@@ -18,11 +18,15 @@ function AnswerOptionDetails({ image, name, description, species, audio } ) {
   }
 
   return (
-    <div className={styles.AnswerDetails_Container}>    
-      <img className={styles.AnswerDetails_Image} src={image} alt={name} />
+    <div className={styles.AnswerOptionDetails_Container}>
+      <img
+        className={styles.AnswerOptionDetails_Image}
+        src={image}
+        alt={name}
+      />
       <div>
-        <h2 className={styles.AnswerDetails_Name_Text}>{name}</h2>
-        <h4 className={styles.AnswerDetails_Species_Text}>{species}</h4>
+        <h2 className={styles.AnswerOptionDetails_Name_Text}>{name}</h2>
+        <h4 className={styles.AnswerOptionDetails_Species_Text}>{species}</h4>
         <AudioPlayer
           layout="horizontal-reverse"
           src={audio}
@@ -35,7 +39,9 @@ function AnswerOptionDetails({ image, name, description, species, audio } ) {
           ref={AudioPlayerREF}
         />
       </div>
-      <div className={styles.AnswerDetails_Description}>{description}</div>
+      <div className={styles.AnswerOptionDetails_Description}>
+        {description}
+      </div>
     </div>
   );
 }

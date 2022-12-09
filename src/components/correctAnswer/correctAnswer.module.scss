@@ -1,7 +1,7 @@
 @import 'scss-source/variables.scss';
 @import 'scss-source/mixins.scss';
 
-.Question {
+.correctAnswer {
     &_Container {
     display: flex;     
     background-color: $dark;
