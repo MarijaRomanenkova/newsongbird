@@ -4,9 +4,11 @@ import birdsData from 'data.js';
 
 export const QuizContext = createContext();
 
-const MAXIMUM__SCORE__PER__LEVEL = 5;
+export const MAXIMUM__SCORE__PER__LEVEL = 5;
+export const MAXIMUM_TOTAL_SCORE_VALUE = MAXIMUM__SCORE__PER__LEVEL * birdsData.length;
 
-const getCurrentAnswerID = (level) => {
+
+const getCorrectAnswerID = (level) => {
   const maximumNumber = birdsData[level].length;
   const minimumNumber = 1;
   const randomNumber =
@@ -18,7 +20,7 @@ const getCurrentAnswerID = (level) => {
 const initialState = {
   birdsData,
   level: 0,
-  correctAnswerID: getCurrentAnswerID(0),
+  correctAnswerID: getCorrectAnswerID(0),
   chosenAnswerOptionId: {},
   numberOfWrongAnswers: 0,
   score: 0,
@@ -32,7 +34,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         level: state.level + 1,
-        correctAnswerID: getCurrentAnswerID(state.level),
+        correctAnswerID: getCorrectAnswerID(state.level),
         chosenAnswerOptionId: null,
         isCorrectAnswer: false,
         numberOfWrongAnswers: 0,
@@ -57,7 +59,9 @@ const reducer = (state, action) => {
         isCorrectAnswer: true,
         isGameOver: false,
         score:
-          MAXIMUM__SCORE__PER__LEVEL - state.numberOfWrongAnswers + state.prevScore,
+          MAXIMUM__SCORE__PER__LEVEL -
+          state.numberOfWrongAnswers +
+          state.prevScore,
       };
 
     case 'CHOOSE':
@@ -72,7 +76,7 @@ const reducer = (state, action) => {
       return {
         birdsData,
         level: 0,
-        correctAnswerID: getCurrentAnswerID(0),
+        correctAnswerID: getCorrectAnswerID(0),
         chosenAnswerOptionId: null,
         numberOfWrongAnswers: 0,
         score: 0,

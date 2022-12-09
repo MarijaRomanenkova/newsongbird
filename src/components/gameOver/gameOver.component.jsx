@@ -6,13 +6,12 @@ import styles from 'components/gameOver/gameOver.module.scss';
 
 function GameOver() {
   const [QuizState, dispatch] = useContext(QuizContext);
-  const { isGameOver } = QuizState;
   const { score } = QuizState;
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
 
   return (
-    <div className={isGameOver ? styles.GameOver_Container : styles.Hidden}>
+    <div className={styles.GameOver_Container }>
       <Confetti width={windowWidth} height={windowHeight} />
       <h1 className={styles.GameOver_Title}>Поздравляем!</h1>
       <h5 className={styles.GameOver_Text}>

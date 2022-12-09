@@ -7,31 +7,30 @@ import correct from 'assets/sounds/correct.ogg';
 import incorrect from 'assets/sounds/incorrect.ogg';
 import AnswerDetails from 'components/answerDetails/answerDetails.component';
 
-import styles from './answer.module.scssanswer.module.scss';
+import styles from './answerOptions.module.scss';
 
-const Answer = () => {
+function AnswerOptions() {
   const [QuizState, dispatch] = useContext(QuizContext);
   // TODO: can we rename it? to something like currentQuestionsForLevelArray or something like this. rename this -> to current. it more meaningful.
-  // TODO: or looks like we have thisLevelQuestionsArray and currentQuestionObject, it is tricky to understand why we need each of them
-  const thisLevelQuestionsArray = QuizState.birdsData[QuizState.level];
-  const nextLevelQuestionsArray =
-    QuizState.birdsData[QuizState.level + 1];
+  // TODO: or looks like we have currentLevelAnswersOptionsArray and currentQuestionObject, it is tricky to understand why we need each of them
+  const currentLevelAnswersOptionsArray = QuizState.birdsData[QuizState.level];
+  const nextLevelAnswersOptionsArray = QuizState.birdsData[QuizState.level + 1];
   const currentQuestionObject =
-    thisLevelQuestionsArray[QuizState.correctAnswerID] || {};
-  const chosenAnswer = thisLevelQuestionsArray[
+    currentLevelAnswersOptionsArray[QuizState.correctAnswerID] || {};
+  const chosenAnswer = currentLevelAnswersOptionsArray[
     QuizState.chosenAnswerOptionId
     // TODO: looked tricky, try to redo
   ] || { id: undefined };
   // eslint-disable-next-line prefer-destructuring
   // TODO: rename this variable to more specific one
-  const level = QuizState.level;
+  const { level } = QuizState;
   // eslint-disable-next-line prefer-destructuring
   const isGameOver = QuizState.isGameOver;
   // TODO: try to not change variables. if you name some variable -> try to name it everewhere in this pattern
   const [playCorrect] = useSound(correct);
   const [playIncorrect] = useSound(incorrect);
   // TODO: redo this logic with styles. need to discuss. looked tricky
-  const initialAnswersListStyles = thisLevelQuestionsArray.map((item) => ({
+  const initialAnswersListStyles = currentLevelAnswersOptionsArray.map((item) => ({
     ...item,
     itemClass: styles.AnswersList_Item,
     isAlreadyChosen: false,
@@ -102,7 +101,7 @@ const Answer = () => {
     dispatch({ type: 'NEXT_LEVEL' });
     if (isGameOver === true) {
       setAnswersListStyles(
-        thisLevelQuestionsArray.map((item) => ({
+        currentLevelAnswersOptionsArray.map((item) => ({
           ...item,
           itemClass: styles.AnswersList_Item,
           isAlreadyChosen: false,
@@ -111,7 +110,7 @@ const Answer = () => {
       dispatch({ type: 'NEW_GAME' });
     }
     setAnswersListStyles(
-      nextLevelQuestionsArray.map((item) => ({
+      nextLevelAnswersOptionsArray.map((item) => ({
         ...item,
         itemClass: styles.AnswersList_Item,
         isAlreadyChosen: false,
@@ -125,12 +124,10 @@ const Answer = () => {
       className={item.itemClass}
       key={item.id}
       value={item.id}
-      // TODO: remove : null 
+      // TODO: remove : null
       onClick={!item.isAlreadyChosen ? chooseAnswer : null}
     >
-      {/* TODO: do we really need ' ' in the bottom line? */}
-      {' '}
-      {item.name}
+      {/* TODO: do we really need ' ' in the bottom line? */} {item.name}
     </li>
   ));
 
@@ -169,6 +166,6 @@ const Answer = () => {
       </button>
     </div>
   );
-};
+}
 
-export default Answer;
+export default AnswerOptions;
