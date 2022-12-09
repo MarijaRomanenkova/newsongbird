@@ -7,8 +7,8 @@ import styles from './header.module.scss';
 
 function Header() {
   const [QuizState] = useContext(QuizContext);
-  const { score } = QuizState.score;
-
+  const { score } = QuizState;
+ 
   return (
     <div className={styles.Header_Container}>
       <div>
