@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import Confetti from 'react-confetti';
+
 import { QuizContext } from 'contexts/quizContext';
+
 import styles from 'components/gameOver/gameOver.module.scss';
 
 function GameOver() {
@@ -20,20 +22,19 @@ function GameOver() {
         Вы прошли викторину и набрали {score} из {MAXIMUM_TOTAL_SCORE} возможных
         баллов
       </h5>
-      <h5
-        className={
-          score < MAXIMUM_TOTAL_SCORE ? styles.GameOver_Text : styles.Hidden
-        }
-      >
-        Попробуете набрать больше?
-      </h5>
-      <button
-        className={score < 29 ? styles.GameOver_Btn : styles.Hidden}
-        type="button"
-        onClick={() => dispatch({ type: 'NEW_GAME' })}
-      >
-        Попробовать еще раз!
-      </button>
+
+      {score < MAXIMUM_TOTAL_SCORE && (
+        <>
+          <h5 className={styles.GameOver_Text}>Попробуете набрать больше?</h5>
+          <button
+            className={styles.GameOver_Btn}
+            type="button"
+            onClick={() => dispatch({ type: 'NEW_GAME' })}
+          >
+            Попробовать еще раз!
+          </button>
+        </>
+      )}
     </div>
   );
 }
