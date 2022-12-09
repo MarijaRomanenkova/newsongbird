@@ -1,7 +1,6 @@
-/* eslint-disable import/no-unresolved */
 import React, { useContext } from 'react';
 
-import { QuizContext } from 'contexts/QuizContext';
+import { QuizContext } from 'contexts/quizContext';
 import logo from 'assets/logo.svg';
 
 import styles from './header.module.scss';

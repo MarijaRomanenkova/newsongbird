@@ -6,7 +6,7 @@ export const QuizContext = createContext();
 
 export const MAXIMUM__SCORE__PER__LEVEL = 5;
 export const MAXIMUM_TOTAL_SCORE_VALUE =
-  MAXIMUM__SCORE__PER__LEVEL * birdsData.length;
+  MAXIMUM__SCORE__PER__LEVEL * (birdsData.length -1);
 
 const getCorrectAnswerID = (level) => {
   const maximumNumber = birdsData[level].length;
@@ -19,7 +19,7 @@ const getCorrectAnswerID = (level) => {
 
 const initialState = {
   birdsData,
-  level: 0,
+  level: 1,
   correctAnswerID: getCorrectAnswerID(0),
   chosenAnswerOptionId: {},
   numberOfWrongAnswers: 0,
@@ -42,7 +42,7 @@ const reducer = (state, action) => {
       };
 
     case 'WIN':
-      if (state.level > birdsData.length - 1) {
+      if (state.level > birdsData.length - 2) {
         return {
           ...state,
           score:
@@ -75,7 +75,7 @@ const reducer = (state, action) => {
     case 'NEW_GAME':
       return {
         birdsData,
-        level: 0,
+        level: 1,
         correctAnswerID: getCorrectAnswerID(0),
         chosenAnswerOptionId: null,
         numberOfWrongAnswers: 0,

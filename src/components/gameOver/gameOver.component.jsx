@@ -1,7 +1,6 @@
-/* eslint-disable import/no-unresolved */
 import React, { useContext } from 'react';
 import Confetti from 'react-confetti';
-import { QuizContext } from 'contexts/QuizContext';
+import { QuizContext } from 'contexts/quizContext';
 import styles from 'components/gameOver/gameOver.module.scss';
 
 function GameOver() {
