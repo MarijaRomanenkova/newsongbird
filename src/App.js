@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import React, { useContext } from 'react';
 
 import Header from 'components/header/header.component';
