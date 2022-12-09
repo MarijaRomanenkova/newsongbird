@@ -1,7 +1,7 @@
 @import 'scss-source/variables.scss';
 @import 'scss-source/mixins.scss';
 
-.Answers_Container {    
+.AnswerOptions_Container {    
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: max-content(400px);
@@ -14,17 +14,15 @@
         grid-template-columns: 1fr;
         grid-template-rows: auto;
         grid-row-gap: 1.56rem;            
-    } 
-    .Hidden {
-        display: none;
-    }   
+    }     
 }
-.AnswersList_Container {  
+.AnswerOptionsList_Container {  
     list-style-type: disc;
     list-style-position: inside;
     padding: 0px; 
-    margin: auto 0px;  
-    .AnswersList_Item {
+    margin: auto 0px; 
+
+    .AnswerOptionsList_Item {
         border: 1px solid $dark-mode-border;
         border-bottom: none;
         background-color:$dark; 
@@ -34,34 +32,41 @@
             font-size: 1.25rem;
             padding: 1rem;
         } 
+
         &:focus {
             background-color:$dark-mode-border;
         }
+
         &:hover {
             background-color:$dark-mode-border;
         }
+
         &::marker {
             color: $dark-mode-border;
             font-size: 1.75rem;        
         }
+
         &:first-child {
             border-top-left-radius: 0.25rem;
             border-top-right-radius: 0.25rem;
         }
+
         &:last-child {
             border-bottom-left-radius: 0.25rem;
             border-bottom-right-radius: 0.25rem;
             border-bottom: 1px solid $dark-mode-border;
         }
+
         &__correct{
-            @extend .AnswersList_Item ;
+            @extend .AnswerOptionsList_Item ;
             &::marker {
                 color: $green;
                 font-size: 1.75rem;     
             }
-        }    
+        }
+           
         &__incorrect{
-            @extend .AnswersList_Item ;
+            @extend .AnswerOptionsList_Item ;
             &::marker {
                 color: $red;
                 font-size: 1.75rem;     
@@ -69,10 +74,8 @@
         }      
     }    
 }
-.Hidden {
-    display: none;
-}
-.AnswerDetails_Dummy {
+
+.AnswerOptionDetails_Dummy {
     border: 1px solid $dark-mode-border;
     border-radius: 0.25rem;
     background-color:$dark; 
@@ -119,8 +122,4 @@
     &:hover {
         background-color: $teal;
     }
-}
-
-.Hidden {
-    display: none;
 }

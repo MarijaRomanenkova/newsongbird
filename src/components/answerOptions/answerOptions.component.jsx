@@ -135,8 +135,8 @@ function AnswerOptions() {
 
   return (
     <div>
-      <div className={styles.Answers_Container}>
-        <ul className={styles.AnswersList_Container}>{answersList}</ul>
+      <div className={styles.AnswerOptions_Container}>
+        <ul className={styles.AnswerOptionsList_Container}>{answersList}</ul>
         {/* looks tricky with undefined */}
         {chosenAnswer.id !== undefined ? (
           <AnswerOptionDetails
@@ -147,11 +147,11 @@ function AnswerOptions() {
             species={chosenAnswer.species}
           />
         ) : (
-          <div className={styles.AnswerDetails_Dummy}>
-            <h4 className={styles.AnswerDetails_Dummy_Text}>
+          <div className={styles.AnswerOptionDetails_Dummy}>
+            <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
               Послушайте плеер.
             </h4>
-            <h4 className={styles.AnswerDetails_Dummy_Text}>
+            <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
               Выберите птицу из списка
             </h4>
           </div>
