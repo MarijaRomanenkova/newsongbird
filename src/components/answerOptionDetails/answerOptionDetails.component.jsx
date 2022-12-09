@@ -5,26 +5,21 @@ import { QuizContext } from 'contexts/quizContext';
 
 import styles from './answerOptionDetails.module.scss';
 
-function AnswerOptionDetails(props) {
-  // TODO: better to make destruction in the props (line above)
-  const { image, name, description, species, audio } = props;
+function AnswerOptionDetails({ image, name, description, species, audio } ) {
   const [QuizState] = useContext(QuizContext);
   const { isCorrectAnswer } = QuizState.isCorrectAnswer || {};
-  // TODO: rename variable for better understanding what is player is, it very common. 2. and add 'Ref' to the end of variable to add understandable flag that this variable is Ref variable
-  const player = useRef();
-  // TODO: can we rename to pauseAudioPlayer ?
-  const pausePlayer = () => {
-    player.current.audio.current.pause();
+  const AudioPlayerREF = useRef();
+  const pauseAudioPlayer = () => {
+    AudioPlayerREF.current.audio.current.pause();
   };
 
   if (isCorrectAnswer === true) {
-    pausePlayer();
+    pauseAudioPlayer();
   }
 
   return (
-    <div className={styles.AnswerDetails_Container}>
-      {/* TODO: can we simplify alt? */}
-      <img className={styles.AnswerDetails_Image} src={image} alt={`${name}`} />
+    <div className={styles.AnswerDetails_Container}>    
+      <img className={styles.AnswerDetails_Image} src={image} alt={name} />
       <div>
         <h2 className={styles.AnswerDetails_Name_Text}>{name}</h2>
         <h4 className={styles.AnswerDetails_Species_Text}>{species}</h4>
@@ -37,7 +32,7 @@ function AnswerOptionDetails(props) {
           showFilledProgress
           customAdditionalControls={[]}
           customVolumeControls={[]}
-          ref={player}
+          ref={AudioPlayerREF}
         />
       </div>
       <div className={styles.AnswerDetails_Description}>{description}</div>
