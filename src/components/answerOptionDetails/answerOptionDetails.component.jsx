@@ -1,11 +1,11 @@
-/* eslint-disable import/no-unresolved */
 import React, { useContext, useRef } from 'react';
-import { QuizContext } from 'contexts/QuizContext';
 import AudioPlayer from 'react-h5-audio-player';
 
-import styles from 'components/answerDetails/answerDetails.module.scss';
+import { QuizContext } from 'contexts/quizContext';
 
-function AnswerDetails(props) {
+import styles from './answerOptionDetails.module.scss';
+
+function AnswerOptionDetails(props) {
   // TODO: better to make destruction in the props (line above)
   const { image, name, description, species, audio } = props;
   const [QuizState] = useContext(QuizContext);
@@ -45,4 +45,4 @@ function AnswerDetails(props) {
   );
 }
 
-export default AnswerDetails;
+export default AnswerOptionDetails;
