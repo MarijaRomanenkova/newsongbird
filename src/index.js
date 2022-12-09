@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { QuizProvider } from './contexts/QuizContext';
+
+import { QuizProvider } from './contexts/quizContext';
 import App from './App';
-import './index.scss';
 import reportWebVitals from './reportWebVitals';
-// TODO: imports order
+
+import './index.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

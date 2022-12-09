@@ -5,8 +5,8 @@ import birdsData from 'data.js';
 export const QuizContext = createContext();
 
 export const MAXIMUM__SCORE__PER__LEVEL = 5;
-export const MAXIMUM_TOTAL_SCORE_VALUE = MAXIMUM__SCORE__PER__LEVEL * birdsData.length;
-
+export const MAXIMUM_TOTAL_SCORE_VALUE =
+  MAXIMUM__SCORE__PER__LEVEL * birdsData.length;
 
 const getCorrectAnswerID = (level) => {
   const maximumNumber = birdsData[level].length;

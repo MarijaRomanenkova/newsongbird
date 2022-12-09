@@ -1,9 +1,10 @@
 /* eslint-disable import/no-unresolved */
 import React, { useContext } from 'react';
+
 import { QuizContext } from 'contexts/QuizContext';
-import styles from 'components/header/header.module.scss';
-// TODO: need to use absolute path
-import logo from '../../assets/logo.svg';
+import logo from 'assets/logo.svg';
+
+import styles from './header.module.scss';
 
 function Header() {
   const [QuizState] = useContext(QuizContext);
@@ -15,7 +16,7 @@ function Header() {
         <img className={styles.Logo} src={logo} alt="Logo" />
       </div>
       <div className={styles.Score}>
-        <p> Score: {score}</p>{' '}
+        <p> Score: {score}</p>
       </div>
     </div>
   );

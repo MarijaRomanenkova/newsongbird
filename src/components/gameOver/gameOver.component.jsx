@@ -7,20 +7,26 @@ import styles from 'components/gameOver/gameOver.module.scss';
 function GameOver() {
   const [QuizState, dispatch] = useContext(QuizContext);
   const { score } = QuizState;
+  const { level } = QuizState;
+  const { MAXIMUM_SCORE_VALUE } = QuizState;
+  const MAXIMUM_TOTAL_SCORE = MAXIMUM_SCORE_VALUE * level;
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
 
   return (
-    <div className={styles.GameOver_Container }>
+    <div className={styles.GameOver_Container}>
       <Confetti width={windowWidth} height={windowHeight} />
       <h1 className={styles.GameOver_Title}>Поздравляем!</h1>
       <h5 className={styles.GameOver_Text}>
-        Вы прошли викторину и набрали {score} из 30 возможных баллов
+        Вы прошли викторину и набрали {score} из {MAXIMUM_TOTAL_SCORE} возможных
+        баллов
       </h5>
-      {/* TODO: redo static 29 and 30. use appropriate variables using MAXIMUM_SCORE_VALUE * all correctAnsweraries */}
-      {/* TODO: remove everewhere ' ' -> if this not needed */}
-      <h5 className={score < 29 ? styles.GameOver_Text : styles.Hidden}>
-        Попробуете набрать больше?{' '}
+      <h5
+        className={
+          score < MAXIMUM_TOTAL_SCORE ? styles.GameOver_Text : styles.Hidden
+        }
+      >
+        Попробуете набрать больше?
       </h5>
       <button
         className={score < 29 ? styles.GameOver_Btn : styles.Hidden}
