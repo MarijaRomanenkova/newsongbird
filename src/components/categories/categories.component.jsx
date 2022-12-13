@@ -16,7 +16,9 @@ function Categories() {
         <div
           key={uuid()}
           className={
-            index === currentLevel - 1 ? styles.Category_Active : styles.Category
+            index === currentLevel - 1
+              ? styles.Category_Active
+              : styles.Category
           }
         >
           <p className={styles.Categories_Text}>{category}</p>

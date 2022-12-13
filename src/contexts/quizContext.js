@@ -36,7 +36,6 @@ const reducer = (state, action) => {
         correctAnswerID: getCorrectAnswerID(state.currentLevel),
         isCorrectAnswer: false,
         numberOfWrongAnswers: 0,
-        isGameOver: false,
       };
 
     case 'WIN':
@@ -44,28 +43,28 @@ const reducer = (state, action) => {
         return {
           ...state,
           score:
-            MAXIMUM__SCORE__PER__LEVEL -
-            state.numberOfWrongAnswers +
-            state.prevScore,
+            (state.numberOfWrongAnswers + 1 > MAXIMUM__SCORE__PER__LEVEL
+              ? 0
+              : MAXIMUM__SCORE__PER__LEVEL - (state.numberOfWrongAnswers - 1)) +
+            state.score,
           isGameOver: true,
           isCorrectAnswer: true,
         };
       }
       return {
         ...state,
-        isCorrectAnswer: true,
-        isGameOver: false,
         score:
-          MAXIMUM__SCORE__PER__LEVEL -
-          state.numberOfWrongAnswers +
-          state.prevScore,
+          (state.numberOfWrongAnswers + 1 > MAXIMUM__SCORE__PER__LEVEL
+            ? 0
+            : MAXIMUM__SCORE__PER__LEVEL - (state.numberOfWrongAnswers - 1)) +
+          state.score,
+        isCorrectAnswer: true,
       };
 
     case 'CHOOSE':
       return {
         ...state,
         numberOfWrongAnswers: state.numberOfWrongAnswers + 1,
-        isGameOver: false,
       };
 
     case 'NEW_GAME':

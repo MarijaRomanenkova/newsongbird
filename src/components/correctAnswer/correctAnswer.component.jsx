@@ -13,6 +13,7 @@ function CorrectAnswer() {
   const correctAnswer =
     QuizState.birdsData[QuizState.currentLevel][QuizState.correctAnswerID];
 
+
   const { isCorrectAnswer } = QuizState;
 
   const AudioPlayerREF = useRef();
@@ -25,34 +26,36 @@ function CorrectAnswer() {
     pauseAudioPlayer();
   }
 
-  return (
-    <div className={styles.correctAnswer_Container}>
-      <img
-        className={styles.correctAnswer_Image}
-        src={
-          isCorrectAnswer ? correctAnswer.image : imageHiddenCorrectAnswerJPG
-        }
-        // TODO : simplify condition
-        alt={correctAnswer.name ? correctAnswer.name : 'bird'}
-      />
-      <div className={styles.correctAnswer_Box}>
-        <h1 className={styles.correctAnswer_Title}>
-          {isCorrectAnswer ? correctAnswer.name : HIDDEN__ANSWER}
-        </h1>
-        <AudioPlayer
-          layout="horizontal-reverse"
-          src={correctAnswer.audio}
-          autoPlay={false}
-          autoPlayAfterSrcChange={false}
-          showJumpControls={false}
-          showFilledProgress
-          volumeControls
-          customAdditionalControls={[]}
-          customVolumeControls={[]}
-          ref={AudioPlayerREF}
+  if (correctAnswer) {
+    return (
+      <div className={styles.correctAnswer_Container}>
+        <img
+          className={styles.correctAnswer_Image}
+          src={
+            isCorrectAnswer ? correctAnswer.image : imageHiddenCorrectAnswerJPG
+          }
+          // TODO : simplify condition
+          alt={correctAnswer.name ? correctAnswer.name : 'bird'}
         />
+        <div className={styles.correctAnswer_Box}>
+          <h1 className={styles.correctAnswer_Title}>
+            {isCorrectAnswer ? correctAnswer.name : HIDDEN__ANSWER}
+          </h1>
+          <AudioPlayer
+            layout="horizontal-reverse"
+            src={correctAnswer.audio}
+            autoPlay={false}
+            autoPlayAfterSrcChange={false}
+            showJumpControls={false}
+            showFilledProgress
+            volumeControls
+            customAdditionalControls={[]}
+            customVolumeControls={[]}
+            ref={AudioPlayerREF}
+          />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 export default CorrectAnswer;

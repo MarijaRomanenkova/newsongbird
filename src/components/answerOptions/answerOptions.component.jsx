@@ -1,11 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import useSound from 'use-sound';
 import cx from 'classnames';
+import uuid from 'react-uuid';
 
 import { QuizContext } from 'contexts/quizContext';
 import correctAnswerChosenSoundOGG from 'assets/sounds/correctAnswerChosenSound.ogg';
 import incorrectAnswerChosenSoundOGG from 'assets/sounds/incorrectAnswerChosenSound.ogg';
 import AnswerOptionDetails from 'components/answerOptionDetails/answerOptionDetails.component';
+import Circle from 'components/circle/circle.component';
 
 import styles from './answerOptions.module.scss';
 
@@ -15,7 +17,7 @@ function AnswerOptions() {
     QuizState.birdsData[QuizState.currentLevel];
 
   const correctAnswer =
-    currentLevelAnswersOptionsArray[QuizState.correctAnswerID];
+    currentLevelAnswersOptionsArray[QuizState.correctAnswerID] || [];
 
   const { isGameOver } = QuizState;
 
@@ -31,12 +33,7 @@ function AnswerOptions() {
   const [
     currentLevelAnswersOptionsArrayStatusAdded,
     setCurrentLevelAnswersOptionsArrayStatusAdded,
-  ] = useState([]);
-
-  console.log(
-    'currentLevelAnswersOptionsArray',
-    currentLevelAnswersOptionsArray
-  );
+  ] = useState([currentLevelAnswersOptionsArray]);
 
   useEffect(() => {
     setCurrentLevelAnswersOptionsArrayStatusAdded(
@@ -117,25 +114,20 @@ function AnswerOptions() {
       <div className={styles.AnswerOptions_Container}>
         <div className={styles.AnswerOptionsList_Container}>
           {currentLevelAnswersOptionsArrayStatusAdded.map((item) => (
-            <button
-              className={styles.AnswerOptionsList_Item}
-              type="button"
-              key={item.id}
-              value={item.id}
-              onClick={() => chooseAnswerOption(item.id)}
-            >
-              <span
-                className={cx({
-                  [styles.Circle]: !item.isChosenAnswer,
-                  [styles.CorrectOptionChosen]:
-                    item.isChosenAnswer && item.isCorrectAnswer,
-                  [styles.IncorrectOptionChosen]:
-                    item.isChosenAnswer && !item.isCorrectAnswer,
-                })}
-              />
-
-              {item.name}
-            </button>
+            <Fragment key={uuid()}>
+              <button
+                className={styles.AnswerOptionsList_Item}
+                type="button"
+                value={item.id}
+                onClick={() => chooseAnswerOption(item.id)}
+              >
+                <Circle
+                  isChosenAnswer={item.isChosenAnswer}
+                  isCorrectAnswer={item.isCorrectAnswer}
+                />
+                {item.name}
+              </button>
+            </Fragment>
           ))}
         </div>
 

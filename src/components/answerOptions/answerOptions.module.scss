@@ -57,24 +57,7 @@
     
 }    
 
-.Circle {
-    background-color: $dark-mode-border;
-    border-radius: 100%;
-    margin: auto 1.5rem auto auto;
-    width: calc(1.5rem / 2);
-    height: calc(1.5rem / 2);
-    
-    display: inline-block;
-    
-    &_CorrectOption {
-        @extend .Circle;
-        color: $green;        
-    }
-    &_IncorrectOption {
-        @extend .Circle;
-        color: $red;        
-    } 
-}
+
 
 .AnswerOptionDetails_Dummy {
     border: 1px solid $dark-mode-border;

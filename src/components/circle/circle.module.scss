@@ -1,0 +1,24 @@
+@import 'scss-source/variables.scss';
+
+.Circle {
+    
+    border-radius: 100%;
+    margin: auto 1.5rem auto auto;
+    width: calc(1.5rem / 2);
+    height: calc(1.5rem / 2);    
+    display: inline-block;
+
+    &_Basic {
+        @extend .Circle;
+        background-color: $dark-mode-border;      
+    }
+    
+    &_CorrectOption {
+        @extend .Circle;
+        background-color: $green;        
+    }
+    &_IncorrectOption {
+        @extend .Circle;
+        background-color: red ;        
+    } 
+}

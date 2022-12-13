@@ -14,15 +14,15 @@ function App() {
   const { isGameOver } = QuizState;
   return (
     <div className={styles.App_Container}>
-      {!isGameOver ? (
+      {isGameOver ? (
+        <GameOver />
+      ) : (
         <>
           <Header />
           <Categories />
           <CorrectAnswer />
           <AnswerOptions />
         </>
-      ) : (
-        <GameOver />
       )}
     </div>
   );
