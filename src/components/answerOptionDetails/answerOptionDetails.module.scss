@@ -2,7 +2,7 @@
 @import 'scss-source/mixins.scss';
 
 .AnswerOptionDetails {
-    &_Container {
+    &_Container {    
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
@@ -12,6 +12,7 @@
     padding: 1rem;
     font-weight: 400;
     width: auto;
+    height: 100%;
     overflow: hidden;
         @include mini {
             display:none;
@@ -27,8 +28,8 @@
         padding: 0.25rem 0rem 0rem ;         
     }
     &_Image {
-        width: 200px;
-        height: 155px;
+        width: 180px;
+        height: 135px;
         border-radius: 0.625rem;
         object-fit: cover;            
         }

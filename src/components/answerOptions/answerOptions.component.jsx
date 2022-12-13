@@ -17,7 +17,7 @@ function AnswerOptions() {
     QuizState.birdsData[QuizState.currentLevel];
 
   const correctAnswer =
-    currentLevelAnswersOptionsArray[QuizState.correctAnswerID] || [];
+    currentLevelAnswersOptionsArray[QuizState.correctAnswerID - 1] || [];
 
   const { isGameOver } = QuizState;
 
