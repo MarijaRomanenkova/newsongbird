@@ -12,13 +12,13 @@ import styles from './App.module.scss';
 function App() {
   const [QuizState] = useContext(QuizContext);
   const { isGameOver } = QuizState;
+
   return (
     <div className={styles.App_Container}>
-      {isGameOver ? (
-        <GameOver />
-      ) : (
+      <Header />
+      {isGameOver && <GameOver />}
+      {!isGameOver && (
         <>
-          <Header />
           <Categories />
           <CorrectAnswer />
           <AnswerOptions />

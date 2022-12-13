@@ -7,9 +7,8 @@ import styles from './gameOver.module.scss';
 
 function GameOver() {
   const [QuizState, dispatch] = useContext(QuizContext);
-  const { score, currentLevel } = QuizState;
-  const MAXIMUM_SCORE_VALUE = 5;
-  const MAXIMUM_TOTAL_SCORE = MAXIMUM_SCORE_VALUE * currentLevel;
+  const { score } = QuizState;
+  const MAXIMUM_TOTAL_SCORE = 30;
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
 

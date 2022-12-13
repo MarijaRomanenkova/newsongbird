@@ -4,9 +4,8 @@ import birdsData from 'data.js';
 
 export const QuizContext = createContext();
 
-export const MAXIMUM__SCORE__PER__LEVEL = 5;
-export const MAXIMUM_TOTAL_SCORE_VALUE =
-  MAXIMUM__SCORE__PER__LEVEL * (birdsData.length - 1);
+const MAXIMUM_SCORE_PER_LEVEL = 5;
+
 
 const getCorrectAnswerID = (currentLevel) => {
   const maximumNumber = birdsData[currentLevel].length;
@@ -23,7 +22,7 @@ const initialState = {
   correctAnswerID: getCorrectAnswerID(0),
   numberOfWrongAnswers: 0,
   score: 0,
-  isCorrectAnswer: false,
+  isCorrectAnswerSelected: false,
   isGameOver: false,
 };
 
@@ -34,31 +33,31 @@ const reducer = (state, action) => {
         ...state,
         currentLevel: state.currentLevel + 1,
         correctAnswerID: getCorrectAnswerID(state.currentLevel),
-        isCorrectAnswer: false,
+        isCorrectAnswerSelected: false,
         numberOfWrongAnswers: 0,
       };
 
     case 'WIN':
-      if (state.level > birdsData.length - 2) {
+      if (state.currentLevel > birdsData.length - 2) {
         return {
           ...state,
           score:
-            (state.numberOfWrongAnswers + 1 > MAXIMUM__SCORE__PER__LEVEL
+            (state.numberOfWrongAnswers + 1 > MAXIMUM_SCORE_PER_LEVEL
               ? 0
-              : MAXIMUM__SCORE__PER__LEVEL - (state.numberOfWrongAnswers - 1)) +
+              : MAXIMUM_SCORE_PER_LEVEL - (state.numberOfWrongAnswers - 1)) +
             state.score,
           isGameOver: true,
-          isCorrectAnswer: true,
+          isCorrectAnswerSelected: true,
         };
       }
       return {
         ...state,
         score:
-          (state.numberOfWrongAnswers + 1 > MAXIMUM__SCORE__PER__LEVEL
+          (state.numberOfWrongAnswers + 1 > MAXIMUM_SCORE_PER_LEVEL
             ? 0
-            : MAXIMUM__SCORE__PER__LEVEL - (state.numberOfWrongAnswers - 1)) +
+            : MAXIMUM_SCORE_PER_LEVEL - (state.numberOfWrongAnswers - 1)) +
           state.score,
-        isCorrectAnswer: true,
+        isCorrectAnswerSelected: true,
       };
 
     case 'CHOOSE':
@@ -74,7 +73,7 @@ const reducer = (state, action) => {
         correctAnswerID: getCorrectAnswerID(0),
         numberOfWrongAnswers: 0,
         score: 0,
-        isCorrectAnswer: false,
+        isCorrectAnswerSelected: false,
         isGameOver: false,
       };
     default:

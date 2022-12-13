@@ -7,13 +7,13 @@ import styles from './answerOptionDetails.module.scss';
 
 function AnswerOptionDetails({ image, name, description, species, audio }) {
   const [QuizState] = useContext(QuizContext);
-  const { isCorrectAnswer } = QuizState.isCorrectAnswer || {};
+  const { isCorrectAnswerSelected } = QuizState.isCorrectAnswerSelected || {};
   const AudioPlayerREF = useRef();
   const pauseAudioPlayer = () => {
     AudioPlayerREF.current.audio.current.pause();
   };
 
-  if (isCorrectAnswer === true) {
+  if (isCorrectAnswerSelected === true) {
     pauseAudioPlayer();
   }
 

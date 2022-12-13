@@ -11,11 +11,13 @@ const HIDDEN__ANSWER = '******';
 function CorrectAnswer() {
   const [QuizState] = useContext(QuizContext);
   const correctAnswer =
-    QuizState.birdsData[QuizState.currentLevel][QuizState.correctAnswerID - 1];
+    QuizState.birdsData[QuizState.currentLevel][
+      QuizState.correctAnswerID - 1
+    ] || {};
 
-console.log('correctID', QuizState.correctAnswerID);
+  console.log('correctID', QuizState.correctAnswerID);
 
-  const { isCorrectAnswer } = QuizState;
+  const { isCorrectAnswerSelected } = QuizState;
 
   const AudioPlayerREF = useRef();
   const pauseAudioPlayer = () => {
@@ -23,40 +25,40 @@ console.log('correctID', QuizState.correctAnswerID);
   };
 
   // TODO: simplify condition
-  if (isCorrectAnswer) {
+  if (isCorrectAnswerSelected) {
     pauseAudioPlayer();
   }
 
-  if (correctAnswer) {
-    return (
-      <div className={styles.correctAnswer_Container}>
-        <img
-          className={styles.correctAnswer_Image}
-          src={
-            isCorrectAnswer ? correctAnswer.image : imageHiddenCorrectAnswerJPG
-          }
-          // TODO : simplify condition
-          alt={correctAnswer.name ? correctAnswer.name : 'bird'}
+  return (
+    <div className={styles.correctAnswer_Container}>
+      <img
+        className={styles.correctAnswer_Image}
+        src={
+          isCorrectAnswerSelected.image
+            ? correctAnswer.image
+            : imageHiddenCorrectAnswerJPG
+        }
+        // TODO : simplify condition
+        alt={correctAnswer.name ? correctAnswer.name : 'bird'}
+      />
+      <div className={styles.correctAnswer_Box}>
+        <h1 className={styles.correctAnswer_Title}>
+          {isCorrectAnswerSelected.name ? correctAnswer.name : HIDDEN__ANSWER}
+        </h1>
+        <AudioPlayer
+          layout="horizontal-reverse"
+          src={correctAnswer.audio}
+          autoPlay={false}
+          autoPlayAfterSrcChange={false}
+          showJumpControls={false}
+          showFilledProgress
+          volumeControls
+          customAdditionalControls={[]}
+          customVolumeControls={[]}
+          ref={AudioPlayerREF}
         />
-        <div className={styles.correctAnswer_Box}>
-          <h1 className={styles.correctAnswer_Title}>
-            {isCorrectAnswer ? correctAnswer.name : HIDDEN__ANSWER}
-          </h1>
-          <AudioPlayer
-            layout="horizontal-reverse"
-            src={correctAnswer.audio}
-            autoPlay={false}
-            autoPlayAfterSrcChange={false}
-            showJumpControls={false}
-            showFilledProgress
-            volumeControls
-            customAdditionalControls={[]}
-            customVolumeControls={[]}
-            ref={AudioPlayerREF}
-          />
-        </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 export default CorrectAnswer;

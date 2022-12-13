@@ -53,6 +53,8 @@ function AnswerOptions() {
     );
   }, [currentLevelAnswersOptionsArray]);
 
+  console.log(currentLevelAnswersOptionsArrayStatusAdded);
+
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 
   useEffect(() => {
@@ -94,9 +96,11 @@ function AnswerOptions() {
     );
 
     if (id === correctAnswer.id) {
-      setIsNextButtonDisabled(false);
       dispatch({ type: 'WIN' });
       playCorrectAnswerChosenSound();
+      if (!isGameOver) {
+        setIsNextButtonDisabled(false);
+      }
     }
     playIncorrectAnswerChosenSound();
   }
@@ -104,9 +108,6 @@ function AnswerOptions() {
   function handleNextButtonClick() {
     setIsNextButtonDisabled(true);
     dispatch({ type: 'NEXT_LEVEL' });
-    if (isGameOver) {
-      dispatch({ type: 'NEW_GAME' });
-    }
   }
 
   return (
