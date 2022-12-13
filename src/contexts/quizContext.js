@@ -6,10 +6,10 @@ export const QuizContext = createContext();
 
 export const MAXIMUM__SCORE__PER__LEVEL = 5;
 export const MAXIMUM_TOTAL_SCORE_VALUE =
-  MAXIMUM__SCORE__PER__LEVEL * (birdsData.length -1);
+  MAXIMUM__SCORE__PER__LEVEL * (birdsData.length - 1);
 
-const getCorrectAnswerID = (level) => {
-  const maximumNumber = birdsData[level].length;
+const getCorrectAnswerID = (currentLevel) => {
+  const maximumNumber = birdsData[currentLevel].length;
   const minimumNumber = 1;
   const randomNumber =
     Math.floor(Math.random() * (maximumNumber - minimumNumber + 1)) +
@@ -19,9 +19,8 @@ const getCorrectAnswerID = (level) => {
 
 const initialState = {
   birdsData,
-  level: 1,
+  currentLevel: 1,
   correctAnswerID: getCorrectAnswerID(0),
-  chosenAnswerOptionId: {},
   numberOfWrongAnswers: 0,
   score: 0,
   isCorrectAnswer: false,
@@ -33,9 +32,8 @@ const reducer = (state, action) => {
     case 'NEXT_LEVEL':
       return {
         ...state,
-        level: state.level + 1,
-        correctAnswerID: getCorrectAnswerID(state.level),
-        chosenAnswerOptionId: null,
+        currentLevel: state.currentLevel + 1,
+        correctAnswerID: getCorrectAnswerID(state.currentLevel),
         isCorrectAnswer: false,
         numberOfWrongAnswers: 0,
         isGameOver: false,
@@ -55,7 +53,6 @@ const reducer = (state, action) => {
       }
       return {
         ...state,
-        chosenAnswerOptionId: action.payload,
         isCorrectAnswer: true,
         isGameOver: false,
         score:
@@ -68,16 +65,14 @@ const reducer = (state, action) => {
       return {
         ...state,
         numberOfWrongAnswers: state.numberOfWrongAnswers + 1,
-        chosenAnswerOptionId: action.payload,
         isGameOver: false,
       };
 
     case 'NEW_GAME':
       return {
         birdsData,
-        level: 1,
+        currentLevel: 1,
         correctAnswerID: getCorrectAnswerID(0),
-        chosenAnswerOptionId: null,
         numberOfWrongAnswers: 0,
         score: 0,
         isCorrectAnswer: false,

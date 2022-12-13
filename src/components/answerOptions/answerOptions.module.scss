@@ -17,62 +17,63 @@
     }     
 }
 .AnswerOptionsList_Container {  
-    list-style-type: disc;
-    list-style-position: inside;
     padding: 0px; 
-    margin: auto 0px; 
+    margin: auto 0px;    
+}
+.AnswerOptionsList_Item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    color: $white;
+    border: 1px solid $dark-mode-border;
+    border-bottom: none;
+    background-color:$dark; 
+    padding: 0.85rem 1.25rem;
+    font-weight: 400; 
+    @include mini {
+        font-size: 1.25rem;
+        padding: 1rem;
+    } 
 
-    .AnswerOptionsList_Item {
-        border: 1px solid $dark-mode-border;
-        border-bottom: none;
-        background-color:$dark; 
-        padding: 0.85rem 1.25rem;
-        font-weight: 400; 
-        @include mini {
-            font-size: 1.25rem;
-            padding: 1rem;
-        } 
+    &:focus {
+        background-color:$dark-mode-border;
+    }
 
-        &:focus {
-            background-color:$dark-mode-border;
-        }
+    &:hover {
+        background-color:$dark-mode-border;
+    }      
 
-        &:hover {
-            background-color:$dark-mode-border;
-        }
+    &:first-child {
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+    }
 
-        &::marker {
-            color: $dark-mode-border;
-            font-size: 1.75rem;        
-        }
+    &:last-child {
+        border-bottom-left-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+        border-bottom: 1px solid $dark-mode-border;
+    }  
 
-        &:first-child {
-            border-top-left-radius: 0.25rem;
-            border-top-right-radius: 0.25rem;
-        }
+    
+}    
 
-        &:last-child {
-            border-bottom-left-radius: 0.25rem;
-            border-bottom-right-radius: 0.25rem;
-            border-bottom: 1px solid $dark-mode-border;
-        }
-
-        &__correct{
-            @extend .AnswerOptionsList_Item ;
-            &::marker {
-                color: $green;
-                font-size: 1.75rem;     
-            }
-        }
-           
-        &__incorrect{
-            @extend .AnswerOptionsList_Item ;
-            &::marker {
-                color: $red;
-                font-size: 1.75rem;     
-            }
-        }      
-    }    
+.Circle {
+    background-color: $dark-mode-border;
+    border-radius: 100%;
+    margin: auto 1.5rem auto auto;
+    width: calc(1.5rem / 2);
+    height: calc(1.5rem / 2);
+    
+    display: inline-block;
+    
+    &_CorrectOption {
+        @extend .Circle;
+        color: $green;        
+    }
+    &_IncorrectOption {
+        @extend .Circle;
+        color: $red;        
+    } 
 }
 
 .AnswerOptionDetails_Dummy {
@@ -81,9 +82,11 @@
     background-color:$dark; 
     padding: 1rem;    
     font-weight: 400; 
+
     &_Text {
         display:block;
     }
+    
     @include mini {
         display: none;
     }
@@ -116,9 +119,11 @@
     background-color: $green;
     transition: 0.3s ease;      
     -webkit-appearance: button;
+
     &:focus {
         box-shadow: none;
     }
+
     &:hover {
         background-color: $teal;
     }

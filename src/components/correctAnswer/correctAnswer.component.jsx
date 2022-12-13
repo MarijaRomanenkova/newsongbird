@@ -11,7 +11,7 @@ const HIDDEN__ANSWER = '******';
 function CorrectAnswer() {
   const [QuizState] = useContext(QuizContext);
   const correctAnswer =
-    QuizState.birdsData[QuizState.level][QuizState.correctAnswerID];
+    QuizState.birdsData[QuizState.currentLevel][QuizState.correctAnswerID];
 
   const { isCorrectAnswer } = QuizState;
 

@@ -1,7 +1,7 @@
 @import 'scss-source/variables.scss';
 @import 'scss-source/mixins.scss';
 
-.AnswerDetails {
+.AnswerOptionDetails {
     &_Container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -23,7 +23,7 @@
     margin: 0px 0px 0px 0.5rem;     
     }
     &_Species_Text {
-        @extend .AnswerDetails_Name_Text;
+        @extend .AnswerOptionDetails_Name_Text;
         padding: 0.25rem 0rem 0rem ;         
     }
     &_Image {

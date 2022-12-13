@@ -11,18 +11,11 @@ import styles from './answerOptions.module.scss';
 
 function AnswerOptions() {
   const [QuizState, dispatch] = useContext(QuizContext);
-  const currentLevelAnswersOptionsArray = QuizState.birdsData[QuizState.level];
-  const nextLevelAnswersOptionsArray = QuizState.birdsData[QuizState.level + 1];
+  const currentLevelAnswersOptionsArray =
+    QuizState.birdsData[QuizState.currentLevel];
 
   const correctAnswer =
     currentLevelAnswersOptionsArray[QuizState.correctAnswerID];
-  const chosenAnswer = currentLevelAnswersOptionsArray[
-    QuizState.chosenAnswerOptionId
-    // TODO: looked tricky, try to redo
-  ] || { id: undefined };
-
-  // TODO: rename this variable to more specific one
-  const { level } = QuizState;
 
   const { isGameOver } = QuizState;
 
@@ -30,123 +23,132 @@ function AnswerOptions() {
   const [playIncorrectAnswerChosenSound] = useSound(
     incorrectAnswerChosenSoundOGG
   );
-  // TODO: redo this logic with styles. need to discuss. looked tricky
-  const initialAnswersListStyles = currentLevelAnswersOptionsArray.map(
-    (item) => ({
-      ...item,
-      itemClass: styles.AnswersList_Item,
-      isAlreadyChosen: false,
-    })
+
+  const [chosenAnswerOption, setChosenAnswerOption] = useState({
+    isClicked: false,
+  });
+
+  const [
+    currentLevelAnswersOptionsArrayStatusAdded,
+    setCurrentLevelAnswersOptionsArrayStatusAdded,
+  ] = useState([]);
+
+  console.log(
+    'currentLevelAnswersOptionsArray',
+    currentLevelAnswersOptionsArray
   );
 
-  const [answersListStyles, setAnswersListStyles] = useState(
-    initialAnswersListStyles
-  );
+  useEffect(() => {
+    setCurrentLevelAnswersOptionsArrayStatusAdded(
+      currentLevelAnswersOptionsArray.map((answerOption) => {
+        if (answerOption.id === correctAnswer.id)
+          return {
+            ...answerOption,
+            isChosenAnswer: false,
+            isCorrectAnswer: true,
+          };
+        return {
+          ...answerOption,
+          isChosenAnswer: false,
+          isCorrectAnswer: false,
+        };
+      })
+    );
+  }, [currentLevelAnswersOptionsArray]);
+
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 
   useEffect(() => {
     setIsNextButtonDisabled(true);
   }, [isGameOver]);
 
-  useEffect(() => {
-    setAnswersListStyles(initialAnswersListStyles);
-  }, [level, isGameOver]);
-
-  // TODO: 1. let use this cx inside JSX 2. remove "button", use only styles from classes, 3. if something true move it from object
   const nextButtonClasses = cx({
-    button: true,
     [styles.Hidden]: isGameOver,
     [styles.Disabled]: isNextButtonDisabled,
     [styles.Btn]: !isNextButtonDisabled,
   });
 
-  // TODO: logic looks tricky a little bit
-  const changeAnswersListStyles = (id, newClassName) => {
-    setAnswersListStyles((listStyles) =>
-      listStyles.map((item) => {
+  function chooseAnswerOption(id) {
+    if (!isNextButtonDisabled) {
+      return;
+    }
+    const currentIndex = id - 1;
+    const currentAnswerOptionObject =
+      currentLevelAnswersOptionsArray[currentIndex];
+
+    setChosenAnswerOption({
+      isClicked: true,
+      id,
+      name: currentAnswerOptionObject.name,
+      species: currentAnswerOptionObject.species,
+      image: currentAnswerOptionObject.image,
+      audio: currentAnswerOptionObject.audio,
+      description: currentAnswerOptionObject.description,
+    });
+
+    dispatch({ type: 'CHOOSE' });
+    setCurrentLevelAnswersOptionsArrayStatusAdded(
+      currentLevelAnswersOptionsArrayStatusAdded.map((item) => {
         if (item.id === id) {
-          return { ...item, itemClass: newClassName, isAlreadyChosen: true };
+          return { ...item, isChosenAnswer: true };
         }
         return { ...item };
       })
     );
-  };
 
-  // TODO: naming for this func looked incorrect
-  function chooseAnswer(event) {
-    // TODO: simplify condition
-    if (isNextButtonDisabled === false) {
-      return false;
-    }
-    dispatch({ type: 'CHOOSE', payload: event.target.value - 1 });
-    if (correctAnswer.id === event.target.value) {
-      dispatch({ type: 'WIN', payload: event.target.value - 1 });
-      playCorrectAnswerChosenSound();
-      // TODO: not sure about store styles in state. it looks like we need store only variable/s and using this/these variable/s add appropriate classnames
-      changeAnswersListStyles(
-        event.target.value,
-        styles.AnswersList_Item__correct
-      );
+    if (id === correctAnswer.id) {
       setIsNextButtonDisabled(false);
-      return true;
+      dispatch({ type: 'WIN' });
+      playCorrectAnswerChosenSound();
     }
     playIncorrectAnswerChosenSound();
-    changeAnswersListStyles(
-      event.target.value,
-      styles.AnswersList_Item__incorrect
-    );
-    return true;
   }
 
   function handleNextButtonClick() {
     setIsNextButtonDisabled(true);
     dispatch({ type: 'NEXT_LEVEL' });
-    if (isGameOver === true) {
-      setAnswersListStyles(
-        currentLevelAnswersOptionsArray.map((item) => ({
-          ...item,
-          itemClass: styles.AnswersList_Item,
-          isAlreadyChosen: false,
-        }))
-      );
+    if (isGameOver) {
       dispatch({ type: 'NEW_GAME' });
     }
-    setAnswersListStyles(
-      nextLevelAnswersOptionsArray.map((item) => ({
-        ...item,
-        itemClass: styles.AnswersList_Item,
-        isAlreadyChosen: false,
-      }))
-    );
   }
 
-  const answersList = answersListStyles.map((item) => (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-    <div
-      className={item.itemClass}
-      key={item.id}
-      value={item.id}
-      // TODO: remove : null
-      onClick={!item.isAlreadyChosen ? chooseAnswer : null}
-    >
-      {/* TODO: do we really need ' ' in the bottom line? */} {item.name}
-    </div>
-  ));
-
   return (
-    <div>
+    <>
       <div className={styles.AnswerOptions_Container}>
-        <ul className={styles.AnswerOptionsList_Container}>{answersList}</ul>
-        {/* looks tricky with undefined */}
-        {chosenAnswer.id !== undefined ? (
+        <div className={styles.AnswerOptionsList_Container}>
+          {currentLevelAnswersOptionsArrayStatusAdded.map((item) => (
+            <button
+              className={styles.AnswerOptionsList_Item}
+              type="button"
+              key={item.id}
+              value={item.id}
+              onClick={() => chooseAnswerOption(item.id)}
+            >
+              <span
+                className={cx({
+                  [styles.Circle]: !item.isChosenAnswer,
+                  [styles.CorrectOptionChosen]:
+                    item.isChosenAnswer && item.isCorrectAnswer,
+                  [styles.IncorrectOptionChosen]:
+                    item.isChosenAnswer && !item.isCorrectAnswer,
+                })}
+              />
+
+              {item.name}
+            </button>
+          ))}
+        </div>
+
+        {chosenAnswerOption.isClicked && (
           <AnswerOptionDetails
-            name={chosenAnswer.name}
-            image={chosenAnswer.image}
-            description={chosenAnswer.description}
-            audio={chosenAnswer.audio}
-            species={chosenAnswer.species}
+            name={chosenAnswerOption.name}
+            image={chosenAnswerOption.image}
+            description={chosenAnswerOption.description}
+            audio={chosenAnswerOption.audio}
+            species={chosenAnswerOption.species}
           />
-        ) : (
+        )}
+        {!chosenAnswerOption.isClicked && (
           <div className={styles.AnswerOptionDetails_Dummy}>
             <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
               Послушайте плеер.
@@ -165,7 +167,7 @@ function AnswerOptions() {
       >
         Next Level
       </button>
-    </div>
+    </>
   );
 }
 
