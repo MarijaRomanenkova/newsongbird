@@ -1,6 +1,12 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, {
+  useContext,
+  useEffect,
+  useState,
+  useRef,
+  Fragment,
+} from 'react';
 import useSound from 'use-sound';
-import cx from 'classnames';
+
 import uuid from 'react-uuid';
 
 import { QuizContext } from 'contexts/quizContext';
@@ -8,11 +14,13 @@ import correctAnswerChosenSoundOGG from 'assets/sounds/correctAnswerChosenSound.
 import incorrectAnswerChosenSoundOGG from 'assets/sounds/incorrectAnswerChosenSound.ogg';
 import AnswerOptionDetails from 'components/answerOptionDetails/answerOptionDetails.component';
 import Circle from 'components/circle/circle.component';
+import NextButton from 'components/nextButton/nextButton.component';
 
 import styles from './answerOptions.module.scss';
 
 function AnswerOptions() {
   const [QuizState, dispatch] = useContext(QuizContext);
+
   const currentLevelAnswersOptionsArray =
     QuizState.birdsData[QuizState.currentLevel];
 
@@ -29,6 +37,8 @@ function AnswerOptions() {
   const [chosenAnswerOption, setChosenAnswerOption] = useState({
     isClicked: false,
   });
+
+  const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 
   const [
     currentLevelAnswersOptionsArrayStatusAdded,
@@ -52,20 +62,9 @@ function AnswerOptions() {
       })
     );
   }, [currentLevelAnswersOptionsArray]);
-  
-  const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 
-  useEffect(() => {
-    setIsNextButtonDisabled(true);
-  }, [isGameOver]);
 
-  const nextButtonClasses = cx({
-    [styles.Hidden]: isGameOver,
-    [styles.Disabled]: isNextButtonDisabled,
-    [styles.Btn]: !isNextButtonDisabled,
-  });
-
-  function chooseAnswerOption(id) {
+  function handleAnswerOptionClick(id) {
     if (!isNextButtonDisabled) {
       return;
     }
@@ -103,10 +102,20 @@ function AnswerOptions() {
     playIncorrectAnswerChosenSound();
   }
 
-  function handleNextButtonClick() {
+  const handleNextButtonClick = () => {
     setIsNextButtonDisabled(true);
     dispatch({ type: 'NEXT_LEVEL' });
+  };
+
+  function handleKeyDown(id) {
+    handleAnswerOptionClick(id);
   }
+
+  const ref = useRef(null);
+
+  useEffect(() => {
+    ref.current.focus();
+  }, []);
 
   return (
     <>
@@ -118,7 +127,10 @@ function AnswerOptions() {
                 className={styles.AnswerOptionsList_Item}
                 type="button"
                 value={item.id}
-                onClick={() => chooseAnswerOption(item.id)}
+                tabIndex={0}
+                onClick={() => handleAnswerOptionClick(item.id)}
+                onKeyDown={() => handleKeyDown(item.id)}
+                ref={ref}
               >
                 <Circle
                   isChosenAnswer={item.isChosenAnswer}
@@ -150,14 +162,11 @@ function AnswerOptions() {
           </div>
         )}
       </div>
-      <button
-        type="button"
-        disabled={isNextButtonDisabled}
-        className={nextButtonClasses}
-        onClick={handleNextButtonClick}
-      >
-        Next Level
-      </button>
+      <NextButton
+        isNextButtonDisabled={isNextButtonDisabled}
+        isGameOver={isGameOver}
+        handleNextButtonClick={handleNextButtonClick}
+      />
     </>
   );
 }

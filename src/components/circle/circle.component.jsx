@@ -13,3 +13,6 @@ function Circle({ isChosenAnswer, isCorrectAnswer }) {
 }
 
 export default Circle;
+
+
+
