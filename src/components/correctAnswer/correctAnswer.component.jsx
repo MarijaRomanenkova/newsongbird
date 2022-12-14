@@ -15,8 +15,6 @@ function CorrectAnswer() {
       QuizState.correctAnswerID - 1
     ] || {};
 
-  console.log('correctID', QuizState.correctAnswerID);
-
   const { isCorrectAnswerSelected } = QuizState;
 
   const AudioPlayerREF = useRef();
@@ -24,27 +22,34 @@ function CorrectAnswer() {
     AudioPlayerREF.current.audio.current.pause();
   };
 
-  // TODO: simplify condition
   if (isCorrectAnswerSelected) {
     pauseAudioPlayer();
+  }
+
+  let answerToRender = {
+    image: imageHiddenCorrectAnswerJPG,
+    name: HIDDEN__ANSWER,
+    alt: 'bird',
+  };
+
+  if (isCorrectAnswerSelected) {
+    answerToRender = {
+      image: correctAnswer.image,
+      name: correctAnswer.name,
+      alt: correctAnswer.name,
+    };
   }
 
   return (
     <div className={styles.correctAnswer_Container}>
       <img
         className={styles.correctAnswer_Image}
-        src={
-          isCorrectAnswerSelected.image
-            ? correctAnswer.image
-            : imageHiddenCorrectAnswerJPG
-        }
-        // TODO : simplify condition
-        alt={correctAnswer.name ? correctAnswer.name : 'bird'}
+        src={answerToRender.image}
+        alt={answerToRender.alt}
       />
       <div className={styles.correctAnswer_Box}>
-        <h1 className={styles.correctAnswer_Title}>
-          {isCorrectAnswerSelected.name ? correctAnswer.name : HIDDEN__ANSWER}
-        </h1>
+        <h1 className={styles.correctAnswer_Title}>{answerToRender.name}</h1>
+
         <AudioPlayer
           layout="horizontal-reverse"
           src={correctAnswer.audio}

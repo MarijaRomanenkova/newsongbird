@@ -52,9 +52,7 @@ function AnswerOptions() {
       })
     );
   }, [currentLevelAnswersOptionsArray]);
-
-  console.log(currentLevelAnswersOptionsArrayStatusAdded);
-
+  
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 
   useEffect(() => {

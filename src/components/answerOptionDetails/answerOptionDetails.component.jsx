@@ -13,7 +13,7 @@ function AnswerOptionDetails({ image, name, description, species, audio }) {
     AudioPlayerREF.current.audio.current.pause();
   };
 
-  if (isCorrectAnswerSelected === true) {
+  if (isCorrectAnswerSelected) {
     pauseAudioPlayer();
   }
 

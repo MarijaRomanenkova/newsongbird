@@ -16,8 +16,9 @@ function App() {
   return (
     <div className={styles.App_Container}>
       <Header />
-      {isGameOver && <GameOver />}
-      {!isGameOver && (
+      {isGameOver ? (
+        <GameOver />
+      ) : (
         <>
           <Categories />
           <CorrectAnswer />

@@ -2,13 +2,14 @@ import React, { useContext } from 'react';
 import Confetti from 'react-confetti';
 
 import { QuizContext } from 'contexts/quizContext';
+import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
 
 import styles from './gameOver.module.scss';
 
 function GameOver() {
   const [QuizState, dispatch] = useContext(QuizContext);
-  const { score } = QuizState;
-  const MAXIMUM_TOTAL_SCORE = 30;
+  const { score, currentLevel } = QuizState;
+  const MAXIMUM_TOTAL_SCORE = MAXIMUM_SCORE_PER_LEVEL * currentLevel;
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
 

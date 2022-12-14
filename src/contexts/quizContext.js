@@ -1,11 +1,9 @@
 import React, { createContext, useReducer } from 'react';
 
 import birdsData from 'data.js';
+import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
 
 export const QuizContext = createContext();
-
-const MAXIMUM_SCORE_PER_LEVEL = 5;
-
 
 const getCorrectAnswerID = (currentLevel) => {
   const maximumNumber = birdsData[currentLevel].length;
