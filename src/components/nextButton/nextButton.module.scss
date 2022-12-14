@@ -2,25 +2,26 @@
 @import 'scss-source/mixins.scss';
 
 .Disabled {
-    display:inline-block;
-    margin-bottom: 2rem;
+    display:inline-block;    
+    @include toRem(margin-bottom, 32);   
     color: $white;    
-    font-family: "Lato", Arial, sans-serif;
-    font-size: 0.9375rem;
-    font-weight: 400;
-    border-radius: 0.25rem;
+    font-family: "Lato", Arial, sans-serif;    
+    @include toRem(font-size, 15);   
+    font-weight: 400;    
+    @include toRem(border-radius, 4);  
     border: 1px solid $dark-mode-border;    
     background-color: $dark;
     box-shadow: none;
     width: 100%;
-    cursor: not-allowed;
-    line-height: 22.5 px;    
-    padding: 6px 12px;
+    cursor: not-allowed;    
+    @include toRem(line-height, 22.5); 
+    @include toRem(padding, 12);       
     text-align: center;
     vertical-align: middle;
+
     @include mini {
-        font-size: 1.25rem;
-        padding: 1.25rem;
+        @include toRem(font-size, 20);   
+        @include toRem(padding, 20);   
     }  
 }
 .Btn {

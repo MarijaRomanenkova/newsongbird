@@ -27,4 +27,5 @@ function Categories() {
     </div>
   );
 }
+
 export default Categories;

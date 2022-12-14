@@ -66,4 +66,5 @@ function CorrectAnswer() {
     </div>
   );
 }
+
 export default CorrectAnswer;

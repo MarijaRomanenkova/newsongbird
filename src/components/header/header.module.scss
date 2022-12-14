@@ -4,17 +4,16 @@
 .Header_Container {   
     display: flex; 
     margin-top: 1rem;
-    margin-bottom: 0.3rem;
+    @include toRem(margin-bottom, 5);   
     justify-content: space-between;
     align-items: center;
 }
 
-.Score {        
-    font-size: 1.172rem;
+.Score {
+    @include toRem(font-size, 18);   
     font-weight: 700;        
 }
 
 .Logo {
     max-width: 200px;
 }
-

@@ -7,7 +7,7 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     border: 1px solid $dark-mode-border;
-    border-radius: 0.25rem;
+    @include toRem(border-radius, 4);
     background-color:$dark; 
     padding: 1rem;
     font-weight: 400;
@@ -18,25 +18,28 @@
             display:none;
         }
     }
+    
     &_Name_Text {
     border-bottom: 1px solid $dark-mode-border;
-    padding: 0rem 0rem 1rem ;
-    margin: 0px 0px 0px 0.5rem;     
+    @include toRem(padding-bottom, 16);     
+    @include toRem(margin-left, 8);       
     }
+
     &_Species_Text {
-        @extend .AnswerOptionDetails_Name_Text;
-        padding: 0.25rem 0rem 0rem ;         
+        @extend .AnswerOptionDetails_Name_Text;        
+        @include toRem(padding-top, 4);        
     }
+    
     &_Image {
         width: 180px;
         height: 135px;
-        border-radius: 0.625rem;
+        @include toRem(border-radius, 10);
         object-fit: cover;            
-        }
+    }
+
     &_Description {
         grid-column: span 2;
         font-weight: 600;
         max-width: auto;
     }
 }
-

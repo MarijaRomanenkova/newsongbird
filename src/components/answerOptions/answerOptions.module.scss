@@ -6,21 +6,23 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 340px;
     grid-column-gap: 1.75rem;
-    margin: 0px;
+    margin: 0;
     max-width: 100%;    
     overflow: hidden;
-    margin-bottom: 1.56rem;
-    @include mobile {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-        grid-row-gap: 1.56rem;            
-    }     
+    margin-bottom: 1.56rem;    
+        @include mobile {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+            grid-row-gap: 1.56rem;            
+        }     
 }
+
 .AnswerOptionsList_Container {  
-    padding: 0px; 
-    margin: auto 0px;
+    padding: 0; 
+    margin: auto 0;
     height: 100%;    
 }
+
 .AnswerOptionsList_Item {
     display: block;
     width: 100%;
@@ -32,6 +34,7 @@
     background-color:$dark; 
     padding: 0.85rem 1.25rem;
     font-weight: 400; 
+
     @include mini {
         font-size: 1.25rem;
         padding: 1rem;
@@ -54,17 +57,13 @@
         border-bottom-left-radius: 0.25rem;
         border-bottom-right-radius: 0.25rem;
         border-bottom: 1px solid $dark-mode-border;
-    }  
-
-    
-}    
-
-
+    }      
+} 
 
 .AnswerOptionDetails_Dummy {
     height: 100%;
     border: 1px solid $dark-mode-border;
-    border-radius: 0.25rem;
+    @include toRem(border-radius, 2);
     background-color:$dark; 
     padding: 1rem;    
     font-weight: 400; 
@@ -77,5 +76,3 @@
         display: none;
     }
 }
-
-

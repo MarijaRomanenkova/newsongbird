@@ -37,4 +37,5 @@ function GameOver() {
     </div>
   );
 }
+
 export default GameOver;

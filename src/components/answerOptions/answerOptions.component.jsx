@@ -6,7 +6,6 @@ import React, {
   Fragment,
 } from 'react';
 import useSound from 'use-sound';
-
 import uuid from 'react-uuid';
 
 import { QuizContext } from 'contexts/quizContext';
@@ -63,14 +62,10 @@ function AnswerOptions() {
     );
   }, [currentLevelAnswersOptionsArray]);
 
-
-  function handleAnswerOptionClick(id) {
-    if (!isNextButtonDisabled) {
-      return;
-    }
-    const currentIndex = id - 1;
+  function setChosenAnswer(id) {
+    const currentObjectIndex = id - 1;
     const currentAnswerOptionObject =
-      currentLevelAnswersOptionsArray[currentIndex];
+      currentLevelAnswersOptionsArray[currentObjectIndex];
 
     setChosenAnswerOption({
       isClicked: true,
@@ -81,7 +76,13 @@ function AnswerOptions() {
       audio: currentAnswerOptionObject.audio,
       description: currentAnswerOptionObject.description,
     });
+  }
 
+  function handleAnswerOptionClick(id) {
+    if (!isNextButtonDisabled) {
+      return;
+    }
+    setChosenAnswer(id);
     dispatch({ type: 'CHOOSE' });
     setCurrentLevelAnswersOptionsArrayStatusAdded(
       currentLevelAnswersOptionsArrayStatusAdded.map((item) => {
@@ -107,30 +108,39 @@ function AnswerOptions() {
     dispatch({ type: 'NEXT_LEVEL' });
   };
 
-  function handleKeyDown(id) {
-    handleAnswerOptionClick(id);
-  }
+  const answerOptionsREF = useRef([]);
 
-  const ref = useRef(null);
+  const detectKeyDown = () => {
+    if (answerOptionsREF.current.tabIndex === 0) {
+      answerOptionsREF.current.focus();
+    }
+  };
 
   useEffect(() => {
-    ref.current.focus();
+    document.addEventListener('keydown', detectKeyDown, true);
+    
+    return () => {
+      document.removeEventListener('keydown', detectKeyDown);
+    };
   }, []);
+
+  function handleKeyDown(id) {
+    console.log('was pressed', id);
+  }
 
   return (
     <>
       <div className={styles.AnswerOptions_Container}>
         <div className={styles.AnswerOptionsList_Container}>
-          {currentLevelAnswersOptionsArrayStatusAdded.map((item) => (
+          {currentLevelAnswersOptionsArrayStatusAdded.map((item, index) => (
             <Fragment key={uuid()}>
               <button
                 className={styles.AnswerOptionsList_Item}
                 type="button"
-                value={item.id}
-                tabIndex={0}
+                tabIndex={index}
                 onClick={() => handleAnswerOptionClick(item.id)}
                 onKeyDown={() => handleKeyDown(item.id)}
-                ref={ref}
+                ref={answerOptionsREF}
               >
                 <Circle
                   isChosenAnswer={item.isChosenAnswer}
