@@ -118,15 +118,11 @@ function AnswerOptions() {
 
   useEffect(() => {
     document.addEventListener('keydown', detectKeyDown, true);
-    
+
     return () => {
       document.removeEventListener('keydown', detectKeyDown);
     };
   }, []);
-
-  function handleKeyDown(id) {
-    console.log('was pressed', id);
-  }
 
   return (
     <>
@@ -139,7 +135,6 @@ function AnswerOptions() {
                 type="button"
                 tabIndex={index}
                 onClick={() => handleAnswerOptionClick(item.id)}
-                onKeyDown={() => handleKeyDown(item.id)}
                 ref={answerOptionsREF}
               >
                 <Circle

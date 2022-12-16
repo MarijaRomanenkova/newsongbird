@@ -1,0 +1,27 @@
+@import 'scss-source/variables.module.scss';
+@import 'scss-source/mixins.module.scss';
+
+.Login {
+    &_Container { 
+    border: 1px solid $dark-mode-border;
+    @include toRem(border-radius, 4);
+    background-color:$dark; 
+    padding: 1rem;
+    font-weight: 400;
+    width: 460px;
+    height: 100%;
+    overflow: hidden;
+            }
+    
+    &_Input {   
+    display: block; 
+    border: 1px solid $dark-mode-border;
+    @include toRem(padding-bottom, 16);     
+    @include toRem(margin-left, 8); 
+    width: 90%;      
+    }
+
+    
+    
+        
+}

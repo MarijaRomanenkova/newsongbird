@@ -1,0 +1,24 @@
+.Navigation {
+    &_Container {
+        display: flex;
+        max-width: 960px;        
+        justify-content: flex-end;
+        align-items: center; 
+        margin: 1rem auto;       
+    }
+
+    &_Link {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        padding: 5px;
+    }
+    &_Link:active {
+        color: yellow;
+    }
+}
+
+.active {
+    color: yellow;
+}
