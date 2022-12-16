@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 import styles from './formInput.module.scss';
 
 function FormInput({ label, name, type, required, id, handleChange} ) {
