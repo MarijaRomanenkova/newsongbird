@@ -5,8 +5,7 @@ Songbird is a single page quiz app challenging player to recognize birds by thei
 
 ## Task
 https://github.com/rolling-scopes-school/tasks/blob/master/tasks/songbird.md
-123123
-23132
+
 ## Status
 
 The project is in progress
