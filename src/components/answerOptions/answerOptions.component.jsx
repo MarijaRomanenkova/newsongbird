@@ -128,12 +128,12 @@ function AnswerOptions() {
     <>
       <div className={styles.AnswerOptions_Container}>
         <div className={styles.AnswerOptionsList_Container}>
-          {currentLevelAnswersOptionsArrayStatusAdded.map((item, index) => (
+          {currentLevelAnswersOptionsArrayStatusAdded.map((item) => (
             <Fragment key={uuid()}>
               <button
                 className={styles.AnswerOptionsList_Item}
                 type="button"
-                tabIndex={index}
+                tabIndex={0}
                 onClick={() => handleAnswerOptionClick(item.id)}
                 ref={answerOptionsREF}
               >

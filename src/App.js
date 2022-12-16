@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import Home from 'pages/home/home';
 import Navigation from 'components/navigation/navigation.component';
-import Login from 'pages/login/login';
+import LoginForm from 'pages/loginform/loginform.component';
 import SignUp from 'pages/signup/signup';
 import NotFound from 'pages/notfound/notfound.component';
 
@@ -13,7 +13,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
