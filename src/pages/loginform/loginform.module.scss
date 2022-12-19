@@ -55,3 +55,16 @@ Form_InputLabel {
       letter-spacing: 0.3em;
     }
   }
+
+  .SignUp {
+    &_Link {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        padding: 5px;
+    }
+    &_Link:active {
+        color: yellow;
+    }
+  }

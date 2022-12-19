@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { useFormik } from 'formik';
 
@@ -16,10 +16,15 @@ function LoginForm() {
       alert(JSON.stringify(values, null, 2));
     },
   });
+
   return (
     <>
-      <Link to="/login/">SignUp</Link>
-      <Link to="/signup/">SignUp</Link>
+      <NavLink to="/login/" className={styles.SignUp_Link}>
+        Login
+      </NavLink>
+      <NavLink to="/signup/" className={styles.SignUp_Link}>
+        SignUp
+      </NavLink>
       <form onSubmit={formik.handleSubmit} className={styles.Group}>
         <label htmlFor="email" className={styles.Form_InputLabel}>
           Email Address

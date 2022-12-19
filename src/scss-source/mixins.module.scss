@@ -21,5 +21,5 @@ $breakpoints: (
 }
 
 @mixin toRem($property, $value) {
-	#{$property}: calc($value / 16) + rem;
+	#{$property}: ($value / 16) + rem;
 }
