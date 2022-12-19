@@ -2,8 +2,7 @@
 @import 'scss-source/mixins.module.scss';
 
 .Form {
-    &_Container  {  
-        
+    &_Container  {         
         margin: 0 auto ;
         margin-bottom: 2rem;             
         @include toRem(border-radius, 5);

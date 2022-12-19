@@ -36,62 +36,64 @@ function SignUpForm() {
             }, 400);
           }}
         >
-          <Form>
-            <label htmlFor="email" className={styles.Form_Label}>
-              Email Address
-            </label>
-            <Field
-              name="email"
-              id="email "
-              type="email"
-              className={styles.Form_Input}
-            />
-            <ErrorMessage name="email" className={styles.Error} />
+          {({ errors, touched }) => (
+            <Form>
+              <label htmlFor="email" className={styles.Form_Label}>
+                Email Address
+              </label>
+              <Field
+                name="email"
+                id="email "
+                type="email"
+                className={styles.Form_Input}
+              />
+              <ErrorMessage name="email" className={styles.Error} />
 
-            <label htmlFor="password" className={styles.Form_Label}>
-              Password
-            </label>
-            <Field
-              name="password"
-              type="password"
-              id="password"
-              className={styles.Form_Input}
-            />
-            <ErrorMessage name="password" className={styles.Error} />
+              <label htmlFor="password" className={styles.Form_Label}>
+                Password
+              </label>
+              <Field
+                name="password"
+                type="password"
+                id="password"
+                className={styles.Form_Input}
+              />
+              <ErrorMessage name="password" className={styles.Error} />
 
-            <label htmlFor="confirmPassword" className={styles.Form_Label}>
-              Confirm Password
-            </label>
-            <Field
-              name="confirmPassword"
-              id="confirmPassword"
-              type="text"
-              className={styles.Form_Input}
-            />
-            <ErrorMessage name="confirmPassword" className={styles.Error} />
+              <label htmlFor="confirmPassword" className={styles.Form_Label}>
+                Confirm Password
+              </label>
+              <Field
+                name="confirmPassword"
+                id="confirmPassword"
+                type="text"
+                className={styles.Form_Input}
+              />
+              <ErrorMessage name="confirmPassword" className={styles.Error} />
 
-            <Field
-              name="acceptTerms"
-              type="checkbox"
-              className={styles.Checkbox}
-              id="acceptTerms"
-            />
-            <label htmlFor="confirmPassword" className={styles.Form_Label}>
-              By creating an account you agree to the{' '}
-              <a href="#" className={styles.Form_Label_Link}>
-                terms and conditions
-              </a>
-              {' '}applicable to our sevice and acknowledge that your personal data
-              will be used in accordance with our privacy policy and you will
-              receive emails and communications about jobs, industry news, new
-              products and related topics.
-            </label>
-            <ErrorMessage name="acceptTerms" className={styles.Error} />
+              <Field
+                name="acceptTerms"
+                type="checkbox"
+                className={styles.Checkbox}
+                id="acceptTerms"
+              />
+              <label htmlFor="confirmPassword" className={styles.Form_Label}>
+                By creating an account you agree to the{' '}
+                <a href="#" className={styles.Form_Label_Link}>
+                  terms and conditions
+                </a>{' '}
+                applicable to our sevice and acknowledge that your personal data
+                will be used in accordance with our privacy policy and you will
+                receive emails and communications about jobs, industry news, new
+                products and related topics.
+              </label>
+              <ErrorMessage name="acceptTerms" className={styles.Error} />
 
-            <button className={styles.Btn} type="submit">
-              Submit
-            </button>
-          </Form>
+              <button className={styles.Btn} type="submit">
+                Submit
+              </button>
+            </Form>
+          )}
         </Formik>
       </div>
     </div>
