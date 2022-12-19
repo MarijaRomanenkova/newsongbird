@@ -1,70 +1,145 @@
 @import 'scss-source/variables.module.scss';
 @import 'scss-source/mixins.module.scss';
 
-.Login {
-    &_Container { 
-    border: 1px solid $dark-mode-border;
-    @include toRem(border-radius, 4);
-    background-color:$dark; 
-    padding: 1rem;
-    font-weight: 400;
-    width: 460px;
-    height: 100%;
-    overflow: hidden;
-    }
-}
+.Form {
+    &_Container  {  
+        
+        margin: 0 auto ;
+        margin-bottom: 2rem;             
+        @include toRem(border-radius, 5);
+        color: white;
+        background-color:$dark; 
+        border: 1px solid $dark-mode-border;
+        border-radius: 0.25rem;
+        padding: 1rem;              
+        font-weight: 400;
+        max-width: 500px;
+        overflow: hidden;           
 
-
-Form_InputLabel {
-    color: $white;
-    font-size: 16px;
-    font-weight: normal;
-    position: absolute;
-    pointer-events: none;
-    left: 5px;
-    top: 10px;
-    transition: 300ms ease all;
-    top: -14px;
-    font-size: 12px;
-    
-  }
-  
-  .Form_Input {
-    background: none;
-    background-color: white;
-    color: $dark;
-    font-size: 18px;
-    padding: 10px 10px 10px 5px;
-    display: block;
-    width: 100%;
-    border: none;
-    border-radius: 0;
-    border-bottom: 1px solid $dark-mode-border;
-    margin: 25px 0;
-    &:focus {
-      outline: none;
-      background-color: aqua;
+            @include mobile {
+                padding: 1rem;
+        }
     }
-    
-  }
-  
-  .Group {
-    position: relative;
-    margin: 45px 0;
-    input[type='password'] {
-      letter-spacing: 0.3em;
-    }
-  }
 
-  .SignUp {
+    &_Wrapper {         
+        margin: auto;
+        max-width: 460px;        
+        overflow: hidden;   
+    }
+
+    &_Link_Wrapper {
+        display: flex;
+        max-width: 90%;
+        margin: auto;
+    }
+
     &_Link {
         color: white;
         text-decoration: none;
         font-weight: 600;
         font-size: 1rem;
         padding: 5px;
+        width: 50%;
+        text-align: center;
     }
+
     &_Link:active {
         color: yellow;
     }
-  }
+
+    &_Label {
+        display: block;
+        font-size: 1.2rem;
+        font-weight: 500;
+        font-family: "Lato", Arial, sans-serif;
+        display: block;
+        text-align: left;
+        margin: 1rem 0 0.2rem;
+        @include toRem(padding-bottom, 10);
+    }
+
+    &_Label_Link {        
+        color: white
+        
+    }
+
+    &_Label_Link:hover {
+        color:$teal;
+    }
+
+    &_Label_Link:active {
+        color:$green;
+    }
+
+    &_Input {        
+        overflow: hidden;
+        caret-color: white;  
+        box-sizing: border-box;  
+        width: 100%;
+        padding: 1rem 0.5rem;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+        color: white;
+        border: 1px solid $dark-mode-border;
+        background-color: rgb(122, 124, 121);
+        border-radius: 10px;
+        outline: none;
+    }
+
+    &_Input_Error {            
+        border-color: red;
+    } 
+
+    &_Input:focus {
+        border-color: $teal;
+    }
+
+    &_Input::placeholder {
+        color:$dark;
+        font-weight: 600;
+        @include toRem(font-size, 16);
+    }
+}
+
+   
+  .Btn {
+    display:inline-block;    
+    @include toRem(margin-bottom, 32);   
+    color: $white;    
+    font-family: "Lato", Arial, sans-serif;    
+    @include toRem(font-size, 20);   
+    font-weight: 400;    
+    @include toRem(border-radius, 4);  
+    border: 1px solid $dark-mode-border;
+    background-color: $green;  
+    box-shadow: none;
+    width: 100%;
+    cursor: pointer;    
+    @include toRem(line-height, 22.5); 
+    @include toRem(padding, 12);       
+    text-align: center;
+    vertical-align: middle;
+
+    @include mini {
+        @include toRem(font-size, 20);   
+        @include toRem(padding, 20);   
+    }  
+
+    &:focus {
+        box-shadow: none;
+    }
+
+    &:hover {
+        background-color: $teal;
+    }
+
+    &:disabled {
+        background-color: $dark;        
+        transition: 0.3s ease;      
+        -webkit-Gameearance: button;
+        cursor: not-allowed;   
+    }
+}
+  
+
+  

@@ -8,6 +8,7 @@
     font-family: "Lato", Arial, sans-serif;    
     @include toRem(font-size, 15);   
     font-weight: 400;    
+    font-size: 1rem;
     @include toRem(border-radius, 4);  
     border: 1px solid $dark-mode-border;    
     background-color: $dark;

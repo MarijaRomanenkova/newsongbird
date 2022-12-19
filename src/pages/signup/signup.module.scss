@@ -1,8 +1,9 @@
 @import 'scss-source/variables.module.scss';
 @import 'scss-source/mixins.module.scss';
 
-.Form{
-    &_Container  {         
+.Form {
+    &_Container  {  
+        
         margin: 0 auto ;
         margin-bottom: 2rem;             
         @include toRem(border-radius, 5);
@@ -20,8 +21,16 @@
         }
     }
 
-    &Link_Wrapper {
+    &_Wrapper {         
+        margin: auto;
+        max-width: 460px;        
+        overflow: hidden;   
+    }
+
+    &_Link_Wrapper {
         display: flex;
+        max-width: 90%;
+        margin: auto;
     }
 
     &_Link {
@@ -30,6 +39,8 @@
         font-weight: 600;
         font-size: 1rem;
         padding: 5px;
+        width: 50%;
+        text-align: center;
     }
 
     &_Link:active {
@@ -37,6 +48,7 @@
     }
 
     &_Label {
+        display: block;
         font-size: 1.2rem;
         font-weight: 500;
         font-family: "Lato", Arial, sans-serif;
@@ -44,59 +56,113 @@
         text-align: left;
         margin: 1rem 0 0.2rem;
         @include toRem(padding-bottom, 10);
-      }
-    &_Check_Label {
-        font-size: 1.4rem; 
+    }
+
+    &_Label_Link {        
+        color: white
+        
+    }
+
+    &_Label_Link:hover {
+        color:$teal;
+    }
+
+    &_Label_Link:active {
+        color:$green;
+    }
+
+    &_Input {        
+        overflow: hidden;
+        caret-color: white;  
+        box-sizing: border-box;  
+        width: 100%;
+        padding: 1rem 0.5rem;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+        color: white;
+        border: 1px solid $dark-mode-border;
+        background-color: rgb(122, 124, 121);
+        border-radius: 10px;
+        outline: none;
+    }
+
+    &_Input_Error {            
+        border-color: red;
+    } 
+
+    &_Input:focus {
+        border-color: $teal;
+    }
+
+    &_Input::placeholder {
+        color:$dark;
+        font-weight: 600;
+        @include toRem(font-size, 16);
     }
 }
 
-.Input_Error {
-    border-color: red;
+.Checkbox {
+    display: inline-block; 
+    height: 20px;
+    width: 20px;
+    background: #fff;
+    border:2px solid #ddd;
+    margin-right: 4px;
+    padding: 5px;
+
+    &_Error {
+        border-color: rgb(169, 11, 53);       
+      }
   }
-  
-  
-  input,
-  select {
-    width: 100%;
-    padding: 0.65rem 0.5rem;
-    font-size: 1rem;
-    color: white;
-    border: 2px solid $dark-mode-border;;
-    background-color: $dark-mode-border;
-    border-radius: 10px;
-    outline: none;
-  }
-  
-  input:focus,
-  select:focus {
-    border-color: $green;
-  }
-  
-  input::placeholder,
-  select::placeholder {
-    color: #a0aec0;
-  }
-  
-  
-  
-  button {
+
+  .Checkbox_Text {
+    position: relative;
     display: block;
-    margin: 1rem 0;
-    padding: 0.35rem 0.5rem;
-    background-color: $green;
-    color: #1a202c;
-    border: none;
-    border-radius: 3px;
+    font-size: 1.4rem; 
+}
+   
+  .Btn {
+    display:inline-block;    
+    @include toRem(margin-bottom, 32);   
+    color: $white;    
+    font-family: "Lato", Arial, sans-serif;    
+    @include toRem(font-size, 20);   
+    font-weight: 400;    
+    @include toRem(border-radius, 4);  
+    border: 1px solid $dark-mode-border;
+    background-color: $green;  
+    box-shadow: none;
     width: 100%;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-  }
+    cursor: pointer;    
+    @include toRem(line-height, 22.5); 
+    @include toRem(padding, 12);       
+    text-align: center;
+    vertical-align: middle;
+
+    @include mini {
+        @include toRem(font-size, 20);   
+        @include toRem(padding, 20);   
+    }  
+
+    &:focus {
+        box-shadow: none;
+    }
+
+    &:hover {
+        background-color: $teal;
+    }
+
+    &:disabled {
+        background-color: $dark;        
+        transition: 0.3s ease;      
+        -webkit-Gameearance: button;
+        cursor: not-allowed;   
+    }
+}
+  
+
   
  
   
-  button:disabled {
-    opacity: 0.35;
-  }   
 
 
