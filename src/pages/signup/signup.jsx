@@ -13,10 +13,20 @@ function SignUpForm() {
     <div className={styles.Form_Container}>
       <div className={styles.Form_Wrapper}>
         <div className={styles.Form_Link_Wrapper}>
-          <NavLink to="/login/" className={styles.Form_Link}>
+          <NavLink
+            to="/login/"
+            className={({ isActive }) =>
+              isActive ? styles.Form_Link_Active : styles.Form_Link
+            }
+          >
             Login
           </NavLink>
-          <NavLink to="/signup/" className={styles.Form_Link}>
+          <NavLink
+            to="/signup/"
+            className={({ isActive }) =>
+              isActive ? styles.Form_Link_Active : styles.Form_Link
+            }
+          >
             SignUp
           </NavLink>
         </div>
@@ -32,6 +42,7 @@ function SignUpForm() {
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2));
+              console.log(values, 'form submited');
               setSubmitting(false);
             }, 400);
           }}
@@ -90,8 +101,8 @@ function SignUpForm() {
               </ErrorMessage>
 
               <ErrorMessage name="acceptTerms" className={styles.Error}>
-              {(msg) => <div>{msg}</div>}
-            </ErrorMessage>
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
               <div className={styles.Checkbox_Container}>
                 <Field
                   name="acceptTerms"
@@ -99,7 +110,7 @@ function SignUpForm() {
                   type="checkbox"
                   id="acceptTerms"
                   className="styles.Checkbox_Container_Box"
-                />               
+                />
 
                 <label htmlFor="acceptTerms" className={styles.Checkbox_Label}>
                   By creating an account you agree to the{' '}
@@ -112,10 +123,7 @@ function SignUpForm() {
                   industry news, new products and related topics.
                 </label>
               </div>
-              <button                
-                className={styles.Btn}
-                type="submit"
-              >
+              <button className={styles.Btn} type="submit">
                 Submit
               </button>
             </Form>
