@@ -89,33 +89,33 @@ function SignUpForm() {
                 {(msg) => <div>{msg}</div>}
               </ErrorMessage>
 
-              <Field
-                name="acceptTerms"
-                control="checkbox"
-                type="checkbox"
-                className={
-                  errors.acceptTerms && touched.acceptTerms
-                    ? styles.Checkbox_Error
-                    : styles.Checkbox
-                }
-                id="acceptTerms"
-              />
               <ErrorMessage name="acceptTerms" className={styles.Error}>
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
+              {(msg) => <div>{msg}</div>}
+            </ErrorMessage>
+              <div className={styles.Checkbox_Container}>
+                <Field
+                  name="acceptTerms"
+                  control="checkbox"
+                  type="checkbox"
+                  id="acceptTerms"
+                  className="styles.Checkbox_Container_Box"
+                />               
 
-              <label htmlFor="acceptTerms" className={styles.Checkbox_Label}>
-                By creating an account you agree to the{' '}
-                <a href="#" className={styles.Form_Label_Link}>
-                  terms and conditions
-                </a>{' '}
-                applicable to our sevice and acknowledge that your personal data
-                will be used in accordance with our privacy policy and you will
-                receive emails and communications about jobs, industry news, new
-                products and related topics.
-              </label>
-
-              <button className={styles.Btn} type="submit">
+                <label htmlFor="acceptTerms" className={styles.Checkbox_Label}>
+                  By creating an account you agree to the{' '}
+                  <a href="#" className={styles.Checkbox_Label_Link}>
+                    terms and conditions
+                  </a>{' '}
+                  applicable to our sevice and acknowledge that your personal
+                  data will be used in accordance with our privacy policy and
+                  you will receive emails and communications about jobs,
+                  industry news, new products and related topics.
+                </label>
+              </div>
+              <button                
+                className={styles.Btn}
+                type="submit"
+              >
                 Submit
               </button>
             </Form>

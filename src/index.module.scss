@@ -21,15 +21,7 @@ body {
   text-align: left;  
   @include toRem(line-height, 22);
   
-  input[type="checkbox"] {  
-    display: block;  
-    height: 30px;
-    overflow: hidden;
-    position: absolute;    
-    width: 30px;
-    opacity: 0;
-  }
-  
+ 
 }
 
 .rhap_container {  

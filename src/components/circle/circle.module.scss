@@ -20,6 +20,6 @@
     }
     &_IncorrectOption {
         @extend .Circle;
-        background-color: red ;        
+        background-color: $red ;        
     } 
 }

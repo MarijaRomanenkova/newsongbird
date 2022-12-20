@@ -87,7 +87,7 @@
 
     &_Input_Error {
         @extend .Form_Input;            
-        border-color: red;
+        border-color: $red;
     } 
 
     &_Input:focus {
