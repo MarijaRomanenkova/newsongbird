@@ -45,9 +45,15 @@ function SignUpForm() {
                 name="email"
                 id="email "
                 type="email"
-                className={styles.Form_Input}
+                className={
+                  errors.email && touched.email
+                    ? styles.Form_Input_Error
+                    : styles.Form_Input
+                }
               />
-              <ErrorMessage name="email" className={styles.Error} />
+              <ErrorMessage name="email" className={styles.Error}>
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
 
               <label htmlFor="password" className={styles.Form_Label}>
                 Password
@@ -56,9 +62,15 @@ function SignUpForm() {
                 name="password"
                 type="password"
                 id="password"
-                className={styles.Form_Input}
+                className={
+                  errors.password && touched.password
+                    ? styles.Form_Input_Error
+                    : styles.Form_Input
+                }
               />
-              <ErrorMessage name="password" className={styles.Error} />
+              <ErrorMessage name="password" className={styles.Error}>
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
 
               <label htmlFor="confirmPassword" className={styles.Form_Label}>
                 Confirm Password
@@ -67,17 +79,27 @@ function SignUpForm() {
                 name="confirmPassword"
                 id="confirmPassword"
                 type="text"
-                className={styles.Form_Input}
+                className={
+                  errors.confirmPassword && touched.confirmPassword
+                    ? styles.Form_Input_Error
+                    : styles.Form_Input
+                }
               />
-              <ErrorMessage name="confirmPassword" className={styles.Error} />
+              <ErrorMessage name="confirmPassword" className={styles.Error}>
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
 
               <Field
                 name="acceptTerms"
                 type="checkbox"
-                className={styles.Checkbox}
+                className={
+                  errors.acceptTerms && touched.acceptTerms
+                    ? styles.Form_Input_Error
+                    : styles.Form_Input
+                }
                 id="acceptTerms"
               />
-              <label htmlFor="confirmPassword" className={styles.Form_Label}>
+              <label htmlFor="acceptTerms" className={styles.Form_Label}>
                 By creating an account you agree to the{' '}
                 <a href="#" className={styles.Form_Label_Link}>
                   terms and conditions
@@ -87,7 +109,10 @@ function SignUpForm() {
                 receive emails and communications about jobs, industry news, new
                 products and related topics.
               </label>
-              <ErrorMessage name="acceptTerms" className={styles.Error} />
+
+              <ErrorMessage name="acceptTerms" className={styles.Error}>
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
 
               <button className={styles.Btn} type="submit">
                 Submit

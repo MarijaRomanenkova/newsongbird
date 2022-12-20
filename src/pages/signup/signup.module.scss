@@ -85,7 +85,8 @@
         outline: none;
     }
 
-    &_Input_Error {            
+    &_Input_Error {
+        @extend .Form_Input;            
         border-color: red;
     } 
 
@@ -122,7 +123,8 @@
    
   .Btn {
     display:inline-block;    
-    @include toRem(margin-bottom, 32);   
+    @include toRem(margin-bottom, 32);
+    @include toRem(margin-top, 32);     
     color: $white;    
     font-family: "Lato", Arial, sans-serif;    
     @include toRem(font-size, 20);   

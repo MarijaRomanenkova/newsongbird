@@ -35,32 +35,43 @@ function Login() {
             }, 400);
           }}
         >
-          <Form>
-            <label htmlFor="email" className={styles.Form_Label}>
-              Email Address
-            </label>
-            <Field
-              name="email"
-              id="email "
-              type="email"
-              className={styles.Form_Input}
-            />
-            <ErrorMessage name="email" className={styles.Error} />
+          {({ errors, touched }) => (
+            <Form>
+              <label htmlFor="email" className={styles.Form_Label}>
+                Email Address
+              </label>
+              <Field
+                name="email"
+                id="email "
+                type="email"
+                className={
+                  errors.password && touched.password
+                    ? styles.Form_Input_Error
+                    : styles.Form_Input
+                }
+              />
 
-            <label htmlFor="password" className={styles.Form_Label}>
-              Password
-            </label>
-            <Field
-              name="password"
-              type="password"
-              id="password"
-              className={styles.Form_Input}
-            />
-            <ErrorMessage name="password" className={styles.Error} />
-            <button className={styles.Btn} type="submit">
-              Login
-            </button>
-          </Form>
+              <ErrorMessage name="email" className={styles.Error}>
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
+
+              <label htmlFor="confirmPassword" className={styles.Form_Label}>
+                Password
+              </label>
+              <Field
+                name="confirmPassword"
+                type="confirmPassword"
+                id="confirmPassword"
+                className={styles.Form_Input}
+              />
+              <ErrorMessage name="confirmPassword" className={styles.Error}>
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
+              <button className={styles.Btn} type="submit">
+                Login
+              </button>
+            </Form>
+          )}
         </Formik>
       </div>
     </div>
