@@ -91,15 +91,20 @@ function SignUpForm() {
 
               <Field
                 name="acceptTerms"
+                control="checkbox"
                 type="checkbox"
                 className={
                   errors.acceptTerms && touched.acceptTerms
-                    ? styles.Form_Input_Error
-                    : styles.Form_Input
+                    ? styles.Checkbox_Error
+                    : styles.Checkbox
                 }
                 id="acceptTerms"
               />
-              <label htmlFor="acceptTerms" className={styles.Form_Label}>
+              <ErrorMessage name="acceptTerms" className={styles.Error}>
+                {(msg) => <div>{msg}</div>}
+              </ErrorMessage>
+
+              <label htmlFor="acceptTerms" className={styles.Checkbox_Label}>
                 By creating an account you agree to the{' '}
                 <a href="#" className={styles.Form_Label_Link}>
                   terms and conditions
@@ -109,10 +114,6 @@ function SignUpForm() {
                 receive emails and communications about jobs, industry news, new
                 products and related topics.
               </label>
-
-              <ErrorMessage name="acceptTerms" className={styles.Error}>
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
 
               <button className={styles.Btn} type="submit">
                 Submit
