@@ -3,7 +3,7 @@
 
 .Disabled {
     display:inline-block;    
-    @include toRem(margin-bottom, 32);   
+    @include toRem(margin-bottom, 36);   
     color: $white;    
     font-family: "Lato", Arial, sans-serif;    
     @include toRem(font-size, 15);   

@@ -1,24 +1,31 @@
+@import 'scss-source/variables.module.scss';
+@import 'scss-source/mixins.module.scss';
+
 .Navigation {
     &_Container {
         display: flex;
         max-width: 960px;        
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center; 
-        margin: 1rem auto;       
+        margin: 1rem auto;   
+                     
     }
 
     &_Link {
-        color: white;
+        color: $soft-white;
         text-decoration: none;
         font-weight: 600;
         font-size: 1rem;
-        padding: 5px;
+        padding: 15px;
+        self-align:flex-start;
+        
     }
     &_Link:active {
         color: yellow;
     }
 }
 
-.active {
-    color: yellow;
+.Logo {
+    max-width: 200px;
 }
+

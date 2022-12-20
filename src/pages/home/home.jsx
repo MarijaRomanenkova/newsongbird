@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 
-import Header from 'components/header/header.component';
 import Categories from 'components/categories/categories.component';
 import CorrectAnswer from 'components/correctAnswer/correctAnswer.component';
 import AnswerOptions from 'components/answerOptions/answerOptions.component';
@@ -15,7 +14,6 @@ function Home() {
 
   return (
     <div className={styles.Game_Container}>
-      <Header />
       {isGameOver ? (
         <GameOver />
       ) : (
