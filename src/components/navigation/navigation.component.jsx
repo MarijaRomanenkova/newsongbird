@@ -6,7 +6,6 @@ import Score from 'components/score/score.component';
 
 import styles from './navigation.module.scss';
 
-
 function Navigation() {
   return (
     <>
@@ -18,12 +17,12 @@ function Navigation() {
         </Link>
         <Score />
         <div>
-        <NavLink className={styles.Navigation_Link} to="/login">
-          Login
-        </NavLink>
-        <NavLink className={styles.Navigation_Link} to="/signup">
-          SignUp
-        </NavLink>
+          <NavLink className={styles.Navigation_Link} to="/login">
+            Login
+          </NavLink>
+          <NavLink className={styles.Navigation_Link} to="/signup">
+            SignUp
+          </NavLink>
         </div>
       </nav>
       <Outlet />
