@@ -47,4 +47,4 @@ cd into the new folder and type. $ npm install. This installs the required depen
 
 To run the React project. $ npm start.
 
-Open <http://localhost:3000> to view it in your browser.
+Open <http://localhost:3000> to view it in your browser
