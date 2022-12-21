@@ -44,17 +44,18 @@ Sass module system helps split your Sass into manageable “partials”, and to 
 =======
 This is **React** project bootstraped with create-react-app.
 
-#### Sass module\*\*
+#### Sass module
 
 Sass module system helps split your Sass into manageable “partials”, and to work around the class names namespace issues by prefixing
 
-#### Classnames\*\*
+#### Classnames
 
 >>>>>>> 49e22d6 (readme fix)
 <https://www.npmjs.com/package/classnames>
 
 A simple utility for conditionally joining classNames together.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 #### React-confetti
@@ -64,11 +65,15 @@ A simple utility for conditionally joining classNames together.
 =======
 #### React-confetti\*\*
 >>>>>>> 33ce2cc (README update)
+=======
+#### React-confetti
+>>>>>>> 922aebd (changes after meeting)
 
 <https://www.npmjs.com/package/react-confetti>
 
 React component to draw easily confetti animation.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 #### React-h5-audio-player
@@ -78,6 +83,9 @@ React component to draw easily confetti animation.
 =======
 #### React-h5-audio-player\*\*
 >>>>>>> 33ce2cc (README update)
+=======
+#### React-h5-audio-player
+>>>>>>> 922aebd (changes after meeting)
 
 <https://www.npmjs.com/package/react-h5-audio-player>
 
