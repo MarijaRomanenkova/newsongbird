@@ -4,9 +4,11 @@
 .Score {
     @include toRem(font-size, 18);   
     font-weight: 700;     
-    color:$soft-white;   
-    border: 1px solid $dark-mode-border;
-    padding: 0 10px;
-    border-radius: 4px;
-
+    color:$soft-white; 
+    padding: 0 12px;
+    max-width: 30%;
+    @include mini {
+        padding: 0;
+        max-width: 100%;
+    }
 }

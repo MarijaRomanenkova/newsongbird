@@ -42,7 +42,6 @@ function SignUpForm() {
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2));
-              console.log(values, 'form submited');
               setSubmitting(false);
             }, 400);
           }}
