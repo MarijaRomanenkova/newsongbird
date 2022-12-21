@@ -16,23 +16,23 @@ The project is in progress
 
 This is **React** project bootstraped with create-react-app.
 
-#### Sass module\*\*
+#### Sass module
 
 Sass module system helps split your Sass into manageable “partials”, and to work around the class names namespace issues by prefixing
 
-#### Classnames\*\*
+#### Classnames
 
 <https://www.npmjs.com/package/classnames>
 
 A simple utility for conditionally joining classNames together.
 
-#### React-confetti\*\*
+#### React-confetti
 
 <https://www.npmjs.com/package/react-confetti>
 
 React component to draw easily confetti animation.
 
-#### React-h5-audio-player\*\*
+#### React-h5-audio-player
 
 <https://www.npmjs.com/package/react-h5-audio-player>
 
