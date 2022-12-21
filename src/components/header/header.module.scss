@@ -1,0 +1,25 @@
+@import 'scss-source/variables.scss';
+@import 'scss-source/mixins.scss';
+
+.Header_Container {
+  display: flex;
+  margin-top: 1rem;
+  @include toRem(
+    margin-bottom,
+    5
+  );
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Score {
+  @include toRem(
+    font-size,
+    18
+  );
+  font-weight: 700;
+}
+
+.Logo {
+  max-width: 200px;
+}

@@ -4,13 +4,20 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: rgba(
+    0,
+    0,
+    0,
+    0
+  );
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: 'Lato', Arial, sans-serif;
+  font-family: 'Lato',
+    Arial,
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $white;
@@ -24,7 +31,12 @@ body {
 .rhap_container {
   @include toRem(padding, 4);
   outline: none;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0
+  );
   color: $white;
   width: 100%;
   @include toRem(margin-top, 8);
@@ -38,7 +50,10 @@ body {
 .rhap_progress-section {
   width: 85%;
   display: grid;
-  @include toRem(padding-top, 8);
+  @include toRem(
+    padding-top,
+    8
+  );
   grid-template-areas:
     'top top top top'
     'left . .  right';
@@ -50,7 +65,10 @@ body {
 
 .rhap_progress-container {
   grid-area: top;
-  @include toRem(padding-bottom, 4);
+  @include toRem(
+    padding-bottom,
+    4
+  );
 }
 
 .rhap_current-time {
@@ -79,8 +97,14 @@ body {
 }
 
 .rhap_button-clear {
-  @include toRem(font-size, 48);
+  @include toRem(
+    font-size,
+    48
+  );
   width: 50px;
   height: 50px;
-  @include toRem(padding-bottom, 16);
+  @include toRem(
+    padding-bottom,
+    16
+  );
 }
