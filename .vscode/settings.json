@@ -1,7 +1,18 @@
 {
-    "workbench.colorCustomizations": {
-        "activityBar.background": "#37215D",
-        "titleBar.activeBackground": "#4D2E83",
-        "titleBar.activeForeground": "#FBF9FD"
-    }
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": false,
+    "html.format.wrapLineLength": 80,
+    "css.format.spaceAroundSelectorSeparator": true,
+    "less.format.enable": true,
+    "scss.format.maxPreserveNewLines": 1,
+    "eslint.format.enable": true,
+    "markdown.extension.tableFormatter.delimiterRowNoPadding": true,
+    "markdown.extension.tableFormatter.normalizeIndentation": true,
+    "prettier.requireConfig": false,
+    "css.lint.float": "warning"
 }
