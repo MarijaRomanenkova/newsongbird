@@ -17,13 +17,7 @@ import NextButton from 'components/nextButton/nextButton.component';
 import styles from './answerOptions.module.scss';
 
 function AnswerOptions() {
-  const [
-    QuizState,
-    dispatch,
-  ] =
-    useContext(
-      QuizContext
-    );
+  const [ QuizState, dispatch ] = useContext(QuizContext );
 
   const currentLevelAnswersOptionsArray =
     QuizState
@@ -39,10 +33,7 @@ function AnswerOptions() {
     ] ||
     [];
 
-  const {
-    isGameOver,
-  } =
-    QuizState;
+  const { isGameOver } = QuizState;
 
   const [
     playCorrectAnswerChosenSound,
@@ -198,43 +189,37 @@ function AnswerOptions() {
     playIncorrectAnswerChosenSound();
   }
 
-  const handleNextButtonClick =
-    () => {
-      setIsNextButtonDisabled(
-        true
-      );
-      dispatch(
-        {
-          type: 'NEXT_LEVEL',
-        }
-      );
-    };
+  const handleNextButtonClick = () => {
+    setIsNextButtonDisabled(true);
+    dispatch({ type: 'NEXT_LEVEL' });
+  };
 
-  const answerOptionsREF =
-    useRef(
-      []
-    );
+  const answerOptionsREF = useRef([]);
+
+  const detectKeyDown = () => {
+    if (answerOptionsREF.current.tabIndex === 0) {
+      answerOptionsREF.current.focus();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('keydown', detectKeyDown, true);
+
+    return () => {
+      document.removeEventListener('keydown', detectKeyDown);
+    };
 
   return (
     <>
-      <div
-        className={
-          styles.AnswerOptions_Container
-        }
-      >
-        <div
-          className={
-            styles.AnswerOptionsList_Container
-          }
-        >
-          {currentLevelAnswersOptionsArrayStatusAdded.map(
-            (
-              item
-            ) => (
-              <Fragment
-                key={
-                  item.id
-                }
+      <div className={styles.AnswerOptions_Container}>
+        <div className={styles.AnswerOptionsList_Container}>
+          {currentLevelAnswersOptionsArrayStatusAdded.map((item) => (
+            <Fragment key={item.id}>
+              <button
+                className={styles.AnswerOptionsList_Item}
+                type="button"                
+                onClick={() => handleAnswerOptionClick(item.id)}
+                ref={answerOptionsREF}
               >
                 <button
                   className={

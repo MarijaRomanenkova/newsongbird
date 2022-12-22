@@ -1,18 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+import { BrowserRouter } from 'react-router-dom';
 import { QuizProvider } from './contexts/quizContext';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import './index.scss';
+import './index.module.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <QuizProvider>
-      <App />
-    </QuizProvider>
+    <BrowserRouter>
+      <QuizProvider>
+        <App />
+      </QuizProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

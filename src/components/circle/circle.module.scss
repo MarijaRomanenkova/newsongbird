@@ -1,4 +1,5 @@
-@import 'scss-source/variables.scss';
+@import 'scss-source/variables.module.scss';
+@import 'scss-source/mixins.module.scss';
 
 .Circle {
     
@@ -19,6 +20,6 @@
     }
     &_IncorrectOption {
         @extend .Circle;
-        background-color: red ;        
+        background-color: $red ;        
     } 
 }

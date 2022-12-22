@@ -1,7 +1,6 @@
 @import 'react-h5-audio-player/lib/styles.css';
-@import 'scss-source/variables.scss';
-@import 'scss-source/mixins.scss';
-@import './App.module.scss';
+@import 'scss-source/variables.module.scss';
+@import 'scss-source/mixins.module.scss';
 
 html {
   -webkit-text-size-adjust: 100%;
@@ -33,16 +32,6 @@ body {
     line-height,
     22
   );
-  input[type='checkbox' i] {
-    opacity: 0;
-    position: absolute;
-  }
-
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
 }
 
 .rhap_container {
