@@ -10,7 +10,7 @@ function NotFound() {
       <div className={styles.NotFound_Wrapper}>
         <p className={styles.NotFound_Text}>Ooops... Page not found</p>
         <Link
-          to={availableRoutesList.NOT_FOUND}
+          to={availableRoutesList.HOME}
           className={styles.NotFound_Link}
         >
           {' '}
