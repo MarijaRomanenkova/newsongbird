@@ -1,0 +1,84 @@
+@import 'react-h5-audio-player/lib/styles.css';
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Lato', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+  background-color: rgb(48, 48, 48);
+  font-size: 15;
+  font-weight: 400;
+  text-align: left;
+}
+
+.rhap_container {
+  padding: 4px;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  width: 100%;
+  margin-top: 8px;
+  box-shadow: none;
+  justify-content: center;
+}
+
+.rhap_container svg {
+  color: #128262;
+}
+
+.rhap_progress-section {
+  width: 85%;
+  display: grid;
+  padding-top: 8px;
+  grid-template-areas:
+    'top top top top'
+    'left . .  right';
+}
+
+.rhap_controls-section {
+  display: block;
+}
+
+.rhap_progress-container {
+  grid-area: top;
+  padding-bottom: 4;
+}
+
+.rhap_current-time {
+  grid-area: left;
+  color: white;
+  font-size: 12;
+  padding-left: 8;
+  padding-bottom: 8;
+}
+
+.rhap_total-time {
+  grid-area: right;
+  color: white;
+  text-align: end;
+  font-size: 12;
+  padding-right: 12;
+  padding-bottom: 8;
+}
+
+.rhap_additional-controls {
+  display: none;
+}
+
+.rhap_volume-controls {
+  display: none;
+}
+
+.rhap_button-clear {
+  font-size: 48;
+  width: 50px;
+  height: 50px;
+  padding-bottom: 16;
+}
