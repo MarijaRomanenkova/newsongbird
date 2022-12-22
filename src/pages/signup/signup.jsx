@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 
 import { SignUpSchema } from 'schemas/index';
-import availableRoutesList from 'routes/availableRoutesList';
+import { availableRoutesList } from 'routes/availableRoutesList';
 
 import styles from './signup.module.scss';
 

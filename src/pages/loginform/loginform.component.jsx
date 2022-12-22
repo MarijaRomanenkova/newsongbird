@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 
 import { LoginSchema } from 'schemas/index';
-import availableRoutesList from 'routes/availableRoutesList';
+import { availableRoutesList } from 'routes/availableRoutesList';
 
 import styles from './loginform.module.scss';
 

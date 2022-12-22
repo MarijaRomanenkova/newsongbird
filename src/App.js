@@ -6,7 +6,7 @@ import Navigation from 'components/navigation/navigation.component';
 import LoginForm from 'pages/loginform/loginform.component';
 import SignUp from 'pages/signup/signup';
 import NotFound from 'pages/notfound/notfound.component';
-import availableRoutesList from './routes/availableRoutesList';
+import { availableRoutesList } from './routes/availableRoutesList';
 
 function App() {
   return (

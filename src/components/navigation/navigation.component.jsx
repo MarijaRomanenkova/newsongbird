@@ -3,7 +3,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 
 import logoSourceSVG from 'assets/logoSourceSVG.svg';
 import Score from 'components/score/score.component';
-import availableRoutesList from 'routes/availableRoutesList';
+import { availableRoutesList } from 'routes/availableRoutesList';
 import styles from './navigation.module.scss';
 
 function Navigation() {
