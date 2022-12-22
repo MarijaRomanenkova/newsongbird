@@ -30,108 +30,58 @@ function AnswerOptions() {
 
   const isGameOver = useSelector(selectIsGameOver);
 
-  const [
-    playCorrectAnswerChosenSound,
-  ] =
-    useSound(
-      correctAnswerChosenSoundOGG
-    );
-  const [
-    playIncorrectAnswerChosenSound,
-  ] =
-    useSound(
-      incorrectAnswerChosenSoundOGG
-    );
+  const [playCorrectAnswerChosenSound] = useSound(correctAnswerChosenSoundOGG);
+  const [playIncorrectAnswerChosenSound] = useSound(
+    incorrectAnswerChosenSoundOGG
+  );
 
-  const [
-    chosenAnswerOption,
-    setChosenAnswerOption,
-  ] =
-    useState(
-      {
-        isClicked: false,
-      }
-    );
+  const [chosenAnswerOption, setChosenAnswerOption] = useState({
+    isClicked: false,
+  });
 
-  const [
-    isNextButtonDisabled,
-    setIsNextButtonDisabled,
-  ] =
-    useState(
-      true
-    );
+  const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 
   const [
     currentLevelAnswersOptionsArrayStatusAdded,
     setCurrentLevelAnswersOptionsArrayStatusAdded,
-  ] =
-    useState(
-      [
-        currentLevelAnswersOptionsArray,
-      ]
-    );
+  ] = useState([currentLevelAnswersOptionsArray]);
 
   useEffect(() => {
     setCurrentLevelAnswersOptionsArrayStatusAdded(
-      currentLevelAnswersOptionsArray.map(
-        (
-          answerOption
-        ) => {
-          if (
-            answerOption.id ===
-            correctAnswer.id
-          )
-            return {
-              ...answerOption,
-              isChosenAnswer: false,
-              isCorrectAnswer: true,
-            };
+      currentLevelAnswersOptionsArray.map((answerOption) => {
+        if (answerOption.id === correctAnswer.id)
           return {
             ...answerOption,
             isChosenAnswer: false,
-            isCorrectAnswer: false,
+            isCorrectAnswer: true,
           };
-        }
-      )
+        return {
+          ...answerOption,
+          isChosenAnswer: false,
+          isCorrectAnswer: false,
+        };
+      })
     );
-  }, [
-    currentLevelAnswersOptionsArray,
-  ]);
+  }, [currentLevelAnswersOptionsArray]);
 
-  function setChosenAnswer(
-    id
-  ) {
-    const currentObjectIndex =
-      id -
-      1;
+  function setChosenAnswer(id) {
+    const currentObjectIndex = id - 1;
     const currentAnswerOptionObject =
-      currentLevelAnswersOptionsArray[
-        currentObjectIndex
-      ];
+      currentLevelAnswersOptionsArray[currentObjectIndex];
 
-    setChosenAnswerOption(
-      {
-        isClicked: true,
-        id,
-        name: currentAnswerOptionObject.name,
-        species:
-          currentAnswerOptionObject.species,
-        image:
-          currentAnswerOptionObject.image,
-        audio:
-          currentAnswerOptionObject.audio,
-        description:
-          currentAnswerOptionObject.description,
-      }
-    );
+    setChosenAnswerOption({
+      isClicked: true,
+      id,
+      name: currentAnswerOptionObject.name,
+      species: currentAnswerOptionObject.species,
+      image: currentAnswerOptionObject.image,
+      audio: currentAnswerOptionObject.audio,
+      description: currentAnswerOptionObject.description,
+    });
   }
 
-  function handleAnswerOptionClick(
-    id
-  ) {
-    if (
-      !isNextButtonDisabled
-    ) {
+  function handleAnswerOptionClick(id) {
+    if (!isNextButtonDisabled) {
       return;
     }
     setChosenAnswer(id);
@@ -144,18 +94,17 @@ function AnswerOptions() {
             isChosenAnswer: true,
           };
         }
-      )
+        return {
+          ...item,
+        };
+      })
     );
 
     if (id === correctAnswer.id) {
       dispatch(win());
       playCorrectAnswerChosenSound();
-      if (
-        !isGameOver
-      ) {
-        setIsNextButtonDisabled(
-          false
-        );
+      if (!isGameOver) {
+        setIsNextButtonDisabled(false);
       }
     }
     playIncorrectAnswerChosenSound();
@@ -188,60 +137,28 @@ function AnswerOptions() {
 
         {chosenAnswerOption.isClicked && (
           <AnswerOptionDetails
-            name={
-              chosenAnswerOption.name
-            }
-            image={
-              chosenAnswerOption.image
-            }
-            description={
-              chosenAnswerOption.description
-            }
-            audio={
-              chosenAnswerOption.audio
-            }
-            species={
-              chosenAnswerOption.species
-            }
+            name={chosenAnswerOption.name}
+            image={chosenAnswerOption.image}
+            description={chosenAnswerOption.description}
+            audio={chosenAnswerOption.audio}
+            species={chosenAnswerOption.species}
           />
         )}
         {!chosenAnswerOption.isClicked && (
-          <div
-            className={
-              styles.AnswerOptionDetails_Dummy
-            }
-          >
-            <h4
-              className={
-                styles.AnswerOptionDetails_Dummy_Text
-              }
-            >
-              Послушайте
-              плеер.
+          <div className={styles.AnswerOptionDetails_Dummy}>
+            <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
+              Послушайте плеер.
             </h4>
-            <h4
-              className={
-                styles.AnswerOptionDetails_Dummy_Text
-              }
-            >
-              Выберите
-              птицу
-              из
-              списка
+            <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
+              Выберите птицу из списка
             </h4>
           </div>
         )}
       </div>
       <NextButton
-        isNextButtonDisabled={
-          isNextButtonDisabled
-        }
-        isGameOver={
-          isGameOver
-        }
-        handleNextButtonClick={
-          handleNextButtonClick
-        }
+        isNextButtonDisabled={isNextButtonDisabled}
+        isGameOver={isGameOver}
+        handleNextButtonClick={handleNextButtonClick}
       />
     </>
   );
