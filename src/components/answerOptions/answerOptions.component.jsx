@@ -94,9 +94,7 @@ function AnswerOptions() {
             isChosenAnswer: true,
           };
         }
-        return {
-          ...item,
-        };
+        return { ...item };
       })
     );
 
