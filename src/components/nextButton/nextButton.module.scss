@@ -1,61 +1,36 @@
-@import 'scss-source/variables.module.scss';
-@import 'scss-source/mixins.module.scss';
+@import 'scss-source/variables.scss';
+@import 'scss-source/mixins.scss';
 
 .Disabled {
   display: inline-block;
-  @include toRem(
-    margin-bottom,
-    32
-  );
+  @include toRem(margin-bottom, 32);
   color: $white;
-  font-family: 'Lato',
-    Arial,
-    sans-serif;
-  @include toRem(
-    font-size,
-    15
-  );
+  font-family: 'Lato', Arial, sans-serif;
+  @include toRem(font-size, 15);
   font-weight: 400;
-  @include toRem(
-    border-radius,
-    4
-  );
-  border: 1px
-    solid
-    $dark-mode-border;
+  @include toRem(border-radius, 4);
+  border: 1px solid $dark-mode-border;
   margin-bottom: 2rem;
   background-color: $dark;
   box-shadow: none;
   width: 100%;
   cursor: not-allowed;
-  @include toRem(
-    line-height,
-    22.5
-  );
-  @include toRem(
-    padding,
-    12
-  );
+  @include toRem(line-height, 22.5);
+  @include toRem(padding, 12);
   text-align: center;
   vertical-align: middle;
 
   @include mini {
-    @include toRem(
-      font-size,
-      20
-    );
-    @include toRem(
-      padding,
-      20
-    );
+    @include toRem(font-size, 20);
+    @include toRem(padding, 20);
   }
 }
+
 .Btn {
   @extend .Disabled;
   cursor: pointer;
   background-color: $green;
-  transition: 0.3s
-    ease;
+  transition: 0.3s ease;
   -webkit-appearance: button;
 
   &:focus {

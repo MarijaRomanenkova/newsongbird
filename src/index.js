@@ -6,7 +6,7 @@ import { QuizProvider } from './contexts/quizContext';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import './index.module.scss';
+import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

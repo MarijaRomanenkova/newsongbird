@@ -1,22 +1,2 @@
-@import 'scss-source/variables.module.scss';
-@import 'scss-source/mixins.module.scss';
-
-.App_Container {
-  max-width: 960px;
-  padding: 0
-    1rem;
-  margin: 0
-    auto;
-
-  @include tablet {
-    max-width: 960px;
-  }
-
-  @include mobile {
-    max-width: 720px;
-  }
-
-  @include mini {
-    max-width: 540px;
-  }
-}
+@import 'scss-source/variables.scss';
+@import 'scss-source/mixins.scss';

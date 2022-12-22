@@ -1,5 +1,5 @@
-@import 'scss-source/variables.module.scss';
-@import 'scss-source/mixins.module.scss';
+@import 'scss-source/variables.scss';
+@import 'scss-source/mixins.scss';
 
 .Categories__Container {
   display: flex;
@@ -7,17 +7,11 @@
   text-align: center;
   flex-wrap: wrap;
   margin-bottom: 1.5rem;
-  @include toRem(
-    border-radius,
-    5
-  );
+  @include toRem(border-radius, 5);
   overflow: hidden;
   background-color: $green;
   padding: 0;
-  @include toRem(
-    margin-bottom,
-    25
-  );
+  @include toRem(margin-bottom, 25);
 
   @include tablet {
     display: grid;
@@ -31,57 +25,25 @@
 
   .Category {
     text-align: center;
-    padding: 0.5rem
-      1.56rem;
-    @include toRem(
-      padding-top,
-      8
-    );
-    @include toRem(
-      padding-bottom,
-      8
-    );
-    @include toRem(
-      padding-right,
-      25
-    );
-    @include toRem(
-      padding-left,
-      25
-    );
+    padding: 0.5rem 1.56rem;
+    @include toRem(padding-top, 8);
+    @include toRem(padding-bottom, 8);
+    @include toRem(padding-right, 25);
+    @include toRem(padding-left, 25);
     margin: 0px;
     overflow: hidden;
-    transition: 0.3s
-      ease;
+    transition: 0.3s ease;
 
     &:first-child {
-      @include toRem(
-        border-top-left-radius,
-        5
-      );
-      @include toRem(
-        border-bottom-left-radius,
-        5
-      );
-      @include toRem(
-        padding-left,
-        25
-      );
+      @include toRem(border-top-left-radius, 5);
+      @include toRem(border-bottom-left-radius, 5);
+      @include toRem(padding-left, 25);
     }
 
     &:last-child {
-      @include toRem(
-        border-top-right-radius,
-        5
-      );
-      @include toRem(
-        border-bottom-right-radius,
-        5
-      );
-      @include toRem(
-        padding-right,
-        25
-      );
+      @include toRem(border-top-right-radius, 5);
+      @include toRem(border-bottom-right-radius, 5);
+      @include toRem(padding-right, 25);
     }
 
     &_Active {

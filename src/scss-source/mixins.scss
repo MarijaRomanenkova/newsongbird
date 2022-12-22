@@ -1,11 +1,9 @@
 $breakpoints: (
-  'mini':
-    576px,
-  'mobile':
-    768px,
-  'tablet':
-    992px,
+  'mini': 576px,
+  'mobile': 768px,
+  'tablet': 992px,
 );
+
 @mixin tablet {
   @media only screen and (max-width: map-get($breakpoints, 'tablet')) {
     @content;
@@ -22,13 +20,6 @@ $breakpoints: (
   }
 }
 
-@mixin toRem(
-  $property,
-  $value
-) {
-  #{$property}: (
-      $value /
-        16
-    ) +
-    rem;
+@mixin toRem($property, $value) {
+  #{$property}: ($value / 16) + rem;
 }

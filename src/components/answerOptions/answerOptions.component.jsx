@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import useSound from 'use-sound';
 
 import { QuizContext } from 'contexts/quizContext';
