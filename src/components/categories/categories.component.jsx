@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import uuid from 'react-uuid';
 
 import { QuizContext } from 'contexts/quizContext';
 
@@ -14,7 +13,7 @@ function Categories() {
     <div className={styles.Categories__Container}>
       {categoriesNamesArray.map((category, index) => (
         <div
-          key={uuid()}
+          key={category}
           className={
             index === currentLevel - 1
               ? styles.Category_Active

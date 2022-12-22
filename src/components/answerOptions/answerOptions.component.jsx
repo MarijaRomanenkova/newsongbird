@@ -76,9 +76,7 @@ function AnswerOptions() {
       return;
     }
     setChosenAnswer(id);
-    dispatch({
-      type: 'CHOOSE',
-    });
+    dispatch({ type: 'CHOOSE' });
     setCurrentLevelAnswersOptionsArrayStatusAdded(
       currentLevelAnswersOptionsArrayStatusAdded.map((item) => {
         if (item.id === id) {
@@ -87,16 +85,12 @@ function AnswerOptions() {
             isChosenAnswer: true,
           };
         }
-        return {
-          ...item,
-        };
+        return { ...item };
       })
     );
 
     if (id === correctAnswer.id) {
-      dispatch({
-        type: 'WIN',
-      });
+      dispatch({ type: 'WIN' });
       playCorrectAnswerChosenSound();
       if (!isGameOver) {
         setIsNextButtonDisabled(false);
@@ -107,12 +101,8 @@ function AnswerOptions() {
 
   const handleNextButtonClick = () => {
     setIsNextButtonDisabled(true);
-    dispatch({
-      type: 'NEXT_LEVEL',
-    });
+    dispatch({ type: 'NEXT_LEVEL' });
   };
-
-  const answerOptionsREF = useRef([]);
 
   return (
     <>
@@ -124,7 +114,6 @@ function AnswerOptions() {
               className={styles.AnswerOptionsList_Item}
               type="button"
               onClick={() => handleAnswerOptionClick(item.id)}
-              ref={answerOptionsREF}
             >
               <Circle
                 isChosenAnswer={item.isChosenAnswer}
