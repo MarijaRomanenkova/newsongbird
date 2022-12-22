@@ -17,173 +17,95 @@ import NextButton from 'components/nextButton/nextButton.component';
 import styles from './answerOptions.module.scss';
 
 function AnswerOptions() {
-  const [ QuizState, dispatch ] = useContext(QuizContext );
+  const [QuizState, dispatch] = useContext(QuizContext);
 
   const currentLevelAnswersOptionsArray =
-    QuizState
-      .birdsData[
-      QuizState
-        .currentLevel
-    ];
+    QuizState.birdsData[QuizState.currentLevel];
 
   const correctAnswer =
-    currentLevelAnswersOptionsArray[
-      QuizState.correctAnswerID -
-        1
-    ] ||
-    [];
+    currentLevelAnswersOptionsArray[QuizState.correctAnswerID - 1] || [];
 
   const { isGameOver } = QuizState;
 
-  const [
-    playCorrectAnswerChosenSound,
-  ] =
-    useSound(
-      correctAnswerChosenSoundOGG
-    );
-  const [
-    playIncorrectAnswerChosenSound,
-  ] =
-    useSound(
-      incorrectAnswerChosenSoundOGG
-    );
+  const [playCorrectAnswerChosenSound] = useSound(correctAnswerChosenSoundOGG);
+  const [playIncorrectAnswerChosenSound] = useSound(
+    incorrectAnswerChosenSoundOGG
+  );
 
-  const [
-    chosenAnswerOption,
-    setChosenAnswerOption,
-  ] =
-    useState(
-      {
-        isClicked: false,
-      }
-    );
+  const [chosenAnswerOption, setChosenAnswerOption] = useState({
+    isClicked: false,
+  });
 
-  const [
-    isNextButtonDisabled,
-    setIsNextButtonDisabled,
-  ] =
-    useState(
-      true
-    );
+  const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 
   const [
     currentLevelAnswersOptionsArrayStatusAdded,
     setCurrentLevelAnswersOptionsArrayStatusAdded,
-  ] =
-    useState(
-      [
-        currentLevelAnswersOptionsArray,
-      ]
-    );
+  ] = useState([currentLevelAnswersOptionsArray]);
 
   useEffect(() => {
     setCurrentLevelAnswersOptionsArrayStatusAdded(
-      currentLevelAnswersOptionsArray.map(
-        (
-          answerOption
-        ) => {
-          if (
-            answerOption.id ===
-            correctAnswer.id
-          )
-            return {
-              ...answerOption,
-              isChosenAnswer: false,
-              isCorrectAnswer: true,
-            };
+      currentLevelAnswersOptionsArray.map((answerOption) => {
+        if (answerOption.id === correctAnswer.id)
           return {
             ...answerOption,
             isChosenAnswer: false,
-            isCorrectAnswer: false,
+            isCorrectAnswer: true,
           };
-        }
-      )
+        return {
+          ...answerOption,
+          isChosenAnswer: false,
+          isCorrectAnswer: false,
+        };
+      })
     );
-  }, [
-    currentLevelAnswersOptionsArray,
-  ]);
+  }, [currentLevelAnswersOptionsArray]);
 
-  function setChosenAnswer(
-    id
-  ) {
-    const currentObjectIndex =
-      id -
-      1;
+  function setChosenAnswer(id) {
+    const currentObjectIndex = id - 1;
     const currentAnswerOptionObject =
-      currentLevelAnswersOptionsArray[
-        currentObjectIndex
-      ];
+      currentLevelAnswersOptionsArray[currentObjectIndex];
 
-    setChosenAnswerOption(
-      {
-        isClicked: true,
-        id,
-        name: currentAnswerOptionObject.name,
-        species:
-          currentAnswerOptionObject.species,
-        image:
-          currentAnswerOptionObject.image,
-        audio:
-          currentAnswerOptionObject.audio,
-        description:
-          currentAnswerOptionObject.description,
-      }
-    );
+    setChosenAnswerOption({
+      isClicked: true,
+      id,
+      name: currentAnswerOptionObject.name,
+      species: currentAnswerOptionObject.species,
+      image: currentAnswerOptionObject.image,
+      audio: currentAnswerOptionObject.audio,
+      description: currentAnswerOptionObject.description,
+    });
   }
 
-  function handleAnswerOptionClick(
-    id
-  ) {
-    if (
-      !isNextButtonDisabled
-    ) {
+  function handleAnswerOptionClick(id) {
+    if (!isNextButtonDisabled) {
       return;
     }
-    setChosenAnswer(
-      id
-    );
-    dispatch(
-      {
-        type: 'CHOOSE',
-      }
-    );
+    setChosenAnswer(id);
+    dispatch({
+      type: 'CHOOSE',
+    });
     setCurrentLevelAnswersOptionsArrayStatusAdded(
-      currentLevelAnswersOptionsArrayStatusAdded.map(
-        (
-          item
-        ) => {
-          if (
-            item.id ===
-            id
-          ) {
-            return {
-              ...item,
-              isChosenAnswer: true,
-            };
-          }
+      currentLevelAnswersOptionsArrayStatusAdded.map((item) => {
+        if (item.id === id) {
           return {
             ...item,
+            isChosenAnswer: true,
           };
         }
-      )
+        return {
+          ...item,
+        };
+      })
     );
 
-    if (
-      id ===
-      correctAnswer.id
-    ) {
-      dispatch(
-        {
-          type: 'WIN',
-        }
-      );
+    if (id === correctAnswer.id) {
+      dispatch({
+        type: 'WIN',
+      });
       playCorrectAnswerChosenSound();
-      if (
-        !isGameOver
-      ) {
-        setIsNextButtonDisabled(
-          false
-        );
+      if (!isGameOver) {
+        setIsNextButtonDisabled(false);
       }
     }
     playIncorrectAnswerChosenSound();
@@ -191,123 +113,58 @@ function AnswerOptions() {
 
   const handleNextButtonClick = () => {
     setIsNextButtonDisabled(true);
-    dispatch({ type: 'NEXT_LEVEL' });
+    dispatch({
+      type: 'NEXT_LEVEL',
+    });
   };
 
   const answerOptionsREF = useRef([]);
-
-  const detectKeyDown = () => {
-    if (answerOptionsREF.current.tabIndex === 0) {
-      answerOptionsREF.current.focus();
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('keydown', detectKeyDown, true);
-
-    return () => {
-      document.removeEventListener('keydown', detectKeyDown);
-    };
 
   return (
     <>
       <div className={styles.AnswerOptions_Container}>
         <div className={styles.AnswerOptionsList_Container}>
           {currentLevelAnswersOptionsArrayStatusAdded.map((item) => (
-            <Fragment key={item.id}>
-              <button
-                className={styles.AnswerOptionsList_Item}
-                type="button"                
-                onClick={() => handleAnswerOptionClick(item.id)}
-                ref={answerOptionsREF}
-              >
-                <button
-                  className={
-                    styles.AnswerOptionsList_Item
-                  }
-                  type="button"
-                  onClick={() =>
-                    handleAnswerOptionClick(
-                      item.id
-                    )
-                  }
-                  ref={
-                    answerOptionsREF
-                  }
-                >
-                  <Circle
-                    isChosenAnswer={
-                      item.isChosenAnswer
-                    }
-                    isCorrectAnswer={
-                      item.isCorrectAnswer
-                    }
-                  />
-                  {
-                    item.name
-                  }
-                </button>
-              </Fragment>
-            )
-          )}
+            <button
+              key={item.id}
+              className={styles.AnswerOptionsList_Item}
+              type="button"
+              onClick={() => handleAnswerOptionClick(item.id)}
+              ref={answerOptionsREF}
+            >
+              <Circle
+                isChosenAnswer={item.isChosenAnswer}
+                isCorrectAnswer={item.isCorrectAnswer}
+              />
+              {item.name}
+            </button>
+          ))}
         </div>
 
         {chosenAnswerOption.isClicked && (
           <AnswerOptionDetails
-            name={
-              chosenAnswerOption.name
-            }
-            image={
-              chosenAnswerOption.image
-            }
-            description={
-              chosenAnswerOption.description
-            }
-            audio={
-              chosenAnswerOption.audio
-            }
-            species={
-              chosenAnswerOption.species
-            }
+            name={chosenAnswerOption.name}
+            image={chosenAnswerOption.image}
+            description={chosenAnswerOption.description}
+            audio={chosenAnswerOption.audio}
+            species={chosenAnswerOption.species}
           />
         )}
         {!chosenAnswerOption.isClicked && (
-          <div
-            className={
-              styles.AnswerOptionDetails_Dummy
-            }
-          >
-            <h4
-              className={
-                styles.AnswerOptionDetails_Dummy_Text
-              }
-            >
-              Послушайте
-              плеер.
+          <div className={styles.AnswerOptionDetails_Dummy}>
+            <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
+              Послушайте плеер.
             </h4>
-            <h4
-              className={
-                styles.AnswerOptionDetails_Dummy_Text
-              }
-            >
-              Выберите
-              птицу
-              из
-              списка
+            <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
+              Выберите птицу из списка
             </h4>
           </div>
         )}
       </div>
       <NextButton
-        isNextButtonDisabled={
-          isNextButtonDisabled
-        }
-        isGameOver={
-          isGameOver
-        }
-        handleNextButtonClick={
-          handleNextButtonClick
-        }
+        isNextButtonDisabled={isNextButtonDisabled}
+        isGameOver={isGameOver}
+        handleNextButtonClick={handleNextButtonClick}
       />
     </>
   );
