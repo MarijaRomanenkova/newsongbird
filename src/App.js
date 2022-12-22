@@ -11,7 +11,7 @@ import { availableRoutesList } from './routes/availableRoutesList';
 function App() {
   return (
     <>
-      <Navigation />      
+      <Navigation />
       <Routes>
         <Route path={availableRoutesList.HOME} element={<Home />} />
         <Route path={availableRoutesList.LOGIN} element={<LoginForm />} />
