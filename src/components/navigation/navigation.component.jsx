@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import logoSourceSVG from 'assets/logoSourceSVG.svg';
 import Score from 'components/score/score.component';
