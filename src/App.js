@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Outlet } from 'react-router-dom';
 
 import Home from 'pages/home/home';
 import Navigation from 'components/navigation/navigation.component';
@@ -11,7 +11,7 @@ import { availableRoutesList } from './routes/availableRoutesList';
 function App() {
   return (
     <>
-      <Navigation />
+      <Navigation />      
       <Routes>
         <Route path={availableRoutesList.HOME} element={<Home />} />
         <Route path={availableRoutesList.LOGIN} element={<LoginForm />} />
