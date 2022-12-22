@@ -1,15 +1,21 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import styles from './notfound.module.scss';
 
 function NotFound() {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    setTimeout(() => {
-      navigate('/');
-    }, 1000);
-  }, []);
-  return <h1>Page not Found</h1>;
+  return (
+    <div className={styles.NotFound_Container}>
+      <div className={styles.NotFound_Wrapper}>
+        <p className={styles.NotFound_Text}>Ooops... Page not found</p>
+        <Link to="/" className={styles.NotFound_Link}>
+          {' '}
+          <h1>Go to Homepage </h1>
+          <p className={styles.NotFound_Arrow}>&#8594;</p>
+        </Link>
+      </div>
+    </div>
+  );
 }
 
 export default NotFound;

@@ -52,6 +52,7 @@
     color: $soft-white;
     border-bottom: 1px solid $dark-mode-border;
     position: relative;
+    cursor: pointer;
   }
 
   &_Link:hover {
@@ -63,6 +64,7 @@
     @extend .Form_Link;
     color: $teal;
     border-bottom: 1px solid $teal;
+    cursor: not-allowed;
   }
 
   &_Link_Active:hover {

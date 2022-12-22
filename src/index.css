@@ -12,7 +12,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
-  background-color: rgb(48, 48, 48);
+  background-color: #222;
   font-size: 15;
   font-weight: 400;
   text-align: left;
