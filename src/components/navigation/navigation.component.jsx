@@ -9,7 +9,7 @@ import styles from './navigation.module.scss';
 function Navigation() {
   return (
     <nav className={styles.Navigation_Container}>
-      <NavLink to={availableRoutesList.HOME}>        
+      <NavLink to={availableRoutesList.HOME}>
         <div>
           <img className={styles.Logo} src={logoSourceSVG} alt="Logo" />
         </div>
