@@ -14,7 +14,7 @@ import {
   selectIsGameOver,
   choose,
   nextLevel,
-  win
+  win,
 } from 'store/gameSlice';
 
 import styles from './answerOptions.module.scss';
@@ -119,7 +119,7 @@ function AnswerOptions() {
         <div className={styles.AnswerOptionsList_Container}>
           {currentLevelAnswersOptionsArrayStatusAdded.map((item) => (
             <button
-              key={item.id}
+              key={item.name}
               className={styles.AnswerOptionsList_Item}
               type="button"
               onClick={() => handleAnswerOptionClick(item.id)}
