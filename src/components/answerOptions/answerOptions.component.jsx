@@ -119,7 +119,7 @@ function AnswerOptions() {
         <div className={styles.AnswerOptionsList_Container}>
           {currentLevelAnswersOptionsArrayStatusAdded.map((item) => (
             <button
-              key={item.toString()}
+              key={item.index + item.name}
               className={styles.AnswerOptionsList_Item}
               type="button"
               onClick={() => handleAnswerOptionClick(item.id)}
