@@ -6,8 +6,7 @@ import { selectScore } from 'store/gameSlice';
 import styles from './score.module.scss';
 
 function Score() {
-  
-  const score  = useSelector(selectScore);
+  const score = useSelector(selectScore);
 
   return (
     <div className={styles.Score}>
