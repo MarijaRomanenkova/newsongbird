@@ -29,12 +29,9 @@ export const gameSlice = createSlice({
   reducers: {
     nextLevel: (state) => {
       state.currentLevel += 1;
-      const nextLevelCorrectAnswerID = getCorrectAnswerID(state.currentLevel);
-      state.push({
-        correctAnswerID: nextLevelCorrectAnswerID,
-        isCorrectAnswerSelected: false,
-        numberOfWrongAnswers: 0,
-      });
+      state.correctAnswerID = getCorrectAnswerID(state.currentLevel + 1);
+      state.isCorrectAnswerSelected = false;
+      state.numberOfWrongAnswers = 0;
     },
 
     win: (state) => {
@@ -53,25 +50,19 @@ export const gameSlice = createSlice({
     },
 
     newGame: (state) => {
-      const nextLevelCorrectAnswerID = getCorrectAnswerID(0);
-      state.push({
-        currentLevel: 1,
-        correctAnswerID: nextLevelCorrectAnswerID,
-        numberOfWrongAnswers: 0,
-        score: 0,
-        isCorrectAnswerSelected: false,
-        isGameOver: false,
-      });
+      state.currentLevel = 1;
+      state.correctAnswerID = getCorrectAnswerID(0);
+      state.numberOfWrongAnswers = 0;
+      state.score = 0;
+      state.isCorrectAnswerSelected = false;
+      state.isGameOver = false;
     },
   },
 });
 
 export const { nextLevel, win, choose, newGame } = gameSlice.actions;
 
-export const correctAnswerID = (state) => state.game.correctAnswerID;
 export const selectCurrentLevel = (state) => state.game.currentLevel;
-export const selectNumberOfWrongAnswers = (state) =>
-  state.game.numberOfWrongAnswers;
 export const selectScore = (state) => state.game.score;
 export const selectIsCorrectAnswerSelected = (state) =>
   state.game.isCorrectAnswerSelected;
