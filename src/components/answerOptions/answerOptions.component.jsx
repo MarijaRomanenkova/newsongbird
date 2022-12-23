@@ -14,6 +14,7 @@ import {
   selectIsGameOver,
   choose,
   nextLevel,
+  win
 } from 'store/gameSlice';
 
 import styles from './answerOptions.module.scss';

@@ -39,21 +39,16 @@ export const gameSlice = createSlice({
     },
 
     win: (state) => {
-      if (state.currentLevel > birdsData.length - 2) {
-        (state.score +=
-          state.numberOfWrongAnswers + 1 > MAXIMUM_SCORE_PER_LEVEL
-            ? 0
-            : MAXIMUM_SCORE_PER_LEVEL - (state.numberOfWrongAnswers - 1)),
-          state.push({
-            isGameOver: true,
-            isCorrectAnswerSelected: true,
-          });
-      }
-      state.score +=
-        state.numberOfWrongAnswers + 1 > MAXIMUM_SCORE_PER_LEVEL
-          ? 0
-          : MAXIMUM_SCORE_PER_LEVEL - (state.numberOfWrongAnswers - 1);
       state.push({ isCorrectAnswerSelected: true });
+      if (state.numberOfWrongAnswers < MAXIMUM_SCORE_PER_LEVEL) {
+        state.score +=
+          MAXIMUM_SCORE_PER_LEVEL - (state.numberOfWrongAnswers - 1);
+      }
+      if (state.currentLevel > birdsData.length - 2) {
+        state.push({
+          isGameOver: true,
+        });
+      }
     },
 
     choose: (state) => {
