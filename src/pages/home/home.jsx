@@ -1,16 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import Categories from 'components/categories/categories.component';
 import CorrectAnswer from 'components/correctAnswer/correctAnswer.component';
 import AnswerOptions from 'components/answerOptions/answerOptions.component';
 import GameOver from 'components/gameOver/gameOver.component';
-import { QuizContext } from 'contexts/quizContext';
+import { selectIsGameOver } from 'store/gameSlice';
+
 
 import styles from './home.module.scss';
 
 function Home() {
-  const [QuizState] = useContext(QuizContext);
-  const { isGameOver } = QuizState;
+  const isGameOver = useSelector(selectIsGameOver);
 
   return (
     <div className={styles.Game_Container}>

@@ -1,32 +1,33 @@
-import React, {
-  useContext,
-  useEffect,
-  useState,
-  useRef,
-  Fragment,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 import useSound from 'use-sound';
-import uuid from 'react-uuid';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { QuizContext } from 'contexts/quizContext';
 import correctAnswerChosenSoundOGG from 'assets/sounds/correctAnswerChosenSound.ogg';
 import incorrectAnswerChosenSoundOGG from 'assets/sounds/incorrectAnswerChosenSound.ogg';
 import AnswerOptionDetails from 'components/answerOptionDetails/answerOptionDetails.component';
 import Circle from 'components/circle/circle.component';
 import NextButton from 'components/nextButton/nextButton.component';
 
+import {
+  selectCurrentCategoryArray,
+  selectCurrentCorrectAnswerObject,
+  selectIsGameOver,
+  choose,
+  nextLevel,
+} from 'store/gameSlice';
+
 import styles from './answerOptions.module.scss';
 
 function AnswerOptions() {
-  const [QuizState, dispatch] = useContext(QuizContext);
+  const dispatch = useDispatch();
 
-  const currentLevelAnswersOptionsArray =
-    QuizState.birdsData[QuizState.currentLevel];
+  const currentLevelAnswersOptionsArray = useSelector(
+    selectCurrentCategoryArray
+  );
 
-  const correctAnswer =
-    currentLevelAnswersOptionsArray[QuizState.correctAnswerID - 1] || [];
+  const correctAnswer = useSelector(selectCurrentCorrectAnswerObject) || [];
 
-  const { isGameOver } = QuizState;
+  const isGameOver = useSelector(selectIsGameOver);
 
   const [playCorrectAnswerChosenSound] = useSound(correctAnswerChosenSoundOGG);
   const [playIncorrectAnswerChosenSound] = useSound(
@@ -83,18 +84,21 @@ function AnswerOptions() {
       return;
     }
     setChosenAnswer(id);
-    dispatch({ type: 'CHOOSE' });
+    dispatch(choose());
     setCurrentLevelAnswersOptionsArrayStatusAdded(
       currentLevelAnswersOptionsArrayStatusAdded.map((item) => {
         if (item.id === id) {
-          return { ...item, isChosenAnswer: true };
+          return {
+            ...item,
+            isChosenAnswer: true,
+          };
         }
         return { ...item };
       })
     );
 
     if (id === correctAnswer.id) {
-      dispatch({ type: 'WIN' });
+      dispatch(win());
       playCorrectAnswerChosenSound();
       if (!isGameOver) {
         setIsNextButtonDisabled(false);
@@ -105,45 +109,26 @@ function AnswerOptions() {
 
   const handleNextButtonClick = () => {
     setIsNextButtonDisabled(true);
-    dispatch({ type: 'NEXT_LEVEL' });
+    dispatch(nextLevel());
   };
-
-  const answerOptionsREF = useRef([]);
-
-  const detectKeyDown = () => {
-    if (answerOptionsREF.current.tabIndex === 0) {
-      answerOptionsREF.current.focus();
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('keydown', detectKeyDown, true);
-
-    return () => {
-      document.removeEventListener('keydown', detectKeyDown);
-    };
-  }, []);
 
   return (
     <>
       <div className={styles.AnswerOptions_Container}>
         <div className={styles.AnswerOptionsList_Container}>
           {currentLevelAnswersOptionsArrayStatusAdded.map((item) => (
-            <Fragment key={uuid()}>
-              <button
-                className={styles.AnswerOptionsList_Item}
-                type="button"
-                tabIndex={0}
-                onClick={() => handleAnswerOptionClick(item.id)}
-                ref={answerOptionsREF}
-              >
-                <Circle
-                  isChosenAnswer={item.isChosenAnswer}
-                  isCorrectAnswer={item.isCorrectAnswer}
-                />
-                {item.name}
-              </button>
-            </Fragment>
+            <button
+              key={item.id}
+              className={styles.AnswerOptionsList_Item}
+              type="button"
+              onClick={() => handleAnswerOptionClick(item.id)}
+            >
+              <Circle
+                isChosenAnswer={item.isChosenAnswer}
+                isCorrectAnswer={item.isCorrectAnswer}
+              />
+              {item.name}
+            </button>
           ))}
         </div>
 

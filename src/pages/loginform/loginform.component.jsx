@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 
 import { LoginSchema } from 'schemas/index';
+import { availableRoutesList } from 'routes/availableRoutesList';
 
 import styles from './loginform.module.scss';
 
@@ -14,7 +15,7 @@ function Login() {
       <div className={styles.Form_Wrapper}>
         <div className={styles.Form_Link_Wrapper}>
           <NavLink
-            to="/login/"
+            to={availableRoutesList.LOGIN}
             className={({ isActive }) =>
               isActive ? styles.Form_Link_Active : styles.Form_Link
             }
@@ -22,7 +23,7 @@ function Login() {
             Login
           </NavLink>
           <NavLink
-            to="/signup/"
+            to={availableRoutesList.SIGN_UP}
             className={({ isActive }) =>
               isActive ? styles.Form_Link_Active : styles.Form_Link
             }

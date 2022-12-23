@@ -1,7 +1,11 @@
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
+import { useSelector } from 'react-redux';
 
-import { QuizContext } from 'contexts/quizContext';
+import {
+  selectIsCorrectAnswerSelected,
+  selectCurrentCorrectAnswerObject,
+} from 'store/gameSlice';
 import imageHiddenCorrectAnswerJPG from 'assets/imageHiddenCorrectAnswerJPG.jpg';
 
 import styles from 'components/correctAnswer/correctAnswer.module.scss';
@@ -9,13 +13,9 @@ import styles from 'components/correctAnswer/correctAnswer.module.scss';
 const HIDDEN__ANSWER = '******';
 
 function CorrectAnswer() {
-  const [QuizState] = useContext(QuizContext);
-  const correctAnswer =
-    QuizState.birdsData[QuizState.currentLevel][
-      QuizState.correctAnswerID - 1
-    ] || {};
+  const correctAnswer = useSelector(selectCurrentCorrectAnswerObject);
 
-  const { isCorrectAnswerSelected } = QuizState;
+  const isCorrectAnswerSelected = useSelector(selectIsCorrectAnswerSelected);
 
   const AudioPlayerREF = useRef();
   const pauseAudioPlayer = () => {

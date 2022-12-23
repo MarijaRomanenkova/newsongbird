@@ -1,27 +1,29 @@
-import React, { useContext } from 'react';
-import uuid from 'react-uuid';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-import { QuizContext } from 'contexts/quizContext';
+import {
+  selectCurrentLevel,
+  selectCurrentCategoryArray,
+} from 'store/gameSlice';
 
 import styles from 'components/categories/categories.module.scss';
 
 function Categories() {
-  const [QuizState] = useContext(QuizContext);
-  const { currentLevel } = QuizState;
-  const categoriesNamesArray = QuizState.birdsData[0];
+  const currentLevel = useSelector(selectCurrentLevel);
+  const categoriesArray = useSelector(selectCurrentCategoryArray);
 
   return (
     <div className={styles.Categories__Container}>
-      {categoriesNamesArray.map((category, index) => (
+      {categoriesArray.map((category, index) => (
         <div
-          key={uuid()}
+          key={category}
           className={
             index === currentLevel - 1
               ? styles.Category_Active
               : styles.Category
           }
         >
-          <p className={styles.Categories_Text}>{category}</p>
+          <p className={styles.Categories_Text}>{category.name}</p>
         </div>
       ))}
     </div>

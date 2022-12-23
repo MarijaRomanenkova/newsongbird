@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-import { QuizContext } from 'contexts/quizContext';
+import { selectScore } from 'store/gameSlice';
 
 import styles from './score.module.scss';
 
 function Score() {
-  const [QuizState] = useContext(QuizContext);
-  const { score } = QuizState;
+  
+  const score  = useSelector(selectScore);
 
   return (
     <div className={styles.Score}>
