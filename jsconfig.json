@@ -2,5 +2,5 @@
   "compilerOptions": {
     "baseUrl": "src"
   },
-  "include": ["src", "App.test.js", "index.js"]
+  "include": ["src"]
 }
