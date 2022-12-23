@@ -28,7 +28,6 @@ export const gameSlice = createSlice({
 
   reducers: {
     nextLevel: (state) => {
-      // eslint-disable-next-line no-param-reassign
       state.currentLevel += 1;
       const nextLevelCorrectAnswerID = getCorrectAnswerID(state.currentLevel);
       state.push({
@@ -39,15 +38,13 @@ export const gameSlice = createSlice({
     },
 
     win: (state) => {
-      state.push({ isCorrectAnswerSelected: true });
+      state.isCorrectAnswerSelected = true;
       if (state.numberOfWrongAnswers < MAXIMUM_SCORE_PER_LEVEL) {
         state.score +=
           MAXIMUM_SCORE_PER_LEVEL - (state.numberOfWrongAnswers - 1);
       }
       if (state.currentLevel > birdsData.length - 2) {
-        state.push({
-          isGameOver: true,
-        });
+        state.isGameOver = true;
       }
     },
 
