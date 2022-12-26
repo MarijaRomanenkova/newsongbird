@@ -7,7 +7,6 @@ import incorrectAnswerChosenSoundOGG from 'assets/sounds/incorrectAnswerChosenSo
 import AnswerOptionDetails from 'components/answerOptionDetails/answerOptionDetails.component';
 import Circle from 'components/circle/circle.component';
 import NextButton from 'components/nextButton/nextButton.component';
-
 import {
   selectCurrentCategoryArray,
   selectCurrentCorrectAnswerObject,
