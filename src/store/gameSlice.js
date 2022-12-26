@@ -15,7 +15,7 @@ const getCorrectAnswerID = (currentLevel) => {
 const initialState = {
   birdsData,
   currentLevel: 1,
-  correctAnswerID: getCorrectAnswerID(0),
+  correctAnswerID: getCorrectAnswerID(1),
   numberOfWrongAnswers: 0,
   score: 0,
   isCorrectAnswerSelected: false,
@@ -29,7 +29,7 @@ export const gameSlice = createSlice({
   reducers: {
     nextLevel: (state) => {
       state.currentLevel += 1;
-      state.correctAnswerID = getCorrectAnswerID(state.currentLevel + 1);
+      state.correctAnswerID = getCorrectAnswerID(state.currentLevel);
       state.isCorrectAnswerSelected = false;
       state.numberOfWrongAnswers = 0;
     },
@@ -51,7 +51,7 @@ export const gameSlice = createSlice({
 
     newGame: (state) => {
       state.currentLevel = 1;
-      state.correctAnswerID = getCorrectAnswerID(0);
+      state.correctAnswerID = getCorrectAnswerID(1);
       state.numberOfWrongAnswers = 0;
       state.score = 0;
       state.isCorrectAnswerSelected = false;
@@ -71,5 +71,6 @@ export const selectCurrentCorrectAnswerObject = (state) =>
   state.game.birdsData[state.game.currentLevel][state.game.correctAnswerID - 1];
 export const selectCurrentCategoryArray = (state) =>
   state.game.birdsData[state.game.currentLevel];
+export const selectCategoriesNames = (state) => state.game.birdsData[0];
 
 export default gameSlice.reducer;

@@ -1,16 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import {
-  selectCurrentLevel,
-  selectCurrentCategoryArray,
-} from 'store/gameSlice';
+import { selectCurrentLevel, selectCategoriesNames } from 'store/gameSlice';
 
 import styles from 'components/categories/categories.module.scss';
 
 function Categories() {
   const currentLevel = useSelector(selectCurrentLevel);
-  const categoriesArray = useSelector(selectCurrentCategoryArray);
+  const categoriesArray = useSelector(selectCategoriesNames);
 
   return (
     <div className={styles.Categories__Container}>
@@ -23,7 +20,7 @@ function Categories() {
               : styles.Category
           }
         >
-          <p className={styles.Categories_Text}>{category.name}</p>
+          <p className={styles.Categories_Text}>{category}</p>
         </div>
       ))}
     </div>
