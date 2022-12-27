@@ -3,8 +3,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { toast, ToastContainer, Zoom } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
 
 import { LoginSchema } from 'schemas/index';
 import { availableRoutesList } from 'routes/availableRoutesList';
@@ -101,7 +101,6 @@ function Login() {
             </Form>
           )}
         </Formik>
-        <ToastContainer transition={Zoom} limit={2} />
       </div>
     </div>
   );

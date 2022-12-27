@@ -3,7 +3,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { toast, ToastContainer, Zoom } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { SignUpSchema } from 'schemas/index';
@@ -139,8 +139,7 @@ function SignUpForm() {
               </button>
             </Form>
           )}
-        </Formik>
-        <ToastContainer transition={Zoom} limit={2} />
+        </Formik>        
       </div>
     </div>
   );
