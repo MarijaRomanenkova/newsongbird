@@ -8,7 +8,8 @@ export const LoginSchema = yup.object().shape({
     .string()
     .min(5)
     .matches(passwordRules, {
-      message: 'Riminder your password is at least 5 charecters long',
+      message:
+        'Riminder your password is at least 5 charecters long, includes at least one special carachter,lowercase and one uppercaseletter',
     })
     .required(),
 });

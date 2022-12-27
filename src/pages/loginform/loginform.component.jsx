@@ -3,6 +3,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { toast, ToastContainer, Zoom } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { LoginSchema } from 'schemas/index';
 import { availableRoutesList } from 'routes/availableRoutesList';
@@ -10,6 +12,16 @@ import { availableRoutesList } from 'routes/availableRoutesList';
 import styles from './loginform.module.scss';
 
 function Login() {
+  const notify = (message) => {
+    toast(message, {
+      type: 'success',
+      className: 'custom.toast',
+      draggable: true,
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 5000,
+    });
+  };
+
   return (
     <div className={styles.Form_Container}>
       <div className={styles.Form_Wrapper}>
@@ -42,8 +54,7 @@ function Login() {
           validationSchema={LoginSchema}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              console.log(values, 'form submited');
+              notify(JSON.stringify(values, null, 2));
               setSubmitting(false);
             }, 400);
           }}
@@ -90,6 +101,7 @@ function Login() {
             </Form>
           )}
         </Formik>
+        <ToastContainer transition={Zoom} limit={2} />
       </div>
     </div>
   );

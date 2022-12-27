@@ -3,6 +3,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { toast, ToastContainer, Zoom } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { SignUpSchema } from 'schemas/index';
 import { availableRoutesList } from 'routes/availableRoutesList';
@@ -10,6 +12,15 @@ import { availableRoutesList } from 'routes/availableRoutesList';
 import styles from './signup.module.scss';
 
 function SignUpForm() {
+  const notify = (message) => {
+    toast(message, {
+      type: 'success',
+      className: 'custom.toast',
+      draggable: true,
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 5000,
+    });
+  };
   return (
     <div className={styles.Form_Container}>
       <div className={styles.Form_Wrapper}>
@@ -42,7 +53,7 @@ function SignUpForm() {
           validationSchema={SignUpSchema}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
+              notify(JSON.stringify(values, null, 2));
               setSubmitting(false);
             }, 400);
           }}
@@ -89,7 +100,7 @@ function SignUpForm() {
               <Field
                 name="confirmPassword"
                 id="confirmPassword"
-                type="text"
+                type="password"
                 className={
                   errors.confirmPassword && touched.confirmPassword
                     ? styles.Form_Input_Error
@@ -129,6 +140,7 @@ function SignUpForm() {
             </Form>
           )}
         </Formik>
+        <ToastContainer transition={Zoom} limit={2} />
       </div>
     </div>
   );

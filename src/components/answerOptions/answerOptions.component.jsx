@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useSound from 'use-sound';
 import { useSelector, useDispatch } from 'react-redux';
-import { toast, ToastContainer, Zoom} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import correctAnswerChosenSoundOGG from 'assets/sounds/correctAnswerChosenSound.ogg';
 import incorrectAnswerChosenSoundOGG from 'assets/sounds/incorrectAnswerChosenSound.ogg';
@@ -21,18 +19,6 @@ import {
 import styles from './answerOptions.module.scss';
 
 function AnswerOptions() {
-  const notify = () => {
-    toast('success option is chosen', {
-      type: 'success',
-      className: 'custom.toast',
-      draggable: true,
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 5000,
-    });
-  };
-
-  const dismissAllNotifications = () =>  toast.dismiss();
-
   const dispatch = useDispatch();
 
   const currentLevelAnswersOptionsArray = useSelector(
@@ -94,7 +80,6 @@ function AnswerOptions() {
   }
 
   function handleAnswerOptionClick(id) {
-    notify();
     if (!isNextButtonDisabled) {
       return;
     }
@@ -123,7 +108,6 @@ function AnswerOptions() {
   }
 
   const handleNextButtonClick = () => {
-    dismissAllNotifications();
     setIsNextButtonDisabled(true);
     dispatch(nextLevel());
   };
@@ -168,7 +152,6 @@ function AnswerOptions() {
           </div>
         )}
       </div>
-      <ToastContainer transition={Zoom} limit={2} />
       <NextButton
         isNextButtonDisabled={isNextButtonDisabled}
         isGameOver={isGameOver}
