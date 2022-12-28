@@ -45,7 +45,7 @@ export const gameSlice = createSlice({
       }
     },
 
-    incorrectAnswerChosen: (state) => {
+    answerWasChosen: (state) => {
       state.numberOfWrongAnswers += 1;
     },
 
@@ -63,7 +63,7 @@ export const gameSlice = createSlice({
 export const {
   switchToNextLevel,
   correctAnswerChosen,
-  incorrectAnswerChosen,
+  answerWasChosen,
   newGame,
 } = gameSlice.actions;
 

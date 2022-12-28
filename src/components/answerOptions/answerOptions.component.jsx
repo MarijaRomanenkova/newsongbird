@@ -13,7 +13,7 @@ import {
   selectIsGameOver,
   switchToNextLevel,
   correctAnswerChosen,
-  incorrectAnswerChosen,
+  answerWasChosen,
 } from 'store/gameSlice';
 
 import styles from './answerOptions.module.scss';
@@ -79,7 +79,7 @@ function AnswerOptions() {
       return;
     }
     setChosenAnswer(id);
-    dispatch(incorrectAnswerChosen());
+    dispatch(answerWasChosen());
     setcurrentCategoryArrayStatusAdded(
       currentCategoryArrayStatusAdded.map((option) => {
         if (option.id === id) {
