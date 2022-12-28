@@ -1,3 +1,4 @@
+/* eslint-disable no-inner-declarations */
 import React, { useEffect, useState } from 'react';
 import useSound from 'use-sound';
 import { useSelector, useDispatch } from 'react-redux';
@@ -23,98 +24,6 @@ function AnswerOptions() {
   const dispatch = useDispatch();
 
   const isLoading = useSelector(selectIsLoading);
-
-  const currentLevelAnswersOptionsArray = useSelector(
-    selectCurrentCategoryArray
-  );
-
-  const correctAnswer = useSelector(selectCurrentCorrectAnswerObject) || [];
-
-  const isGameOver = useSelector(selectIsGameOver);
-
-  const [playCorrectAnswerChosenSound] = useSound(correctAnswerChosenSoundOGG);
-  const [playIncorrectAnswerChosenSound] = useSound(
-    incorrectAnswerChosenSoundOGG
-  );
-
-  const [chosenAnswerOption, setChosenAnswerOption] = useState({
-    isClicked: false,
-  });
-
-  const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
-
-  const [
-    currentLevelAnswersOptionsArrayStatusAdded,
-    setCurrentLevelAnswersOptionsArrayStatusAdded,
-  ] = useState([currentLevelAnswersOptionsArray]);
-
-  useEffect(() => {
-    setCurrentLevelAnswersOptionsArrayStatusAdded(
-      currentLevelAnswersOptionsArray.map((answerOption) => {
-        if (answerOption.id === correctAnswer.id)
-          return {
-            ...answerOption,
-            isChosenAnswer: false,
-            isCorrectAnswer: true,
-          };
-        return {
-          ...answerOption,
-          isChosenAnswer: false,
-          isCorrectAnswer: false,
-        };
-      })
-    );
-  }, [currentLevelAnswersOptionsArray]);
-
-  function setChosenAnswer(id) {
-    const currentObjectIndex = id - 1;
-    const currentAnswerOptionObject =
-      currentLevelAnswersOptionsArray[currentObjectIndex];
-
-    setChosenAnswerOption({
-      isClicked: true,
-      id,
-      name: currentAnswerOptionObject.name,
-      species: currentAnswerOptionObject.species,
-      image: currentAnswerOptionObject.image,
-      audio: currentAnswerOptionObject.audio,
-      description: currentAnswerOptionObject.description,
-    });
-  }
-
-  function handleAnswerOptionClick(id) {
-    if (!isNextButtonDisabled) {
-      return;
-    }
-    setChosenAnswer(id);
-    dispatch(choose());
-    setCurrentLevelAnswersOptionsArrayStatusAdded(
-      currentLevelAnswersOptionsArrayStatusAdded.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            isChosenAnswer: true,
-          };
-        }
-        return { ...item };
-      })
-    );
-
-    if (id === correctAnswer.id) {
-      dispatch(win());
-      playCorrectAnswerChosenSound();
-      if (!isGameOver) {
-        setIsNextButtonDisabled(false);
-      }
-    }
-    playIncorrectAnswerChosenSound();
-  }
-
-  const handleNextButtonClick = () => {
-    setIsNextButtonDisabled(true);
-    dispatch(nextLevel());
-  };
-
   if (isLoading) {
     return (
       <div>
@@ -122,7 +31,101 @@ function AnswerOptions() {
       </div>
     );
   }
+
   if (!isLoading) {
+    const currentLevelAnswersOptionsArray = useSelector(
+      selectCurrentCategoryArray
+    );
+
+    const correctAnswer = useSelector(selectCurrentCorrectAnswerObject) || [];
+
+    const isGameOver = useSelector(selectIsGameOver);
+
+    const [playCorrectAnswerChosenSound] = useSound(
+      correctAnswerChosenSoundOGG
+    );
+    const [playIncorrectAnswerChosenSound] = useSound(
+      incorrectAnswerChosenSoundOGG
+    );
+
+    const [chosenAnswerOption, setChosenAnswerOption] = useState({
+      isClicked: false,
+    });
+
+    const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
+
+    const [
+      currentLevelAnswersOptionsArrayStatusAdded,
+      setCurrentLevelAnswersOptionsArrayStatusAdded,
+    ] = useState([currentLevelAnswersOptionsArray]);
+
+    useEffect(() => {
+      setCurrentLevelAnswersOptionsArrayStatusAdded(
+        currentLevelAnswersOptionsArray.map((answerOption) => {
+          if (answerOption.id === correctAnswer.id)
+            return {
+              ...answerOption,
+              isChosenAnswer: false,
+              isCorrectAnswer: true,
+            };
+          return {
+            ...answerOption,
+            isChosenAnswer: false,
+            isCorrectAnswer: false,
+          };
+        })
+      );
+    }, [currentLevelAnswersOptionsArray]);
+
+    function setChosenAnswer(id) {
+      const currentObjectIndex = id - 1;
+      const currentAnswerOptionObject =
+        currentLevelAnswersOptionsArray[currentObjectIndex];
+
+      setChosenAnswerOption({
+        isClicked: true,
+        id,
+        name: currentAnswerOptionObject.name,
+        species: currentAnswerOptionObject.species,
+        image: currentAnswerOptionObject.image,
+        audio: currentAnswerOptionObject.audio,
+        description: currentAnswerOptionObject.description,
+      });
+    }
+
+    function handleAnswerOptionClick(id) {
+      if (!isNextButtonDisabled) {
+        return;
+      }
+      setChosenAnswer(id);
+      dispatch(choose());
+      setCurrentLevelAnswersOptionsArrayStatusAdded(
+        currentLevelAnswersOptionsArrayStatusAdded.map((item) => {
+          if (item.id === id) {
+            return {
+              ...item,
+              isChosenAnswer: true,
+            };
+          }
+          return { ...item };
+        })
+      );
+
+      if (id === correctAnswer.id) {
+        dispatch(win());
+        playCorrectAnswerChosenSound();
+        if (!isGameOver) {
+          setIsNextButtonDisabled(false);
+        }
+      }
+      playIncorrectAnswerChosenSound();
+    }
+
+    const handleNextButtonClick = () => {
+      setIsNextButtonDisabled(true);
+      dispatch(nextLevel());
+    };
+
     return (
       <>
         <div className={styles.AnswerOptions_Container}>

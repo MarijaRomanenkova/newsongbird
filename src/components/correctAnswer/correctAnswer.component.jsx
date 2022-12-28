@@ -15,33 +15,6 @@ const HIDDEN__ANSWER = '******';
 
 function CorrectAnswer() {
   const isLoading = useSelector(selectIsLoading);
-  const correctAnswer = useSelector(selectCurrentCorrectAnswerObject);
-
-  const isCorrectAnswerSelected = useSelector(selectIsCorrectAnswerSelected);
-
-  const AudioPlayerREF = useRef();
-  const pauseAudioPlayer = () => {
-    AudioPlayerREF.current.audio.current.pause();
-  };
-
-  if (isCorrectAnswerSelected) {
-    pauseAudioPlayer();
-  }
-
-  let answerToRender = {
-    image: imageHiddenCorrectAnswerJPG,
-    name: HIDDEN__ANSWER,
-    alt: 'bird',
-  };
-
-  if (isCorrectAnswerSelected) {
-    answerToRender = {
-      image: correctAnswer.image,
-      name: correctAnswer.name,
-      alt: correctAnswer.name,
-    };
-  }
-
   if (isLoading) {
     return (
       <div>
@@ -50,6 +23,33 @@ function CorrectAnswer() {
     );
   }
   if (!isLoading) {
+    const correctAnswer = useSelector(selectCurrentCorrectAnswerObject);
+
+    const isCorrectAnswerSelected = useSelector(selectIsCorrectAnswerSelected);
+
+    const AudioPlayerREF = useRef();
+    const pauseAudioPlayer = () => {
+      AudioPlayerREF.current.audio.current.pause();
+    };
+
+    if (isCorrectAnswerSelected) {
+      pauseAudioPlayer();
+    }
+
+    let answerToRender = {
+      image: imageHiddenCorrectAnswerJPG,
+      name: HIDDEN__ANSWER,
+      alt: 'bird',
+    };
+
+    if (isCorrectAnswerSelected) {
+      answerToRender = {
+        image: correctAnswer.image,
+        name: correctAnswer.name,
+        alt: correctAnswer.name,
+      };
+    }
+
     return (
       <div className={styles.correctAnswer_Container}>
         <img

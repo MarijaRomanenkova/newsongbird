@@ -14,14 +14,6 @@ import styles from './gameOver.module.scss';
 
 function GameOver() {
   const isLoading = useSelector(selectIsLoading);
-  const currentLevel = useSelector(selectCurrentLevel);
-  const score = useSelector(selectScore);
-  const dispatch = useDispatch();
-
-  const MAXIMUM_TOTAL_SCORE = MAXIMUM_SCORE_PER_LEVEL * currentLevel;
-  const windowWidth = window.innerWidth;
-  const windowHeight = window.innerHeight;
-
   if (isLoading) {
     return (
       <div>
@@ -30,6 +22,14 @@ function GameOver() {
     );
   }
   if (!isLoading) {
+    const currentLevel = useSelector(selectCurrentLevel);
+    const score = useSelector(selectScore);
+    const dispatch = useDispatch();
+
+    const MAXIMUM_TOTAL_SCORE = MAXIMUM_SCORE_PER_LEVEL * currentLevel;
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+
     return (
       <div className={styles.GameOver_Container}>
         <Confetti width={windowWidth} height={windowHeight} />

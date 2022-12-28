@@ -45,7 +45,7 @@ export const gameSlice = createSlice({
   reducers: {
     nextLevel: (state) => {
       state.currentLevel += 1;
-      state.correctAnswerID = getCorrectAnswerID(state.currentLevel);
+      state.correctAnswerID = getCorrectAnswerID();
       state.isCorrectAnswerSelected = false;
       state.numberOfWrongAnswers = 0;
     },
@@ -67,7 +67,7 @@ export const gameSlice = createSlice({
 
     newGame: (state) => {
       state.currentLevel = 1;
-      state.correctAnswerID = getCorrectAnswerID(1);
+      state.correctAnswerID = getCorrectAnswerID();
       state.numberOfWrongAnswers = 0;
       state.score = 0;
       state.isCorrectAnswerSelected = false;
