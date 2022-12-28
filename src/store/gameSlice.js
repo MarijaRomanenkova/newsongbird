@@ -18,7 +18,7 @@ export const getCorrectAnswerID = () => {
 
 const initialState = {
   birdsData: [],
-  isLoading: true,
+  isQuestionaryDataLoading: true,
   currentLevel: 1,
   correctAnswerID: getCorrectAnswerID(),
   numberOfWrongAnswers: 0,
@@ -77,16 +77,16 @@ export const gameSlice = createSlice({
     extraReducers: (builder) => {
       builder
         .addCase(fetchBirdsData.pending, (state) => {
-          state.isLoading = true;
+          state.isQuestionaryDataLoading = true;
         })
         .addCase(fetchBirdsData.fulfilled, (state, action) => {
           console.log(action);
-          state.isLoading = false;
+          state.isQuestionaryDataLoading = false;
           state.birdsData = action.payload;
         })
         .addCase(fetchBirdsData.rejected, (state, action) => {
           console.log(action);
-          state.isLoading = false;
+          state.isQuestionaryDataLoading = false;
         });
     },
   },
@@ -104,6 +104,6 @@ export const selectCurrentCorrectAnswerObject = (state) =>
 export const selectCurrentCategoryArray = (state) =>
   state.game.birdsData[state.game.currentLevel];
 export const selectCategoriesNames = (state) => state.game.birdsData[0];
-export const selectIsLoading = (state) => state.game.isLoading;
+export const selectIsQuestionaryDataLoading = (state) => state.game.isQuestionaryDataLoading;
 
 export default gameSlice.reducer;

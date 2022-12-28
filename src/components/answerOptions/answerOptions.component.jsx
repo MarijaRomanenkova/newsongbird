@@ -15,23 +15,12 @@ import {
   choose,
   nextLevel,
   win,
-  selectIsLoading,
 } from 'store/gameSlice';
 
 import styles from './answerOptions.module.scss';
 
 function AnswerOptions() {
   const dispatch = useDispatch();
-
-  const isLoading = useSelector(selectIsLoading);
-  if (isLoading) {
-    return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
-    );
-  }
-
   const currentLevelAnswersOptionsArray = useSelector(
     selectCurrentCategoryArray
   );

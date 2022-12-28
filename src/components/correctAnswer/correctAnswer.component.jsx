@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import {
   selectIsCorrectAnswerSelected,
   selectCurrentCorrectAnswerObject,
-  selectIsLoading,
 } from 'store/gameSlice';
 import imageHiddenCorrectAnswerJPG from 'assets/imageHiddenCorrectAnswerJPG.jpg';
 
@@ -14,68 +13,58 @@ import styles from 'components/correctAnswer/correctAnswer.module.scss';
 const HIDDEN__ANSWER = '******';
 
 function CorrectAnswer() {
-  const isLoading = useSelector(selectIsLoading);
-  if (isLoading) {
-    return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
-    );
+  const correctAnswer = useSelector(selectCurrentCorrectAnswerObject);
+
+  const isCorrectAnswerSelected = useSelector(selectIsCorrectAnswerSelected);
+
+  const AudioPlayerREF = useRef();
+  const pauseAudioPlayer = () => {
+    AudioPlayerREF.current.audio.current.pause();
+  };
+
+  if (isCorrectAnswerSelected) {
+    pauseAudioPlayer();
   }
-  if (!isLoading) {
-    const correctAnswer = useSelector(selectCurrentCorrectAnswerObject);
 
-    const isCorrectAnswerSelected = useSelector(selectIsCorrectAnswerSelected);
+  let answerToRender = {
+    image: imageHiddenCorrectAnswerJPG,
+    name: HIDDEN__ANSWER,
+    alt: 'bird',
+  };
 
-    const AudioPlayerREF = useRef();
-    const pauseAudioPlayer = () => {
-      AudioPlayerREF.current.audio.current.pause();
+  if (isCorrectAnswerSelected) {
+    answerToRender = {
+      image: correctAnswer.image,
+      name: correctAnswer.name,
+      alt: correctAnswer.name,
     };
+  }
 
-    if (isCorrectAnswerSelected) {
-      pauseAudioPlayer();
-    }
+  return (
+    <div className={styles.correctAnswer_Container}>
+      <img
+        className={styles.correctAnswer_Image}
+        src={answerToRender.image}
+        alt={answerToRender.alt}
+      />
+      <div className={styles.correctAnswer_Box}>
+        <h1 className={styles.correctAnswer_Title}>{answerToRender.name}</h1>
 
-    let answerToRender = {
-      image: imageHiddenCorrectAnswerJPG,
-      name: HIDDEN__ANSWER,
-      alt: 'bird',
-    };
-
-    if (isCorrectAnswerSelected) {
-      answerToRender = {
-        image: correctAnswer.image,
-        name: correctAnswer.name,
-        alt: correctAnswer.name,
-      };
-    }
-
-    return (
-      <div className={styles.correctAnswer_Container}>
-        <img
-          className={styles.correctAnswer_Image}
-          src={answerToRender.image}
-          alt={answerToRender.alt}
+        <AudioPlayer
+          layout="horizontal-reverse"
+          src={correctAnswer.audio}
+          autoPlay={false}
+          autoPlayAfterSrcChange={false}
+          showJumpControls={false}
+          showFilledProgress
+          volumeControls
+          customAdditionalControls={[]}
+          customVolumeControls={[]}
+          ref={AudioPlayerREF}
         />
-        <div className={styles.correctAnswer_Box}>
-          <h1 className={styles.correctAnswer_Title}>{answerToRender.name}</h1>
-
-          <AudioPlayer
-            layout="horizontal-reverse"
-            src={correctAnswer.audio}
-            autoPlay={false}
-            autoPlayAfterSrcChange={false}
-            showJumpControls={false}
-            showFilledProgress
-            volumeControls
-            customAdditionalControls={[]}
-            customVolumeControls={[]}
-            ref={AudioPlayerREF}
-          />
-        </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default CorrectAnswer;
