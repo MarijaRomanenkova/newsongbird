@@ -143,7 +143,7 @@ function SignUpForm() {
               </button>
             </Form>
           )}
-        </Formik>        
+        </Formik>
       </div>
     </div>
   );
