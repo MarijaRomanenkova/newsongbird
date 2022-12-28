@@ -11,9 +11,9 @@ import {
   selectCurrentCategoryArray,
   selectCurrentCorrectAnswerObject,
   selectIsGameOver,
-  choose,
-  nextLevel,
-  win,
+  incorrectAnswerGiven,
+  switchToNextLevel,
+  correctAnswerGiven,
 } from 'store/gameSlice';
 
 import styles from './answerOptions.module.scss';
@@ -84,7 +84,7 @@ function AnswerOptions() {
       return;
     }
     setChosenAnswer(id);
-    dispatch(choose());
+    dispatch(incorrectAnswerGiven());
     setCurrentLevelAnswersOptionsArrayStatusAdded(
       currentLevelAnswersOptionsArrayStatusAdded.map((item) => {
         if (item.id === id) {
@@ -98,7 +98,7 @@ function AnswerOptions() {
     );
 
     if (id === correctAnswer.id) {
-      dispatch(win());
+      dispatch(correctAnswerGiven());
       playCorrectAnswerChosenSound();
       if (!isGameOver) {
         setIsNextButtonDisabled(false);
@@ -109,7 +109,7 @@ function AnswerOptions() {
 
   const handleNextButtonClick = () => {
     setIsNextButtonDisabled(true);
-    dispatch(nextLevel());
+    dispatch(switchToNextLevel());
   };
 
   return (
