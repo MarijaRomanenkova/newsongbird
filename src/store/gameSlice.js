@@ -18,24 +18,24 @@ export const getCorrectAnswerID = () => {
 
 const initialState = {
   birdsData: [],
+  isLoading: true,
   currentLevel: 1,
   correctAnswerID: getCorrectAnswerID(),
   numberOfWrongAnswers: 0,
   score: 0,
   isCorrectAnswerSelected: false,
   isGameOver: false,
-  isLoading: true,
 };
 
 export const fetchBirdsData = createAsyncThunk(
-  'birds/getBirdsData',
-  async (name, thunkAPI) => {
+  'birds/fetchBirdsData',
+  async (thunkAPI) => {
     try {
       const response = await axios.get(url);
       return response.data;
     } catch (error) {
       // eslint-disable-next-line no-console
-      return thunkAPI.rejectWithValue('something went wrong');
+      return thunkAPI.rejectWithValue([], error);
     }
   }
 );
