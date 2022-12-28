@@ -26,18 +26,15 @@ const initialState = {
   isLoading: true,
 };
 
-export const fetchBirdsData = createAsyncThunk(
-  'birds/fetchBirdsData',
-  async () => {
-    try {
-      const response = await axios.get(url);
-      return response?.data;
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      return console.log('something went wrong');
-    }
+export const fetchBirdsData = createAsyncThunk('birds/birdsData', async () => {
+  try {
+    const response = await axios.get(url);
+    return response?.data;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    return console.log('something went wrong');
   }
-);
+});
 
 export const gameSlice = createSlice({
   name: 'game',
@@ -81,7 +78,7 @@ export const gameSlice = createSlice({
         .addCase(fetchBirdsData.fulfilled, (state, action) => {
           // console.log(action);
           state.isLoading = false;
-          state.cartItems = action.payload;
+          state.birdsData = action.payload;
         })
         .addCase(fetchBirdsData.rejected, (state, action) => {
           console.log(action);
