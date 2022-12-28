@@ -4,14 +4,11 @@ import { Provider } from 'react-redux';
 
 import { BrowserRouter } from 'react-router-dom';
 import { store } from 'store/store';
-import { fetchBirdsData } from 'store/gameSlice';
-
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import './index.css';
 
-store.dispatch(fetchBirdsData());
 
 const container = document.getElementById('root');
 const root = createRoot(container);

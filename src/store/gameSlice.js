@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -5,7 +6,7 @@ import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
 
 const url = 'data.json';
 
-const getCorrectAnswerID = () => {
+export const getCorrectAnswerID = () => {
   // const maximumNumber = birdsData[currentLevel].length;
   const maximumNumber = 6;
   const minimumNumber = 1;
@@ -26,15 +27,18 @@ const initialState = {
   isLoading: true,
 };
 
-export const fetchBirdsData = createAsyncThunk('birds/birdsData', async () => {
-  try {
-    const response = await axios.get(url);
-    return response?.data;
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    return console.log('something went wrong');
+export const fetchBirdsData = createAsyncThunk(
+  'birds/getBirdsData',
+  async (name, thunkAPI) => {
+    try {
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      return thunkAPI.rejectWithValue('something went wrong');
+    }
   }
-});
+);
 
 export const gameSlice = createSlice({
   name: 'game',
@@ -76,7 +80,7 @@ export const gameSlice = createSlice({
           state.isLoading = true;
         })
         .addCase(fetchBirdsData.fulfilled, (state, action) => {
-          // console.log(action);
+          console.log(action);
           state.isLoading = false;
           state.birdsData = action.payload;
         })
