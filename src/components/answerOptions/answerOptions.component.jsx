@@ -14,12 +14,15 @@ import {
   choose,
   nextLevel,
   win,
+  selectIsLoading,
 } from 'store/gameSlice';
 
 import styles from './answerOptions.module.scss';
 
 function AnswerOptions() {
   const dispatch = useDispatch();
+
+  const isLoading = useSelector(selectIsLoading);
 
   const currentLevelAnswersOptionsArray = useSelector(
     selectCurrentCategoryArray
@@ -112,53 +115,62 @@ function AnswerOptions() {
     dispatch(nextLevel());
   };
 
-  return (
-    <>
-      <div className={styles.AnswerOptions_Container}>
-        <div className={styles.AnswerOptionsList_Container}>
-          {currentLevelAnswersOptionsArrayStatusAdded.map((item) => (
-            <button
-              key={item.index + item.name}
-              className={styles.AnswerOptionsList_Item}
-              type="button"
-              onClick={() => handleAnswerOptionClick(item.id)}
-            >
-              <Circle
-                isChosenAnswer={item.isChosenAnswer}
-                isCorrectAnswer={item.isCorrectAnswer}
-              />
-              {item.name}
-            </button>
-          ))}
-        </div>
-
-        {chosenAnswerOption.isClicked && (
-          <AnswerOptionDetails
-            name={chosenAnswerOption.name}
-            image={chosenAnswerOption.image}
-            description={chosenAnswerOption.description}
-            audio={chosenAnswerOption.audio}
-            species={chosenAnswerOption.species}
-          />
-        )}
-        {!chosenAnswerOption.isClicked && (
-          <div className={styles.AnswerOptionDetails_Dummy}>
-            <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
-              Послушайте плеер.
-            </h4>
-            <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
-              Выберите птицу из списка
-            </h4>
-          </div>
-        )}
+  if (isLoading) {
+    return (
+      <div>
+        <h1>Loading...</h1>
       </div>
-      <NextButton
-        isNextButtonDisabled={isNextButtonDisabled}
-        isGameOver={isGameOver}
-        handleNextButtonClick={handleNextButtonClick}
-      />
-    </>
-  );
+    );
+  }
+  if (!isLoading) {
+    return (
+      <>
+        <div className={styles.AnswerOptions_Container}>
+          <div className={styles.AnswerOptionsList_Container}>
+            {currentLevelAnswersOptionsArrayStatusAdded.map((item) => (
+              <button
+                key={item.index + item.name}
+                className={styles.AnswerOptionsList_Item}
+                type="button"
+                onClick={() => handleAnswerOptionClick(item.id)}
+              >
+                <Circle
+                  isChosenAnswer={item.isChosenAnswer}
+                  isCorrectAnswer={item.isCorrectAnswer}
+                />
+                {item.name}
+              </button>
+            ))}
+          </div>
+
+          {chosenAnswerOption.isClicked && (
+            <AnswerOptionDetails
+              name={chosenAnswerOption.name}
+              image={chosenAnswerOption.image}
+              description={chosenAnswerOption.description}
+              audio={chosenAnswerOption.audio}
+              species={chosenAnswerOption.species}
+            />
+          )}
+          {!chosenAnswerOption.isClicked && (
+            <div className={styles.AnswerOptionDetails_Dummy}>
+              <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
+                Послушайте плеер.
+              </h4>
+              <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
+                Выберите птицу из списка
+              </h4>
+            </div>
+          )}
+        </div>
+        <NextButton
+          isNextButtonDisabled={isNextButtonDisabled}
+          isGameOver={isGameOver}
+          handleNextButtonClick={handleNextButtonClick}
+        />
+      </>
+    );
+  }
 }
 
 export default AnswerOptions;
