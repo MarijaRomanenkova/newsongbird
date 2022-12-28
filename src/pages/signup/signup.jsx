@@ -58,7 +58,7 @@ function SignUpForm() {
             }, 400);
           }}
         >
-          {({ errors, touched }) => (
+          {({ errors, touched, dirty }) => (
             <Form>
               <label htmlFor="email" className={styles.Form_Label}>
                 Email Address
@@ -134,7 +134,11 @@ function SignUpForm() {
                   industry news, new products and related topics.
                 </label>
               </div>
-              <button className={styles.Btn} type="submit">
+              <button
+                className={styles.Btn}
+                disabled={!dirty || Object.keys(errors).length}
+                type="submit"
+              >
                 Submit
               </button>
             </Form>
