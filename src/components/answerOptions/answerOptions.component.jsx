@@ -9,11 +9,11 @@ import Circle from 'components/circle/circle.component';
 import NextButton from 'components/nextButton/nextButton.component';
 import {
   selectCurrentCategoryArray,
-  selectCurrentCorrectAnswerObject,
+  selectCorrectAnswerObject,
   selectIsGameOver,
-  incorrectAnswerGiven,
   switchToNextLevel,
-  correctAnswerGiven,
+  correctAnswerChosen,
+  incorrectAnswerChosen,
 } from 'store/gameSlice';
 
 import styles from './answerOptions.module.scss';
@@ -21,11 +21,9 @@ import styles from './answerOptions.module.scss';
 function AnswerOptions() {
   const dispatch = useDispatch();
 
-  const currentLevelAnswersOptionsArray = useSelector(
-    selectCurrentCategoryArray
-  );
+  const currentCategoryArray = useSelector(selectCurrentCategoryArray);
 
-  const correctAnswer = useSelector(selectCurrentCorrectAnswerObject) || [];
+  const correctAnswerObject = useSelector(selectCorrectAnswerObject) || [];
 
   const isGameOver = useSelector(selectIsGameOver);
 
@@ -40,15 +38,13 @@ function AnswerOptions() {
 
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 
-  const [
-    currentLevelAnswersOptionsArrayStatusAdded,
-    setCurrentLevelAnswersOptionsArrayStatusAdded,
-  ] = useState([currentLevelAnswersOptionsArray]);
+  const [currentCategoryArrayStatusAdded, setcurrentCategoryArrayStatusAdded] =
+    useState([currentCategoryArray]);
 
   useEffect(() => {
-    setCurrentLevelAnswersOptionsArrayStatusAdded(
-      currentLevelAnswersOptionsArray.map((answerOption) => {
-        if (answerOption.id === correctAnswer.id)
+    setcurrentCategoryArrayStatusAdded(
+      currentCategoryArray.map((answerOption) => {
+        if (answerOption.id === correctAnswerObject.id)
           return {
             ...answerOption,
             isChosenAnswer: false,
@@ -61,12 +57,11 @@ function AnswerOptions() {
         };
       })
     );
-  }, [currentLevelAnswersOptionsArray]);
+  }, [currentCategoryArray]);
 
   function setChosenAnswer(id) {
     const currentObjectIndex = id - 1;
-    const currentAnswerOptionObject =
-      currentLevelAnswersOptionsArray[currentObjectIndex];
+    const currentAnswerOptionObject = currentCategoryArray[currentObjectIndex];
 
     setChosenAnswerOption({
       isClicked: true,
@@ -84,21 +79,21 @@ function AnswerOptions() {
       return;
     }
     setChosenAnswer(id);
-    dispatch(incorrectAnswerGiven());
-    setCurrentLevelAnswersOptionsArrayStatusAdded(
-      currentLevelAnswersOptionsArrayStatusAdded.map((item) => {
-        if (item.id === id) {
+    dispatch(incorrectAnswerChosen());
+    setcurrentCategoryArrayStatusAdded(
+      currentCategoryArrayStatusAdded.map((option) => {
+        if (option.id === id) {
           return {
-            ...item,
+            ...option,
             isChosenAnswer: true,
           };
         }
-        return { ...item };
+        return { ...option };
       })
     );
 
-    if (id === correctAnswer.id) {
-      dispatch(correctAnswerGiven());
+    if (id === correctAnswerObject.id) {
+      dispatch(correctAnswerChosen());
       playCorrectAnswerChosenSound();
       if (!isGameOver) {
         setIsNextButtonDisabled(false);
@@ -116,18 +111,18 @@ function AnswerOptions() {
     <>
       <div className={styles.AnswerOptions_Container}>
         <div className={styles.AnswerOptionsList_Container}>
-          {currentLevelAnswersOptionsArrayStatusAdded.map((item) => (
+          {currentCategoryArrayStatusAdded.map((option) => (
             <button
-              key={item.index + item.name}
-              className={styles.AnswerOptionsList_Item}
+              key={option.index + option.name}
+              className={styles.AnswerOptionsList_Option}
               type="button"
-              onClick={() => handleAnswerOptionClick(item.id)}
+              onClick={() => handleAnswerOptionClick(option.id)}
             >
               <Circle
-                isChosenAnswer={item.isChosenAnswer}
-                isCorrectAnswer={item.isCorrectAnswer}
+                isChosenAnswer={option.isChosenAnswer}
+                isCorrectAnswer={option.isCorrectAnswer}
               />
-              {item.name}
+              {option.name}
             </button>
           ))}
         </div>

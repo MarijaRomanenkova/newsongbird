@@ -2,19 +2,19 @@ import React, { useRef } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import { useSelector } from 'react-redux';
 
-import { selectIsCorrectAnswerSelected } from 'store/gameSlice';
+import { selectIsCorrectAnswerChosen } from 'store/gameSlice';
 
 import styles from './answerOptionDetails.module.scss';
 
 function AnswerOptionDetails({ image, name, description, species, audio }) {
-  const isCorrectAnswerSelected = useSelector(selectIsCorrectAnswerSelected);
+  const isCorrectAnswerChosen = useSelector(selectIsCorrectAnswerChosen);
 
   const AudioPlayerREF = useRef();
   const pauseAudioPlayer = () => {
     AudioPlayerREF.current.audio.current.pause();
   };
 
-  if (isCorrectAnswerSelected) {
+  if (isCorrectAnswerChosen) {
     pauseAudioPlayer();
   }
 

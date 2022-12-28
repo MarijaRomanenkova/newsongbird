@@ -3,8 +3,8 @@ import AudioPlayer from 'react-h5-audio-player';
 import { useSelector } from 'react-redux';
 
 import {
-  selectIsCorrectAnswerSelected,
-  selectCurrentCorrectAnswerObject,
+  selectIsCorrectAnswerChosen,
+  selectCorrectAnswerObject,
 } from 'store/gameSlice';
 import imageHiddenCorrectAnswerJPG from 'assets/imageHiddenCorrectAnswerJPG.jpg';
 
@@ -13,16 +13,16 @@ import styles from 'components/correctAnswer/correctAnswer.module.scss';
 const HIDDEN__ANSWER = '******';
 
 function CorrectAnswer() {
-  const correctAnswer = useSelector(selectCurrentCorrectAnswerObject);
+  const correctAnswerObject = useSelector(selectCorrectAnswerObject);
 
-  const isCorrectAnswerSelected = useSelector(selectIsCorrectAnswerSelected);
+  const isCorrectAnswerChosen = useSelector(selectIsCorrectAnswerChosen);
 
   const AudioPlayerREF = useRef();
   const pauseAudioPlayer = () => {
     AudioPlayerREF.current.audio.current.pause();
   };
 
-  if (isCorrectAnswerSelected) {
+  if (isCorrectAnswerChosen) {
     pauseAudioPlayer();
   }
 
@@ -32,16 +32,16 @@ function CorrectAnswer() {
     alt: 'bird',
   };
 
-  if (isCorrectAnswerSelected) {
+  if (isCorrectAnswerChosen) {
     answerToRender = {
-      image: correctAnswer.image,
-      name: correctAnswer.name,
-      alt: correctAnswer.name,
+      image: correctAnswerObject.image,
+      name: correctAnswerObject.name,
+      alt: correctAnswerObject.name,
     };
   }
 
   return (
-    <div className={styles.correctAnswer_Container}>
+    <div className={styles.correctAnswerObject_Container}>
       <img
         className={styles.correctAnswer_Image}
         src={answerToRender.image}
@@ -52,7 +52,7 @@ function CorrectAnswer() {
 
         <AudioPlayer
           layout="horizontal-reverse"
-          src={correctAnswer.audio}
+          src={correctAnswerObject.audio}
           autoPlay={false}
           autoPlayAfterSrcChange={false}
           showJumpControls={false}

@@ -7,7 +7,6 @@ import AnswerOptions from 'components/answerOptions/answerOptions.component';
 import GameOver from 'components/gameOver/gameOver.component';
 import { selectIsGameOver } from 'store/gameSlice';
 
-
 import styles from './home.module.scss';
 
 function Home() {
