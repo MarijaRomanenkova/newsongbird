@@ -87,7 +87,8 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { getFirstQuizAnswear, nextLevel, win, choose, newGame } = gameSlice.actions;
+export const { getFirstQuizAnswear, nextLevel, win, choose, newGame } =
+  gameSlice.actions;
 export const selectCurrentLevel = (state) => state.game.currentLevel;
 export const selectScore = (state) => state.game.score;
 export const selectIsCorrectAnswerSelected = (state) =>

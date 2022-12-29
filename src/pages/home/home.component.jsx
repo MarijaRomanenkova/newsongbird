@@ -9,7 +9,7 @@ import {
   selectIsGameOver,
   selectIsQuestionaryDataLoading,
   getFirstQuizAnswear,
-  selectCurrentCorrectAnswerObject
+  selectCurrentCorrectAnswerObject,
 } from 'store/gameSlice';
 
 import styles from './home.module.scss';
@@ -23,7 +23,7 @@ function Home() {
     dispatch(getFirstQuizAnswear());
   }, []);
 
-  if (isQuestionaryDataLoading || !selectCurrentCorrectAnswerObject ) {
+  if (isQuestionaryDataLoading || !selectCurrentCorrectAnswerObject) {
     return (
       <div>
         <h1>Loading...</h1>
