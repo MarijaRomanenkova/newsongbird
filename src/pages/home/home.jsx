@@ -11,7 +11,6 @@ import styles from './home.module.scss';
 
 function Home() {
   const isGameOver = useSelector(selectIsGameOver);
-
   return (
     <div className={styles.Game_Container}>
       {isGameOver ? (

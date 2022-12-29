@@ -38,11 +38,11 @@ function AnswerOptions() {
 
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 
-  const [currentCategoryArrayStatusAdded, setcurrentCategoryArrayStatusAdded] =
+  const [currentCategoryArrayWithStatus, setcurrentCategoryArrayWithStatus] =
     useState([currentCategoryArray]);
 
   useEffect(() => {
-    setcurrentCategoryArrayStatusAdded(
+    setcurrentCategoryArrayWithStatus(
       currentCategoryArray.map((answerOption) => {
         if (answerOption.id === correctAnswerObject.id)
           return {
@@ -80,8 +80,8 @@ function AnswerOptions() {
     }
     setChosenAnswer(id);
     dispatch(answerWasChosen());
-    setcurrentCategoryArrayStatusAdded(
-      currentCategoryArrayStatusAdded.map((option) => {
+    setcurrentCategoryArrayWithStatus(
+      currentCategoryArrayWithStatus.map((option) => {
         if (option.id === id) {
           return {
             ...option,
@@ -111,9 +111,9 @@ function AnswerOptions() {
     <>
       <div className={styles.AnswerOptions_Container}>
         <div className={styles.AnswerOptionsList_Container}>
-          {currentCategoryArrayStatusAdded.map((option) => (
+          {currentCategoryArrayWithStatus.map((option) => (
             <button
-              key={option.index + option.name}
+              key={option.index}
               className={styles.AnswerOptionsList_Option}
               type="button"
               onClick={() => handleAnswerOptionClick(option.id)}

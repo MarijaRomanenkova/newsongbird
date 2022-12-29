@@ -8,19 +8,9 @@ import { toast } from 'react-toastify';
 import { LoginSchema } from 'schemas/index';
 import { availableRoutesList } from 'routes/availableRoutesList';
 
-import styles from './loginform.module.scss';
+import styles from './login.module.scss';
 
 function Login() {
-  const notify = (message) => {
-    toast(message, {
-      type: 'success',
-      className: 'custom.toast',
-      draggable: true,
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 5000,
-    });
-  };
-
   return (
     <div className={styles.Form_Container}>
       <div className={styles.Form_Wrapper}>
@@ -53,7 +43,10 @@ function Login() {
           validationSchema={LoginSchema}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              notify(JSON.stringify(values, null, 2));
+              toast.success(JSON.stringify(values, null, 2), {
+                draggable: true,
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 5000,});
               setSubmitting(false);
             }, 400);
           }}
