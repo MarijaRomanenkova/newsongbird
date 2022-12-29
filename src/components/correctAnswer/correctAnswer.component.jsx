@@ -41,7 +41,7 @@ function CorrectAnswer() {
   }
 
   return (
-    <div className={styles.correctAnswerObject_Container}>
+    <div className={styles.correctAnswer_Container}>
       <img
         className={styles.correctAnswer_Image}
         src={answerToRender.image}
