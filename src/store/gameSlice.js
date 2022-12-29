@@ -1,12 +1,13 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable no-console */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
 
-const url = 'data.json';
+const url = '/data.json';
 
-export const getCorrectAnswerID = () => {
+const getCorrectAnswerID = () => {
   // const maximumNumber = birdsData[currentLevel].length;
   const maximumNumber = 6;
   const minimumNumber = 1;
@@ -27,18 +28,11 @@ const initialState = {
   isGameOver: false,
 };
 
-export const fetchBirdsData = createAsyncThunk(
-  'birds/fetchBirdsData',
-  async (thunkAPI) => {
-    try {
-      const response = await axios.get(url);
-      return response.data;
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      return thunkAPI.rejectWithValue([], error);
-    }
-  }
-);
+export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
+  const response = await axios.get(url);
+  console.log(response.data);
+  return response.data;
+});
 
 export const gameSlice = createSlice({
   name: 'game',
@@ -74,25 +68,36 @@ export const gameSlice = createSlice({
       state.isCorrectAnswerSelected = false;
       state.isGameOver = false;
     },
-    extraReducers: (builder) => {
-      builder
-        .addCase(fetchBirdsData.pending, (state) => {
-          state.isQuestionaryDataLoading = true;
-        })
-        .addCase(fetchBirdsData.fulfilled, (state, action) => {
-          console.log(action);
-          state.isQuestionaryDataLoading = false;
-          state.birdsData = action.payload;
-        })
-        .addCase(fetchBirdsData.rejected, (state, action) => {
-          console.log(action);
-          state.isQuestionaryDataLoading = false;
-        });
-    },
+  },
+  // getBirdsData: (state, action) => {
+  //   state.birdsData = action.payload;
+  //   console.log('it happens');
+  //   console.log(state.birdsData);
+  // },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getBirdsData.pending, (state) => {
+        state.isQuestionaryDataLoading = true;
+      })
+      .addCase(getBirdsData.fulfilled, (state, action) => {
+        console.log(action, 'fullfilled');
+        state.isQuestionaryDataLoading = false;
+        state.birdsData = action.payload;
+      })
+      .addCase(getBirdsData.rejected, (state) => {
+        console.log('error rejected');
+        state.isQuestionaryDataLoading = false;
+      });
   },
 });
 
 export const { nextLevel, win, choose, newGame } = gameSlice.actions;
+
+// export const getBirdsDataAsync = (data) => (dispatch) => {
+//   setTimeout(() => {
+//     dispatch(getBirdsData(data));
+//   }, 1000);
+// };
 
 export const selectCurrentLevel = (state) => state.game.currentLevel;
 export const selectScore = (state) => state.game.score;
@@ -104,6 +109,7 @@ export const selectCurrentCorrectAnswerObject = (state) =>
 export const selectCurrentCategoryArray = (state) =>
   state.game.birdsData[state.game.currentLevel];
 export const selectCategoriesNames = (state) => state.game.birdsData[0];
-export const selectIsQuestionaryDataLoading = (state) => state.game.isQuestionaryDataLoading;
+export const selectIsQuestionaryDataLoading = (state) =>
+  state.game.isQuestionaryDataLoading;
 
 export default gameSlice.reducer;

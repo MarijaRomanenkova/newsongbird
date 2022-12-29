@@ -5,8 +5,7 @@ import Categories from 'components/categories/categories.component';
 import CorrectAnswer from 'components/correctAnswer/correctAnswer.component';
 import AnswerOptions from 'components/answerOptions/answerOptions.component';
 import GameOver from 'components/gameOver/gameOver.component';
-
-import {  
+import {
   selectIsGameOver,
   selectIsQuestionaryDataLoading,
 } from 'store/gameSlice';
@@ -17,22 +16,25 @@ function Home() {
   const isQuestionaryDataLoading = useSelector(selectIsQuestionaryDataLoading);
   const isGameOver = useSelector(selectIsGameOver);
 
+  if (isQuestionaryDataLoading) {
+    return (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.Game_Container}>
-      {isQuestionaryDataLoading && (
-        <div>
-          <h1>Loading...</h1>
-        </div>
-      )}
-      {isGameOver ? (
-        <GameOver />
-      ) : (
+      {isGameOver && <GameOver />}
+      {!isGameOver && (
         <>
           <Categories />
           <CorrectAnswer />
           <AnswerOptions />
         </>
       )}
+      )
     </div>
   );
 }
