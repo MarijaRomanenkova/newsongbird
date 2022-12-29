@@ -10,7 +10,6 @@ import SignUp from 'pages/signup/signup';
 import NotFound from 'pages/notfound/notfound.component';
 import { availableRoutesList } from './routes/availableRoutesList';
 
-
 function App() {
   return (
     <>

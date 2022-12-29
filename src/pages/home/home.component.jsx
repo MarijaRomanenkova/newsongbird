@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Categories from 'components/categories/categories.component';
 import CorrectAnswer from 'components/correctAnswer/correctAnswer.component';
@@ -8,6 +8,7 @@ import GameOver from 'components/gameOver/gameOver.component';
 import {
   selectIsGameOver,
   selectIsQuestionaryDataLoading,
+  getFirstQuizAnswear,
 } from 'store/gameSlice';
 
 import styles from './home.module.scss';
@@ -15,6 +16,11 @@ import styles from './home.module.scss';
 function Home() {
   const isQuestionaryDataLoading = useSelector(selectIsQuestionaryDataLoading);
   const isGameOver = useSelector(selectIsGameOver);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getFirstQuizAnswear());
+  }, []);
 
   if (isQuestionaryDataLoading) {
     return (
@@ -34,7 +40,6 @@ function Home() {
           <AnswerOptions />
         </>
       )}
-      )
     </div>
   );
 }
