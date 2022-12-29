@@ -47,7 +47,8 @@ function SignUpForm() {
               toast.success(JSON.stringify(values, null, 2), {
                 draggable: true,
                 position: toast.POSITION.TOP_CENTER,
-                autoClose: 5000,});
+                autoClose: 5000,
+              });
               setSubmitting(false);
             }, 400);
           }}
