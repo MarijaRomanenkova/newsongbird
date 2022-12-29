@@ -35,13 +35,15 @@ export const gameSlice = createSlice({
   initialState,
   reducers: {
     getFirstQuizAnswear: (state) => {
-      state.correctAnswerID =
-        getCorrectAnswerID(state.birdsData[state.currentLevel].length) || 0;
+      state.correctAnswerID = getCorrectAnswerID(
+        state.birdsData[state.currentLevel].length
+      );
     },
     nextLevel: (state) => {
       state.currentLevel += 1;
-      state.correctAnswerID =
-        getCorrectAnswerID(state.birdsData[state.currentLevel].length) || 0;
+      state.correctAnswerID = getCorrectAnswerID(
+        state.birdsData[state.currentLevel].length
+      );
       state.isCorrectAnswerSelected = false;
       state.numberOfWrongAnswers = 0;
     },
@@ -62,10 +64,8 @@ export const gameSlice = createSlice({
     },
 
     newGame: (state) => {
-      state.isQuestionaryDataLoading = true;
       state.currentLevel = 1;
-      state.correctAnswerID =
-        getCorrectAnswerID(state.birdsData[state.currentLevel].length) || 0;
+      state.correctAnswerID = getCorrectAnswerID(state.birdsData[1].length);
       state.numberOfWrongAnswers = 0;
       state.score = 0;
       state.isCorrectAnswerSelected = false;
