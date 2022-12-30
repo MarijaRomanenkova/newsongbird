@@ -5,6 +5,7 @@ import Categories from 'components/categories/categories.component';
 import CorrectAnswer from 'components/correctAnswer/correctAnswer.component';
 import AnswerOptions from 'components/answerOptions/answerOptions.component';
 import GameOver from 'components/gameOver/gameOver.component';
+import Loader from 'components/loader/loader.component';
 import {
   selectIsGameOver,
   selectIsQuestionaryDataLoading,
@@ -24,11 +25,7 @@ function Home() {
   }, []);
 
   if (isQuestionaryDataLoading || !selectCorrectAnswerObject) {
-    return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
-    );
+    return <Loader />;
   }
 
   return (

@@ -20,7 +20,6 @@ const initialState = {
 
 export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
   const response = await axios.get(url);
-  console.log(response.data);
   const dataWithUniqueIds = response.data.map((array) =>
     array.map((item) => {
       if (typeof item === 'string') {
@@ -32,7 +31,6 @@ export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
       };
     })
   );
-  console.log(dataWithUniqueIds);
   return dataWithUniqueIds;
 });
 
