@@ -1,3 +1,4 @@
+/* eslint-disable no-inner-declarations */
 import React, { useEffect, useState } from 'react';
 import useSound from 'use-sound';
 import { useSelector, useDispatch } from 'react-redux';

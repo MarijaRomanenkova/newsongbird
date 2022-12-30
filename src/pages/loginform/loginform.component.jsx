@@ -4,14 +4,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
-import { SignUpSchema } from 'schemas/index';
+import { LoginSchema } from 'schemas/index';
 import { availableRoutesList } from 'routes/availableRoutesList';
 
-import styles from './signup.module.scss';
+import styles from './loginform.module.scss';
 
-function SignUpForm() {
+function Login() {
   const notify = (message) => {
     toast(message, {
       type: 'success',
@@ -21,6 +20,7 @@ function SignUpForm() {
       autoClose: 5000,
     });
   };
+
   return (
     <div className={styles.Form_Container}>
       <div className={styles.Form_Wrapper}>
@@ -50,7 +50,7 @@ function SignUpForm() {
             confirmPassword: '',
             acceptTerms: false,
           }}
-          validationSchema={SignUpSchema}
+          validationSchema={LoginSchema}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
               notify(JSON.stringify(values, null, 2));
@@ -58,7 +58,7 @@ function SignUpForm() {
             }, 400);
           }}
         >
-          {({ errors, touched, dirty }) => (
+          {({ errors, touched }) => (
             <Form>
               <label htmlFor="email" className={styles.Form_Label}>
                 Email Address
@@ -94,51 +94,7 @@ function SignUpForm() {
                 {(msg) => <div>{msg}</div>}
               </ErrorMessage>
 
-              <label htmlFor="confirmPassword" className={styles.Form_Label}>
-                Confirm Password
-              </label>
-              <Field
-                name="confirmPassword"
-                id="confirmPassword"
-                type="password"
-                className={
-                  errors.confirmPassword && touched.confirmPassword
-                    ? styles.Form_Input_Error
-                    : styles.Form_Input
-                }
-              />
-              <ErrorMessage name="confirmPassword" className={styles.Error}>
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
-
-              <ErrorMessage name="acceptTerms" className={styles.Error}>
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
-              <div className={styles.Checkbox_Container}>
-                <Field
-                  name="acceptTerms"
-                  control="checkbox"
-                  type="checkbox"
-                  id="acceptTerms"
-                  className="styles.Checkbox_Container_Box"
-                />
-
-                <label htmlFor="acceptTerms" className={styles.Checkbox_Label}>
-                  By creating an account you agree to the{' '}
-                  <a href="#" className={styles.Checkbox_Label_Link}>
-                    terms and conditions
-                  </a>{' '}
-                  applicable to our sevice and acknowledge that your personal
-                  data will be used in accordance with our privacy policy and
-                  you will receive emails and communications about jobs,
-                  industry news, new products and related topics.
-                </label>
-              </div>
-              <button
-                className={styles.Btn}
-                disabled={!dirty || Object.keys(errors).length}
-                type="submit"
-              >
+              <button className={styles.Btn} type="submit">
                 Submit
               </button>
             </Form>
@@ -148,4 +104,5 @@ function SignUpForm() {
     </div>
   );
 }
-export default SignUpForm;
+
+export default Login;
