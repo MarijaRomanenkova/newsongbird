@@ -1,21 +1,40 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Categories from 'components/categories/categories.component';
 import CorrectAnswer from 'components/correctAnswer/correctAnswer.component';
 import AnswerOptions from 'components/answerOptions/answerOptions.component';
 import GameOver from 'components/gameOver/gameOver.component';
-import { selectIsGameOver } from 'store/gameSlice';
+import {
+  selectIsGameOver,
+  selectIsQuestionaryDataLoading,
+  getFirstQuizAnswear,
+  selectCorrectAnswerObject,
+} from 'store/gameSlice';
 
 import styles from './home.module.scss';
 
 function Home() {
+  const isQuestionaryDataLoading = useSelector(selectIsQuestionaryDataLoading);
   const isGameOver = useSelector(selectIsGameOver);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getFirstQuizAnswear());
+  }, []);
+
+  if (isQuestionaryDataLoading || !selectCorrectAnswerObject) {
+    return (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.Game_Container}>
-      {isGameOver ? (
-        <GameOver />
-      ) : (
+      {isGameOver && <GameOver />}
+      {!isGameOver && (
         <>
           <Categories />
           <CorrectAnswer />

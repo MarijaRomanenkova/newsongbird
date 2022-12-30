@@ -12,7 +12,7 @@ const initialState = {
   correctAnswerID: 1,
   numberOfWrongAnswers: 0,
   score: 0,
-  isCorrectAnswerSelected: false,
+  isCorrectAnswerChosen: false,
   isGameOver: false,
 };
 
@@ -39,17 +39,17 @@ export const gameSlice = createSlice({
         state.birdsData[state.currentLevel].length
       );
     },
-    nextLevel: (state) => {
+    switchToNextLevel: (state) => {
       state.currentLevel += 1;
       state.correctAnswerID = getCorrectAnswerID(
         state.birdsData[state.currentLevel].length
       );
-      state.isCorrectAnswerSelected = false;
+      state.isCorrectAnswerChosen = false;
       state.numberOfWrongAnswers = 0;
     },
 
-    win: (state) => {
-      state.isCorrectAnswerSelected = true;
+    correctAnswerChosen: (state) => {
+      state.isCorrectAnswerChosen = true;
       if (state.numberOfWrongAnswers < MAXIMUM_SCORE_PER_LEVEL) {
         state.score +=
           MAXIMUM_SCORE_PER_LEVEL - (state.numberOfWrongAnswers - 1);
@@ -59,16 +59,16 @@ export const gameSlice = createSlice({
       }
     },
 
-    choose: (state) => {
+    answerWasChosen: (state) => {
       state.numberOfWrongAnswers += 1;
     },
 
-    newGame: (state) => {
+    resetTheGame: (state) => {
       state.currentLevel = 1;
       state.correctAnswerID = getCorrectAnswerID(state.birdsData[1].length);
       state.numberOfWrongAnswers = 0;
       state.score = 0;
-      state.isCorrectAnswerSelected = false;
+      state.isCorrectAnswerChosen = false;
       state.isGameOver = false;
     },
   },
@@ -87,14 +87,19 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { getFirstQuizAnswear, nextLevel, win, choose, newGame } =
-  gameSlice.actions;
+export const {
+  getFirstQuizAnswear,
+  switchToNextLevel,
+  correctAnswerChosen,
+  answerWasChosen,
+  resetTheGame,
+} = gameSlice.actions;
 export const selectCurrentLevel = (state) => state.game.currentLevel;
 export const selectScore = (state) => state.game.score;
-export const selectIsCorrectAnswerSelected = (state) =>
-  state.game.isCorrectAnswerSelected;
+export const selectIsCorrectAnswerChosen = (state) =>
+  state.game.isCorrectAnswerChosen;
 export const selectIsGameOver = (state) => state.game.isGameOver;
-export const selectCurrentCorrectAnswerObject = (state) =>
+export const selectCorrectAnswerObject = (state) =>
   state.game.birdsData[state.game.currentLevel][state.game.correctAnswerID - 1];
 export const selectCurrentCategoryArray = (state) =>
   state.game.birdsData[state.game.currentLevel];
