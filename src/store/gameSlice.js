@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+import { nanoid } from 'nanoid';
+
 import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
 
 const url = '/data.json';
@@ -18,7 +20,20 @@ const initialState = {
 
 export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
   const response = await axios.get(url);
-  return response.data;
+  console.log(response.data);
+  const dataWithUniqueIds = response.data.map((array) =>
+    array.map((item) => {
+      if (typeof item === 'string') {
+        return { name: item, uniqueID: nanoid() };
+      }
+      return {
+        ...item,
+        uniqueID: nanoid(),
+      };
+    })
+  );
+  console.log(dataWithUniqueIds);
+  return dataWithUniqueIds;
 });
 
 const getCorrectAnswerID = (currentLevelArrayLength) => {

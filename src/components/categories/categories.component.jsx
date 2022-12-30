@@ -13,14 +13,14 @@ function Categories() {
     <div className={styles.Categories__Container}>
       {categoriesNames.map((category, index) => (
         <div
-          key={category}
+          key={category.uniqueID}
           className={
             index === currentLevel - 1
               ? styles.Category_Active
               : styles.Category
           }
         >
-          <p className={styles.Categories_Text}>{category}</p>
+          <p className={styles.Categories_Text}>{category.name}</p>
         </div>
       ))}
     </div>

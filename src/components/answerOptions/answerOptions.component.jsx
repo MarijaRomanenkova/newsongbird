@@ -114,7 +114,7 @@ function AnswerOptions() {
         <div className={styles.AnswerOptionsList_Container}>
           {currentCategoryArrayWithStatus.map((option) => (
             <button
-              key={option.id + option.name}
+              key={option.uniqueID}
               className={styles.AnswerOptionsList_Option}
               type="button"
               onClick={() => handleAnswerOptionClick(option.id)}
