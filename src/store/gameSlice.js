@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 
 import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
 
-const url = '/data.json';
+const url = 'http://localhost:3500/birds';
 
 const initialState = {
   birdsData: [],
