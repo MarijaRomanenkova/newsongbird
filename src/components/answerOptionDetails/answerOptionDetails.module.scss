@@ -2,44 +2,44 @@
 @import 'scss-source/mixins.scss';
 
 .AnswerOptionDetails {
-    &_Container {    
+  &_Container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     border: 1px solid $dark-mode-border;
     @include toRem(border-radius, 4);
-    background-color:$dark; 
+    background-color: $dark;
     padding: 1rem;
     font-weight: 400;
     width: auto;
     height: 100%;
     overflow: hidden;
-        @include mini {
-            display:none;
-        }
+    @include mini {
+      display: none;
     }
-    
-    &_Name_Text {
+  }
+
+  &_Name_Text {
     border-bottom: 1px solid $dark-mode-border;
-    @include toRem(padding-bottom, 16);     
-    @include toRem(margin-left, 8);       
-    }
+    @include toRem(padding-bottom, 16);
+    @include toRem(margin-left, 8);
+  }
 
-    &_Species_Text {
-        @extend .AnswerOptionDetails_Name_Text;        
-        @include toRem(padding-top, 4);        
-    }
-    
-    &_Image {
-        width: 180px;
-        height: 135px;
-        @include toRem(border-radius, 10);
-        object-fit: cover;            
-    }
+  &_Species_Text {
+    @extend .AnswerOptionDetails_Name_Text;
+    @include toRem(padding-top, 4);
+  }
 
-    &_Description {
-        grid-column: span 2;
-        font-weight: 600;
-        max-width: auto;
-    }
+  &_Image {
+    width: 180px;
+    height: 135px;
+    @include toRem(border-radius, 10);
+    object-fit: cover;
+  }
+
+  &_Description {
+    grid-column: span 2;
+    font-weight: 600;
+    max-width: auto;
+  }
 }

@@ -1,7 +1,11 @@
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
+import { useSelector } from 'react-redux';
 
-import { QuizContext } from 'contexts/quizContext';
+import {
+  selectIsCorrectAnswerChosen,
+  selectCorrectAnswerObject,
+} from 'store/gameSlice';
 import imageHiddenCorrectAnswerJPG from 'assets/imageHiddenCorrectAnswerJPG.jpg';
 
 import styles from 'components/correctAnswer/correctAnswer.module.scss';
@@ -9,20 +13,16 @@ import styles from 'components/correctAnswer/correctAnswer.module.scss';
 const HIDDEN__ANSWER = '******';
 
 function CorrectAnswer() {
-  const [QuizState] = useContext(QuizContext);
-  const correctAnswer =
-    QuizState.birdsData[QuizState.currentLevel][
-      QuizState.correctAnswerID - 1
-    ] || {};
+  const correctAnswerObject = useSelector(selectCorrectAnswerObject);
 
-  const { isCorrectAnswerSelected } = QuizState;
+  const isCorrectAnswerChosen = useSelector(selectIsCorrectAnswerChosen);
 
   const AudioPlayerREF = useRef();
   const pauseAudioPlayer = () => {
     AudioPlayerREF.current.audio.current.pause();
   };
 
-  if (isCorrectAnswerSelected) {
+  if (isCorrectAnswerChosen) {
     pauseAudioPlayer();
   }
 
@@ -32,11 +32,11 @@ function CorrectAnswer() {
     alt: 'bird',
   };
 
-  if (isCorrectAnswerSelected) {
+  if (isCorrectAnswerChosen) {
     answerToRender = {
-      image: correctAnswer.image,
-      name: correctAnswer.name,
-      alt: correctAnswer.name,
+      image: correctAnswerObject.image,
+      name: correctAnswerObject.name,
+      alt: correctAnswerObject.name,
     };
   }
 
@@ -52,7 +52,7 @@ function CorrectAnswer() {
 
         <AudioPlayer
           layout="horizontal-reverse"
-          src={correctAnswer.audio}
+          src={correctAnswerObject.audio}
           autoPlay={false}
           autoPlayAfterSrcChange={false}
           showJumpControls={false}

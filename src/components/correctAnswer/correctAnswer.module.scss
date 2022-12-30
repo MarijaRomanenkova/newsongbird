@@ -2,42 +2,41 @@
 @import 'scss-source/mixins.scss';
 
 .correctAnswer {
-    &_Container {
-    display: flex;     
+  &_Container {
+    display: flex;
     background-color: $dark;
     overflow: hidden;
     padding: 1rem;
     border-radius: 0.25rem;
     margin-bottom: 1.56rem;
-    }
+  }
 
-    &_Image {
-        width: 200px;
-        height: 155px;
-        border-radius: 0.625rem;
-        object-fit: cover;
-            @include mini {
-                display: none;
-            }
+  &_Image {
+    width: 200px;
+    height: 155px;
+    border-radius: 0.625rem;
+    object-fit: cover;
+    @include mini {
+      display: none;
     }
+  }
 
-    &_Box {
-        margin-left: 2rem;
-        width: 100%;
-        @include mini {
-            margin: auto;
-            width: 85%;
-        }
+  &_Box {
+    margin-left: 2rem;
+    width: 100%;
+    @include mini {
+      margin: auto;
+      width: 85%;
     }
+  }
 
-    &_Title {        
-        padding: 0.5rem 0rem 1.25rem 0rem ;
-        margin: 0 0 0 0.5rem;
-        border-bottom: 1px solid $dark-mode-border;
-        
-    }
-    
-    &_Hidden {
-        display: none;
-    }
+  &_Title {
+    padding: 0.5rem 0rem 1.25rem 0rem;
+    margin: 0 0 0 0.5rem;
+    border-bottom: 1px solid $dark-mode-border;
+  }
+
+  &_Hidden {
+    display: none;
+  }
 }

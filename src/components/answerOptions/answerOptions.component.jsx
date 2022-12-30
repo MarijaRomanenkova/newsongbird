@@ -1,32 +1,31 @@
-import React, {
-  useContext,
-  useEffect,
-  useState,
-  useRef,
-  Fragment,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 import useSound from 'use-sound';
-import uuid from 'react-uuid';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { QuizContext } from 'contexts/quizContext';
 import correctAnswerChosenSoundOGG from 'assets/sounds/correctAnswerChosenSound.ogg';
 import incorrectAnswerChosenSoundOGG from 'assets/sounds/incorrectAnswerChosenSound.ogg';
 import AnswerOptionDetails from 'components/answerOptionDetails/answerOptionDetails.component';
 import Circle from 'components/circle/circle.component';
 import NextButton from 'components/nextButton/nextButton.component';
+import {
+  selectCurrentCategoryArray,
+  selectCorrectAnswerObject,
+  selectIsGameOver,
+  switchToNextLevel,
+  correctAnswerChosen,
+  answerWasChosen,
+} from 'store/gameSlice';
 
 import styles from './answerOptions.module.scss';
 
 function AnswerOptions() {
-  const [QuizState, dispatch] = useContext(QuizContext);
+  const dispatch = useDispatch();
 
-  const currentLevelAnswersOptionsArray =
-    QuizState.birdsData[QuizState.currentLevel];
+  const currentCategoryArray = useSelector(selectCurrentCategoryArray);
 
-  const correctAnswer =
-    currentLevelAnswersOptionsArray[QuizState.correctAnswerID - 1] || [];
+  const correctAnswerObject = useSelector(selectCorrectAnswerObject) || [];
 
-  const { isGameOver } = QuizState;
+  const isGameOver = useSelector(selectIsGameOver);
 
   const [playCorrectAnswerChosenSound] = useSound(correctAnswerChosenSoundOGG);
   const [playIncorrectAnswerChosenSound] = useSound(
@@ -39,15 +38,13 @@ function AnswerOptions() {
 
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 
-  const [
-    currentLevelAnswersOptionsArrayStatusAdded,
-    setCurrentLevelAnswersOptionsArrayStatusAdded,
-  ] = useState([currentLevelAnswersOptionsArray]);
+  const [currentCategoryArrayWithStatus, setcurrentCategoryArrayWithStatus] =
+    useState([currentCategoryArray]);
 
   useEffect(() => {
-    setCurrentLevelAnswersOptionsArrayStatusAdded(
-      currentLevelAnswersOptionsArray.map((answerOption) => {
-        if (answerOption.id === correctAnswer.id)
+    setcurrentCategoryArrayWithStatus(
+      currentCategoryArray.map((answerOption) => {
+        if (answerOption.id === correctAnswerObject.id)
           return {
             ...answerOption,
             isChosenAnswer: false,
@@ -60,12 +57,11 @@ function AnswerOptions() {
         };
       })
     );
-  }, [currentLevelAnswersOptionsArray]);
+  }, [currentCategoryArray]);
 
   function setChosenAnswer(id) {
     const currentObjectIndex = id - 1;
-    const currentAnswerOptionObject =
-      currentLevelAnswersOptionsArray[currentObjectIndex];
+    const currentAnswerOptionObject = currentCategoryArray[currentObjectIndex];
 
     setChosenAnswerOption({
       isClicked: true,
@@ -83,18 +79,21 @@ function AnswerOptions() {
       return;
     }
     setChosenAnswer(id);
-    dispatch({ type: 'CHOOSE' });
-    setCurrentLevelAnswersOptionsArrayStatusAdded(
-      currentLevelAnswersOptionsArrayStatusAdded.map((item) => {
-        if (item.id === id) {
-          return { ...item, isChosenAnswer: true };
+    dispatch(answerWasChosen());
+    setcurrentCategoryArrayWithStatus(
+      currentCategoryArrayWithStatus.map((option) => {
+        if (option.id === id) {
+          return {
+            ...option,
+            isChosenAnswer: true,
+          };
         }
-        return { ...item };
+        return { ...option };
       })
     );
 
-    if (id === correctAnswer.id) {
-      dispatch({ type: 'WIN' });
+    if (id === correctAnswerObject.id) {
+      dispatch(correctAnswerChosen());
       playCorrectAnswerChosenSound();
       if (!isGameOver) {
         setIsNextButtonDisabled(false);
@@ -105,50 +104,26 @@ function AnswerOptions() {
 
   const handleNextButtonClick = () => {
     setIsNextButtonDisabled(true);
-    dispatch({ type: 'NEXT_LEVEL' });
+    dispatch(switchToNextLevel());
   };
-
-  const answerOptionsREF = useRef([]);
-
-  const detectKeyDown = () => {
-    if (answerOptionsREF.current.tabIndex === 0) {
-      answerOptionsREF.current.focus();
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('keydown', detectKeyDown, true);
-    
-    return () => {
-      document.removeEventListener('keydown', detectKeyDown);
-    };
-  }, []);
-
-  function handleKeyDown(id) {
-    console.log('was pressed', id);
-  }
 
   return (
     <>
       <div className={styles.AnswerOptions_Container}>
         <div className={styles.AnswerOptionsList_Container}>
-          {currentLevelAnswersOptionsArrayStatusAdded.map((item, index) => (
-            <Fragment key={uuid()}>
-              <button
-                className={styles.AnswerOptionsList_Item}
-                type="button"
-                tabIndex={index}
-                onClick={() => handleAnswerOptionClick(item.id)}
-                onKeyDown={() => handleKeyDown(item.id)}
-                ref={answerOptionsREF}
-              >
-                <Circle
-                  isChosenAnswer={item.isChosenAnswer}
-                  isCorrectAnswer={item.isCorrectAnswer}
-                />
-                {item.name}
-              </button>
-            </Fragment>
+          {currentCategoryArrayWithStatus.map((option) => (
+            <button
+              key={option.id}
+              className={styles.AnswerOptionsList_Option}
+              type="button"
+              onClick={() => handleAnswerOptionClick(option.id)}
+            >
+              <Circle
+                isChosenAnswer={option.isChosenAnswer}
+                isCorrectAnswer={option.isCorrectAnswer}
+              />
+              {option.name}
+            </button>
           ))}
         </div>
 

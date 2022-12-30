@@ -1,19 +1,20 @@
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
+import { useSelector } from 'react-redux';
 
-import { QuizContext } from 'contexts/quizContext';
+import { selectIsCorrectAnswerChosen } from 'store/gameSlice';
 
 import styles from './answerOptionDetails.module.scss';
 
 function AnswerOptionDetails({ image, name, description, species, audio }) {
-  const [QuizState] = useContext(QuizContext);
-  const { isCorrectAnswerSelected } = QuizState.isCorrectAnswerSelected || {};
+  const isCorrectAnswerChosen = useSelector(selectIsCorrectAnswerChosen);
+
   const AudioPlayerREF = useRef();
   const pauseAudioPlayer = () => {
     AudioPlayerREF.current.audio.current.pause();
   };
 
-  if (isCorrectAnswerSelected) {
+  if (isCorrectAnswerChosen) {
     pauseAudioPlayer();
   }
 

@@ -1,14 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Confetti from 'react-confetti';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { QuizContext } from 'contexts/quizContext';
 import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
+import { resetTheGame, selectCurrentLevel, selectScore } from 'store/gameSlice';
 
 import styles from './gameOver.module.scss';
 
 function GameOver() {
-  const [QuizState, dispatch] = useContext(QuizContext);
-  const { score, currentLevel } = QuizState;
+  const currentLevel = useSelector(selectCurrentLevel);
+  const score = useSelector(selectScore);
+  const dispatch = useDispatch();
+
   const MAXIMUM_TOTAL_SCORE = MAXIMUM_SCORE_PER_LEVEL * currentLevel;
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
@@ -28,7 +31,7 @@ function GameOver() {
           <button
             className={styles.GameOver_Btn}
             type="button"
-            onClick={() => dispatch({ type: 'NEW_GAME' })}
+            onClick={() => dispatch(resetTheGame())}
           >
             Попробовать еще раз!
           </button>

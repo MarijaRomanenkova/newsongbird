@@ -1,0 +1,58 @@
+@import 'scss-source/variables.scss';
+@import 'scss-source/mixins.scss';
+
+.Navigation {
+  &_Container {
+    max-width: 960px;
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem auto 0 auto;
+    padding: 0 1rem;
+    align-items: flex-end;
+    @include tablet {
+      padding: 1rem 2rem;
+    }
+    @include mini {
+      display: block;
+      text-align: center;
+      margin: 0 auto;
+    }
+  }
+
+  &_Link_Wrapper {
+    margin-left: 2rem;
+    margin-bottom: 14px;
+    @include mini {
+      margin: auto;
+    }
+  }
+
+  &_Link {
+    color: $soft-white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.8rem;
+    padding: 10px;
+
+    @include mobile {
+      font-size: 1rem;
+    }
+    @include mini {
+      padding: 3px 10px;
+    }
+  }
+
+  &_Link:active {
+    color: yellow;
+  }
+}
+
+.Logo {
+  max-width: 200px;
+  @include mobile {
+    max-width: 150px;
+  }
+  @include mini {
+    max-width: 100px;
+  }
+}

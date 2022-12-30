@@ -1,0 +1,63 @@
+@import 'scss-source/variables.scss';
+@import 'scss-source/mixins.scss';
+
+.NotFound {
+  &_Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 560px;
+    height: 80vh;
+    margin: auto;
+    margin-top: 1rem;
+    height: 60wh;
+    font-weight: 400;
+    background-color: $dark-background-color;
+
+    @include mobile {
+      padding: 1rem;
+    }
+
+    @include mini {
+      max-width: 320px;
+    }
+  }
+
+  &_Wrapper {
+    margin: auto;
+    padding: 3rem;
+    text-align: left;
+    background-color: $dark-section-background-color;
+    border: 1px solid $dark-mode-border;
+    @include toRem(border-radius, 5);
+  }
+
+  &_Text {
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: $soft-white;
+    cursor: pointer;
+  }
+
+  &_Link {
+    display: block;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: $soft-white;
+    cursor: pointer;
+  }
+
+  &_Link:hover {
+    @extend .NotFound_Link;
+    color: $teal;
+  }
+
+  &_Arrow {
+    @extend .NotFound_Link;
+    font-size: 10rem;
+    text-align: right;
+    margin: 0 0 0 auto;
+  }
+}
