@@ -12,15 +12,6 @@ import { availableRoutesList } from 'routes/availableRoutesList';
 import styles from './signup.module.scss';
 
 function SignUpForm() {
-  const notify = (message) => {
-    toast(message, {
-      type: 'success',
-      className: 'custom.toast',
-      draggable: true,
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 5000,
-    });
-  };
   return (
     <div className={styles.Form_Container}>
       <div className={styles.Form_Wrapper}>
@@ -53,7 +44,7 @@ function SignUpForm() {
           validationSchema={SignUpSchema}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              notify(JSON.stringify(values, null, 2));
+              toast.success(JSON.stringify(values, null, 2));
               setSubmitting(false);
             }, 400);
           }}

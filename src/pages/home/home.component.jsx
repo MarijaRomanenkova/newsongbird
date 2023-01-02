@@ -17,6 +17,7 @@ import styles from './home.module.scss';
 
 function Home() {
   const isQuestionaryDataLoading = useSelector(selectIsQuestionaryDataLoading);
+  const correctAnswerObject = useSelector(selectCorrectAnswerObject);
   const isGameOver = useSelector(selectIsGameOver);
 
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ function Home() {
     dispatch(getFirstQuizAnswear());
   }, []);
 
-  if (isQuestionaryDataLoading || !selectCorrectAnswerObject) {
+  if (isQuestionaryDataLoading || !correctAnswerObject) {
     return <Loader />;
   }
 
