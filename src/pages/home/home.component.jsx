@@ -14,6 +14,7 @@ function Home() {
   const isQuestionaryDataLoading = useSelector(selectIsQuestionaryDataLoading);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getFirstQuizAnswear());
   }, []);
