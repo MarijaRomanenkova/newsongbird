@@ -8,7 +8,7 @@ const initialState = {
   birdsData: [],
   isQuestionaryDataLoading: true,
   currentLevel: 1,
-  correctAnswerID: 1,
+  correctAnswerID: 0,
   numberOfWrongAnswers: 0,
   score: 0,
   isCorrectAnswerChosen: false,
@@ -44,7 +44,7 @@ export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    getFirstQuizAnswear: (state) => {
+    getFirstQuizAnswer: (state) => {
       state.correctAnswerID = getCorrectAnswerID(
         state.birdsData[state.currentLevel].length
       );
@@ -90,6 +90,7 @@ export const gameSlice = createSlice({
       .addCase(getBirdsData.fulfilled, (state, action) => {
         state.isQuestionaryDataLoading = false;
         state.birdsData = action.payload;
+        state.correctAnswerID = getCorrectAnswerID(action.payload[1].length);
       })
       .addCase(getBirdsData.rejected, (state) => {
         state.isQuestionaryDataLoading = false;
@@ -98,7 +99,7 @@ export const gameSlice = createSlice({
 });
 
 export const {
-  getFirstQuizAnswear,
+  getFirstQuizAnswer,
   switchToNextLevel,
   correctAnswerChosen,
   answerWasChosen,
@@ -108,6 +109,7 @@ export const selectCurrentLevel = (state) => state.game.currentLevel;
 export const selectScore = (state) => state.game.score;
 export const selectIsCorrectAnswerChosen = (state) =>
   state.game.isCorrectAnswerChosen;
+export const selectCorrectAnswerID = (state) => state.game.correctAnswerID;
 export const selectIsGameOver = (state) => state.game.isGameOver;
 export const selectCorrectAnswerObject = (state) =>
   state.game.birdsData[state.game.currentLevel][state.game.correctAnswerID - 1];

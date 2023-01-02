@@ -5,24 +5,27 @@ import Game from 'components/game/index';
 import Loader from 'components/loader/loader.component';
 import {
   selectIsQuestionaryDataLoading,
-  getFirstQuizAnswear,
+  selectCorrectAnswerID,
+  getBirdsData,
 } from 'store/gameSlice';
 
 import styles from './home.module.scss';
 
 function Home() {
   const isQuestionaryDataLoading = useSelector(selectIsQuestionaryDataLoading);
+  const correctAnswerID = useSelector(selectCorrectAnswerID);
 
   const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(getFirstQuizAnswear());
+    dispatch(getBirdsData());
   }, []);
 
   return (
     <div className={styles.Game_Container}>
-      {isQuestionaryDataLoading && <Loader />}
-      {!isQuestionaryDataLoading && <Game />}
+      {(isQuestionaryDataLoading === true || correctAnswerID === 0) && (
+        <Loader />
+      )}
+      {correctAnswerID !== 0 && <Game />}
     </div>
   );
 }
