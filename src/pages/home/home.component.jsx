@@ -20,7 +20,8 @@ function Home() {
 
   return (
     <div className={styles.Game_Container}>
-      {isQuestionaryDataLoading ? <Loader /> : <Game />}
+      {isQuestionaryDataLoading && <Loader />}
+      {!isQuestionaryDataLoading && <Game />}
     </div>
   );
 }
