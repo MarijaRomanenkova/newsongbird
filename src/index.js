@@ -11,6 +11,7 @@ import './index.css';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
+// eslint-disable-next-line no-console
 
 root.render(
   <React.StrictMode>

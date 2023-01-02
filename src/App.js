@@ -12,6 +12,7 @@ import { availableRoutesList } from './routes/availableRoutesList';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
+  // eslint-disable-next-line no-console
   return (
     <>
       <Navigation />
