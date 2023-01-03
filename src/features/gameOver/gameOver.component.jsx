@@ -2,8 +2,8 @@ import React from 'react';
 import Confetti from 'react-confetti';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
-import { resetTheGame, selectCurrentLevel, selectScore } from 'store/gameSlice';
+import { MAXIMUM_SCORE_PER_LEVEL } from 'widgets/game/gameSettings/gameSettings';
+import { resetTheGame, selectCurrentLevel, selectScore } from 'widgets/game/gameSlice';
 
 import styles from './gameOver.module.scss';
 

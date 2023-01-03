@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import {
   selectIsCorrectAnswerChosen,
   selectCorrectAnswerObject,
-} from 'store/gameSlice';
+} from 'widgets/game/gameSlice';
 import imageHiddenCorrectAnswerJPG from 'assets/imageHiddenCorrectAnswerJPG.jpg';
 
 import styles from 'components/correctAnswer/correctAnswer.module.scss';

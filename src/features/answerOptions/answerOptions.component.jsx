@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import useSound from 'use-sound';
 import { useSelector, useDispatch } from 'react-redux';
 
-import correctAnswerChosenSoundOGG from 'assets/sounds/correctAnswerChosenSound.ogg';
-import incorrectAnswerChosenSoundOGG from 'assets/sounds/incorrectAnswerChosenSound.ogg';
-import AnswerOptionDetails from 'components/answerOptionDetails/answerOptionDetails.component';
-import Circle from 'components/circle/circle.component';
-import NextButton from 'components/nextButton/nextButton.component';
+import correctAnswerChosenSoundOGG from 'shared/assets/sounds/correctAnswerChosenSound.ogg';
+import incorrectAnswerChosenSoundOGG from 'shared/assets/sounds/incorrectAnswerChosenSound.ogg';
+import AnswerOptionDetails from 'features/answerOptionDetails/answerOptionDetails.component';
+import Circle from 'shared/ui/circle/circle.component';
+import NextButton from 'features/nextButton/nextButton.component';
 import {
   selectCurrentCategoryArray,
   selectCorrectAnswerObject,
@@ -15,7 +15,7 @@ import {
   switchToNextLevel,
   correctAnswerChosen,
   answerWasChosen,
-} from 'store/gameSlice';
+} from 'widgets/game/gameSlice';
 
 import styles from './answerOptions.module.scss';
 

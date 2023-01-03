@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { SignUpSchema } from 'schemas/index';
-import { availableRoutesList } from 'routes/availableRoutesList';
+import { availableRoutesList } from 'app/routes/availableRoutesList';
 
 import styles from './signup.module.scss';
 

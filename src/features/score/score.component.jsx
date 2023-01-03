@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectScore } from 'store/gameSlice';
+import { selectScore } from 'widgets/game/gameSlice';
 
 import styles from './score.module.scss';
 

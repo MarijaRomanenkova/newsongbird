@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Game from 'components/game/index';
-import Loader from 'components/loader/loader.component';
+import Game from 'widgets/game/game/index';
+import Loader from 'shared/ui/loader/loader.component';
 import {
   selectIsQuestionaryDataLoading,
   selectCorrectAnswerID,
   getBirdsData,
-} from 'store/gameSlice';
+} from 'widgets/game/gameSlice';
 
 import styles from './home.module.scss';
 
