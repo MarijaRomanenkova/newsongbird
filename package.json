@@ -28,9 +28,9 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js src/**/*.jsx"
   },
@@ -52,8 +52,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@craco/craco": "^7.0.0",
+  "devDependencies": {   
     "babel-plugin-module-resolver": "4.1.0",
     "eslint": "^8.0.0",
     "eslint-config-airbnb": "^19.0.4",

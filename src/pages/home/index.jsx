@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Categories from 'features/game-categories';
-import CorrectAnswer from 'features/correctAnswer/correctAnswer.component';
+import CorrectAnswer from 'features/correctAnswer/index.jsx';
 import AnswerOptions from 'features/anwer-options-list';
 import GameOver from 'features/gameover';
 import Loader from 'shared/ui/button/loader/loader.component';
