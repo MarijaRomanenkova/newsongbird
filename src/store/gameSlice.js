@@ -9,7 +9,7 @@ const initialState = {
   birdsData: [],
   isQuestionaryDataLoading: true,
   currentLevel: 1,
-  correctAnswerID: null,
+  correctAnswerID: 1,
   numberOfWrongAnswers: 0,
   score: 0,
   isCorrectAnswerChosen: false,
@@ -18,8 +18,8 @@ const initialState = {
 
 export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
   try {
-    const response = await axiosInstance.get('/birds');
-    const dataWithUniqueIds = response.data.map((array) =>
+    const response = await axiosInstance.get('');
+    const dataWithUniqueIds = response.data.birds.map((array) =>
       array.map((item) => {
         if (typeof item === 'string') {
           return { name: item, uniqueID: nanoid() };
