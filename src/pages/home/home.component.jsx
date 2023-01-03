@@ -3,16 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Game from 'components/game/index';
 import Loader from 'components/loader/loader.component';
-import {
-  selectIsQuestionaryDataLoading,
-  selectCorrectAnswerID,
-  getBirdsData,
-} from 'store/gameSlice';
+import { getBirdsData, selectCorrectAnswerID } from 'store/gameSlice';
 
 import styles from './home.module.scss';
 
 function Home() {
-  const isQuestionaryDataLoading = useSelector(selectIsQuestionaryDataLoading);
   const correctAnswerID = useSelector(selectCorrectAnswerID);
 
   const dispatch = useDispatch();
@@ -22,8 +17,8 @@ function Home() {
 
   return (
     <div className={styles.Game_Container}>
-      {isQuestionaryDataLoading === true && <Loader />}
-      {correctAnswerID !== 0 && <Game />}
+      {correctAnswerID === 0 && <Loader />}
+      {correctAnswerID > 0 && <Game />}
     </div>
   );
 }

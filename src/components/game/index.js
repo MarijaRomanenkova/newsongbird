@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { useSelector } from 'react-redux';
-
-import Categories from 'components/categories/categories.component';
-import CorrectAnswer from 'components/correctAnswer/correctAnswer.component';
-import AnswerOptions from 'components/answerOptions/answerOptions.component';
 import GameOver from 'components/gameOver/gameOver.component';
 import { selectIsGameOver } from 'store/gameSlice';
+
+import Loader from 'components/loader/loader.component';
+
+const Categories = lazy(() =>
+  import('components/categories/categories.component')
+);
+const CorrectAnswer = lazy(() =>
+  import('components/correctAnswer/correctAnswer.component')
+);
+const AnswerOptions = lazy(() =>
+  import('components/answerOptions/answerOptions.component')
+);
 
 function Game() {
   const isGameOver = useSelector(selectIsGameOver);
@@ -15,9 +23,15 @@ function Game() {
       {isGameOver && <GameOver />}
       {!isGameOver && (
         <>
-          <Categories />
+          <Suspense fallback={<Loader />}>
+            <Categories />
+          </Suspense>
+          <Suspense fallback={<Loader />}>
           <CorrectAnswer />
+          </Suspense>
+          <Suspense fallback={<Loader />}>
           <AnswerOptions />
+          </Suspense>
         </>
       )}
     </>
