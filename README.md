@@ -45,10 +45,6 @@ React customizable player component for playing audio.
 ---
 
 1. Clone this repository to your desktop or open your terminal and then type $ git clone {the url to the GitHub repo} This clones the repo.
-
 2. cd into the new folder and type. $ npm install. This installs the required dependencies.
-3. Open second terminal and type $ npx json-server -p 3500 -w data/db.json
-
-4. To run the React project type $ npm start in the first terminal window.
-
-5. Open React default port [http://localhost:3000](http://localhost:3000) to view it in browser, or if you prefer set up another port.
+3. To run the React project type $ npm start in the terminal window.
+4. Open React default port [http://localhost:3000](http://localhost:3000) to view it in browser, or if you prefer set up another port.

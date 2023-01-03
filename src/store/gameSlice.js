@@ -9,7 +9,7 @@ const initialState = {
   birdsData: [],
   isQuestionaryDataLoading: true,
   currentLevel: 1,
-  correctAnswerID: 1,
+  correctAnswerID: null,
   numberOfWrongAnswers: 0,
   score: 0,
   isCorrectAnswerChosen: false,
