@@ -51,4 +51,4 @@ React customizable player component for playing audio.
 
 4. To run the React project type $ npm start in the first terminal window.
 
-5. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+5. Open React default port [http://localhost:3000](http://localhost:3000) to view it in browser, or if you prefer set up another port.
