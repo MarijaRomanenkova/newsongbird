@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { availableRoutesList } from 'app/routes/availableRoutesList';
+import { availableRoutesList } from 'app/routes/available-routes-list';
 
 import styles from './notfound.module.scss';
 

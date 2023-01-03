@@ -7,12 +7,11 @@ import Navigation from 'features/navigation/navigation.component';
 import Login from 'pages/login/login.component';
 import SignUp from 'pages/signup/signup';
 import NotFound from 'pages/notfound/notfound.component';
-import { availableRoutesList } from './app/routes/availableRoutesList';
+import { availableRoutesList } from 'app/routes/available-routes-list';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-function App() {
-  // eslint-disable-next-line no-console
+function AppRoutes() {
   return (
     <>
       <Navigation />
@@ -27,4 +26,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppRoutes;

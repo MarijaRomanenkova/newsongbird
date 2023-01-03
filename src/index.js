@@ -4,14 +4,12 @@ import { Provider } from 'react-redux';
 
 import { BrowserRouter } from 'react-router-dom';
 import { store } from 'app/store/store';
-import App from './App';
+import App from 'app/routes/routes';
 import reportWebVitals from './reportWebVitals';
-
-import './index.css';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
-// eslint-disable-next-line no-console
+
 
 root.render(
   <React.StrictMode>
