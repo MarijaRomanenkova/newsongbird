@@ -1,6 +1,6 @@
 /* eslint-disable no-inner-declarations */
 import React, { useEffect, useState } from 'react';
-import useSound from 'use-sound';
+import { useSound } from 'use-sound';
 import { useSelector, useDispatch } from 'react-redux';
 
 import correctAnswerChosenSoundOGG from 'assets/sounds/correctAnswerChosenSound.ogg';
@@ -23,9 +23,7 @@ function AnswerOptions() {
   const dispatch = useDispatch();
 
   const currentCategoryArray = useSelector(selectCurrentCategoryArray);
-
   const correctAnswerObject = useSelector(selectCorrectAnswerObject) || [];
-
   const isGameOver = useSelector(selectIsGameOver);
 
   const [playCorrectAnswerChosenSound] = useSound(correctAnswerChosenSoundOGG);
