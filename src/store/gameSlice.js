@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 
 import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
+import { axiosInstance } from '../axiosInstance';
 
 const initialState = {
   birdsData: [],
@@ -18,7 +18,7 @@ const initialState = {
 
 export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
   try {
-    const response = await axios.get(process.env.REACT_APP_BACKEND_URL);
+    const response = await axiosInstance.get('/birds');
     const dataWithUniqueIds = response.data.map((array) =>
       array.map((item) => {
         if (typeof item === 'string') {
