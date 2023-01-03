@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { nanoid } from 'nanoid';
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
 
@@ -31,7 +31,7 @@ export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
       })
     );
     return dataWithUniqueIds;
-  } catch(error) {
+  } catch (error) {
     return toast.error('Error', error);
   }
 });
