@@ -1,14 +1,20 @@
-import React, { useEffect, Suspense } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
+import Game from 'components/game/index';
 import Loader from 'components/loader/loader.component';
-import { getBirdsData } from 'store/gameSlice';
+import {
+  selectIsQuestionaryDataLoading,
+  selectCorrectAnswerID,
+  getBirdsData,
+} from 'store/gameSlice';
 
 import styles from './home.module.scss';
 
-const Game = React.lazy(() => import('components/game/index'));
-
 function Home() {
+  const isQuestionaryDataLoading = useSelector(selectIsQuestionaryDataLoading);
+  const correctAnswerID = useSelector(selectCorrectAnswerID);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getBirdsData());
@@ -16,9 +22,8 @@ function Home() {
 
   return (
     <div className={styles.Game_Container}>
-      <Suspense fallback={<Loader />}>
-        <Game />
-      </Suspense>
+      {(isQuestionaryDataLoading || !correctAnswerID) && <Loader />}
+      {!correctAnswerID && <Game />}
     </div>
   );
 }
