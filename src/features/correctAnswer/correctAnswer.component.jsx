@@ -6,9 +6,9 @@ import {
   selectIsCorrectAnswerChosen,
   selectCorrectAnswerObject,
 } from 'widgets/game/gameSlice';
-import imageHiddenCorrectAnswerJPG from 'assets/imageHiddenCorrectAnswerJPG.jpg';
+import imageHiddenCorrectAnswerJPG from 'shared/assets/imageHiddenCorrectAnswerJPG.jpg';
 
-import styles from 'components/correctAnswer/correctAnswer.module.scss';
+import styles from './correctAnswer.module.scss';
 
 const HIDDEN__ANSWER = '******';
 

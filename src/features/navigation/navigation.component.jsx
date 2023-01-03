@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import logoSourceSVG from 'assets/logoSourceSVG.svg';
+import logoSourceSVG from 'shared/assets/logoSourceSVG.svg';
 import Score from 'features/score/score.component';
 import { availableRoutesList } from 'app/routes/availableRoutesList';
 
