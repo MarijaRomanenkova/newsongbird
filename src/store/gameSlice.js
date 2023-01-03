@@ -17,7 +17,7 @@ const initialState = {
 };
 
 export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
-  try{
+  try {
     const response = await axios.get(process.env.REACT_APP_BACKEND_URL);
     const dataWithUniqueIds = response.data.map((array) =>
       array.map((item) => {
