@@ -18,7 +18,7 @@ const initialState = {
 
 export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
   try {
-    const response = await axiosInstance.get('/');
+    const response = await axiosInstance.get('/birds');
     const dataWithUniqueIds = response.data.map((array) =>
       array.map((item) => {
         if (typeof item === 'string') {
