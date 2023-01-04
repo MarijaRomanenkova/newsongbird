@@ -7,7 +7,7 @@ module.exports = {
       options: {
         resources: [
           './src/scss-source/variables.scss',
-          './src/scss-source/mixins.scss'
+          './src/scss-source/mixins.scss',
         ],
       },
     },
