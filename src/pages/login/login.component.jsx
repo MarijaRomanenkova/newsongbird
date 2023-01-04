@@ -43,11 +43,7 @@ function Login() {
           validationSchema={LoginSchema}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              toast.success(JSON.stringify(values, null, 2), {
-                draggable: true,
-                position: toast.POSITION.TOP_CENTER,
-                autoClose: 5000,
-              });
+              toast.success(JSON.stringify(values, null, 2));
               setSubmitting(false);
             }, 400);
           }}

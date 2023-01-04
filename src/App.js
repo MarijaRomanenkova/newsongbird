@@ -1,14 +1,15 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer, Zoom } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
-import Home from 'pages/home/home';
+import Home from 'pages/home/home.component';
 import Navigation from 'components/navigation/navigation.component';
 import Login from 'pages/login/login.component';
 import SignUp from 'pages/signup/signup';
 import NotFound from 'pages/notfound/notfound.component';
 import { availableRoutesList } from './routes/availableRoutesList';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
