@@ -22,17 +22,13 @@ function Game() {
     <>
       {isGameOver && <GameOver />}
       {!isGameOver && (
-        <>
-          <Suspense fallback={<Loader />}>
+        <Suspense fallback={<Loader />}>
+          <>
             <Categories />
-          </Suspense>
-          <Suspense fallback={<Loader />}>
-          <CorrectAnswer />
-          </Suspense>
-          <Suspense fallback={<Loader />}>
-          <AnswerOptions />
-          </Suspense>
-        </>
+            <CorrectAnswer />
+            <AnswerOptions />
+          </>
+        </Suspense>
       )}
     </>
   );
