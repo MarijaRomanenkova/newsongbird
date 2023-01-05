@@ -15,9 +15,13 @@
   animation: spinner 1.5s linear infinite;
 }
 
-.Loader_Container {
-  display: grid;
+.Loader_Box{  
+  display: flex;  
   justify-content: center;
   align-items: center;
-  max-height: 300px;
+  margin: auto;
+  position: absolute; 
+  width: 100%;
+  height: 100%;
+  z-index: 2;  
 }
