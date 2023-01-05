@@ -11,7 +11,6 @@ import { availableRoutesList } from 'routes/availableRoutesList';
 import styles from './login.module.scss';
 
 function Login() {
-
   return (
     <div className={styles.Form_Container}>
       <div className={styles.Form_Wrapper}>
@@ -44,7 +43,7 @@ function Login() {
           validationSchema={LoginSchema}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              toast.success(JSON.stringify(values, null, 2));
+              toast.success(JSON.stringify(values, null, 1));
               setSubmitting(false);
             }, 5000);
           }}
@@ -85,7 +84,11 @@ function Login() {
                 {(msg) => <div>{msg}</div>}
               </ErrorMessage>
 
-              <button className={styles.Btn} type="submit" disabled={!dirty || isSubmitting}>
+              <button
+                className={styles.Btn}
+                type="submit"
+                disabled={!dirty || isSubmitting}
+              >
                 Submit
               </button>
             </Form>
