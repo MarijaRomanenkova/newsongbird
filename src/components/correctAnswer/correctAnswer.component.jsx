@@ -14,8 +14,8 @@ import styles from 'components/correctAnswer/correctAnswer.module.scss';
 const HIDDEN__ANSWER = '******';
 
 function CorrectAnswer() {
-  const correctAnswerID = useSelector(selectCorrectAnswerID) || [];
-  const currentCategoryOptions = useSelector(selectCurrentCategoryOptions) || [];
+  const correctAnswerID = useSelector(selectCorrectAnswerID);
+  const currentCategoryOptions = useSelector(selectCurrentCategoryOptions);
   const correctAnswerObject = currentCategoryOptions.find(
     (option) => option.id === correctAnswerID
   );

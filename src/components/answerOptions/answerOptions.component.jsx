@@ -29,7 +29,9 @@ function AnswerOptions() {
   const isGameOver = useSelector(selectIsGameOver);
 
   const [playCorrectAnswerChosenSound] = useSound(correctAnswerChosenSoundOGG);
-  const [playIncorrectAnswerChosenSound] = useSound(incorrectAnswerChosenSoundOGG);
+  const [playIncorrectAnswerChosenSound] = useSound(
+    incorrectAnswerChosenSoundOGG
+  );
 
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 

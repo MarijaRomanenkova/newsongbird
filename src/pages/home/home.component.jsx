@@ -3,9 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Game from 'components/game/index';
 import Loader from 'components/loader/loader.component';
+
 import { getBirdsData, selectIsRequestLoading } from 'store/gameSlice';
 
 import styles from './home.module.scss';
+
+const Home = lazy(() =>
+  import('component/home/home.component')
+);
 
 function Home() {
   const isRequestLoading = useSelector(selectIsRequestLoading);
