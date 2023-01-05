@@ -1,5 +1,5 @@
 /* eslint-disable no-inner-declarations */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSound } from 'use-sound';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -9,8 +9,9 @@ import AnswerOptionDetails from 'components/answerOptionDetails/answerOptionDeta
 import Circle from 'components/circle/circle.component';
 import NextButton from 'components/nextButton/nextButton.component';
 import {
-  selectCurrentCategoryArray,
-  selectCorrectAnswerObject,
+  selectCurrentCategoryOptions,
+  selectCorrectAnswerID,
+  selectCurrentChosenAnswer,
   selectIsGameOver,
   switchToNextLevel,
   correctAnswerChosen,
@@ -22,76 +23,22 @@ import styles from './answerOptions.module.scss';
 function AnswerOptions() {
   const dispatch = useDispatch();
 
-  const currentCategoryArray = useSelector(selectCurrentCategoryArray);
-  const correctAnswerObject = useSelector(selectCorrectAnswerObject) || [];
+  const currentCategoryOptions = useSelector(selectCurrentCategoryOptions);
+  const correctAnswerID = useSelector(selectCorrectAnswerID);
+  const currentChosenAnswer = useSelector(selectCurrentChosenAnswer);
   const isGameOver = useSelector(selectIsGameOver);
 
   const [playCorrectAnswerChosenSound] = useSound(correctAnswerChosenSoundOGG);
-  const [playIncorrectAnswerChosenSound] = useSound(
-    incorrectAnswerChosenSoundOGG
-  );
-
-  const [chosenAnswerOption, setChosenAnswerOption] = useState({
-    isClicked: false,
-  });
+  const [playIncorrectAnswerChosenSound] = useSound(incorrectAnswerChosenSoundOGG);
 
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
-
-  const [currentCategoryArrayWithStatus, setcurrentCategoryArrayWithStatus] =
-    useState([currentCategoryArray]);
-
-  useEffect(() => {
-    setcurrentCategoryArrayWithStatus(
-      currentCategoryArray.map((answerOption) => {
-        if (answerOption.id === correctAnswerObject.id)
-          return {
-            ...answerOption,
-            isChosenAnswer: false,
-            isCorrectAnswer: true,
-          };
-        return {
-          ...answerOption,
-          isChosenAnswer: false,
-          isCorrectAnswer: false,
-        };
-      })
-    );
-  }, [currentCategoryArray]);
-
-  function setChosenAnswer(id) {
-    const currentObjectIndex = id - 1;
-    const currentAnswerOptionObject = currentCategoryArray[currentObjectIndex];
-
-    setChosenAnswerOption({
-      isClicked: true,
-      id,
-      name: currentAnswerOptionObject.name,
-      species: currentAnswerOptionObject.species,
-      image: currentAnswerOptionObject.image,
-      audio: currentAnswerOptionObject.audio,
-      description: currentAnswerOptionObject.description,
-    });
-  }
 
   function handleAnswerOptionClick(id) {
     if (!isNextButtonDisabled) {
       return;
     }
-    setChosenAnswer(id);
-    dispatch(answerWasChosen());
-    setcurrentCategoryArrayWithStatus(
-      currentCategoryArrayWithStatus.map((option) => {
-        if (option.id === id) {
-          return {
-            ...option,
-            isChosenAnswer: true,
-          };
-        }
-        return { ...option };
-      })
-    );
-
-    if (id === correctAnswerObject.id) {
+    dispatch(answerWasChosen(id));
+    if (id === correctAnswerID) {
       dispatch(correctAnswerChosen());
       playCorrectAnswerChosenSound();
       if (!isGameOver) {
@@ -110,7 +57,7 @@ function AnswerOptions() {
     <>
       <div className={styles.AnswerOptions_Container}>
         <div className={styles.AnswerOptionsList_Container}>
-          {currentCategoryArrayWithStatus.map((option) => (
+          {currentCategoryOptions.map((option) => (
             <button
               key={option.uniqueID}
               className={styles.AnswerOptionsList_Option}
@@ -118,7 +65,7 @@ function AnswerOptions() {
               onClick={() => handleAnswerOptionClick(option.id)}
             >
               <Circle
-                isChosenAnswer={option.isChosenAnswer}
+                isTouched={option.isTouched}
                 isCorrectAnswer={option.isCorrectAnswer}
               />
               {option.name}
@@ -126,16 +73,16 @@ function AnswerOptions() {
           ))}
         </div>
 
-        {chosenAnswerOption.isClicked && (
+        {currentChosenAnswer && (
           <AnswerOptionDetails
-            name={chosenAnswerOption.name}
-            image={chosenAnswerOption.image}
-            description={chosenAnswerOption.description}
-            audio={chosenAnswerOption.audio}
-            species={chosenAnswerOption.species}
+            name={currentChosenAnswer.name}
+            image={currentChosenAnswer.image}
+            description={currentChosenAnswer.description}
+            audio={currentChosenAnswer.audio}
+            species={currentChosenAnswer.species}
           />
         )}
-        {!chosenAnswerOption.isClicked && (
+        {!currentChosenAnswer && (
           <div className={styles.AnswerOptionDetails_Dummy}>
             <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
               Послушайте плеер.
