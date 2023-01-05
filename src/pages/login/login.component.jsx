@@ -11,6 +11,7 @@ import { availableRoutesList } from 'routes/availableRoutesList';
 import styles from './login.module.scss';
 
 function Login() {
+
   return (
     <div className={styles.Form_Container}>
       <div className={styles.Form_Wrapper}>
@@ -45,10 +46,10 @@ function Login() {
             setTimeout(() => {
               toast.success(JSON.stringify(values, null, 2));
               setSubmitting(false);
-            }, 400);
+            }, 5000);
           }}
         >
-          {({ errors, touched }) => (
+          {({ errors, touched, dirty, isSubmitting }) => (
             <Form>
               <label htmlFor="email" className={styles.Form_Label}>
                 Email Address
@@ -84,7 +85,7 @@ function Login() {
                 {(msg) => <div>{msg}</div>}
               </ErrorMessage>
 
-              <button className={styles.Btn} type="submit">
+              <button className={styles.Btn} type="submit" disabled={!dirty || isSubmitting}>
                 Submit
               </button>
             </Form>
