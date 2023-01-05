@@ -8,10 +8,6 @@ import { getBirdsData, selectIsRequestLoading } from 'store/gameSlice';
 
 import styles from './home.module.scss';
 
-const Home = lazy(() =>
-  import('component/home/home.component')
-);
-
 function Home() {
   const isRequestLoading = useSelector(selectIsRequestLoading);
 
@@ -22,7 +18,8 @@ function Home() {
 
   return (
     <div className={styles.Game_Container}>
-      {isRequestLoading ? <Loader /> : <Game />}
+      {isRequestLoading && <Loader />}
+      <Game />
     </div>
   );
 }

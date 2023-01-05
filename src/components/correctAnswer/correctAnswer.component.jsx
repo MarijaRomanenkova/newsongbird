@@ -18,7 +18,7 @@ function CorrectAnswer() {
   const currentCategoryOptions = useSelector(selectCurrentCategoryOptions);
   const correctAnswerObject = currentCategoryOptions.find(
     (option) => option.id === correctAnswerID
-  );
+  ) || {};
 
   const isCorrectAnswerChosen = useSelector(selectIsCorrectAnswerChosen);
 
