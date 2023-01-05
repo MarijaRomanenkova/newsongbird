@@ -74,7 +74,7 @@ function AnswerOptions() {
           ))}
         </div>
 
-        {currentChosenAnswer && (
+        {currentChosenAnswer.id && (
           <AnswerOptionDetails
             name={currentChosenAnswer.name}
             image={currentChosenAnswer.image}
@@ -83,7 +83,7 @@ function AnswerOptions() {
             species={currentChosenAnswer.species}
           />
         )}
-        {!currentChosenAnswer && (
+        {!currentChosenAnswer.id && (
           <div className={styles.AnswerOptionDetails_Dummy}>
             <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
               Послушайте плеер.
