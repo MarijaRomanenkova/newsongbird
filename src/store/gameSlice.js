@@ -68,7 +68,7 @@ export const gameSlice = createSlice({
           if (option.id === state.correctAnswerID) {
             return { ...option, isTouched: false, isCorrectAnswer: true };
           }
-          return { ...option, isTouched: false };
+          return { ...option, isTouched: false, isCorrectAnswer: false };
         }
       );            
       state.isCorrectAnswerChosen = false;
@@ -99,10 +99,6 @@ export const gameSlice = createSlice({
       state.currentChosenAnswer = state.currentCategoryOptions.find(
         (option) => option.id === action.payload
       ); 
-      console.log('currentCategoryOptions', state.currentCategoryOptions)
-      console.log('chosenid', state.currentChosenAnswer)
-      console.log('correct', state.correctAnswerID)
-      
     },
 
     resetTheGame: (state) => {

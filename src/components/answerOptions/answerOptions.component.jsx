@@ -63,6 +63,7 @@ function AnswerOptions() {
               className={styles.AnswerOptionsList_Option}
               type="button"
               onClick={() => handleAnswerOptionClick(option.id)}
+              disabled={!isNextButtonDisabled}
             >
               <Circle
                 isTouched={option.isTouched}
