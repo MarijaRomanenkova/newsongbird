@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 
 import {
   selectIsCorrectAnswerChosen,
-  selectCorrectAnswerObject,
+  selectCurrentCategoryOptions,
+  selectCorrectAnswerID,
 } from 'store/gameSlice';
 import imageHiddenCorrectAnswerJPG from 'assets/imageHiddenCorrectAnswerJPG.jpg';
 
@@ -13,7 +14,11 @@ import styles from 'components/correctAnswer/correctAnswer.module.scss';
 const HIDDEN__ANSWER = '******';
 
 function CorrectAnswer() {
-  const correctAnswerObject = useSelector(selectCorrectAnswerObject);
+  const correctAnswerID = useSelector(selectCorrectAnswerID);
+  const currentCategoryOptions = useSelector(selectCurrentCategoryOptions);
+  const correctAnswerObject =
+    currentCategoryOptions.find((option) => option.id === correctAnswerID) ||
+    {};
 
   const isCorrectAnswerChosen = useSelector(selectIsCorrectAnswerChosen);
 

@@ -7,3 +7,5 @@ export const store = configureStore({
     game: gameReducer,
   },
 });
+
+export default store;

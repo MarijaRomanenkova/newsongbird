@@ -4,6 +4,8 @@ Songbird is a single page quiz app challenging player to recognize birds by thei
 
 ## Task
 
+<https://github.com/rolling-scopes-school/tasks/blob/master/tasks/songbird.md>
+
 ### Status
 
 The project is in progress
@@ -43,9 +45,6 @@ React customizable player component for playing audio.
 ---
 
 1. Clone this repository to your desktop or open your terminal and then type $ git clone {the url to the GitHub repo} This clones the repo.
-
 2. cd into the new folder and type. $ npm install. This installs the required dependencies.
-
-3. To run the React project. $ npm start.
-
-4. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. To run the React project type $ npm start in the terminal window.
+4. Open React default port [http://localhost:3000](http://localhost:3000) to view it in browser, or if you prefer set up another port.

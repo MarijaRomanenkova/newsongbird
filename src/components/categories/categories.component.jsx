@@ -7,20 +7,20 @@ import styles from 'components/categories/categories.module.scss';
 
 function Categories() {
   const currentLevel = useSelector(selectCurrentLevel);
-  const categoriesArray = useSelector(selectCategoriesNames);
+  const categoriesNames = useSelector(selectCategoriesNames);
 
   return (
     <div className={styles.Categories__Container}>
-      {categoriesArray.map((category, index) => (
+      {categoriesNames.map((category, index) => (
         <div
-          key={category}
+          key={category.uniqueID}
           className={
             index === currentLevel - 1
               ? styles.Category_Active
               : styles.Category
           }
         >
-          <p className={styles.Categories_Text}>{category}</p>
+          <p className={styles.Categories_Text}>{category.name}</p>
         </div>
       ))}
     </div>

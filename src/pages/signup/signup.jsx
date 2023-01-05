@@ -44,16 +44,12 @@ function SignUpForm() {
           validationSchema={SignUpSchema}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              toast.success(JSON.stringify(values, null, 2), {
-                draggable: true,
-                position: toast.POSITION.TOP_CENTER,
-                autoClose: 5000,
-              });
+              toast.success(JSON.stringify(values, null, 2));
               setSubmitting(false);
-            }, 400);
+            }, 5000);
           }}
         >
-          {({ errors, touched, dirty }) => (
+          {({ errors, touched, dirty, isSubmitting }) => (
             <Form>
               <label htmlFor="email" className={styles.Form_Label}>
                 Email Address
@@ -131,7 +127,7 @@ function SignUpForm() {
               </div>
               <button
                 className={styles.Btn}
-                disabled={!dirty || Object.keys(errors).length}
+                disabled={!dirty || isSubmitting || Object.keys(errors).length}
                 type="submit"
               >
                 Submit

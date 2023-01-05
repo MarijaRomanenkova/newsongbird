@@ -43,16 +43,12 @@ function Login() {
           validationSchema={LoginSchema}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              toast.success(JSON.stringify(values, null, 2), {
-                draggable: true,
-                position: toast.POSITION.TOP_CENTER,
-                autoClose: 5000,
-              });
+              toast.success(JSON.stringify(values, null, 1));
               setSubmitting(false);
-            }, 400);
+            }, 5000);
           }}
         >
-          {({ errors, touched }) => (
+          {({ errors, touched, dirty, isSubmitting }) => (
             <Form>
               <label htmlFor="email" className={styles.Form_Label}>
                 Email Address
@@ -88,7 +84,11 @@ function Login() {
                 {(msg) => <div>{msg}</div>}
               </ErrorMessage>
 
-              <button className={styles.Btn} type="submit">
+              <button
+                className={styles.Btn}
+                type="submit"
+                disabled={!dirty || isSubmitting}
+              >
                 Submit
               </button>
             </Form>
