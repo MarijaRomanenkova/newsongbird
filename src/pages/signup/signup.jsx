@@ -4,6 +4,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
+import { FormattedMessage } from 'react-intl';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { SignUpSchema } from 'schemas/index';
@@ -22,7 +23,7 @@ function SignUpForm() {
               isActive ? styles.Form_Link_Active : styles.Form_Link
             }
           >
-            Login
+            <FormattedMessage id="login" defaultMessage="Login" />
           </NavLink>
           <NavLink
             to={availableRoutesList.SIGN_UP}
@@ -30,7 +31,7 @@ function SignUpForm() {
               isActive ? styles.Form_Link_Active : styles.Form_Link
             }
           >
-            SignUp
+          <FormattedMessage id="signUp" defaultMessage="Sign Up" />
           </NavLink>
         </div>
 

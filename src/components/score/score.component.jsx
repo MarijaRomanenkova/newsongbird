@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 
 import { selectScore } from 'store/gameSlice';
 
@@ -10,7 +11,10 @@ function Score() {
 
   return (
     <div className={styles.Score}>
-      <p> Score: {score}</p>
+      <p>
+        <FormattedMessage id="score" defaultMessage="Score: " />
+        {score}
+      </p>
     </div>
   );
 }
