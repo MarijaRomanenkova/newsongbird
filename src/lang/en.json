@@ -1,0 +1,6 @@
+{
+  "app.header" : "Plas Songbird game" ,
+  "app.content" : "Play Game" ,
+  "app.channel.plug": "Train your acoustic memory solving this quiz",
+  "app.score": "Score: "
+ }
