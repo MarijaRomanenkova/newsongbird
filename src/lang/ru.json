@@ -2,5 +2,9 @@
   "app.header" : "Игра Songbird " ,
   "app.content" : "Играть в игру" ,
   "app.channel.plug": "Тренируйте свою акустическую память, решая этот тест",
-  "app.score": "Счет: "
+  "app.score": "Счет: ",
+  "app.notFound": "Oй... страница не найдена",
+  "app.login": "Войти",
+  "app.signUp": "Зарегистрироваться",
+  "app.data":"{process.env.REACT_APP_RU}"
  }

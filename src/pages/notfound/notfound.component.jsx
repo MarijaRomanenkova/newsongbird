@@ -15,7 +15,6 @@ function NotFound() {
             id="notFound"
             defaultMessage="Ooops... Page not found"
           />
-          Ooops... Page not found
         </p>
         <Link to={availableRoutesList.HOME} className={styles.NotFound_Link}>
           {' '}

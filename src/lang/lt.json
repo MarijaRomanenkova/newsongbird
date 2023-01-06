@@ -2,5 +2,9 @@
   "app.header" : "Songbird žaidimas " ,
   "app.content" : "Žaisti žaidimą" ,
   "app.channel.plug": "Lavink savo akustinę atmintį spręsdamas šią viktoriną",
-  "app.score": "Balai: "
+  "app.score": "Balai: ",
+  "app.notFound": "Oj... Puslapio nėra",
+  "app.login": "Prisijungti",
+  "app.signUp": "Užsiregistruotis",
+  "app.data":"{process.env.REACT_APP_LT}"
  }

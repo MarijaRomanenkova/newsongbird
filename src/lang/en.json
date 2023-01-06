@@ -5,5 +5,6 @@
   "app.score": "Score: ",
   "app.notFound": "Ooops... Page not found",
   "app.login": "Login",
-  "aoo.signUp": "Sign Up"
+  "app.signUp": "Sign Up",
+  "app.data":"{process.env.REACT_APP_EN}"
  }
