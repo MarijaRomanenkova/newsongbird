@@ -1,13 +1,13 @@
 {
-  "app.header" : "Songbird žaidimas " ,
-  "app.content" : "Žaisti žaidimą" ,
+  "app.header": "Songbird žaidimas ",
+  "app.content": "Žaisti žaidimą",
   "app.channel.plug": "Lavink savo akustinę atmintį spręsdamas šią viktoriną",
   "score": "Balai: ",
   "notFound": "Oj... Puslapio nėra",
   "notFound_link": "Grįžti į pradinį puslapį",
   "login": "prisijungti",
   "signup": "užsiregistruotis",
-  "data":"{process.env.REACT_APP_LT}",
+  "data": "{process.env.REACT_APP_LT}",
   "answer-option-details_dummy": "Klausykite grotuvo. Pasirinkite paukštį iš sąrašo",
   "answer-option-details_dummy2": "Pasirinkite paukštį iš sąrašo ir pasitikrinkite savo atsakimą.",
   "nextLevel": "Sekantis lygis",
@@ -18,10 +18,12 @@
   "email": "El. pašto adresas",
   "form_password": "Slaptažodis",
   "form_password-confirmation": "Patvirtinti slaptažodį",
-  "signup_message":"Kurdami paskyrą sutinkate su",
-  "signup_link":"mūsų paslaugai taikomomis sąlygomis",
+  "signup_message": "Kurdami paskyrą sutinkate su",
+  "signup_link": "mūsų paslaugai taikomomis sąlygomis",
   "signup_message2": "ir patvirtinate, kad jūsų asmeniniai duomenys bus naudojami pagal mūsų privatumo politiką leidžiantį siusti jums el. laiškus ir pranešimus apie darbus, pramonės naujienos, naujus produktus ir susijusias temas.",
-  "email_validation":"Įveskite galiojantį el. pašto adresą",
-  "email_match-error_message": "jūsų slaptažodis turi būti mažiausiai 5 simbolių ilgio, jame yra bent vienas specialiųsis simbolis, mažosios ir viena didžioji raidė"
-  
- }
+  "email_validation": "Įveskite galiojantį el. pašto adresą",
+  "email_riminder-error": "jūsų slaptažodis turi būti mažiausiai 5 simbolių ilgio, jame yra bent vienas specialiųsis simbolis, mažosios ir viena didžioji raidė",
+  "email-math_error": "Slaptažodžiai turi sutapti",
+  "password-creation-error": "Sukurkite sudėtingesnį slaptažodį",
+  "accept-terms_error": "Prašome sutikti su paslaugos tiekimo sąlygomis"
+}

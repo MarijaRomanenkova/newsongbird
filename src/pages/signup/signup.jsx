@@ -87,7 +87,12 @@ function SignUpForm() {
                 }
               />
               <ErrorMessage name="password" className={styles.Error}>
-                {(msg) => <div>{msg}</div>}
+                {(msg) => (
+                  <FormattedMessage
+                    id={msg}
+                    defaultMessage="Please create a stronger password"
+                  />
+                )}
               </ErrorMessage>
 
               <label htmlFor="confirmPassword" className={styles.Form_Label}>
@@ -107,11 +112,21 @@ function SignUpForm() {
                 }
               />
               <ErrorMessage name="confirmPassword" className={styles.Error}>
-                {(msg) => <div>{msg}</div>}
+                {(msg) => (
+                  <FormattedMessage
+                    id={msg}
+                    defaultMessage="Passwords must match"
+                  />
+                )}
               </ErrorMessage>
 
               <ErrorMessage name="acceptTerms" className={styles.Error}>
-                {(msg) => <div>{msg}</div>}
+                {(msg) => (
+                  <FormattedMessage
+                    id={msg}
+                    defaultMessage="Please accept terms"
+                  />
+                )}
               </ErrorMessage>
               <div className={styles.Checkbox_Container}>
                 <Field

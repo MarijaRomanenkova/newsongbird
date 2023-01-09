@@ -85,7 +85,7 @@ function Login() {
                 }
               />
               <ErrorMessage name="password" className={styles.Error}>
-                {(msg) => <div>{msg}</div>}
+                {(msg) => (<FormattedMessage id={msg} defaultMessage='Riminder your password is at least 5 charecters long, includes at least one special character,lowercase and one uppercaseletter'/>)}
               </ErrorMessage>
 
               <button

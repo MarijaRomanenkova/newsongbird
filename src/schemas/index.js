@@ -6,28 +6,40 @@ import { FormattedMessage } from 'react-intl';
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 
 export const LoginSchema = yup.object().shape({
-  email: yup.string().email(<FormattedMessage id="email_validation" defaultMessage="email" />).required(),
+  email: yup
+    .string()
+    .email(
+      <FormattedMessage
+        id="email_validation"
+        defaultMessage="Please enter valid email"
+      />
+    )
+    .required(),
   password: yup
     .string()
     .min(5)
-    .matches(passwordRules, {
-      message: <FormattedMessage id="email_match-error_message" defaultMessage="Riminder your password is at least 5 charecters long, includes at least one special carachter,lowercase and one uppercaseletter" />,
-    })
+    .matches(passwordRules, { message: 'email_riminder-error' })
     .required(),
 });
 
 export const SignUpSchema = yup.object().shape({
-  email: yup.string().email(<FormattedMessage id="email_validation" defaultMessage="email" />).required(),
+  email: yup
+    .string()
+    .email(
+      <FormattedMessage
+        id="email_validation"
+        defaultMessage="Please enter valid email"
+      />
+    )
+    .required(),
   password: yup
     .string()
     .min(5)
-    .matches(passwordRules, { message: 'Please create a stronger password' })
+    .matches(passwordRules, { message: 'password-creation-error' })
     .required('Required'),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref('password'), null], 'Passwords must match')
+    .oneOf([yup.ref('password'), null], 'email-math_error')
     .required('Required'),
-  acceptTerms: yup
-    .boolean()
-    .oneOf([true], 'Please accept the terms of service'),
+  acceptTerms: yup.boolean().oneOf([true], 'accept-terms_error'),
 });

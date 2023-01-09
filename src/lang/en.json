@@ -1,13 +1,13 @@
 {
-  "app.header" : "Plas Songbird game" ,
-  "app.content" : "Play Game" ,
+  "app.header": "Plas Songbird game",
+  "app.content": "Play Game",
   "app.channel.plug": "Train your acoustic memory solving this quiz",
   "score": "Score: ",
   "notFound": "Ooops... Page not found",
-  "notFound_link": "Go to Homepage",  
+  "notFound_link": "Go to Homepage",
   "login": "login",
-  "signup": "sign up",  
-  "data":"{process.env.REACT_APP_EN}",
+  "signup": "sign up",
+  "data": "{process.env.REACT_APP_EN}",
   "answer-option-details_dummy": "Listen to the player.",
   "answer-option-details_dummy2": "Select a bird from the list and check if your answer is correct.",
   "nextLevel": "Next Level",
@@ -18,10 +18,12 @@
   "email": "Email adress",
   "form_password": "Password",
   "form_password-confirmation": "Confirm Password",
-  "signup_message":"By creating an account you agree to the",
-  "signup_link":"terms and conditions",
+  "signup_message": "By creating an account you agree to the",
+  "signup_link": "terms and conditions",
   "signup_message2": "applicable to our sevice and acknowledge that your personal data will be used in accordance with our privacy policy and you will receive emails and communications about jobs,industry news, new products and related topics.",
-  "email_validation":"Please enter valid email",
-  "email_match-error_message": "Riminder your password is at least 5 charecters long, includes at least one special carachter,lowercase and one uppercaseletter"
-  
- }
+  "email_validation": "Please enter valid email",
+  "email_riminder-error": "Riminder your password is at least 5 charecters long, includes at least one special character,lowercase and one uppercaseletter",
+  "email-math_error": "Passwords must match",
+  "password-creation-error": "Please create a stronger password",
+  "accept-terms_error": "Please accept terms"
+}
