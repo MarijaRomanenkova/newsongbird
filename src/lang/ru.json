@@ -2,9 +2,11 @@
   "app.header" : "Игра Songbird " ,
   "app.content" : "Играть в игру" ,
   "app.channel.plug": "Тренируйте свою акустическую память, решая этот тест",
-  "app.score": "Счет: ",
-  "app.notFound": "Oй... страница не найдена",
-  "app.login": "Войти",
-  "app.signUp": "Зарегистрироваться",
-  "app.data":"{process.env.REACT_APP_RU}"
+  "score": "Счет: ",
+  "notFound": "Oй... страница не найдена",
+  "login": "Войти",
+  "signup": "Зарегистрироваться",
+  "data":"{process.env.REACT_APP_RU}",
+  "answer-option-details_dummy": "Послушайте плеер.",
+  "answer-option-details_dummy2": "Выберите птицу из списка"
  }

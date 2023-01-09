@@ -1,5 +1,6 @@
 /* eslint-disable no-inner-declarations */
 import React, { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { useSound } from 'use-sound';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -87,12 +88,20 @@ function AnswerOptions() {
         )}
         {!currentChosenAnswer.id && (
           <div className={styles.AnswerOptionDetails_Dummy}>
-            <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
-              Послушайте плеер.
+           <h4>
+           <FormattedMessage
+           id="answer-option-details_dummy"
+           defaultMessage="Listen to the song."
+           className={styles.AnswerOptionDetails_Dummy_Text}
+              />
             </h4>
-            <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
-              Выберите птицу из списка
-            </h4>
+            <h4>
+            <FormattedMessage
+            id="answer-option-details_dummy2"
+            defaultMessage="Select answer. "
+            className={styles.AnswerOptionDetails_Dummy_Text}
+               />
+             </h4>
           </div>
         )}
       </div>

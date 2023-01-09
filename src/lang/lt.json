@@ -2,9 +2,11 @@
   "app.header" : "Songbird žaidimas " ,
   "app.content" : "Žaisti žaidimą" ,
   "app.channel.plug": "Lavink savo akustinę atmintį spręsdamas šią viktoriną",
-  "app.score": "Balai: ",
-  "app.notFound": "Oj... Puslapio nėra",
-  "app.login": "Prisijungti",
-  "app.signUp": "Užsiregistruotis",
-  "app.data":"{process.env.REACT_APP_LT}"
+  "score": "Balai: ",
+  "notFound": "Oj... Puslapio nėra",
+  "login": "Prisijungti",
+  "signup": "Užsiregistruotis",
+  "data":"{process.env.REACT_APP_LT}",
+  "answer-option-details_dummy": "Klausykite grotuvo. Pasirinkite paukštį iš sąrašo",
+  "answer-option-details_dummy2": "Pasirinkite paukštį iš sąrašo ir pasitikrinkite atsakimą"
  }
