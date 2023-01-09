@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
 import { FormattedMessage } from 'react-intl';
+
 import 'react-toastify/dist/ReactToastify.css';
 
 import { SignUpSchema } from 'schemas/index';
@@ -31,7 +32,7 @@ function SignUpForm() {
               isActive ? styles.Form_Link_Active : styles.Form_Link
             }
           >
-          <FormattedMessage id="signUp" defaultMessage="Sign Up" />
+            <FormattedMessage id="signup" defaultMessage="Sign Up" />
           </NavLink>
         </div>
 
@@ -53,7 +54,7 @@ function SignUpForm() {
           {({ errors, touched, dirty, isSubmitting }) => (
             <Form>
               <label htmlFor="email" className={styles.Form_Label}>
-                Email Address
+                <FormattedMessage id="email" defaultMessage="Email adress" />
               </label>
               <Field
                 name="email"
@@ -70,7 +71,10 @@ function SignUpForm() {
               </ErrorMessage>
 
               <label htmlFor="password" className={styles.Form_Label}>
-                Password
+                <FormattedMessage
+                  id="form-password"
+                  defaultMessage="Password"
+                />
               </label>
               <Field
                 name="password"
@@ -87,7 +91,10 @@ function SignUpForm() {
               </ErrorMessage>
 
               <label htmlFor="confirmPassword" className={styles.Form_Label}>
-                Confirm Password
+                <FormattedMessage
+                  id="form-password-confirmation"
+                  defaultMessage="Password"
+                />
               </label>
               <Field
                 name="confirmPassword"
@@ -131,7 +138,7 @@ function SignUpForm() {
                 disabled={!dirty || isSubmitting || Object.keys(errors).length}
                 type="submit"
               >
-                Submit
+                <FormattedMessage id="submit" defaultMessage="Submit" />
               </button>
             </Form>
           )}

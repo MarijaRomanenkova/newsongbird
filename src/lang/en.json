@@ -4,13 +4,21 @@
   "app.channel.plug": "Train your acoustic memory solving this quiz",
   "score": "Score: ",
   "notFound": "Ooops... Page not found",
-  "notFound_link": "Go to Homepage",
-  "login": "Login",
-  "signup": "Sign Up",
+  "notFound_link": "Go to Homepage",  
+  "login": "login",
+  "signup": "sign up",  
   "data":"{process.env.REACT_APP_EN}",
   "answer-option-details_dummy": "Listen to the player.",
   "answer-option-details_dummy2": "Select a bird from the list and check if your answer is correct.",
   "nextLevel": "Next Level",
-  "gameOver_text": "You completed the quiz and scored {score} out of {MAXIMUM_TOTAL_SCORE} possible points"
+  "gameOver_text": "You completed the quiz and scored {score} out of {MAXIMUM_TOTAL_SCORE} possible points",
+  "gameOver_text2": "Would you like to try again to get higher score?",
+  "gameOver_button": "Try again!",
+  "submit": "Submit",
+  "email": "Email adress",
+  "form-password": "Password",
+  "form-password-confirmation": "Confirm Password",
+  "signup-message": "Confirm Password"
+
   
  }

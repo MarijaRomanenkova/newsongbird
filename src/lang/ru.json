@@ -5,12 +5,19 @@
   "score": "Счет: ",
   "notFound": "Oй... страница не найдена",
   "notFound_link": "Вернуться на главную страницу",
-  "login": "Войти",
-  "signup": "Зарегистрироваться",
+  "login": "войти",
+  "signup": "зарегистрироваться",
   "data":"{process.env.REACT_APP_RU}",
   "answer-option-details_dummy": "Послушайте плеер.",
   "answer-option-details_dummy2": "Выберите птицу из списка.",
   "nextLevel": "Следующий уровень",
-  "gameOver_text": "Вы прошли викторину и набрали {score} из {MAXIMUM_TOTAL_SCORE} возможных баллов"
+  "gameOver_text": "Вы прошли викторину и набрали {score} из {MAXIMUM_TOTAL_SCORE} возможных баллов",
+  "gameOver_text2": "Попробуете набрать больше?",
+  "gameOver_button": "Попробовать еще раз!",
+  "submit": "Отправить",
+  "email": "Эл. почта",
+  "password": "пароль",
+  "password-confirmation": "Подтвердить пароль"
+
   
  }

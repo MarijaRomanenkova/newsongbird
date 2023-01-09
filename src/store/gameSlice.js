@@ -39,7 +39,6 @@ export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
         };
       })
     );
-      console.log(dataWithUniqueIds);
     return dataWithUniqueIds;
   } catch (error) {
     return toast.error('Error', error);

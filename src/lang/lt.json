@@ -5,12 +5,18 @@
   "score": "Balai: ",
   "notFound": "Oj... Puslapio nėra",
   "notFound_link": "Grįžti į pradinį puslapį",
-  "login": "Prisijungti",
-  "signup": "Užsiregistruotis",
+  "login": "prisijungti",
+  "signup": "užsiregistruotis",
   "data":"{process.env.REACT_APP_LT}",
   "answer-option-details_dummy": "Klausykite grotuvo. Pasirinkite paukštį iš sąrašo",
   "answer-option-details_dummy2": "Pasirinkite paukštį iš sąrašo ir pasitikrinkite savo atsakimą.",
   "nextLevel": "Sekantis lygis",
-  "gameOver_text": "Baigėte viktoriną ir surinkote {score} iš {MAXIMUM_TOTAL_SCORE} galimų taškų"
+  "gameOver_text": "Baigėte viktoriną ir surinkote {score} iš {MAXIMUM_TOTAL_SCORE} galimų taškų",
+  "gameOver_text2": "Gal pavyks surinkti dar daugiau balų?",
+  "gameOver_button": "Bandyti dar karta!",
+  "submit": "Pateikti",
+  "email": "El. pašto adresas",
+  "form-password": "Slaptažodis",
+  "form-password-confirmation": "Patvirtinti slaptažodį"
   
  }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
 import logoSourceSVG from 'assets/logoSourceSVG.svg';
 import Score from 'components/score/score.component';
@@ -20,13 +21,13 @@ function Navigation() {
           className={styles.Navigation_Link}
           to={availableRoutesList.LOGIN}
         >
-          Login
+          <FormattedMessage id="login" defaultMessage="Login" />
         </NavLink>
         <NavLink
           className={styles.Navigation_Link}
           to={availableRoutesList.SIGN_UP}
         >
-          Sign Up
+          <FormattedMessage id="signup" defaultMessage="Sign Up" />
         </NavLink>
       </div>
       <Score />

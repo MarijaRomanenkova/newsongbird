@@ -30,7 +30,7 @@ function Login() {
               isActive ? styles.Form_Link_Active : styles.Form_Link
             }
           >
-          <FormattedMessage id="signUp" defaultMessage="Sign Up" />
+            <FormattedMessage id="signup" defaultMessage="Sign Up" />
           </NavLink>
         </div>
 
@@ -52,7 +52,7 @@ function Login() {
           {({ errors, touched, dirty, isSubmitting }) => (
             <Form>
               <label htmlFor="email" className={styles.Form_Label}>
-                Email Address
+                <FormattedMessage id="email" defaultMessage="Email adress" />
               </label>
               <Field
                 name="email"
@@ -69,7 +69,10 @@ function Login() {
               </ErrorMessage>
 
               <label htmlFor="password" className={styles.Form_Label}>
-                Password
+                <FormattedMessage
+                  id="form-password"
+                  defaultMessage="Password"
+                />
               </label>
               <Field
                 name="password"
@@ -90,7 +93,7 @@ function Login() {
                 type="submit"
                 disabled={!dirty || isSubmitting}
               >
-                Submit
+                <FormattedMessage id="submit" defaultMessage="Submit" />
               </button>
             </Form>
           )}
