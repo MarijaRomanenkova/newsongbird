@@ -4,9 +4,13 @@
   "app.channel.plug": "Lavink savo akustinę atmintį spręsdamas šią viktoriną",
   "score": "Balai: ",
   "notFound": "Oj... Puslapio nėra",
+  "notFound_link": "Grįžti į pradinį puslapį",
   "login": "Prisijungti",
   "signup": "Užsiregistruotis",
   "data":"{process.env.REACT_APP_LT}",
   "answer-option-details_dummy": "Klausykite grotuvo. Pasirinkite paukštį iš sąrašo",
-  "answer-option-details_dummy2": "Pasirinkite paukštį iš sąrašo ir pasitikrinkite atsakimą"
+  "answer-option-details_dummy2": "Pasirinkite paukštį iš sąrašo ir pasitikrinkite savo atsakimą.",
+  "nextLevel": "Sekantis lygis",
+  "gameOver_text": "Baigėte viktoriną ir surinkote {score} iš {MAXIMUM_TOTAL_SCORE} galimų taškų"
+  
  }

@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { FormattedMessage } from 'react-intl';
 
 import styles from './nextButton.module.scss';
 
@@ -21,7 +22,7 @@ function NextButton({
       onClick={handleNextButtonClick}
       disabled={isNextButtonDisabled}
     >
-      Next Level
+      <FormattedMessage id="nextLevel" defaultMessage=" Next Level" />
     </button>
   );
 }

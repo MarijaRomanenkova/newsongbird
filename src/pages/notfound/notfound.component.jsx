@@ -17,8 +17,12 @@ function NotFound() {
           />
         </p>
         <Link to={availableRoutesList.HOME} className={styles.NotFound_Link}>
-          {' '}
-          <h1>Go to Homepage </h1>
+          <h1>
+            <FormattedMessage
+              id="notFound_link"
+              defaultMessage="Go to Homepage"
+            />
+          </h1>
           <p className={styles.NotFound_Arrow}>&#8594;</p>
         </Link>
       </div>

@@ -13,6 +13,7 @@ const initialState = {
   isRequestLoading: true,
   currentLevel: 1,
   currentCategoryOptions: [],
+  nextCategoryOptions: [],
   correctAnswerID: 0,
   correctAnswerObject: {},
   currentChosenAnswer: {},
@@ -38,6 +39,7 @@ export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
         };
       })
     );
+      console.log(dataWithUniqueIds);
     return dataWithUniqueIds;
   } catch (error) {
     return toast.error('Error', error);
@@ -60,10 +62,10 @@ export const gameSlice = createSlice({
   initialState,
   reducers: {
     switchToNextLevel: (state) => {
-      state.currentLevel += 1;      
+      state.currentLevel += 1;     
       state.correctAnswerID = getCorrectAnswerID(
-        state.birdsData[state.currentLevel].length);  
-      state.currentCategoryOptions = state.currentCategoryOptions.map(
+      state.birdsData[state.currentLevel].length);  
+      state.currentCategoryOptions = state.birdsData[state.currentLevel].map(
         (option) => {
           if (option.id === state.correctAnswerID) {
             return { ...option, isTouched: false, isCorrectAnswer: true };
@@ -131,6 +133,14 @@ export const gameSlice = createSlice({
         state.categoriesNames = action.payload[0];
         state.correctAnswerID = getCorrectAnswerID(action.payload[1].length);
         state.currentCategoryOptions = action.payload[state.currentLevel].map(
+          (option) => {
+            if (option.id === state.correctAnswerID) {
+              return { ...option, isCorrectAnswer: true };
+            }
+            return { ...option };
+          }
+        ); 
+        state.nextCategoryOptions = action.payload[state.currentLevel +1].map(
           (option) => {
             if (option.id === state.correctAnswerID) {
               return { ...option, isCorrectAnswer: true };

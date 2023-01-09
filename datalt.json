@@ -5,7 +5,7 @@
       "Žvirbliniai ",
       "Miško paukščiai",
       "Giesmininkai",
-      "Plėšrūnai paukščiai",
+      "Plėšrūnai",
       "Jūros paukščiai"
     ],
     [
@@ -35,9 +35,9 @@
       },
       {
         "id": 4,
-        "name": "Nightjar",
+        "name": "Lėlys",
         "species": "Caprimulgus europaeus",
-        "description": "Nightjar yra nepastebimas paukštis, žinomas dėl savo balso. Naktinio jaro daina skamba kaip monotoniškas trilas, panašus į motociklo barškėjimą. Toks barškėjimas girdimas nuo sutemų iki aušros, kinta jo toniškumas, dažnis ir garsumas.",
+        "description": "Lėlys yra nepastebimas paukštis, žinomas dėl savo balso. Lėlio daina skamba kaip monotoniškas trilas, panašus į motociklo barškėjimą. Toks barškėjimas girdimas nuo sutemų iki aušros, kinta jo toniškumas, dažnis ir garsumas.",
         "image": "https://live.staticflickr.com/65535/48456345286_dbc8530027.jpg",
         "audio": "https://www.xeno-canto.org/sounds/uploaded/VOLIQOYWKG/XC486956-190623_22.37h_nachtzwaluw_rechte%20heide_zang_ad%20_2ex_gezien_.mp3"
       },
@@ -85,9 +85,9 @@
       },
       {
         "id": 4,
-        "name": "strazdas giesmininkas",
+        "name": "Strazdas giesmininkas",
         "species": "Turdus philomelos",
-        "description": "Drozdas yra geriausias dainininkas iš žvirblių būrio. Daina susideda tik iš gražių skambių švilpukų ir trumpų trilių. Dažniausiai tai galima išgirsti ryte ir vakare. Kurkliai gieda visą lizdo laiką.",
+        "description": "Strazdas yra geriausias dainininkas iš žvirblių būrio. Daina susideda tik iš gražių skambių švilpukų ir trumpų trilių. Dažniausiai tai galima išgirsti ryte ir vakare. Kurkliai gieda visą lizdo laiką.",
         "image": "https://live.staticflickr.com/65535/48979125763_e2534f54bd.jpg",
         "audio": "https://www.xeno-canto.org/sounds/uploaded/BLMSIUFTFU/XC513326-190704_1146_TF-Glogow.mp3"
       },
@@ -101,7 +101,7 @@
       },
       {
         "id": 6,
-        "name": "Jay",
+        "name": "Kėkštas",
         "species": "Garrulus glandarius",
         "description": "Kai kėkštas nerimauja, kuokštas ant galvos susiraukšlėja. Paukštis bando sukurti bauginantį vaizdą. Jays sugeba mėgdžioti kitų paukščių, gyvūnų balsus ir žmonių kuriamus garsus. Žiemai jie gamina dideles gilių ir riešutų atsargas.",
         "image": "https://live.staticflickr.com//65535//49369678956_9a7465c7f4.jpg",
@@ -119,7 +119,7 @@
       },
       {
         "id": 2,
-        "name": "Crossbill",
+        "name": "Kryžsnapis",
         "species": "Loxia curvirostra",
         "description": "Kryžsnapiai vadinami „kalėdiniais“ paukščiais. Natūraliomis sąlygomis atsiveda žiemą – sausio mėnesį. Šie paukščiai lizdus izoliuoja samanomis ir gyvūnų plaukais, todėl jaunikliams nešalta. Ieškodami spurgų, skersnapsiai gali nuskristi 3500 km nuo lizdo.",
         "image": "https://live.staticflickr.com//65535//49365470123_f2de66bb35.jpg",
@@ -127,7 +127,7 @@
       },
       {
         "id": 3,
-        "name": "balandis",
+        "name": "Balandis",
         "species": "Streptopelia turtur",
         "description": "Balandė gyvena mišriuose ir plačialapiuose miškuose, taip pat miestų parkuose ir miesteliuose. Paukščiai dažnai renkasi gyvenimo vietas šalia žmonių ir lengvai pripranta prie žmonių. Dėl melodingo malonaus balandžių dainavimo jie dažnai auginami namuose.",
         "image": "https://live.staticflickr.com/65535/48063004977_84252f9ceb.jpg",
@@ -143,9 +143,9 @@
       },
       {
         "id": 5,
-        "name": "Hoopoe",
+        "name": "Kukutis",
         "species": "Upupa epops",
-        "description": "Hoopoe mieliau gyvena atvirame kraštovaizdyje su atskirais medžiais ar giraitėmis. Patogiausios paukščiui yra miško stepė ir savana. Būrelis gali pasirinkti gyvenamąją vietą šalia žmogaus: ganyklas, vynuogynus, daržus.",
+        "description": "Kukutis mieliau gyvena atvirame kraštovaizdyje su atskirais medžiais ar giraitėmis. Patogiausios paukščiui yra miško stepė ir savana. Būrelis gali pasirinkti gyvenamąją vietą šalia žmogaus: ganyklas, vynuogynus, daržus.",
         "image": "https://live.staticflickr.com//65535//49226383598_6f8be86a06.jpg",
         "audio": "https://www.xeno-canto.org/sounds/uploaded/ZNCDXTUOFL/XC477326-dudek%20%282%29.mp3"
       },
@@ -161,7 +161,7 @@
     [
       {
         "id": 1,
-        "name": "lervas",
+        "name": "Liauras",
         "species": "Alauda arvensis",
         "description": "Liaurai yra migruojantys paukščiai. Nuo rugsėjo pradžios skrenda į pietus. Jie grįžta kovo pradžioje, nepriklausomai nuo to, ar sniegas ištirpo, ar ne. Atvykę lekiukai nustatė pavasario pradžią ir laiką, kada atėjo laikas arti žemę.",
         "image": "https://live.staticflickr.com/65535/47105096764_f751fba568.jpg",
@@ -227,7 +227,7 @@
       },
       {
         "id": 3,
-        "name": "Lun",
+        "name": "Lunas",
         "species": "Cyaneus cirkas",
         "description": "Lunas yra mažas sakalas. Minta daugiausia į peles panašiais graužikais, jo mitybos pagrindas – pelėnai, žiurkėnai ir pelės. Harrier plunksna gali būti pelenų pilka. Su tokiu paukščiu siejamas palyginimas „žilaplaukis kaip haris“.",
         "image": "https://live.staticflickr.com/4480/37240531151_b74619c99d.jpg",

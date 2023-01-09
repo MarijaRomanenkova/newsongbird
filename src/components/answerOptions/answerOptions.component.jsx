@@ -88,20 +88,20 @@ function AnswerOptions() {
         )}
         {!currentChosenAnswer.id && (
           <div className={styles.AnswerOptionDetails_Dummy}>
-           <h4>
-           <FormattedMessage
-           id="answer-option-details_dummy"
-           defaultMessage="Listen to the song."
-           className={styles.AnswerOptionDetails_Dummy_Text}
+            <h4>
+              <FormattedMessage
+                id="answer-option-details_dummy"
+                defaultMessage="Listen to the song."
+                className={styles.AnswerOptionDetails_Dummy_Text}
               />
             </h4>
             <h4>
-            <FormattedMessage
-            id="answer-option-details_dummy2"
-            defaultMessage="Select answer. "
-            className={styles.AnswerOptionDetails_Dummy_Text}
-               />
-             </h4>
+              <FormattedMessage
+                id="answer-option-details_dummy2"
+                defaultMessage="Select answer. "
+                className={styles.AnswerOptionDetails_Dummy_Text}
+              />
+            </h4>
           </div>
         )}
       </div>
