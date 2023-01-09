@@ -16,7 +16,12 @@
   "gameOver_button": "Bandyti dar karta!",
   "submit": "Pateikti",
   "email": "El. pašto adresas",
-  "form-password": "Slaptažodis",
-  "form-password-confirmation": "Patvirtinti slaptažodį"
+  "form_password": "Slaptažodis",
+  "form_password-confirmation": "Patvirtinti slaptažodį",
+  "signup_message":"Kurdami paskyrą sutinkate su",
+  "signup_link":"mūsų paslaugai taikomomis sąlygomis",
+  "signup_message2": "ir patvirtinate, kad jūsų asmeniniai duomenys bus naudojami pagal mūsų privatumo politiką leidžiantį siusti jums el. laiškus ir pranešimus apie darbus, pramonės naujienos, naujus produktus ir susijusias temas.",
+  "email_validation":"Įveskite galiojantį el. pašto adresą",
+  "email_match-error_message": "jūsų slaptažodis turi būti mažiausiai 5 simbolių ilgio, jame yra bent vienas specialiųsis simbolis, mažosios ir viena didžioji raidė"
   
  }

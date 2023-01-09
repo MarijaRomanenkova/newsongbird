@@ -22,7 +22,7 @@ function Login() {
               isActive ? styles.Form_Link_Active : styles.Form_Link
             }
           >
-          <FormattedMessage id="login" defaultMessage="Login" />
+            <FormattedMessage id="login" defaultMessage="Login" />
           </NavLink>
           <NavLink
             to={availableRoutesList.SIGN_UP}
@@ -70,7 +70,7 @@ function Login() {
 
               <label htmlFor="password" className={styles.Form_Label}>
                 <FormattedMessage
-                  id="form-password"
+                  id="form_password"
                   defaultMessage="Password"
                 />
               </label>

@@ -77,7 +77,7 @@
       },
       {
         "id": 3,
-        "name": "džekas",
+        "name": "Džekas",
         "species": "Coloeus monedula",
         "description": "Žodis „jackdaw“ kilęs iš senosios slavų kalbos ir verčiamas kaip „juodas“. Šis žodis dažnai vartojamas kalbant apie varnas ar kitus juodus paukščius. Lotyniškas žandikaulių pavadinimas „monedula“ siejamas su žodžiais moneta, reiškiančiais paukščio meilę blizgantiems ir ryškiems daiktams.",
         "image": "https://live.staticflickr.com//65535//49237149586_993cf685c5.jpg",
@@ -151,9 +151,9 @@
       },
       {
         "id": 6,
-        "name": "greitas",
+        "name": "Čiurlys ",
         "species": "Apus apus",
-        "description": "Sviftą galima pamatyti beveik kiekviename planetos kampelyje. Jie gyvena tiek miškuose, tiek atvirose vietose. Swifts gyvena dideliais pulkais. Didelės šių paukščių kolonijos gali būti matomos miestuose ar pakrantės uolose.",
+        "description": "Čiurlį galima pamatyti beveik kiekviename planetos kampelyje. Jie gyvena tiek miškuose, tiek atvirose vietose. Čiurliai  gyvena dideliais pulkais. Didelės šių paukščių kolonijos gali būti matomos miestuose ar pakrantės uolose.",
         "image": "https://live.staticflickr.com//65535//48386150031_7b749df74b.jpg",
         "audio": "https://www.xeno-canto.org/sounds/uploaded/TMUAWSDHDJ/XC511871-G.mp3"
       }

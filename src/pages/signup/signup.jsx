@@ -72,7 +72,7 @@ function SignUpForm() {
 
               <label htmlFor="password" className={styles.Form_Label}>
                 <FormattedMessage
-                  id="form-password"
+                  id="form_password"
                   defaultMessage="Password"
                 />
               </label>
@@ -92,7 +92,7 @@ function SignUpForm() {
 
               <label htmlFor="confirmPassword" className={styles.Form_Label}>
                 <FormattedMessage
-                  id="form-password-confirmation"
+                  id="form_password-confirmation"
                   defaultMessage="Password"
                 />
               </label>
@@ -123,14 +123,20 @@ function SignUpForm() {
                 />
 
                 <label htmlFor="acceptTerms" className={styles.Checkbox_Label}>
-                  By creating an account you agree to the{' '}
+                  <FormattedMessage
+                    id="signup_message"
+                    defaultMessage="By creating an account you agree to the"
+                  />{' '}
                   <a href="#" className={styles.Checkbox_Label_Link}>
-                    terms and conditions
+                    <FormattedMessage
+                      id="signup_link"
+                      defaultMessage="terms and conditions"
+                    />
                   </a>{' '}
-                  applicable to our sevice and acknowledge that your personal
-                  data will be used in accordance with our privacy policy and
-                  you will receive emails and communications about jobs,
-                  industry news, new products and related topics.
+                  <FormattedMessage
+                    id="signup_message2"
+                    defaultMessage="applicable to our sevice and acknowledge that your personal data will be used in accordance with our privacy policy and you will receive emails and communications about jobs, industry news, new products and related topics."
+                  />
                 </label>
               </div>
               <button

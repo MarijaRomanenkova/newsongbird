@@ -16,9 +16,12 @@
   "gameOver_button": "Try again!",
   "submit": "Submit",
   "email": "Email adress",
-  "form-password": "Password",
-  "form-password-confirmation": "Confirm Password",
-  "signup-message": "Confirm Password"
-
+  "form_password": "Password",
+  "form_password-confirmation": "Confirm Password",
+  "signup_message":"By creating an account you agree to the",
+  "signup_link":"terms and conditions",
+  "signup_message2": "applicable to our sevice and acknowledge that your personal data will be used in accordance with our privacy policy and you will receive emails and communications about jobs,industry news, new products and related topics.",
+  "email_validation":"Please enter valid email",
+  "email_match-error_message": "Riminder your password is at least 5 charecters long, includes at least one special carachter,lowercase and one uppercaseletter"
   
  }
