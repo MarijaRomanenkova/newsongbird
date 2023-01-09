@@ -20,7 +20,7 @@ const initialState = {
   numberOfWrongAnswers: 0,
   score: 0,
   isCorrectAnswerChosen: false,
-  isGameOver: false,
+  isGameOver: true,
 };
 
 export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
