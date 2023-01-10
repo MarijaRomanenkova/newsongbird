@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 
 import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
-import { axiosInstance } from '../axiosInstance';
+import AxiosInstance from '../axiosInstance';
 
 const initialState = {
   birdsData: [],
@@ -20,12 +20,12 @@ const initialState = {
   numberOfWrongAnswers: 0,
   score: 0,
   isCorrectAnswerChosen: false,
-  isGameOver: true,
+  isGameOver: false,
 };
 
 export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
   try {
-    const response = await axiosInstance.get('');
+    const response = await AxiosInstance.get('');
     const dataWithUniqueIds = response.data.birds.map((array) =>
       array.map((item) => {
         if (typeof item === 'string') {
