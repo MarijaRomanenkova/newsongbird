@@ -4,10 +4,22 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 
+import {axiosInstance} from 'axiosInstance';
 import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
-import AxiosInstance from '../axiosInstance';
+
+const locale = navigator.language;
+let language;
+if (locale === 'ru-RU') {
+  language = 'Russian';
+} else if (locale === 'lt-LT') {
+  language = 'Lithuanian';
+} else {
+  language = 'English';
+}
 
 const initialState = {
+  locale,
+  language,
   birdsData: [],
   categoriesNames: [],
   isRequestLoading: true,
@@ -25,7 +37,7 @@ const initialState = {
 
 export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
   try {
-    const response = await AxiosInstance.get('');
+    const response = await axiosInstance.get('EN');
     const dataWithUniqueIds = response.data.birds.map((array) =>
       array.map((item) => {
         if (typeof item === 'string') {
@@ -54,16 +66,27 @@ const getCorrectAnswerID = (currentLevelArrayLength) => {
   return randomNumber;
 };
 
-
-
 export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
+    switchToOtherLanguage: (state, action) => {
+      if (action.payload === 'LT') {
+        state.language = 'Lithuanian';
+        state.locale = 'lt-LT';
+      } else if (action.payload === 'RU') {
+        state.language = 'Russian';
+        state.locale = 'ru-RU';
+      } else {
+        state.language = 'English';
+        state.locale = 'en_US';
+      }
+    },
     switchToNextLevel: (state) => {
-      state.currentLevel += 1;     
+      state.currentLevel += 1;
       state.correctAnswerID = getCorrectAnswerID(
-      state.birdsData[state.currentLevel].length);  
+        state.birdsData[state.currentLevel].length
+      );
       state.currentCategoryOptions = state.birdsData[state.currentLevel].map(
         (option) => {
           if (option.id === state.correctAnswerID) {
@@ -71,7 +94,7 @@ export const gameSlice = createSlice({
           }
           return { ...option, isTouched: false, isCorrectAnswer: false };
         }
-      );            
+      );
       state.isCorrectAnswerChosen = false;
       state.numberOfWrongAnswers = 0;
     },
@@ -88,7 +111,7 @@ export const gameSlice = createSlice({
     },
 
     answerWasChosen: (state, action) => {
-      state.numberOfWrongAnswers += 1; 
+      state.numberOfWrongAnswers += 1;
       state.currentCategoryOptions = state.currentCategoryOptions.map(
         (option) => {
           if (option.id === action.payload) {
@@ -99,7 +122,7 @@ export const gameSlice = createSlice({
       );
       state.currentChosenAnswer = state.currentCategoryOptions.find(
         (option) => option.id === action.payload
-      ); 
+      );
     },
 
     resetTheGame: (state) => {
@@ -113,7 +136,7 @@ export const gameSlice = createSlice({
           }
           return { ...option };
         }
-      );   
+      );
       state.currentChosenAnswer = {};
       state.numberOfWrongAnswers = 0;
       state.score = 0;
@@ -138,15 +161,15 @@ export const gameSlice = createSlice({
             }
             return { ...option };
           }
-        ); 
-        state.nextCategoryOptions = action.payload[state.currentLevel +1].map(
+        );
+        state.nextCategoryOptions = action.payload[state.currentLevel + 1].map(
           (option) => {
             if (option.id === state.correctAnswerID) {
               return { ...option, isCorrectAnswer: true };
             }
             return { ...option };
           }
-        );   
+        );
         state.isRequestLoading = false;
       })
       .addCase(getBirdsData.rejected, (state) => {
@@ -160,6 +183,7 @@ export const {
   correctAnswerChosen,
   answerWasChosen,
   resetTheGame,
+  switchToOtherLanguage,
 } = gameSlice.actions;
 export const selectCurrentLevel = (state) => state.game.currentLevel;
 export const selectScore = (state) => state.game.score;
@@ -175,5 +199,6 @@ export const selectCorrectAnswerObject = (state) =>
 export const selectCurrentChosenAnswer = (state) =>
   state.game.currentChosenAnswer;
 export const selectCorrectAnswerID = (state) => state.game.correctAnswerID;
+export const selectLanguage = (state) => state.game.language;
 
 export default gameSlice.reducer;

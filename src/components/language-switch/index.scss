@@ -1,0 +1,16 @@
+Language-switch{
+  &_Container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;      
+  }  
+  &_Dropdown {
+	  position: relative;
+	  left: 0;
+    display: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
