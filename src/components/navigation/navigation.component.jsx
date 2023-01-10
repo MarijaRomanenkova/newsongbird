@@ -5,6 +5,8 @@ import { FormattedMessage } from 'react-intl';
 import logoSourceSVG from 'assets/logoSourceSVG.svg';
 import Score from 'components/score/score.component';
 import { availableRoutesList } from 'routes/availableRoutesList';
+import LanguageSwitch from 'components/language-switch/index';
+
 
 import styles from './navigation.module.scss';
 
@@ -30,6 +32,7 @@ function Navigation() {
           <FormattedMessage id="signup" defaultMessage="Sign Up" />
         </NavLink>
       </div>
+      <LanguageSwitch />
       <Score />
     </nav>
   );

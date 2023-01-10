@@ -22,7 +22,7 @@ const Login = lazy(() => import('pages/login/login.component'));
 
 function App() {
   const language = useSelector(selectLanguage);
- 
+
   return (
     <IntlProvider messages={language}>
       <Navigation />

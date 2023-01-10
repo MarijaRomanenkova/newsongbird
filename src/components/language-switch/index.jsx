@@ -1,28 +1,42 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import {switchToOtherLanguage};
+import { switchToOtherLanguage } from 'store/gameSlice';
+import flagLTsourceSVG from 'assets/flagLTsourceSVG.svg';
+import flagRUsourceSVG from 'assets/flagRUsourceSVG.svg';
+import flagGBsourceSVG from 'assets/flagGBsourceSVG.svg';
 
-import styles from 'index';
+import styles from './index.module.scss';
 
-const LanguageSwitch = () => {
-  const languageList = [{ code: 'en', name: 'English'},
-  { code: 'ru', name: 'Russian'},
-  { code: 'lt', name: 'Lithuanian'}];  
+function LanguageSwitch() {
+  const languageList = [
+    { code: 'en', name: 'English', img: flagGBsourceSVG },
+    { code: 'ru', name: 'Russian', img: flagLTsourceSVG },
+    { code: 'lt', name: 'Lithuanian', img: flagRUsourceSVG },
+  ];
   const dispatch = useDispatch();
 
-  let handleChange = (event) => {
-    switchToOtherLanguage(event);  
+  const handleClick = (value) => {
+    dispatch(switchToOtherLanguage(value));
   };
 
   return (
-    <div className="Language-switch_Container">
-      <label htmlFor='language'> Select Langauge : </label>
-      <select id='language' onChange={handleChange} value={language}>
-        {languageList.map((option) => {
-          <option key={option} value={option.name}>{option.name}</option>;
-        })}
-      </select>
+    <div className={styles.LanguageSwitch_Container}>
+      {languageList.map((option) => (
+        <button
+          key={option.code}
+          value={option.code}
+          onClick={() => handleClick(option.value)}
+          type="button"
+          className={styles.LanguageSwitch_Flag}
+        >
+          <img
+            className={styles.LanguageSwitch_Img}
+            src={option.img}
+            alt={option.name}
+          />
+        </button>
+     ))}
     </div>
   );
 }
