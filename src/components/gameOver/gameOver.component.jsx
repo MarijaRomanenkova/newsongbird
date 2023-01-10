@@ -1,11 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import Confetti from 'react-confetti';
 
 import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
 import { resetTheGame, selectCurrentLevel, selectScore } from 'store/gameSlice';
 
 import styles from './gameOver.module.scss';
+
+const windowWidth = window.innerWidth;
+const windowHeight = window.innerHeight;
 
 function GameOver() {
   const currentLevel = useSelector(selectCurrentLevel);
@@ -16,6 +20,7 @@ function GameOver() {
 
   return (
     <div className={styles.GameOver_Container}>
+      <Confetti width={windowWidth} height={windowHeight} />
       <h1 className={styles.Gamever_Title}>
         <FormattedMessage
           id="game-over_title"
@@ -26,7 +31,10 @@ function GameOver() {
         <FormattedMessage
           id="game-over_text"
           defaultMessage="You got {score} of {MAXIMUM_TOTAL_SCORE} possible point!"
-          values={{ score: <b>{score}</b> , MAXIMUM_TOTAL_SCORE: <b>{MAXIMUM_TOTAL_SCORE}</b> }}
+          values={{
+            score: <b>{score}</b>,
+            MAXIMUM_TOTAL_SCORE: <b>{MAXIMUM_TOTAL_SCORE}</b>,
+          }}
         />
       </h5>
 
