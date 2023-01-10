@@ -4,22 +4,12 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 
-import {axiosInstance} from 'axiosInstance';
+import { axiosInstance } from 'axiosInstance'
 import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
 
-const locale = navigator.language;
-let language;
-if (locale === 'ru-RU') {
-  language = 'Russian';
-} else if (locale === 'lt-LT') {
-  language = 'Lithuanian';
-} else {
-  language = 'English';
-}
 
-const initialState = {
-  locale,
-  language,
+const initialState = {   
+  language: 'English',
   birdsData: [],
   categoriesNames: [],
   isRequestLoading: true,
@@ -35,9 +25,12 @@ const initialState = {
   isGameOver: false,
 };
 
-export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
+
+
+export const getBirdsData  = 
+  createAsyncThunk('game/getBirdsData', async () => {    
   try {
-    const response = await axiosInstance.get('EN');
+    const response = await axiosInstance('/dataen.json');
     const dataWithUniqueIds = response.data.birds.map((array) =>
       array.map((item) => {
         if (typeof item === 'string') {
@@ -57,30 +50,21 @@ export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
   }
 });
 
-const getCorrectAnswerID = (currentLevelArrayLength) => {
+function getCorrectAnswerID(currentLevelArrayLength) {
   const maximumNumber = currentLevelArrayLength;
   const minimumNumber = 1;
-  const randomNumber =
-    Math.floor(Math.random() * (maximumNumber - minimumNumber + 1)) +
+  const randomNumber = Math.floor(Math.random() * (maximumNumber - minimumNumber + 1)) +
     minimumNumber;
   return randomNumber;
-};
+}
 
 export const gameSlice = createSlice({
   name: 'game',
   initialState,
-  reducers: {
+  reducers: {    
     switchToOtherLanguage: (state, action) => {
-      if (action.payload === 'LT') {
-        state.language = 'Lithuanian';
-        state.locale = 'lt-LT';
-      } else if (action.payload === 'RU') {
-        state.language = 'Russian';
-        state.locale = 'ru-RU';
-      } else {
-        state.language = 'English';
-        state.locale = 'en_US';
-      }
+      state.code = action.payload;
+      state.birdsData = getBirdsData(action.payload);
     },
     switchToNextLevel: (state) => {
       state.currentLevel += 1;
