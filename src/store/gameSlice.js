@@ -6,11 +6,15 @@ import { toast } from 'react-toastify';
 
 import { axiosInstance } from 'axiosInstance'
 import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
+import { languageList } from 'lang/languageList';
 
 
 const initialState = {   
-  language: 'English',
+  language: 'Lithuanian',
+  locale: 'lt-LT',
+  url: '/datalt.json',
   birdsData: [],
+  languageList,
   categoriesNames: [],
   isRequestLoading: true,
   currentLevel: 1,
@@ -26,11 +30,11 @@ const initialState = {
 };
 
 
-
 export const getBirdsData  = 
   createAsyncThunk('game/getBirdsData', async () => {    
-  try {
-    const response = await axiosInstance('/dataen.json');
+  try {    
+    const response = await axiosInstance(initialState.url);
+    console.log('url', initialState.url);
     const dataWithUniqueIds = response.data.birds.map((array) =>
       array.map((item) => {
         if (typeof item === 'string') {
@@ -63,8 +67,11 @@ export const gameSlice = createSlice({
   initialState,
   reducers: {    
     switchToOtherLanguage: (state, action) => {
-      state.code = action.payload;
-      state.birdsData = getBirdsData(action.payload);
+      state.locale = action.payload;
+      state.language = state.languageList.find(
+        (option) => option.locale === action.payload).name;
+      state.url = state.languageList.find(
+        (option) => option.locale === action.payload).url;
     },
     switchToNextLevel: (state) => {
       state.currentLevel += 1;
@@ -184,5 +191,7 @@ export const selectCurrentChosenAnswer = (state) =>
   state.game.currentChosenAnswer;
 export const selectCorrectAnswerID = (state) => state.game.correctAnswerID;
 export const selectLanguage = (state) => state.game.language;
+export const selectLocale = (state) => state.game.locale;
 
 export default gameSlice.reducer;
+

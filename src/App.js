@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import Navigation from 'components/navigation/navigation.component';
 import NotFound from 'pages/notfound/notfound.component';
 import Loader from 'components/loader/loader.component';
-import { selectLanguage } from 'store/gameSlice';
+import { selectLocale } from 'store/gameSlice';
 import English from 'lang/en.json';
 import Lithuanian from 'lang/lt.json';
 import Russian from 'lang/ru.json';
@@ -21,10 +21,18 @@ const SignUp = lazy(() => import('pages/signup/signup'));
 const Login = lazy(() => import('pages/login/login.component'));
 
 function App() {
-  const language = useSelector(selectLanguage);
+  let messagesLanguage;
+  const locale = useSelector(selectLocale);
+  if (locale === 'lt-LT') {
+    messagesLanguage = Lithuanian;
+  } else if (locale === 'ru-RU') {
+    messagesLanguage = Russian;
+  } else {
+    messagesLanguage = English;
+  }
 
   return (
-    <IntlProvider messages={language}>
+    <IntlProvider locale={locale} messages={messagesLanguage}>
       <Navigation />
       <Routes>
         <Route
