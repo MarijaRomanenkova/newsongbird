@@ -11,22 +11,21 @@
     border: 1px solid $dark-mode-border;
     border-radius: 0.4rem;
     cursor: pointer;
-  }  
- 
+  }
 
   &_Flag {
 	 padding: 0 0.2rem;
    margin: 0;
    border: none;
-   background-color: transparent;  
-   
+   background-color: transparent;     
   }
+
   &_Img {
     max-height:100%;
     opacity:0.8;
   }
+
   &_Img:hover {
     opacity: 1;
-  }
-  
+  }  
 }

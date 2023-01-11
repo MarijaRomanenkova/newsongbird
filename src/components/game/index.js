@@ -5,7 +5,7 @@ import {
   selectIsGameOver,
   selectLanguage,
   getBirdsData,
-  selectURL
+  selectURL,
 } from 'store/gameSlice';
 
 import Categories from 'components/categories/categories.component';

@@ -28,7 +28,6 @@ const initialState = {
   isGameOver: false,
 };
 
-
 export const getBirdsData  = 
   createAsyncThunk('game/getBirdsData', async (url = initialState.url) => {    
   try {    
@@ -150,8 +149,12 @@ export const gameSlice = createSlice({
             }
             return { ...option };
           }
-        );
-        state.nextCategoryOptions = action.payload[state.currentLevel + 1].map(
+        );        
+        if(state.currentLevel === action.payload.length){
+           state.nextCategoryOptions =  action.payload[1]
+        } 
+          state.nextCategoryOptions = 
+        action.payload[state.currentLevel + 1].map(
           (option) => {
             if (option.id === state.correctAnswerID) {
               return { ...option, isCorrectAnswer: true };
@@ -193,4 +196,3 @@ export const selectLocale = (state) => state.game.locale;
 export const selectURL = (state) => state.game.url;
 
 export default gameSlice.reducer;
-

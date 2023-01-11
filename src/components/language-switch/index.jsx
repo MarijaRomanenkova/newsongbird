@@ -2,14 +2,12 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { switchToOtherLanguage } from 'store/gameSlice';
-
 import { languageList } from 'lang/languageList';
 
 import styles from './index.module.scss';
 
 function LanguageSwitch() {
   const dispatch = useDispatch();
-
   const handleClick = (locale) => {
     dispatch(switchToOtherLanguage(locale));
   };
