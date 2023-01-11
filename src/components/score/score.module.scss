@@ -5,10 +5,9 @@
   @include toRem(font-size, 18);
   font-weight: 700;
   color: $soft-white;
-  padding: 0 12px;
+  padding: 0;
   max-width: 30%;
-  @include mini {
-    padding: 0;
+  @include mini {    
     max-width: 100%;
   }
 }

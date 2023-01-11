@@ -85,7 +85,7 @@
       },
       {
         "id": 4,
-        "name": "song thrush",
+        "name": "Song Thrush",
         "species": "Turdus philomelos",
         "description": "Drozd is the best singer from the sparrow squad. The song consists only of beautiful sonorous whistles and short trills. Most often it can be heard in the morning and evening. Thrushes sing during the entire nesting period.",
         "image": "https://live.staticflickr.com/65535/48979125763_e2534f54bd.jpg",
@@ -127,7 +127,7 @@
       },
       {
         "id": 3,
-        "name": "dove",
+        "name": "Dove",
         "species": "Streptopelia turtur",
         "description": "The dove lives in mixed and broad-leaved forests, as well as in city parks and towns. Birds often choose places of life next to humans and easily get used to people. Due to the melodic pleasant singing of turtle doves, they are often bred at home.",
         "image": "https://live.staticflickr.com/65535/48063004977_84252f9ceb.jpg",
@@ -161,7 +161,7 @@
     [
       {
         "id": 1,
-        "name": "lark",
+        "name": "Lark",
         "species": "Alauda arvensis",
         "description": "Larks are migratory birds. From the beginning of September, they fly south. They return at the beginning of March, regardless of whether the snow has melted or not. By the arrival of the larks, they determined the onset of spring and the time when it was time to plow the land.",
         "image": "https://live.staticflickr.com/65535/47105096764_f751fba568.jpg",
@@ -193,7 +193,7 @@
       },
       {
         "id": 5,
-        "name": "waxwing",
+        "name": "Waxwing",
         "species": "Bombicilla garrulus",
         "description": "The waxwing has very tenacious claws, which helps the bird to stay on the branches and peck at the berries that are the hardest to get. During courtship, the male offers the female a berry or other treat. If the female accepts it, then the birds create a pair.",
         "image": "https://live.staticflickr.com//65535//49367433842_1b06da0e6b.jpg",

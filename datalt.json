@@ -193,7 +193,7 @@
       },
       {
         "id": 5,
-        "name": "vaškas",
+        "name": "Vaškas",
         "species": "Bombicilla garrulus",
         "description": "Vaškinis sparnelis turi labai atkaklius nagus, kurie padeda paukščiui išsilaikyti ant šakų ir pešti sunkiausiai gaunamas uogas. Piršlybų metu patinas siūlo patelei uogų ar kitokio skanėsto. Jei patelė tai priima, tada paukščiai sukuria porą.",
         "image": "https://live.staticflickr.com//65535//49367433842_1b06da0e6b.jpg",
@@ -279,7 +279,7 @@
         "id": 3,
         "name": "Petrelis",
         "species": "puffinus griseus",
-        "description": "Žiedlapių dydžiai yra skirtingi. Mažiausios iš jų yra iki 25 cm ilgio, didžiausios - iki 1 m, sparnų plotis apie 2 m. Manoma, kad žirnelio pasirodymas ore pranašauja audrą, nes pats žuvies pavadinimas. paukštis nurodo.",
+        "description": "Petrelių dydžiai yra skirtingi. Mažiausios iš jų yra iki 25 cm ilgio, didžiausios - iki 1 m, sparnų plotis apie 2 m. Manoma, kad žirnelio pasirodymas ore pranašauja audrą, nes pats žuvies pavadinimas. paukštis nurodo.",
         "image": "https://live.staticflickr.com//607//22136056020_935cb113f9.jpg",
         "audio": "https://www.xeno-canto.org/sounds/uploaded/XQEVNREHJY/SHEARWATER%20Christmas%20Island_04_Motu_Isla%20de%20Pascua-Easter%20Island_CH_4MAR03_Alvaro%20Jaramillo.mp3"
       },

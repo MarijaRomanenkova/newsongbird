@@ -13,17 +13,30 @@
       padding: 1rem 2rem;
     }
     @include mini {
-      display: block;
+     flex-direction:column-reverse;
+     align-items: center;
       text-align: center;
       margin: 0 auto;
     }
   }
 
   &_Link_Wrapper {
-    margin-left: 2rem;
-    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 1rem;
+    margin-bottom: 12px;
+    align-items: center;
     @include mini {
       margin: auto;
+      justify-content: space-between;      
+      width: 100%;
+      margin-bottom:0;
+    }
+  }
+
+  &_Link_InnerWrapper { 
+    @include mini {      
+          
     }
   }
 
@@ -38,12 +51,24 @@
       font-size: 1rem;
     }
     @include mini {
-      padding: 3px 10px;
-    }
+      padding: 3px 5px;
+    }    
   }
 
   &_Link:active {
     color: yellow;
+  }
+
+  &_LanguageSwitch_Wrapper {
+    margin-left: 15px;
+    @include mini {
+      margin-left: 10px;
+    }   
+    
+  }
+
+  &_Score_Wrapper {    
+    white-space: nowrap;          
   }
 }
 
