@@ -13,13 +13,13 @@ export const languageList = [
   {
     locale: 'ru-RU',
     name: 'Russian',
-    img: flagLTsourceSVG,
+    img: flagRUsourceSVG,
     url: '/dataru.json',
   },
   {
     locale: 'lt-LT',
     name: 'Lithuanian',
-    img: flagRUsourceSVG,
+    img: flagLTsourceSVG,
     url: '/datalt.json',
   },
 ];

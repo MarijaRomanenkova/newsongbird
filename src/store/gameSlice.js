@@ -8,11 +8,10 @@ import { axiosInstance } from 'axiosInstance'
 import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
 import { languageList } from 'lang/languageList';
 
-
 const initialState = {   
-  language: 'Lithuanian',
-  locale: 'lt-LT',
-  url: '/datalt.json',
+  language: 'English',
+  locale: 'en',
+  url: '/dataen.json',
   birdsData: [],
   languageList,
   categoriesNames: [],
@@ -31,10 +30,9 @@ const initialState = {
 
 
 export const getBirdsData  = 
-  createAsyncThunk('game/getBirdsData', async () => {    
+  createAsyncThunk('game/getBirdsData', async (url = initialState.url) => {    
   try {    
-    const response = await axiosInstance(initialState.url);
-    console.log('url', initialState.url);
+    const response = await axiosInstance(url);
     const dataWithUniqueIds = response.data.birds.map((array) =>
       array.map((item) => {
         if (typeof item === 'string') {
@@ -71,7 +69,7 @@ export const gameSlice = createSlice({
       state.language = state.languageList.find(
         (option) => option.locale === action.payload).name;
       state.url = state.languageList.find(
-        (option) => option.locale === action.payload).url;
+        (option) => option.locale === action.payload).url.toString();
     },
     switchToNextLevel: (state) => {
       state.currentLevel += 1;
@@ -192,6 +190,7 @@ export const selectCurrentChosenAnswer = (state) =>
 export const selectCorrectAnswerID = (state) => state.game.correctAnswerID;
 export const selectLanguage = (state) => state.game.language;
 export const selectLocale = (state) => state.game.locale;
+export const selectURL = (state) => state.game.url;
 
 export default gameSlice.reducer;
 

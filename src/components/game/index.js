@@ -5,6 +5,7 @@ import {
   selectIsGameOver,
   selectLanguage,
   getBirdsData,
+  selectURL
 } from 'store/gameSlice';
 
 import Categories from 'components/categories/categories.component';
@@ -15,9 +16,10 @@ function Game() {
   const dispatch = useDispatch();
   const isGameOver = useSelector(selectIsGameOver);
   const language = useSelector(selectLanguage);
+  const url = useSelector(selectURL);
 
   useEffect(() => {
-    dispatch(getBirdsData());
+    dispatch(getBirdsData(url));
   }, [language]);
 
   return (
