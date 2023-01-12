@@ -19,7 +19,7 @@
   "signup-link": "mūsų paslaugai taikomomis sąlygomis",
   "signup-message-2": "ir patvirtinate, kad jūsų asmeniniai duomenys bus naudojami pagal mūsų privatumo politiką leidžiantį siusti jums el. laiškus ir pranešimus apie darbus, pramonės naujienos, naujus produktus ir susijusias temas.",
   "email-validation": "Įveskite galiojantį el. pašto adresą",
-  "email-riminder-error": "jūsų slaptažodis turi būti mažiausiai 5 simbolių ilgio, jame yra bent vienas specialiųsis simbolis, mažosios ir viena didžioji raidė",
+  "email-reminder-error": "jūsų slaptažodis turi būti mažiausiai 5 simbolių ilgio, jame yra bent vienas specialiųsis simbolis, mažosios ir viena didžioji raidė",
   "email-math-error": "Slaptažodžiai turi sutapti",
   "password-creation-error": "Sukurkite sudėtingesnį slaptažodį",
   "accept-terms-error": "Prašome sutikti su paslaugos tiekimo sąlygomis"

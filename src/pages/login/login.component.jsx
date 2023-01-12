@@ -88,7 +88,7 @@ function Login() {
                 {(msg) => (
                   <FormattedMessage
                     id={msg}
-                    defaultMessage="Riminder your password is at least 5 charecters long, includes at least one special character,lowercase and one uppercaseletter"
+                    defaultMessage="Reminder your password is at least 5 charecters long, includes at least one special character,lowercase and one uppercaseletter"
                   />
                 )}
               </ErrorMessage>

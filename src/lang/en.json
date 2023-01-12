@@ -19,7 +19,7 @@
   "signup-link": "terms and conditions",
   "signup-message-2": "applicable to our sevice and acknowledge that your personal data will be used in accordance with our privacy policy and you will receive emails and communications about jobs,industry news, new products and related topics.",
   "email-validation": "Please enter valid email",
-  "email-riminder-error": "Riminder your password is at least 5 charecters long, includes at least one special character,lowercase and one uppercaseletter",
+  "email-reminder-error": "Riminder your password is at least 5 charecters long, includes at least one special character,lowercase and one uppercaseletter",
   "email-math-error": "Passwords must match",
   "password-creation-error": "Please create a stronger password",
   "accept-terms-error": "Please accept terms"

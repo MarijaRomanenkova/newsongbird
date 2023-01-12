@@ -18,7 +18,7 @@ export const LoginSchema = yup.object().shape({
   password: yup
     .string()
     .min(5)
-    .matches(passwordRules, { message: 'email-riminder-error' })
+    .matches(passwordRules, { message: 'email-reminder-error' })
     .required(),
 });
 
