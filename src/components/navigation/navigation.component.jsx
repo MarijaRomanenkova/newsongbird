@@ -9,7 +9,7 @@ import LanguageSwitch from 'components/language-switch/index';
 
 import styles from './navigation.module.scss';
 
-function Navigation() {
+function Navigation({ handleClick }) {
   return (
     <nav className={styles.Navigation_Container}>
       <NavLink to={availableRoutesList.HOME}>
@@ -38,7 +38,7 @@ function Navigation() {
           </NavLink>
         </div>
         <div className={styles.Navigation_LanguageSwitch_Wrapper}>
-          <LanguageSwitch />
+          <LanguageSwitch handleClick={handleClick} />
         </div>
       </div>
     </nav>

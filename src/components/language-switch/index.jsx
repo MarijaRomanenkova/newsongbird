@@ -1,32 +1,21 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 
-import { switchToOtherLanguage } from 'store/gameSlice';
 import { languageList } from 'lang/languageList';
 
 import styles from './index.module.scss';
 
-function LanguageSwitch() {
-  const dispatch = useDispatch();
-  const handleClick = (locale) => {
-    dispatch(switchToOtherLanguage(locale));
-  };
-
+function LanguageSwitch({ handleClick }) {
   return (
     <div className={styles.LanguageSwitch_Container}>
-      {languageList.map((option) => (
+      {languageList.map(({ name, img, code }) => (
         <button
-          key={option.locale}
-          value={option.locale}
-          onClick={() => handleClick(option.locale)}
+          key={code}
+          value={code}
+          onClick={() => handleClick(code)}
           type="button"
           className={styles.LanguageSwitch_Flag}
         >
-          <img
-            className={styles.LanguageSwitch_Img}
-            src={option.img}
-            alt={option.name}
-          />
+          <img className={styles.LanguageSwitch_Img} src={img} alt={name} />
         </button>
       ))}
     </div>

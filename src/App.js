@@ -1,16 +1,15 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';
 import { ToastContainer, Zoom } from 'react-toastify';
-import { useSelector } from 'react-redux';
 
 import Navigation from 'components/navigation/navigation.component';
 import NotFound from 'pages/notfound/notfound.component';
 import Loader from 'components/loader/loader.component';
-import { selectLocale } from 'store/gameSlice';
-import English from 'lang/en.json';
-import Lithuanian from 'lang/lt.json';
-import Russian from 'lang/ru.json';
+
+import { LOCALES } from 'lang/locales';
+import { messages } from 'lang/messages';
+
 import { availableRoutesList } from './routes/availableRoutesList';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,19 +19,28 @@ const SignUp = lazy(() => import('pages/signup/signup'));
 const Login = lazy(() => import('pages/login/login.component'));
 
 function App() {
-  let messagesLanguage;
-  const locale = useSelector(selectLocale);
-  if (locale === 'lt-LT') {
-    messagesLanguage = Lithuanian;
-  } else if (locale === 'ru-RU') {
-    messagesLanguage = Russian;
-  } else {
-    messagesLanguage = English;
-  }
+  const locale = LOCALES.ENGLISH;
+  // function getInitialLocal() {
+  //   // getting stored items
+  //   const savedLocale = localStorage.getItem("locale");
+  //   return savedLocale || LOCALES.ENGLISH;
+  // }
+  const [currentLocale, setCurrentLocale] = useState(locale);
+  const handleClick = (code) => {
+    // eslint-disable-next-line no-console
+    console.log('clickTest');
+    setCurrentLocale(code);
+  };
+
+
 
   return (
-    <IntlProvider locale={locale} messages={messagesLanguage}>
-      <Navigation />
+    <IntlProvider
+      locale={currentLocale}
+      messages={messages[currentLocale]}
+      defaultLocale={LOCALES.ENGLISH}
+    >
+      <Navigation handleClick={handleClick} />
       <Routes>
         <Route
           path={availableRoutesList.HOME}
