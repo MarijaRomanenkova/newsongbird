@@ -12,14 +12,14 @@ function NotFound() {
       <div className={styles.NotFound_Wrapper}>
         <p className={styles.NotFound_Text}>
           <FormattedMessage
-            id="notFound"
+            id="not-found"
             defaultMessage="Ooops... Page not found"
           />
         </p>
         <Link to={availableRoutesList.HOME} className={styles.NotFound_Link}>
           <h1>
             <FormattedMessage
-              id="notFound_link"
+              id="not-found-link"
               defaultMessage="Go to Homepage"
             />
           </h1>

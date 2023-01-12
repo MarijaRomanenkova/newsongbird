@@ -23,13 +23,13 @@ function GameOver() {
       <Confetti width={windowWidth} height={windowHeight} />
       <h1 className={styles.Gamever_Title}>
         <FormattedMessage
-          id="game-over_title"
+          id="game-over-title"
           defaultMessage="Congratulations!"
         />
       </h1>
       <h5 className={styles.GameOver_Text}>
         <FormattedMessage
-          id="game-over_text"
+          id="game-over-text"
           defaultMessage="You got {score} of {MAXIMUM_TOTAL_SCORE} possible point!"
           values={{
             score: <b>{score}</b>,
@@ -42,7 +42,7 @@ function GameOver() {
         <>
           <h5 className={styles.GameOver_Text}>
             <FormattedMessage
-              id="game-over_text2"
+              id="game-over-text-2"
               defaultMessage="Would you like to try again? "
             />
           </h5>
@@ -52,7 +52,7 @@ function GameOver() {
             onClick={() => dispatch(resetTheGame())}
           >
             <FormattedMessage
-              id="game-over_button"
+              id="game-over-button"
               defaultMessage=" Try again"
             />
           </button>

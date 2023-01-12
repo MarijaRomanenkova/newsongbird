@@ -7,6 +7,7 @@
   color: $soft-white;
   padding: 0;
   max-width: 30%;
+  
   @include mini {    
     max-width: 100%;
   }

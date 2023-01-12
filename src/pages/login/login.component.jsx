@@ -70,7 +70,7 @@ function Login() {
 
               <label htmlFor="password" className={styles.Form_Label}>
                 <FormattedMessage
-                  id="form_password"
+                  id="form-password"
                   defaultMessage="Password"
                 />
               </label>
@@ -85,7 +85,12 @@ function Login() {
                 }
               />
               <ErrorMessage name="password" className={styles.Error}>
-                {(msg) => (<FormattedMessage id={msg} defaultMessage='Riminder your password is at least 5 charecters long, includes at least one special character,lowercase and one uppercaseletter'/>)}
+                {(msg) => (
+                  <FormattedMessage
+                    id={msg}
+                    defaultMessage="Riminder your password is at least 5 charecters long, includes at least one special character,lowercase and one uppercaseletter"
+                  />
+                )}
               </ErrorMessage>
 
               <button

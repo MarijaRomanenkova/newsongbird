@@ -23,7 +23,7 @@ function Navigation() {
       </div>
 
       <div className={styles.Navigation_Link_Wrapper}>
-        <div className={styles.Navigation_Link_InnerWrapper}>
+        <div>
           <NavLink
             className={styles.Navigation_Link}
             to={availableRoutesList.LOGIN}

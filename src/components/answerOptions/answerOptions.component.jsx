@@ -90,14 +90,14 @@ function AnswerOptions() {
           <div className={styles.AnswerOptionDetails_Dummy}>
             <h4>
               <FormattedMessage
-                id="answer-option-details_dummy"
+                id="game-rules-text"
                 defaultMessage="Listen to the song."
                 className={styles.AnswerOptionDetails_Dummy_Text}
               />
             </h4>
             <h4>
               <FormattedMessage
-                id="answer-option-details_dummy2"
+                id="game-rules-text-2"
                 defaultMessage="Select answer. "
                 className={styles.AnswerOptionDetails_Dummy_Text}
               />

@@ -22,7 +22,7 @@ function NextButton({
       onClick={handleNextButtonClick}
       disabled={isNextButtonDisabled}
     >
-      <FormattedMessage id="nextLevel" defaultMessage=" Next Level" />
+      <FormattedMessage id="next-level" defaultMessage=" Next Level" />
     </button>
   );
 }

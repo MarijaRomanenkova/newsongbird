@@ -10,7 +10,7 @@ export const LoginSchema = yup.object().shape({
     .string()
     .email(
       <FormattedMessage
-        id="email_validation"
+        id="email-validation"
         defaultMessage="Please enter valid email"
       />
     )
@@ -18,7 +18,7 @@ export const LoginSchema = yup.object().shape({
   password: yup
     .string()
     .min(5)
-    .matches(passwordRules, { message: 'email_riminder-error' })
+    .matches(passwordRules, { message: 'email-riminder-error' })
     .required(),
 });
 
@@ -27,7 +27,7 @@ export const SignUpSchema = yup.object().shape({
     .string()
     .email(
       <FormattedMessage
-        id="email_validation"
+        id="email-validation"
         defaultMessage="Please enter valid email"
       />
     )
@@ -39,7 +39,7 @@ export const SignUpSchema = yup.object().shape({
     .required('Required'),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref('password'), null], 'email-math_error')
+    .oneOf([yup.ref('password'), null], 'email-math-error')
     .required('Required'),
-  acceptTerms: yup.boolean().oneOf([true], 'accept-terms_error'),
+  acceptTerms: yup.boolean().oneOf([true], 'accept-terms-error'),
 });

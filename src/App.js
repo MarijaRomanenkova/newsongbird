@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { IntlProvider } from 'react-intl';

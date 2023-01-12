@@ -72,7 +72,7 @@ function SignUpForm() {
 
               <label htmlFor="password" className={styles.Form_Label}>
                 <FormattedMessage
-                  id="form_password"
+                  id="form-password"
                   defaultMessage="Password"
                 />
               </label>
@@ -95,15 +95,15 @@ function SignUpForm() {
                 )}
               </ErrorMessage>
 
-              <label htmlFor="confirmPassword" className={styles.Form_Label}>
+              <label htmlFor="confirm-password" className={styles.Form_Label}>
                 <FormattedMessage
-                  id="form_password-confirmation"
+                  id="form-password-confirmation"
                   defaultMessage="Password"
                 />
               </label>
               <Field
                 name="confirmPassword"
-                id="confirmPassword"
+                id="confirm-password"
                 type="password"
                 className={
                   errors.confirmPassword && touched.confirmPassword
@@ -130,26 +130,26 @@ function SignUpForm() {
               </ErrorMessage>
               <div className={styles.Checkbox_Container}>
                 <Field
-                  name="acceptTerms"
+                  name="accept-terms"
                   control="checkbox"
                   type="checkbox"
-                  id="acceptTerms"
+                  id="accept-terms"
                   className="styles.Checkbox_Container_Box"
                 />
 
-                <label htmlFor="acceptTerms" className={styles.Checkbox_Label}>
+                <label htmlFor="accept-terms" className={styles.Checkbox_Label}>
                   <FormattedMessage
-                    id="signup_message"
+                    id="signup-message"
                     defaultMessage="By creating an account you agree to the"
                   />{' '}
                   <a href="#" className={styles.Checkbox_Label_Link}>
                     <FormattedMessage
-                      id="signup_link"
+                      id="signup-link"
                       defaultMessage="terms and conditions"
                     />
                   </a>{' '}
                   <FormattedMessage
-                    id="signup_message2"
+                    id="signup-message-2"
                     defaultMessage="applicable to our sevice and acknowledge that your personal data will be used in accordance with our privacy policy and you will receive emails and communications about jobs, industry news, new products and related topics."
                   />
                 </label>
