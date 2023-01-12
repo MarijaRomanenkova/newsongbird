@@ -19,20 +19,15 @@ const SignUp = lazy(() => import('pages/signup/signup'));
 const Login = lazy(() => import('pages/login/login.component'));
 
 function App() {
-  const locale = LOCALES.ENGLISH;
-  // function getInitialLocal() {
-  //   // getting stored items
-  //   const savedLocale = localStorage.getItem("locale");
-  //   return savedLocale || LOCALES.ENGLISH;
-  // }
-  const [currentLocale, setCurrentLocale] = useState(locale);
+  function getInitialLocal() {
+    const savedLocale = localStorage.getItem('locale');
+    return savedLocale || LOCALES.ENGLISH;
+  }
+  const [currentLocale, setCurrentLocale] = useState(getInitialLocal());
   const handleClick = (code) => {
-    // eslint-disable-next-line no-console
-    console.log('clickTest');
     setCurrentLocale(code);
+    localStorage.setItem('locale', code);
   };
-
-
 
   return (
     <IntlProvider

@@ -6,14 +6,9 @@ import { toast } from 'react-toastify';
 
 import { axiosInstance } from 'axiosInstance'
 import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
-import { languageList } from 'lang/languageList';
 
-const initialState = {   
-  language: 'English',
-  locale: 'en',
-  url: '/dataen.json',
-  birdsData: [],
-  languageList,
+const initialState = {
+  birdsData: [],  
   categoriesNames: [],
   isRequestLoading: true,
   currentLevel: 1,
@@ -29,7 +24,7 @@ const initialState = {
 };
 
 export const getBirdsData  = 
-  createAsyncThunk('game/getBirdsData', async (url = initialState.url) => {    
+  createAsyncThunk('game/getBirdsData', async (url) => {    
   try {    
     const response = await axiosInstance(url);
     const dataWithUniqueIds = response.data.birds.map((array) =>
@@ -62,14 +57,7 @@ function getCorrectAnswerID(currentLevelArrayLength) {
 export const gameSlice = createSlice({
   name: 'game',
   initialState,
-  reducers: {    
-    switchToOtherLanguage: (state, action) => {
-      state.locale = action.payload;
-      state.language = state.languageList.find(
-        (option) => option.locale === action.payload).name;
-      state.url = state.languageList.find(
-        (option) => option.locale === action.payload).url.toString();
-    },
+  reducers: { 
     switchToNextLevel: (state) => {
       state.currentLevel += 1;
       state.correctAnswerID = getCorrectAnswerID(
@@ -174,8 +162,7 @@ export const {
   switchToNextLevel,
   correctAnswerChosen,
   answerWasChosen,
-  resetTheGame,
-  switchToOtherLanguage,
+  resetTheGame,  
 } = gameSlice.actions;
 export const selectCurrentLevel = (state) => state.game.currentLevel;
 export const selectScore = (state) => state.game.score;
@@ -191,8 +178,5 @@ export const selectCorrectAnswerObject = (state) =>
 export const selectCurrentChosenAnswer = (state) =>
   state.game.currentChosenAnswer;
 export const selectCorrectAnswerID = (state) => state.game.correctAnswerID;
-export const selectLanguage = (state) => state.game.language;
-export const selectLocale = (state) => state.game.locale;
-export const selectURL = (state) => state.game.url;
 
 export default gameSlice.reducer;
