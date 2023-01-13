@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 import {
   selectCurrentLevel,
   selectCategoriesNames,
-} from 'widgets/game/gameSlice';
+} from 'features/game/gameSlice';
 
-import styles from './categories.module.scss';
+import styles from './index.module.scss';
 
 function Categories() {
   const currentLevel = useSelector(selectCurrentLevel);

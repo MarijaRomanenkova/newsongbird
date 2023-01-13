@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Game from 'widgets/game/game/index';
-import Loader from 'shared/ui/loader/loader.component';
+import Game from 'features/game/index';
+import Loader from 'shared/ui/loader';
 import {
   selectIsQuestionaryDataLoading,
   selectCorrectAnswerID,
   getBirdsData,
-} from 'widgets/game/gameSlice';
+} from 'features/game/gameSlice';
 
-import styles from './home.module.scss';
+import styles from './index.module.scss';
 
 function Home() {
   const isQuestionaryDataLoading = useSelector(selectIsQuestionaryDataLoading);

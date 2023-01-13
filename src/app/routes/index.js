@@ -2,11 +2,11 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer, Zoom } from 'react-toastify';
 
-import Home from 'pages/home/home.component';
-import Navigation from 'features/navigation/navigation.component';
-import Login from 'pages/login/login.component';
-import SignUp from 'pages/signup/signup';
-import NotFound from 'pages/notfound/notfound.component';
+import Home from 'pages/home';
+import Navigation from 'features/navigation';
+import Login from 'pages/login';
+import SignUp from 'pages/signup';
+import NotFound from 'pages/notfound';
 import { availableRoutesList } from 'app/routes/available-routes-list';
 
 import 'react-toastify/dist/ReactToastify.css';

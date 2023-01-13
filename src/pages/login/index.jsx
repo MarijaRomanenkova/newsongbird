@@ -5,10 +5,10 @@ import { NavLink } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
 
-import { LoginSchema } from 'schemas/index';
 import { availableRoutesList } from 'app/routes/available-routes-list';
+import { LoginSchema } from './schema';
 
-import styles from './login.module.scss';
+import styles from './index.module.scss';
 
 function Login() {
   return (

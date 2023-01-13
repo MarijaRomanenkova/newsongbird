@@ -6,10 +6,10 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { SignUpSchema } from 'schemas/index';
+import { SignUpSchema } from 'pages/signup/schema';
 import { availableRoutesList } from 'app/routes/available-routes-list';
 
-import styles from './signup.module.scss';
+import styles from './index.module.scss';
 
 function SignUpForm() {
   return (

@@ -2,10 +2,10 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import logoSourceSVG from 'shared/assets/logoSourceSVG.svg';
-import Score from 'features/score/score.component';
+import Score from 'features/game/score';
 import { availableRoutesList } from 'app/routes/available-routes-list';
 
-import styles from './navigation.module.scss';
+import styles from './index.module.scss';
 
 function Navigation() {
   return (

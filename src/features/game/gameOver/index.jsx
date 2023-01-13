@@ -2,10 +2,14 @@ import React from 'react';
 import Confetti from 'react-confetti';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { MAXIMUM_SCORE_PER_LEVEL } from 'widgets/game/gameSettings/gameSettings';
-import { resetTheGame, selectCurrentLevel, selectScore } from 'widgets/game/gameSlice';
+import { MAXIMUM_SCORE_PER_LEVEL } from 'features/game/gameSettings';
+import {
+  resetTheGame,
+  selectCurrentLevel,
+  selectScore,
+} from 'features/game/gameSlice';
 
-import styles from './gameOver.module.scss';
+import styles from './index.module.scss';
 
 function GameOver() {
   const currentLevel = useSelector(selectCurrentLevel);

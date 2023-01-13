@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import Categories from 'features/categories/categories.component';
-import CorrectAnswer from 'features/correctAnswer/correctAnswer.component';
-import AnswerOptions from 'features/answerOptions/answerOptions.component';
-import GameOver from 'features/gameOver/gameOver.component';
-import { selectIsGameOver } from 'widgets/game/gameSlice';
+import Categories from 'features/game/categories';
+import CorrectAnswer from 'features/game/correctAnswer';
+import AnswerOptions from 'features/game/answerOptions';
+import GameOver from 'features/game/gameOver';
+import { selectIsGameOver } from 'features/game/gameSlice';
 
 function Game() {
   const isGameOver = useSelector(selectIsGameOver);

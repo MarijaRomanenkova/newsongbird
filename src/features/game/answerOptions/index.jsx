@@ -5,9 +5,9 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import correctAnswerChosenSoundOGG from 'shared/assets/sounds/correctAnswerChosenSound.ogg';
 import incorrectAnswerChosenSoundOGG from 'shared/assets/sounds/incorrectAnswerChosenSound.ogg';
-import AnswerOptionDetails from 'features/answerOptionDetails/answerOptionDetails.component';
-import Circle from 'shared/ui/circle/circle.component';
-import NextButton from 'features/nextButton/nextButton.component';
+import AnswerOptionDetails from 'features/game/answerOptionDetails';
+import Circle from 'shared/ui/circle';
+import NextButton from 'features/nextButton';
 import {
   selectCurrentCategoryArray,
   selectCorrectAnswerObject,
@@ -15,9 +15,9 @@ import {
   switchToNextLevel,
   correctAnswerChosen,
   answerWasChosen,
-} from 'widgets/game/gameSlice';
+} from 'features/game/gameSlice';
 
-import styles from './answerOptions.module.scss';
+import styles from './index.module.scss';
 
 function AnswerOptions() {
   const dispatch = useDispatch();

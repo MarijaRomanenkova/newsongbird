@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { nanoid } from 'nanoid';
 
-import { MAXIMUM_SCORE_PER_LEVEL } from 'widgets/game/gameSettings/gameSettings';
+import { MAXIMUM_SCORE_PER_LEVEL } from 'features/game/gameSettings';
 
 const initialState = {
   birdsData: [],

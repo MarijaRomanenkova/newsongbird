@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectScore } from 'widgets/game/gameSlice';
+import { selectScore } from 'features/game/gameSlice';
 
-import styles from './score.module.scss';
+import styles from './index.module.scss';
 
 function Score() {
   const score = useSelector(selectScore);

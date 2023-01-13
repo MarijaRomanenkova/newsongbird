@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux';
 import {
   selectIsCorrectAnswerChosen,
   selectCorrectAnswerObject,
-} from 'widgets/game/gameSlice';
+} from 'features/game/gameSlice';
 import imageHiddenCorrectAnswerJPG from 'shared/assets/imageHiddenCorrectAnswerJPG.jpg';
 
-import styles from './correctAnswer.module.scss';
+import styles from './index.module.scss';
 
 const HIDDEN__ANSWER = '******';
 

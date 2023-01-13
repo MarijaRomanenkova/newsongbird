@@ -2,9 +2,9 @@ import React, { useRef } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import { useSelector } from 'react-redux';
 
-import { selectIsCorrectAnswerChosen } from 'widgets/game/gameSlice';
+import { selectIsCorrectAnswerChosen } from 'features/game/gameSlice';
 
-import styles from './answerOptionDetails.module.scss';
+import styles from './index.module.scss';
 
 function AnswerOptionDetails({ image, name, description, species, audio }) {
   const isCorrectAnswerChosen = useSelector(selectIsCorrectAnswerChosen);

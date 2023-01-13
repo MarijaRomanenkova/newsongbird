@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { availableRoutesList } from 'app/routes/available-routes-list';
 
-import styles from './notfound.module.scss';
+import styles from './index.module.scss';
 
 function NotFound() {
   return (
