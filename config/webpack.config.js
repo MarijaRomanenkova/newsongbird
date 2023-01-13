@@ -543,6 +543,25 @@ module.exports = function (webpackEnv) {
                 'sass-loader'
               ),
             },
+            // this is what I add 
+            {
+              test: /\.scss$/,
+              use: [
+                'style-loader',
+                'css-loader',
+                'postcss-loader',
+                'sass-loader',
+                {
+                  loader: 'sass-resources-loader',
+                  options: {
+                    resources: [
+                      './src/shared/scss-source/variables.scss',
+                      './src/shared/scss-source/mixins.scss',
+                    ]
+                  },
+                },
+              ],
+            },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
             // In production, they would get copied to the `build` folder.
