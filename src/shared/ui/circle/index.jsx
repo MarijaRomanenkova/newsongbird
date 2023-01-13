@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-import styles from './circle.module.scss';
+import styles from './index.module.scss';
 
 function Circle({ isChosenAnswer, isCorrectAnswer }) {
   const circleStyles = cx({

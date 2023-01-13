@@ -2,18 +2,14 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Game from 'features/game/index';
-import Loader from 'shared/ui/loader';
-import {
-  selectIsQuestionaryDataLoading,
-  selectCorrectAnswerID,
-  getBirdsData,
-} from 'features/game/gameSlice';
+import Loader from 'shared/ui/loader/index';
+
+import { getBirdsData, selectIsRequestLoading } from 'features/game/gameSlice';
 
 import styles from './index.module.scss';
 
 function Home() {
-  const isQuestionaryDataLoading = useSelector(selectIsQuestionaryDataLoading);
-  const correctAnswerID = useSelector(selectCorrectAnswerID);
+  const isRequestLoading = useSelector(selectIsRequestLoading);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -22,10 +18,8 @@ function Home() {
 
   return (
     <div className={styles.Game_Container}>
-      {(isQuestionaryDataLoading === true || correctAnswerID === 0) && (
-        <Loader />
-      )}
-      {correctAnswerID !== 0 && <Game />}
+      {isRequestLoading && <Loader />}
+      <Game />
     </div>
   );
 }
