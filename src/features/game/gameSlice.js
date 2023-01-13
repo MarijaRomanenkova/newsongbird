@@ -53,8 +53,6 @@ const getCorrectAnswerID = (currentLevelArrayLength) => {
   return randomNumber;
 };
 
-
-
 export const gameSlice = createSlice({
   name: 'game',
   initialState,
