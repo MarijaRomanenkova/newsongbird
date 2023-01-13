@@ -8,6 +8,7 @@ import {
   selectCurrentLevel,
   selectScore,
 } from 'features/game/gameSlice';
+import Button from 'shared/ui/button';
 
 import styles from './index.module.scss';
 
@@ -32,13 +33,12 @@ function GameOver() {
       {score < MAXIMUM_TOTAL_SCORE && (
         <>
           <h5 className={styles.GameOver_Text}>Попробуете набрать больше?</h5>
-          <button
-            className={styles.GameOver_Btn}
+          <Button
+            bolean={false}
             type="button"
-            onClick={() => dispatch(resetTheGame())}
-          >
-            Попробовать еще раз!
-          </button>
+            handleClick={() => dispatch(resetTheGame())}
+            name="Попробовать еще раз!"
+          />
         </>
       )}
     </div>

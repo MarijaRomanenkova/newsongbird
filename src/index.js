@@ -7,6 +7,8 @@ import { store } from 'app/store/store';
 import App from 'app/routes';
 import reportWebVitals from './reportWebVitals';
 
+import './index.css';
+
 const container = document.getElementById('root');
 const root = createRoot(container);
 

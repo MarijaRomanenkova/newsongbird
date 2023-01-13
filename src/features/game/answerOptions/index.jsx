@@ -7,7 +7,7 @@ import correctAnswerChosenSoundOGG from 'shared/assets/sounds/correctAnswerChose
 import incorrectAnswerChosenSoundOGG from 'shared/assets/sounds/incorrectAnswerChosenSound.ogg';
 import AnswerOptionDetails from 'features/game/answerOptionDetails/index';
 import Circle from 'shared/ui/circle/index';
-import NextButton from 'features/nextButton/index';
+import Button from 'shared/ui/button/index';
 import {
   selectCurrentCategoryOptions,
   selectCorrectAnswerID,
@@ -96,10 +96,12 @@ function AnswerOptions() {
           </div>
         )}
       </div>
-      <NextButton
-        isNextButtonDisabled={isNextButtonDisabled}
-        isGameOver={isGameOver}
-        handleNextButtonClick={handleNextButtonClick}
+      <Button
+        bolean={isGameOver}
+        isDisabled={isNextButtonDisabled}
+        handleClick={handleNextButtonClick}
+        name="Next Level"
+        type="button"
       />
     </>
   );

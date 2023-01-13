@@ -6,7 +6,9 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
 
 import { availableRoutesList } from 'app/routes/available-routes-list';
+import Button from 'shared/ui/button';
 import { LoginSchema } from './schema';
+
 
 import styles from './index.module.scss';
 
@@ -52,7 +54,7 @@ function Login() {
             }, 400);
           }}
         >
-          {({ errors, touched }) => (
+          {({ errors, touched, handleSubmit }) => (
             <Form>
               <label htmlFor="email" className={styles.Form_Label}>
                 Email Address
@@ -88,9 +90,13 @@ function Login() {
                 {(msg) => <div>{msg}</div>}
               </ErrorMessage>
 
-              <button className={styles.Btn} type="submit">
-                Submit
-              </button>
+              <Button
+                className={styles.Btn}
+                type="submit"
+                name="Submit"
+                isDisabled={false}
+                handleClick={handleSubmit}
+              />
             </Form>
           )}
         </Formik>

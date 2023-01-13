@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { SignUpSchema } from 'pages/signup/schema';
+import Button from 'shared/ui/button';
 import { availableRoutesList } from 'app/routes/available-routes-list';
 
 import styles from './index.module.scss';
@@ -49,7 +50,7 @@ function SignUpForm() {
             }, 400);
           }}
         >
-          {({ errors, touched, dirty }) => (
+          {({ errors, touched, dirty, handleSubmit }) => (
             <Form>
               <label htmlFor="email" className={styles.Form_Label}>
                 Email Address
@@ -125,13 +126,13 @@ function SignUpForm() {
                   industry news, new products and related topics.
                 </label>
               </div>
-              <button
-                className={styles.Btn}
-                disabled={!dirty || Object.keys(errors).length}
+             
+              <Button
                 type="submit"
-              >
-                Submit
-              </button>
+                name="Submit"
+                isDisabled={!dirty || Object.keys(errors).length}
+                handleClick={handleSubmit}
+              />
             </Form>
           )}
         </Formik>

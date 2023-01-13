@@ -40,39 +40,5 @@
     @include mobile {
       @include toRem(font-size, 24);
     }
-  }
-
-  &_Btn {
-    display: inline-block;
-    margin: 3rem auto;
-    color: $white;
-    font-family: 'Lato', Arial, sans-serif;
-    @include toRem(font-size, 15);
-    font-weight: 400;
-    @include toRem(border-radius, 4);
-    border: none;
-    box-shadow: none;
-    width: 90%;
-    cursor: pointer;
-    @include toRem(line-height, 22.5);
-    padding: 1rem;
-    text-align: center;
-    vertical-align: middle;
-    background-color: $teal;
-    transition: 0.3s ease;
-    -webkit-appearance: button;
-
-    @include mobile {
-      @include toRem(padding, 24);
-      @include toRem(font-size, 24);
-    }
-
-    &:focus {
-      box-shadow: none;
-    }
-
-    &:hover {
-      background-color: $green;
-    }
-  }
+  }  
 }
