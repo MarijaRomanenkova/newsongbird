@@ -1,19 +1,17 @@
-/* eslint-disable prettier/prettier */
 /* eslint-disable prefer-destructuring */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 
-import { axiosInstance } from 'axiosInstance'
 import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
+import { axiosInstance } from '../axiosInstance';
 
 const initialState = {
-  birdsData: [],  
+  birdsData: [],
   categoriesNames: [],
   isRequestLoading: true,
   currentLevel: 1,
   currentCategoryOptions: [],
-  nextCategoryOptions: [],
   correctAnswerID: 0,
   correctAnswerObject: {},
   currentChosenAnswer: {},
@@ -23,10 +21,9 @@ const initialState = {
   isGameOver: false,
 };
 
-export const getBirdsData  = 
-  createAsyncThunk('game/getBirdsData', async (url) => {    
-  try {    
-    const response = await axiosInstance(url);
+export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
+  try {
+    const response = await axiosInstance.get('');
     const dataWithUniqueIds = response.data.birds.map((array) =>
       array.map((item) => {
         if (typeof item === 'string') {
@@ -46,24 +43,25 @@ export const getBirdsData  =
   }
 });
 
-function getCorrectAnswerID(currentLevelArrayLength) {
+const getCorrectAnswerID = (currentLevelArrayLength) => {
   const maximumNumber = currentLevelArrayLength;
   const minimumNumber = 1;
-  const randomNumber = Math.floor(Math.random() * (maximumNumber - minimumNumber + 1)) +
+  const randomNumber =
+    Math.floor(Math.random() * (maximumNumber - minimumNumber + 1)) +
     minimumNumber;
   return randomNumber;
-}
+};
 
 export const gameSlice = createSlice({
   name: 'game',
   initialState,
-  reducers: { 
+  reducers: {
     switchToNextLevel: (state) => {
       state.currentLevel += 1;
       state.correctAnswerID = getCorrectAnswerID(
         state.birdsData[state.currentLevel].length
       );
-      state.currentCategoryOptions = state.birdsData[state.currentLevel].map(
+      state.currentCategoryOptions = state.currentCategoryOptions.map(
         (option) => {
           if (option.id === state.correctAnswerID) {
             return { ...option, isTouched: false, isCorrectAnswer: true };
@@ -137,18 +135,6 @@ export const gameSlice = createSlice({
             }
             return { ...option };
           }
-        );        
-        if(state.currentLevel === action.payload.length){
-           state.nextCategoryOptions =  action.payload[1]
-        } 
-          state.nextCategoryOptions = 
-        action.payload[state.currentLevel + 1].map(
-          (option) => {
-            if (option.id === state.correctAnswerID) {
-              return { ...option, isCorrectAnswer: true };
-            }
-            return { ...option };
-          }
         );
         state.isRequestLoading = false;
       })
@@ -162,7 +148,7 @@ export const {
   switchToNextLevel,
   correctAnswerChosen,
   answerWasChosen,
-  resetTheGame,  
+  resetTheGame,
 } = gameSlice.actions;
 export const selectCurrentLevel = (state) => state.game.currentLevel;
 export const selectScore = (state) => state.game.score;
