@@ -2,12 +2,28 @@
   "birds": [
     [
       "Warm up",
-      "Passerines",
+     "Passerines",
       "Forest Birds",
       "Songbirds",
       "Predator birds",
       "Sea ​Birds"
     ],
+    [
+      "Разминка",
+      "Воробьиные",
+      "Лесные птицы",
+      "Певчие птицы",
+      "Хищные птицы",
+      "Mорские птицы"
+    ],
+    [
+      "Apšilimas",
+      "Žvirbliniai ",
+      "Miško paukščiai",
+      "Giesmininkai",
+      "Plėšrūnai",
+      "Jūros paukščiai"
+    ],  
     [
       {
         "id": 1,

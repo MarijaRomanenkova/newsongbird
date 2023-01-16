@@ -9,7 +9,9 @@ import { axiosInstance } from '../axiosInstance';
 
 const initialState = {
   birdsData: [],
-  categoriesNames: [],
+  categoriesNamesEN: [],
+  categoriesNamesRU: [],
+  categoriesNamesLT: [],
   isRequestLoading: true,
   currentLevel: 1,
   currentCategoryOptions: [],
@@ -102,9 +104,9 @@ export const gameSlice = createSlice({
     },
 
     resetTheGame: (state) => {
-      state.currentLevel = 1;
-      state.currentCategoryOptions = state.birdsData[1];
-      state.correctAnswerID = getCorrectAnswerID(state.birdsData[1].length);
+      state.currentLevel = 3;
+      state.currentCategoryOptions = state.birdsData[3];
+      state.correctAnswerID = getCorrectAnswerID(state.birdsData[3].length);
       state.currentCategoryOptions = state.currentCategoryOptions.map(
         (option) => {
           if (option.id === state.correctAnswerID) {
@@ -128,8 +130,10 @@ export const gameSlice = createSlice({
       .addCase(getBirdsData.fulfilled, (state, action) => {
         state.birdsData = action.payload;
         // eslint-disable-next-line prefer-destructuring
-        state.categoriesNames = action.payload[0];
-        state.correctAnswerID = getCorrectAnswerID(action.payload[1].length);
+        state.categoriesNamesEN = action.payload[0];
+        state.categoriesNamesRU = action.payload[1];
+        state.categoriesNamesLT = action.payload[2];
+        state.correctAnswerID = getCorrectAnswerID(action.payload[3].length);
         state.currentCategoryOptions = action.payload[state.currentLevel].map(
           (option) => {
             if (option.id === state.correctAnswerID) {
@@ -158,7 +162,9 @@ export const selectIsCorrectAnswerChosen = (state) =>
   state.game.isCorrectAnswerChosen;
 export const selectIsGameOver = (state) => state.game.isGameOver;
 export const selectIsRequestLoading = (state) => state.game.isRequestLoading;
-export const selectCategoriesNames = (state) => state.game.categoriesNames;
+export const selectCategoriesNamesEN = (state) => state.game.categoriesNamesEN;
+export const selectCategoriesNamesRU = (state) => state.game.categoriesNamesRU;
+export const selectCategoriesNamesLT = (state) => state.game.categoriesNamesLT;
 export const selectCurrentCategoryOptions = (state) =>
   state.game.currentCategoryOptions;
 export const selectCorrectAnswerObject = (state) =>

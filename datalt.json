@@ -1,13 +1,6 @@
 {
   "birds": [
-    [
-      "Apšilimas",
-      "Žvirbliniai ",
-      "Miško paukščiai",
-      "Giesmininkai",
-      "Plėšrūnai",
-      "Jūros paukščiai"
-    ],
+    
     [
       {
         "id": 1,
