@@ -11,9 +11,6 @@ function LanguageSwitch() {
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
-  console.log('i18n', i18n);
-  
-
   return (
     <div className={styles.LanguageSwitch_Container}>
       {languageList.map(({ name, img, code }) => (

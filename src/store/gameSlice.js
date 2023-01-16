@@ -3,15 +3,24 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
+import i18n from 'i18next';
 
 import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
 import { axiosInstance } from '../axiosInstance';
+
+let languge;
+i18n.on('languageChanged', () => {
+  language = i18n.language.toLocaleUpperCase;
+});
+
+
 
 const initialState = {
   birdsData: [],
   categoriesNamesEN: [],
   categoriesNamesRU: [],
   categoriesNamesLT: [],
+  categoriesNames: [],
   isRequestLoading: true,
   currentLevel: 1,
   currentCategoryOptions: [],
@@ -134,7 +143,7 @@ export const gameSlice = createSlice({
         state.categoriesNamesRU = action.payload[1];
         state.categoriesNamesLT = action.payload[2];
         state.correctAnswerID = getCorrectAnswerID(action.payload[3].length);
-        state.currentCategoryOptions = action.payload[state.currentLevel].map(
+        state.currentCategoryOptions = action.payload[state.currentLevel+2].map(
           (option) => {
             if (option.id === state.correctAnswerID) {
               return { ...option, isCorrectAnswer: true };
@@ -162,9 +171,7 @@ export const selectIsCorrectAnswerChosen = (state) =>
   state.game.isCorrectAnswerChosen;
 export const selectIsGameOver = (state) => state.game.isGameOver;
 export const selectIsRequestLoading = (state) => state.game.isRequestLoading;
-export const selectCategoriesNamesEN = (state) => state.game.categoriesNamesEN;
-export const selectCategoriesNamesRU = (state) => state.game.categoriesNamesRU;
-export const selectCategoriesNamesLT = (state) => state.game.categoriesNamesLT;
+export const selectCategoriesNames = (state) => state.game.categoriesNames;
 export const selectCurrentCategoryOptions = (state) =>
   state.game.currentCategoryOptions;
 export const selectCorrectAnswerObject = (state) =>
