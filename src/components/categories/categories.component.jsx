@@ -17,7 +17,7 @@ function Categories() {
   const categoriesNamesEN = useSelector(selectCategoriesNamesEN);
   const categoriesNamesRU = useSelector(selectCategoriesNamesRU);
   const categoriesNamesLT = useSelector(selectCategoriesNamesLT);
-  console.log(i18n);
+  console.log(i18n.init.language);
 
   return (
     <div className={styles.Categories__Container}>
