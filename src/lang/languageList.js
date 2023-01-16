@@ -2,7 +2,6 @@
 import flagLTsourceSVG from 'assets/flagLTsourceSVG.svg';
 import flagRUsourceSVG from 'assets/flagRUsourceSVG.svg';
 import flagGBsourceSVG from 'assets/flagGBsourceSVG.svg';
-import { LOCALES } from './locales';
 
 export const languageList = [
   {
@@ -15,7 +14,7 @@ export const languageList = [
   {
     locale: 'ru-RU',
     name: 'ru',
-    code: LOCALES.RUSSIAN,
+    code: 'ru',
     img: flagRUsourceSVG,
     url: '/dataru.json',
   },

@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Field, Form}  from 'formik';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import 'react-toastify/dist/ReactToastify.css';
@@ -66,9 +66,9 @@ function SignUpForm() {
                     : styles.Form_Input
                 }
               />
-              <ErrorMessage name="email" className={styles.Error}>
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
+              {touched.email && errors.email ? (
+                <div className={styles.Error}>{t('email-validation')}</div>
+              ) : null}
 
               <label htmlFor="password" className={styles.Form_Label}>
                 {t('form-password')}
@@ -83,9 +83,11 @@ function SignUpForm() {
                     : styles.Form_Input
                 }
               />
-              <ErrorMessage name="password" className={styles.Error}>
-                {(msg) => t({ msg })}
-              </ErrorMessage>
+              {touched.password && errors.password ? (
+                <div className={styles.Error}>
+                  {t('password-creation-error')}
+                </div>
+              ) : null}
 
               <label htmlFor="confirm-password" className={styles.Form_Label}>
                 {t('form-password-confirmation')}
@@ -100,23 +102,20 @@ function SignUpForm() {
                     : styles.Form_Input
                 }
               />
-              <ErrorMessage name="confirmPassword" className={styles.Error}>
-                {(msg) => t({ msg })}
-              </ErrorMessage>
+              {touched.confirmPassword && errors.confirmPassword ? (
+                <div className={styles.Error}>{t('email-match-error')}</div>
+              ) : null}
 
-              <ErrorMessage name="acceptTerms" className={styles.Error}>
-                {(msg) => t({ msg })}
-              </ErrorMessage>
               <div className={styles.Checkbox_Container}>
                 <Field
-                  name="accept-terms"
+                  name="acceptTerms"
                   control="checkbox"
                   type="checkbox"
-                  id="accept-terms"
+                  id="acceptTerms"
                   className="styles.Checkbox_Container_Box"
                 />
 
-                <label htmlFor="accept-terms" className={styles.Checkbox_Label}>
+                <label htmlFor="acceptTerms" className={styles.Checkbox_Label}>
                   {t('signup-message')}
                   <a href="#" className={styles.Checkbox_Label_Link}>
                     {t('signup-link')}

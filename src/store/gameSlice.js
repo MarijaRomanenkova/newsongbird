@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable prefer-destructuring */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
@@ -52,15 +53,16 @@ const getCorrectAnswerID = (currentLevelArrayLength) => {
   return randomNumber;
 };
 
+
+
 export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
     switchToNextLevel: (state) => {
-      state.currentLevel += 1;
+      state.currentLevel += 1;      
       state.correctAnswerID = getCorrectAnswerID(
-        state.birdsData[state.currentLevel].length
-      );
+        state.birdsData[state.currentLevel].length);  
       state.currentCategoryOptions = state.currentCategoryOptions.map(
         (option) => {
           if (option.id === state.correctAnswerID) {
@@ -68,7 +70,7 @@ export const gameSlice = createSlice({
           }
           return { ...option, isTouched: false, isCorrectAnswer: false };
         }
-      );
+      );            
       state.isCorrectAnswerChosen = false;
       state.numberOfWrongAnswers = 0;
     },
@@ -85,7 +87,7 @@ export const gameSlice = createSlice({
     },
 
     answerWasChosen: (state, action) => {
-      state.numberOfWrongAnswers += 1;
+      state.numberOfWrongAnswers += 1; 
       state.currentCategoryOptions = state.currentCategoryOptions.map(
         (option) => {
           if (option.id === action.payload) {
@@ -96,7 +98,7 @@ export const gameSlice = createSlice({
       );
       state.currentChosenAnswer = state.currentCategoryOptions.find(
         (option) => option.id === action.payload
-      );
+      ); 
     },
 
     resetTheGame: (state) => {
@@ -110,7 +112,7 @@ export const gameSlice = createSlice({
           }
           return { ...option };
         }
-      );
+      );   
       state.currentChosenAnswer = {};
       state.numberOfWrongAnswers = 0;
       state.score = 0;
@@ -135,7 +137,7 @@ export const gameSlice = createSlice({
             }
             return { ...option };
           }
-        );
+        );   
         state.isRequestLoading = false;
       })
       .addCase(getBirdsData.rejected, (state) => {

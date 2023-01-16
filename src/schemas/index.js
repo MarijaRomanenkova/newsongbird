@@ -4,16 +4,12 @@ import * as yup from 'yup';
 const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 
 export const LoginSchema = yup.object().shape({
-  email: yup.string().email({ message: 'email-validation' }).required(),
-  password: yup
-    .string()
-    .min(5)
-    .matches(passwordRules, { message: 'email-reminder-error' })
-    .required(),
+  email: yup.string().email('Invalid email').required(),
+  password: yup.string().min(5).matches(passwordRules).required(),
 });
 
 export const SignUpSchema = yup.object().shape({
-  email: yup.string().email({ message: 'email-validation' }).required(),
+  email: yup.string().email('Invalid email').required(),
   password: yup
     .string()
     .min(5)
@@ -21,7 +17,7 @@ export const SignUpSchema = yup.object().shape({
     .required('Required'),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref('password'), null], 'email-math-error')
+    .oneOf([yup.ref('password'), null], 'email-match-error')
     .required('Required'),
   acceptTerms: yup.boolean().oneOf([true], 'accept-terms-error'),
 });

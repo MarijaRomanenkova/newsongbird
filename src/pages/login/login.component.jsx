@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Field, Form } from 'formik';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
@@ -31,7 +31,7 @@ function Login() {
               isActive ? styles.Form_Link_Active : styles.Form_Link
             }
           >
-          {t('signup')}
+            {t('signup')}
           </NavLink>
         </div>
 
@@ -65,9 +65,9 @@ function Login() {
                     : styles.Form_Input
                 }
               />
-              <ErrorMessage name="email" className={styles.Error}>
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
+              {touched.email && errors.email ? (
+                <div className={styles.Error}>{t('email-match-error')}</div>
+              ) : null}
 
               <label htmlFor="password" className={styles.Form_Label}>
                 {t('form-password')}
@@ -82,16 +82,15 @@ function Login() {
                     : styles.Form_Input
                 }
               />
-              <ErrorMessage name="password" className={styles.Error}>
-                {(msg) => t({ msg })}
-              </ErrorMessage>
-
+              {touched.password && errors.password ? (
+                <div className={styles.Error}>{t('email-reminder-error')}</div>
+              ) : null}
               <button
                 className={styles.Btn}
                 type="submit"
-                disabled={!dirty || isSubmitting}
+                disabled={!dirty || isSubmitting || Object.keys(errors).length}
               >
-              {t('submit')}
+                {t('submit')}
               </button>
             </Form>
           )}
