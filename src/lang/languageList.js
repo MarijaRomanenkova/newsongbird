@@ -8,13 +8,13 @@ export const languageList = [
   {
     locale: 'en-EN',
     name: 'English',
-    code: LOCALES.ENGLISH,
+    code: 'en',
     img: flagGBsourceSVG,
     url: '/dataen.json',
   },
   {
     locale: 'ru-RU',
-    name: 'Russian',
+    name: 'ru',
     code: LOCALES.RUSSIAN,
     img: flagRUsourceSVG,
     url: '/dataru.json',
@@ -22,7 +22,7 @@ export const languageList = [
   {
     locale: 'lt-LT',
     name: 'Lithuanian',
-    code: LOCALES.LITHUANIAN,
+    code: 'lt',
     img: flagLTsourceSVG,
     url: '/datalt.json',
   },

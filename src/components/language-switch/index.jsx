@@ -1,17 +1,23 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { languageList } from 'lang/languageList';
 
 import styles from './index.module.scss';
 
-function LanguageSwitch({ handleClick }) {
+function LanguageSwitch() {
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
   return (
     <div className={styles.LanguageSwitch_Container}>
       {languageList.map(({ name, img, code }) => (
         <button
           key={code}
           value={code}
-          onClick={() => handleClick(code)}
+          onClick={() => changeLanguage(code)}
           type="button"
           className={styles.LanguageSwitch_Flag}
         >

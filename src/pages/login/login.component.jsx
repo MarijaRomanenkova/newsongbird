@@ -4,7 +4,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
-import { FormattedMessage } from 'react-intl';
+import { useTranslation } from 'react-i18next';
 
 import { LoginSchema } from 'schemas/index';
 import { availableRoutesList } from 'routes/availableRoutesList';
@@ -12,6 +12,7 @@ import { availableRoutesList } from 'routes/availableRoutesList';
 import styles from './login.module.scss';
 
 function Login() {
+  const { t } = useTranslation();
   return (
     <div className={styles.Form_Container}>
       <div className={styles.Form_Wrapper}>
@@ -22,7 +23,7 @@ function Login() {
               isActive ? styles.Form_Link_Active : styles.Form_Link
             }
           >
-            <FormattedMessage id="login" defaultMessage="Login" />
+            {t('login')}
           </NavLink>
           <NavLink
             to={availableRoutesList.SIGN_UP}
@@ -30,7 +31,7 @@ function Login() {
               isActive ? styles.Form_Link_Active : styles.Form_Link
             }
           >
-            <FormattedMessage id="signup" defaultMessage="Sign Up" />
+          {t('signup')}
           </NavLink>
         </div>
 
@@ -52,7 +53,7 @@ function Login() {
           {({ errors, touched, dirty, isSubmitting }) => (
             <Form>
               <label htmlFor="email" className={styles.Form_Label}>
-                <FormattedMessage id="email" defaultMessage="Email adress" />
+                {t('email')}
               </label>
               <Field
                 name="email"
@@ -69,10 +70,7 @@ function Login() {
               </ErrorMessage>
 
               <label htmlFor="password" className={styles.Form_Label}>
-                <FormattedMessage
-                  id="form-password"
-                  defaultMessage="Password"
-                />
+                {t('form-password')}
               </label>
               <Field
                 name="password"
@@ -85,12 +83,7 @@ function Login() {
                 }
               />
               <ErrorMessage name="password" className={styles.Error}>
-                {(msg) => (
-                  <FormattedMessage
-                    id={msg}
-                    defaultMessage="Reminder your password is at least 5 charecters long, includes at least one special character,lowercase and one uppercaseletter"
-                  />
-                )}
+                {(msg) => t({ msg })}
               </ErrorMessage>
 
               <button
@@ -98,7 +91,7 @@ function Login() {
                 type="submit"
                 disabled={!dirty || isSubmitting}
               >
-                <FormattedMessage id="submit" defaultMessage="Submit" />
+              {t('submit')}
               </button>
             </Form>
           )}

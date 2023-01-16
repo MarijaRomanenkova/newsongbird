@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
+import { useTranslation } from 'react-i18next';
 
 import logoSourceSVG from 'assets/logoSourceSVG.svg';
 import Score from 'components/score/score.component';
@@ -10,6 +10,7 @@ import LanguageSwitch from 'components/language-switch/index';
 import styles from './navigation.module.scss';
 
 function Navigation({ handleClick }) {
+  const { t } = useTranslation();
   return (
     <nav className={styles.Navigation_Container}>
       <NavLink to={availableRoutesList.HOME}>
@@ -28,13 +29,13 @@ function Navigation({ handleClick }) {
             className={styles.Navigation_Link}
             to={availableRoutesList.LOGIN}
           >
-            <FormattedMessage id="login" defaultMessage="Login" />
+            {t('login')}
           </NavLink>
           <NavLink
             className={styles.Navigation_Link}
             to={availableRoutesList.SIGN_UP}
           >
-            <FormattedMessage id="signup" defaultMessage="Sign Up" />
+            {t('signup')}
           </NavLink>
         </div>
         <div className={styles.Navigation_LanguageSwitch_Wrapper}>

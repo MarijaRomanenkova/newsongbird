@@ -4,8 +4,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
-import { FormattedMessage } from 'react-intl';
-
+import { useTranslation } from 'react-i18next';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { SignUpSchema } from 'schemas/index';
@@ -14,6 +13,7 @@ import { availableRoutesList } from 'routes/availableRoutesList';
 import styles from './signup.module.scss';
 
 function SignUpForm() {
+  const { t } = useTranslation();
   return (
     <div className={styles.Form_Container}>
       <div className={styles.Form_Wrapper}>
@@ -24,7 +24,7 @@ function SignUpForm() {
               isActive ? styles.Form_Link_Active : styles.Form_Link
             }
           >
-            <FormattedMessage id="login" defaultMessage="Login" />
+            {t('login')}
           </NavLink>
           <NavLink
             to={availableRoutesList.SIGN_UP}
@@ -32,7 +32,7 @@ function SignUpForm() {
               isActive ? styles.Form_Link_Active : styles.Form_Link
             }
           >
-            <FormattedMessage id="signup" defaultMessage="Sign Up" />
+            {t('signup')}
           </NavLink>
         </div>
 
@@ -54,7 +54,7 @@ function SignUpForm() {
           {({ errors, touched, dirty, isSubmitting }) => (
             <Form>
               <label htmlFor="email" className={styles.Form_Label}>
-                <FormattedMessage id="email" defaultMessage="Email adress" />
+                {t('email')}
               </label>
               <Field
                 name="email"
@@ -71,10 +71,7 @@ function SignUpForm() {
               </ErrorMessage>
 
               <label htmlFor="password" className={styles.Form_Label}>
-                <FormattedMessage
-                  id="form-password"
-                  defaultMessage="Password"
-                />
+                {t('form-password')}
               </label>
               <Field
                 name="password"
@@ -87,19 +84,11 @@ function SignUpForm() {
                 }
               />
               <ErrorMessage name="password" className={styles.Error}>
-                {(msg) => (
-                  <FormattedMessage
-                    id={msg}
-                    defaultMessage="Please create a stronger password"
-                  />
-                )}
+                {(msg) => t({ msg })}
               </ErrorMessage>
 
               <label htmlFor="confirm-password" className={styles.Form_Label}>
-                <FormattedMessage
-                  id="form-password-confirmation"
-                  defaultMessage="Password"
-                />
+                {t('form-password-confirmation')}
               </label>
               <Field
                 name="confirmPassword"
@@ -112,21 +101,11 @@ function SignUpForm() {
                 }
               />
               <ErrorMessage name="confirmPassword" className={styles.Error}>
-                {(msg) => (
-                  <FormattedMessage
-                    id={msg}
-                    defaultMessage="Passwords must match"
-                  />
-                )}
+                {(msg) => t({ msg })}
               </ErrorMessage>
 
               <ErrorMessage name="acceptTerms" className={styles.Error}>
-                {(msg) => (
-                  <FormattedMessage
-                    id={msg}
-                    defaultMessage="Please accept terms"
-                  />
-                )}
+                {(msg) => t({ msg })}
               </ErrorMessage>
               <div className={styles.Checkbox_Container}>
                 <Field
@@ -138,20 +117,11 @@ function SignUpForm() {
                 />
 
                 <label htmlFor="accept-terms" className={styles.Checkbox_Label}>
-                  <FormattedMessage
-                    id="signup-message"
-                    defaultMessage="By creating an account you agree to the"
-                  />{' '}
+                  {t('signup-message')}
                   <a href="#" className={styles.Checkbox_Label_Link}>
-                    <FormattedMessage
-                      id="signup-link"
-                      defaultMessage="terms and conditions"
-                    />
-                  </a>{' '}
-                  <FormattedMessage
-                    id="signup-message-2"
-                    defaultMessage="applicable to our sevice and acknowledge that your personal data will be used in accordance with our privacy policy and you will receive emails and communications about jobs, industry news, new products and related topics."
-                  />
+                    {t('signup-link')}
+                  </a>
+                  {t('signup-message-2')}
                 </label>
               </div>
               <button
@@ -159,7 +129,7 @@ function SignUpForm() {
                 disabled={!dirty || isSubmitting || Object.keys(errors).length}
                 type="submit"
               >
-                <FormattedMessage id="submit" defaultMessage="Submit" />
+                {t('submit')}
               </button>
             </Form>
           )}

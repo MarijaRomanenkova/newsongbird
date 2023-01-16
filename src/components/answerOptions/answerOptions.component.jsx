@@ -1,6 +1,6 @@
 /* eslint-disable no-inner-declarations */
 import React, { useState } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { useTranslation } from 'react-i18next';
 import { useSound } from 'use-sound';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -23,6 +23,7 @@ import styles from './answerOptions.module.scss';
 
 function AnswerOptions() {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const currentCategoryOptions = useSelector(selectCurrentCategoryOptions);
   const correctAnswerID = useSelector(selectCorrectAnswerID);
@@ -88,20 +89,10 @@ function AnswerOptions() {
         )}
         {!currentChosenAnswer.id && (
           <div className={styles.AnswerOptionDetails_Dummy}>
-            <h4>
-              <FormattedMessage
-                id="game-rules-text"
-                defaultMessage="Listen to the song."
-                className={styles.AnswerOptionDetails_Dummy_Text}
-              />
+            <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
+              {t('game-rules-text')}
             </h4>
-            <h4>
-              <FormattedMessage
-                id="game-rules-text-2"
-                defaultMessage="Select answer. "
-                className={styles.AnswerOptionDetails_Dummy_Text}
-              />
-            </h4>
+            <h4>{t('game-rules-text-2')}</h4>
           </div>
         )}
       </div>
