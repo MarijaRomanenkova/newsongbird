@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^14.4.3",
     "axios": "^1.2.1",
     "classnames": "^2.3.2",
+    "craco-sass-resources-loader": "^1.1.0",
     "eslint-import-resolver-babel-module": "^5.3.1",
     "formik": "^2.2.9",
     "nanoid": "^4.0.0",
@@ -28,9 +29,9 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js src/**/*.jsx"
   },
@@ -53,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@craco/craco": "^7.0.0",
     "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^8.0.0",
     "eslint-config-airbnb": "^19.0.4",
