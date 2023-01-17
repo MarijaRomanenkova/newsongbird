@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -9,7 +8,6 @@ import styles from 'components/categories/categories.module.scss';
 function Categories() {
   const currentLevel = useSelector(selectCurrentLevel);
   const categoriesNames = useSelector(selectCategoriesNames);
-   
 
   return (
     <div className={styles.Categories__Container}>
@@ -24,7 +22,7 @@ function Categories() {
         >
           <p className={styles.Categories_Text}>{category.name}</p>
         </div>
-      ))}       
+      ))}
     </div>
   );
 }

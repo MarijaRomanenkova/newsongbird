@@ -3,26 +3,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
-import i18n from 'i18next';
 
 import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
 import { axiosInstance } from '../axiosInstance';
 
-let languge;
-i18n.on('languageChanged', () => {
-  language = i18n.language.toLocaleUpperCase;
-});
-
-
-
 const initialState = {
   birdsData: [],
-  categoriesNamesEN: [],
-  categoriesNamesRU: [],
-  categoriesNamesLT: [],
   categoriesNames: [],
   isRequestLoading: true,
-  currentLevel: 1,
+  currentLevel: 3,
   currentCategoryOptions: [],
   correctAnswerID: 0,
   correctAnswerObject: {},
@@ -64,12 +53,23 @@ const getCorrectAnswerID = (currentLevelArrayLength) => {
   return randomNumber;
 };
 
+const getCategoryNames= (language) => {
+  if(language === 'ru'){
+    return 1
+  }
+  if (language === 'lt'){
+    return 2
+  } return 0  
+}
 
 
 export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
+    switchLanguage: (state, action) => {
+      state.categoriesNames = state.birdsData[getCategoryNames(action.payload)];  
+    },
     switchToNextLevel: (state) => {
       state.currentLevel += 1;      
       state.correctAnswerID = getCorrectAnswerID(
@@ -113,9 +113,9 @@ export const gameSlice = createSlice({
     },
 
     resetTheGame: (state) => {
-      state.currentLevel = 3;
-      state.currentCategoryOptions = state.birdsData[3];
-      state.correctAnswerID = getCorrectAnswerID(state.birdsData[3].length);
+      state.currentLevel = 1;
+      state.currentCategoryOptions = state.birdsData[1];
+      state.correctAnswerID = getCorrectAnswerID(state.birdsData[1].length);
       state.currentCategoryOptions = state.currentCategoryOptions.map(
         (option) => {
           if (option.id === state.correctAnswerID) {
@@ -139,11 +139,9 @@ export const gameSlice = createSlice({
       .addCase(getBirdsData.fulfilled, (state, action) => {
         state.birdsData = action.payload;
         // eslint-disable-next-line prefer-destructuring
-        state.categoriesNamesEN = action.payload[0];
-        state.categoriesNamesRU = action.payload[1];
-        state.categoriesNamesLT = action.payload[2];
+        state.categoriesNames = action.payload[0];
         state.correctAnswerID = getCorrectAnswerID(action.payload[3].length);
-        state.currentCategoryOptions = action.payload[state.currentLevel+2].map(
+        state.currentCategoryOptions = action.payload[state.currentLevel].map(
           (option) => {
             if (option.id === state.correctAnswerID) {
               return { ...option, isCorrectAnswer: true };
@@ -164,6 +162,7 @@ export const {
   correctAnswerChosen,
   answerWasChosen,
   resetTheGame,
+  switchLanguage,
 } = gameSlice.actions;
 export const selectCurrentLevel = (state) => state.game.currentLevel;
 export const selectScore = (state) => state.game.score;
