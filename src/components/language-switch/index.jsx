@@ -9,7 +9,7 @@ import styles from './index.module.scss';
 
 function LanguageSwitch() {
   const { i18n } = useTranslation();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);

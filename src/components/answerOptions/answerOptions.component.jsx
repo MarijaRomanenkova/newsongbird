@@ -24,6 +24,8 @@ import styles from './answerOptions.module.scss';
 function AnswerOptions() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const language = `_${i18n.language.toString()}`;
 
   const currentCategoryOptions = useSelector(selectCurrentCategoryOptions);
   const correctAnswerID = useSelector(selectCorrectAnswerID);
@@ -73,7 +75,7 @@ function AnswerOptions() {
                 isTouched={option.isTouched}
                 isCorrectAnswer={option.isCorrectAnswer}
               />
-              {option.name}
+              {option[`name${language}`]}
             </button>
           ))}
         </div>
@@ -82,9 +84,9 @@ function AnswerOptions() {
           <AnswerOptionDetails
             name={currentChosenAnswer.name}
             image={currentChosenAnswer.image}
-            description={currentChosenAnswer.description}
+            description={currentChosenAnswer[`description${language}`]}
             audio={currentChosenAnswer.audio}
-            species={currentChosenAnswer.species}
+            species={currentChosenAnswer[`species${language}`]}
           />
         )}
         {!currentChosenAnswer.id && (
