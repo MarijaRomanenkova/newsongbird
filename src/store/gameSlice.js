@@ -114,8 +114,8 @@ export const gameSlice = createSlice({
 
     resetTheGame: (state) => {
       state.currentLevel = 1;
-      state.currentCategoryOptions = state.birdsData[1];
-      state.correctAnswerID = getCorrectAnswerID(state.birdsData[1].length);
+      state.currentCategoryOptions = state.birdsData[3];
+      state.correctAnswerID = getCorrectAnswerID(state.birdsData[3].length);
       state.currentCategoryOptions = state.currentCategoryOptions.map(
         (option) => {
           if (option.id === state.correctAnswerID) {
