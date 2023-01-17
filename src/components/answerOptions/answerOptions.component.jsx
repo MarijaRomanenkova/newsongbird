@@ -82,7 +82,7 @@ function AnswerOptions() {
 
         {currentChosenAnswer.id && (
           <AnswerOptionDetails
-            name={currentChosenAnswer.name}
+            name={currentChosenAnswer[`name${language}`]}
             image={currentChosenAnswer.image}
             description={currentChosenAnswer[`description${language}`]}
             audio={currentChosenAnswer.audio}

@@ -19,7 +19,7 @@ const initialState = {
   numberOfWrongAnswers: 0,
   score: 0,
   isCorrectAnswerChosen: false,
-  isGameOver: true,
+  isGameOver: false,
 };
 
 export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
@@ -74,7 +74,7 @@ export const gameSlice = createSlice({
       state.currentLevel += 1;      
       state.correctAnswerID = getCorrectAnswerID(
         state.birdsData[state.currentLevel].length);  
-      state.currentCategoryOptions = state.currentCategoryOptions.map(
+      state.currentCategoryOptions = state.birdsData[state.currentLevel].map(
         (option) => {
           if (option.id === state.correctAnswerID) {
             return { ...option, isTouched: false, isCorrectAnswer: true };
