@@ -8,7 +8,7 @@
   "game-rules-text-2": "Выберите птицу из списка.",
   "next-level": "Следующий уровень",
   "game-over-title": "Поздравляем!",
-  "game-over-text": "Вы прошли викторину и набрали {score} из {MAXIMUM_TOTAL_SCORE} возможных баллов",
+  "game-over-text": "Вы прошли викторину и набрали {{score}} из {{MAXIMUM_TOTAL_SCORE}} возможных баллов",
   "game-over-text-2": "Попробуете набрать больше?",
   "game-over-button": "Попробовать еще раз!",
   "submit": "Отправить",

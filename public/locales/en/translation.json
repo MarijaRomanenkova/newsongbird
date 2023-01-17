@@ -8,7 +8,7 @@
   "game-rules-text-2": "Select a bird from the list and check if your answer is correct.",
   "next-level": "Next Level",
   "game-over-title": "Congratulations!",
-  "game-over-text": "You completed the quiz and scored {score} out of {MAXIMUM_TOTAL_SCORE} possible points",
+  "game-over-text": "You completed the quiz and scored {{score}} out of {{MAXIMUM_TOTAL_SCORE}} possible points",
   "game-over-text-2": "Would you like to try again to get higher score?",
   "game-over-button": "Try again!",
   "submit": "Submit",

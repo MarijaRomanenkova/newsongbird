@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -27,7 +28,12 @@ function GameOver() {
 
       {score < MAXIMUM_TOTAL_SCORE && (
         <>
-          <h5 className={styles.GameOver_Text}>{t('game-over-trxt-2')}</h5>
+          <h5 className={styles.GameOver_Text}>
+            {t('game-over-text-2', {
+              score: score,
+              MAXIMUM_TOTAL_SCORE: MAXIMUM_TOTAL_SCORE,
+            })}
+          </h5>
           <button
             className={styles.GameOver_Btn}
             type="button"

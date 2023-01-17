@@ -8,7 +8,7 @@
   "game-rules-text-2": "Pasirinkite paukštį iš sąrašo ir pasitikrinkite savo atsakimą.",
   "next-level": "Sekantis lygis",
   "game-over-title": "Sveikiname!",
-  "game-over-text": "Baigėte viktoriną ir surinkote {score} iš {MAXIMUM_TOTAL_SCORE} galimų taškų",
+  "game-over-text": "Baigėte viktoriną ir surinkote {{score}} iš {{MAXIMUM_TOTAL_SCORE}} galimų taškų",
   "game-over-text-2": "Gal pavyks surinkti dar daugiau balų?",
   "game-over-button": "Bandyti dar karta!",
   "submit": "Pateikti",
