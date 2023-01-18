@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
 
 import {
   selectIsCorrectAnswerChosen,
@@ -15,8 +14,6 @@ import styles from 'components/correctAnswer/correctAnswer.module.scss';
 const HIDDEN__ANSWER = '******';
 
 function CorrectAnswer() {
-  const { i18n } = useTranslation();
-  const language = `_${i18n.language.toString()}`;
   const correctAnswerID = useSelector(selectCorrectAnswerID);
   const currentCategoryOptions = useSelector(selectCurrentCategoryOptions);
   const correctAnswerObject =
@@ -34,16 +31,18 @@ function CorrectAnswer() {
     pauseAudioPlayer();
   }
 
-  const answerToRender = {
+  let answerToRender = {
     image: imageHiddenCorrectAnswerJPG,
     name: HIDDEN__ANSWER,
     alt: 'bird',
   };
 
   if (isCorrectAnswerChosen) {
-    answerToRender.image = correctAnswerObject.image;
-    answerToRender.name = correctAnswerObject[`name${language}`];
-    answerToRender.alt = correctAnswerObject[`name${language}`];
+    answerToRender = {
+      image: correctAnswerObject.image,
+      name: correctAnswerObject.name,
+      alt: correctAnswerObject.name,
+    };
   }
 
   return (

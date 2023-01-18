@@ -1,6 +1,5 @@
 /* eslint-disable no-inner-declarations */
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useSound } from 'use-sound';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -23,9 +22,6 @@ import styles from './answerOptions.module.scss';
 
 function AnswerOptions() {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
-  const { i18n } = useTranslation();
-  const language = `_${i18n.language}`;
 
   const currentCategoryOptions = useSelector(selectCurrentCategoryOptions);
   const correctAnswerID = useSelector(selectCorrectAnswerID);
@@ -75,26 +71,28 @@ function AnswerOptions() {
                 isTouched={option.isTouched}
                 isCorrectAnswer={option.isCorrectAnswer}
               />
-              {option[`name${language}`]}
+              {option.name}
             </button>
           ))}
         </div>
 
         {currentChosenAnswer.id && (
           <AnswerOptionDetails
-            name={currentChosenAnswer[`name${language}`]}
+            name={currentChosenAnswer.name}
             image={currentChosenAnswer.image}
-            description={currentChosenAnswer[`description${language}`]}
+            description={currentChosenAnswer.description}
             audio={currentChosenAnswer.audio}
-            species={currentChosenAnswer[`species${language}`]}
+            species={currentChosenAnswer.species}
           />
         )}
         {!currentChosenAnswer.id && (
           <div className={styles.AnswerOptionDetails_Dummy}>
             <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
-              {t('game-rules-text')}
+              Послушайте плеер.
             </h4>
-            <h4>{t('game-rules-text-2')}</h4>
+            <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
+              Выберите птицу из списка
+            </h4>
           </div>
         )}
       </div>

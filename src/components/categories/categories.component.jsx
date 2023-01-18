@@ -15,7 +15,7 @@ function Categories() {
         <div
           key={category.uniqueID}
           className={
-            index === currentLevel - 3
+            index === currentLevel - 1
               ? styles.Category_Active
               : styles.Category
           }
