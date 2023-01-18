@@ -15,7 +15,7 @@
     }
 
     @include mini {
-     flex-direction:column-reverse;
+     flex-direction: column-reverse;
      align-items: center;
       text-align: center;
       margin: 0 auto;
@@ -33,7 +33,7 @@
       margin: auto;
       justify-content: space-between;      
       width: 100%;
-      margin-bottom:0;
+      margin-bottom: 0;
     }
   }
 

@@ -25,7 +25,7 @@ function AnswerOptions() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { i18n } = useTranslation();
-  const language = `_${i18n.language.toString()}`;
+  const language = `_${i18n.language}`;
 
   const currentCategoryOptions = useSelector(selectCurrentCategoryOptions);
   const correctAnswerID = useSelector(selectCorrectAnswerID);
