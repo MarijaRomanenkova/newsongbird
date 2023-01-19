@@ -25,7 +25,7 @@ const initialState = {
 export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
   try {
     const response = await axiosInstance.get('');
-    return response.data.birds;
+    return response.data;
   } catch (error) {
     return toast.error('Error', error);
   }
@@ -64,11 +64,12 @@ export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
+
     switchToNextLevel: (state) => {
       state.currentLevel += 1;      
       state.correctAnswerID = getCorrectAnswerID(
-        state.birdsData[0].ru[state.currentLevel].length);  
-      state.currentCategoryOptions = setCurrentCategoryOptions(state.birdsData[0].ru[state.currentLevel], state.correctAnswerID)
+        state.birdsData.ru[state.currentLevel].length);  
+      state.currentCategoryOptions = setCurrentCategoryOptions(state.birdsData.ru[state.currentLevel], state.correctAnswerID)
       state.isCorrectAnswerChosen = false;
       state.numberOfWrongAnswers = 0;
     },
@@ -79,7 +80,7 @@ export const gameSlice = createSlice({
         state.score +=
           MAXIMUM_SCORE_PER_LEVEL - (state.numberOfWrongAnswers - 1);
       }
-      if (state.currentLevel > state.birdsData[0].ru.length - 2) {
+      if (state.currentLevel > state.birdsData.ru.length - 2) {
         state.isGameOver = true;
       }
     },
@@ -101,10 +102,9 @@ export const gameSlice = createSlice({
 
     resetTheGame: (state) => {
       state.currentLevel = 1;
-      state.currentCategoryOptions = state.birdsData[0].ru[1];
-      state.correctAnswerID = getCorrectAnswerID(state.birdsData[0].ru[1].length);
-      state.currentCategoryOptions = setCurrentCategoryOptions(state.currentCategoryOptions,state.correctAnswerID);
-              
+      state.currentCategoryOptions = state.birdsData.ru[1];
+      state.correctAnswerID = getCorrectAnswerID(state.birdsData.ru[1].length);
+      state.currentCategoryOptions = setCurrentCategoryOptions(state.currentCategoryOptions,state.correctAnswerID);              
       state.currentChosenAnswer = {};
       state.numberOfWrongAnswers = 0;
       state.score = 0;
@@ -120,9 +120,9 @@ export const gameSlice = createSlice({
       .addCase(getBirdsData.fulfilled, (state, action) => {
         state.birdsData = action.payload;
         // eslint-disable-next-line prefer-destructuring
-        state.categoriesNames = action.payload[0].ru[0];
-        state.correctAnswerID = getCorrectAnswerID(action.payload[0].ru[1].length);
-        state.currentCategoryOptions = setCurrentCategoryOptions(action.payload[0].ru[state.currentLevel], state.correctAnswerID);     
+        state.categoriesNames = action.payload.ru[0];
+        state.correctAnswerID = getCorrectAnswerID(action.payload.ru[1].length);
+        state.currentCategoryOptions = setCurrentCategoryOptions(action.payload.ru[state.currentLevel], state.correctAnswerID);     
         state.isRequestLoading = false;
       })
       .addCase(getBirdsData.rejected, (state) => {

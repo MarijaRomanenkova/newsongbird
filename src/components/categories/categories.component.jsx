@@ -7,8 +7,7 @@ import styles from 'components/categories/categories.module.scss';
 
 function Categories() {
   const currentLevel = useSelector(selectCurrentLevel);
-  const categoriesNames = useSelector(selectCategoriesNames);
-  console.log(categoriesNames[0])
+  const categoriesNames = useSelector(selectCategoriesNames);  
 
   return (
     <div className={styles.Categories__Container}>
