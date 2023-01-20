@@ -7,8 +7,11 @@ import { toast } from 'react-toastify';
 import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
 import { axiosInstance } from '../axiosInstance';
 
+
+
 const initialState = {
   birdsData: [],
+  categoriesNames2:[],
   categoriesNames: [],
   isRequestLoading: true,
   currentLevel: 1,
@@ -58,13 +61,11 @@ function getCorrectAnswerID(currentLevelArrayLength) {
   return randomNumber;
 }
 
-
-
 export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-
+    
     switchToNextLevel: (state) => {
       state.currentLevel += 1;      
       state.correctAnswerID = getCorrectAnswerID(
@@ -121,6 +122,7 @@ export const gameSlice = createSlice({
         state.birdsData = action.payload;
         // eslint-disable-next-line prefer-destructuring
         state.categoriesNames = action.payload.ru[0];
+        state.categoriesNames2 = action.payload.categories;
         state.correctAnswerID = getCorrectAnswerID(action.payload.ru[1].length);
         state.currentCategoryOptions = setCurrentCategoryOptions(action.payload.ru[state.currentLevel], state.correctAnswerID);     
         state.isRequestLoading = false;
@@ -151,5 +153,7 @@ export const selectCorrectAnswerObject = (state) =>
 export const selectCurrentChosenAnswer = (state) =>
   state.game.currentChosenAnswer;
 export const selectCorrectAnswerID = (state) => state.game.correctAnswerID;
+
+export const selectCategoriesNames2 = (state) => state.game.categoriesNames2;
 
 export default gameSlice.reducer;
