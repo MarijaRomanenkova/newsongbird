@@ -3,7 +3,11 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { selectCurrentLevel, selectCategoriesNames } from 'store/gameSlice';
+import {
+  selectCurrentLevel,
+  selectCategoriesNames,
+  selectBirdsData,
+} from 'store/gameSlice';
 
 import styles from 'components/categories/categories.module.scss';
 
@@ -14,7 +18,14 @@ function Categories() {
 
   const currentLevel = useSelector(selectCurrentLevel);
   const [categoriesNames] = useSelector(selectCategoriesNames) || [];
+  const birdsData = useSelector(selectBirdsData);
+  const neededCategoryLanguages = birdsData.categories;
+  console.log('neededCategory',neededCategoryLanguages)
+
+  i
  
+
+  // console.log(lang);
 
   return (
     <div className={styles.Categories__Container}>

@@ -152,5 +152,7 @@ export const selectCurrentChosenAnswer = (state) =>
   state.game.currentChosenAnswer;
 export const selectCorrectAnswerID = (state) => state.game.correctAnswerID;
 
+export const selectBirdsData = (state) => state.game.birdsData;
+
 
 export default gameSlice.reducer;
