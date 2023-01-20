@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import {
   selectCurrentLevel,
-  selectCategoriesNames,
+  // selectCategoriesNames,
   selectBirdsData,
 } from 'store/gameSlice';
 
@@ -14,23 +14,13 @@ import styles from 'components/categories/categories.module.scss';
 function Categories() {
   const { i18n } = useTranslation();
   const language = i18n.language;
-  console.log(language);
-
-  const currentLevel = useSelector(selectCurrentLevel);
-  const [categoriesNames] = useSelector(selectCategoriesNames) || [];
+  const currentLevel = useSelector(selectCurrentLevel); 
   const birdsData = useSelector(selectBirdsData);
-  const neededCategoryLanguages = birdsData.categories;
-  console.log('neededCategory',neededCategoryLanguages)
-
-  i
- 
-
-  // console.log(lang);
-
+  const categoryNames = birdsData[language];
   return (
     <div className={styles.Categories__Container}>
-      {categoriesNames &&
-        categoriesNames.ru.map((category, index) => (
+      {categoryNames &&
+        categoryNames[0].map((category, index) => (
           <div
             key={category}
             className={
