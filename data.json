@@ -6,20 +6,18 @@
       "Певчие птицы",
       "Хищные птицы",
       "Mорские птицы"
-    ]
-      },
-    { "lt":
-    [
+      ]
+    },
+    { "lt": [
       "Apšilimas",
       "Žvirbliniai",
       "miško paukščiai",
       "Giesmininkai",
       "Plėšrūnai paukščiai",
-      "jūros paukščiai"
-    ]
+      "jūros paukščiai"   
+      ]
     },
-    { "en":
-      [
+    { "en": [
         "Warm up",
         "passerines",
         "forest birds",

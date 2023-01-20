@@ -11,12 +11,10 @@ function Categories() {
   const { i18n } = useTranslation();
   const language = i18n.language;
   console.log(language);
-  
+
   const currentLevel = useSelector(selectCurrentLevel);
   const [categoriesNames] = useSelector(selectCategoriesNames) || [];
-  const currentLanguageCategoriesNames = categoriesNames|| []; 
-  console.log(currentLanguageCategoriesNames);
-
+ 
 
   return (
     <div className={styles.Categories__Container}>
