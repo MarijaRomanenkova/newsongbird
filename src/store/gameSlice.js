@@ -10,8 +10,7 @@ import { axiosInstance } from '../axiosInstance';
 
 
 const initialState = {
-  birdsData: [],
-  categoriesNames2:[],
+  birdsData: [],  
   categoriesNames: [],
   isRequestLoading: true,
   currentLevel: 1,
@@ -120,9 +119,8 @@ export const gameSlice = createSlice({
       })
       .addCase(getBirdsData.fulfilled, (state, action) => {
         state.birdsData = action.payload;
-        // eslint-disable-next-line prefer-destructuring
-        state.categoriesNames = action.payload.ru[0];
-        state.categoriesNames2 = action.payload.categories;
+        // eslint-disable-next-line prefer-destructuring        
+        state.categoriesNames = action.payload.categories;
         state.correctAnswerID = getCorrectAnswerID(action.payload.ru[1].length);
         state.currentCategoryOptions = setCurrentCategoryOptions(action.payload.ru[state.currentLevel], state.correctAnswerID);     
         state.isRequestLoading = false;
@@ -154,6 +152,5 @@ export const selectCurrentChosenAnswer = (state) =>
   state.game.currentChosenAnswer;
 export const selectCorrectAnswerID = (state) => state.game.correctAnswerID;
 
-export const selectCategoriesNames2 = (state) => state.game.categoriesNames2;
 
 export default gameSlice.reducer;

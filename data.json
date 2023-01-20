@@ -1,23 +1,35 @@
 { "categories": [
-  { "ru": [
-    "Разминка",
-    "Воробьиные",
-    "Лесные птицы",
-    "Певчие птицы",
-    "Хищные птицы",
-    "Mорские птицы"
-  ]
-  }
-],
-	"ru":[		
-    [
+    { "ru": [
       "Разминка",
       "Воробьиные",
       "Лесные птицы",
       "Певчие птицы",
       "Хищные птицы",
       "Mорские птицы"
-    ],
+    ]
+      },
+    { "lt":
+    [
+      "Apšilimas",
+      "Žvirbliniai",
+      "miško paukščiai",
+      "Giesmininkai",
+      "Plėšrūnai paukščiai",
+      "jūros paukščiai"
+    ]
+    },
+    { "en":
+      [
+        "Warm up",
+        "passerines",
+        "forest birds",
+        "Songbirds",
+        "Predator birds",
+        "sea ​​birds"
+      ]
+    }
+  ],
+	"ru":[	
     [
       {
         "id":1,
@@ -319,15 +331,7 @@
       }
     ]
 	],
-	"lt":[
-      [
-        "Apšilimas",
-        "Žvirbliniai",
-        "miško paukščiai",
-        "Giesmininkai",
-        "Plėšrūnai paukščiai",
-        "jūros paukščiai"
-      ],
+	"lt":[      
       [
         {
           "id":1,
@@ -629,15 +633,7 @@
         }
       ]
     ],		
-  "en":[
-    [
-      "Warm up",
-      "passerines",
-      "forest birds",
-      "Songbirds",
-      "Predator birds",
-      "sea ​​birds"
-    ],
+  "en":[    
     [
       {
         "id":1,
