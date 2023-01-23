@@ -9,10 +9,9 @@ import { axiosInstance } from '../axiosInstance';
 
 
 const initialState = {
-  birdsData: [], 
+  birdsData: {}, 
   isRequestLoading: true,
-  currentLevel: 1,
-  currentCategoryOptions: [],
+  currentLevel: 1,  
   correctAnswerID: 0,
   correctAnswerObject: {},
   currentChosenAnswer: {},

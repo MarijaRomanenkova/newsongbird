@@ -29,12 +29,9 @@ function AnswerOptions() {
   const { i18n } = useTranslation();
   const language = i18n.language;
 
-  const birdsData = useSelector(selectBirdsData);
   const currentLevel = useSelector(selectCurrentLevel);
-
-  const [currentCategoryOptions, setCurrentCategoryOptions] = useState(
-    birdsData[language][currentLevel]
-  );
+  const birdsData = useSelector(selectBirdsData);
+  const currentCategoryOptions = birdsData[language][currentLevel];
 
   const correctAnswerID = useSelector(selectCorrectAnswerID);
   const currentChosenAnswer = useSelector(selectCurrentChosenAnswer);
@@ -48,24 +45,22 @@ function AnswerOptions() {
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 
   useEffect(() => {
-    setCurrentCategoryOptions(() =>
-      currentCategoryOptions.map((option) => {
-        if (option.id === correctAnswerID) {
-          return {
-            ...option,
-            uniqueID: nanoid(),
-            isTouched: false,
-            isCorrectAnswer: true,
-          };
-        }
+    currentCategoryOptions.map((option) => {
+      if (option.id === correctAnswerID) {
         return {
           ...option,
           uniqueID: nanoid(),
           isTouched: false,
-          isCorrectAnswer: false,
+          isCorrectAnswer: true,
         };
-      })
-    );
+      }
+      return {
+        ...option,
+        uniqueID: nanoid(),
+        isTouched: false,
+        isCorrectAnswer: false,
+      };
+    });
   }, [currentLevel]);
 
   function handleAnswerOptionClick(id) {
@@ -73,14 +68,14 @@ function AnswerOptions() {
       return;
     }
     dispatch(answerWasChosen(id));
-    setCurrentCategoryOptions(() =>
-      currentCategoryOptions.map((option) => {
-        if (option.id === id) {
-          return { ...option, isTouched: true };
-        }
-        return { ...option };
-      })
-    );
+
+    currentCategoryOptions.map((option) => {
+      if (option.id === id) {
+        return { ...option, isTouched: true };
+      }
+      return { ...option };
+    });
+
     if (id === correctAnswerID) {
       dispatch(correctAnswerChosen());
       playCorrectAnswerChosenSound();
@@ -100,21 +95,22 @@ function AnswerOptions() {
     <>
       <div className={styles.AnswerOptions_Container}>
         <div className={styles.AnswerOptionsList_Container}>
-          {currentCategoryOptions.map((option) => (
-            <button
-              key={option.uniqueID}
-              className={styles.AnswerOptionsList_Option}
-              type="button"
-              onClick={() => handleAnswerOptionClick(option.id)}
-              disabled={!isNextButtonDisabled}
-            >
-              <Circle
-                isTouched={option.isTouched}
-                isCorrectAnswer={option.isCorrectAnswer}
-              />
-              {option.name}
-            </button>
-          ))}
+          {currentCategoryOptions &&
+            currentCategoryOptions.map((option) => (
+              <button
+                key={option.uniqueID}
+                className={styles.AnswerOptionsList_Option}
+                type="button"
+                onClick={() => handleAnswerOptionClick(option.id)}
+                disabled={!isNextButtonDisabled}
+              >
+                <Circle
+                  isTouched={option.isTouched}
+                  isCorrectAnswer={option.isCorrectAnswer}
+                />
+                {option.name}
+              </button>
+            ))}
         </div>
 
         {currentChosenAnswer.id && (
