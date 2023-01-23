@@ -39,16 +39,16 @@ function AnswerOptions() {
   const [currentChosenAnswer, setCurrentChosenAnswer] = useState({});
 
   const { language } = i18n;
-  const dataByLanguage = birdsData[language];
+  const currentCategoryOptionsByLanguage = birdsData[language];
 
   function findCurrentLevelByIndex(option, index) {
     return index === currentLevel;
   }
 
   useEffect(() => {
-    if (currentLevel && dataByLanguage) {
+    if (currentLevel && currentCategoryOptionsByLanguage) {
       setCurrentCategoryOptions(
-        dataByLanguage
+        currentCategoryOptionsByLanguage
           .find((option, index) => findCurrentLevelByIndex(option, index))
           .map((option) => {
             if (option.id === correctAnswerID) {
@@ -68,7 +68,7 @@ function AnswerOptions() {
           })
       );
     }
-  }, [currentLevel, dataByLanguage]);
+  }, [currentLevel, currentCategoryOptionsByLanguage]);
 
   function handleAnswerOptionClick(id) {
     setCurrentChosenAnswer(
@@ -107,7 +107,7 @@ function AnswerOptions() {
     <>
       <div className={styles.AnswerOptions_Container}>
         <div className={styles.AnswerOptionsList_Container}>
-          {dataByLanguage &&
+          {currentCategoryOptionsByLanguage &&
             currentLevel &&
             currentCategoryOptions.map((option) => (
               <button

@@ -23,7 +23,7 @@ function CorrectAnswer() {
   const correctAnswerID = useSelector(selectCorrectAnswerID);
   const isCorrectAnswerChosen = useSelector(selectIsCorrectAnswerChosen);
 
-  const dataByLanguage = birdsData[language];
+  const currentCategoryOptionsByLanguage = birdsData[language];
   let currentCategoryOptions = [];
   let correctAnswerObject = {};
 
@@ -31,9 +31,9 @@ function CorrectAnswer() {
     return index === currentLevel;
   }
 
-  if (dataByLanguage && currentLevel) {
-    currentCategoryOptions = dataByLanguage.find((option, index) =>
-      findCurrentLevelByIndex(option, index)
+  if (currentCategoryOptionsByLanguage && currentLevel) {
+    currentCategoryOptions = currentCategoryOptionsByLanguage.find(
+      (option, index) => findCurrentLevelByIndex(option, index)
     );
     correctAnswerObject = currentCategoryOptions.find(
       (option) => option.id === correctAnswerID
