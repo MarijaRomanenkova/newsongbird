@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
+
 import { ToastContainer, Zoom } from 'react-toastify';
 
 import Navigation from 'components/navigation/navigation.component';

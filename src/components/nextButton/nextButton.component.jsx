@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 import styles from './nextButton.module.scss';
 
@@ -8,6 +9,7 @@ function NextButton({
   isNextButtonDisabled,
   handleNextButtonClick,
 }) {
+  const { t } = useTranslation();
   const nextButtonClasses = cx({
     [styles.Hidden]: isGameOver,
     [styles.Disabled]: isNextButtonDisabled,
@@ -21,7 +23,7 @@ function NextButton({
       onClick={handleNextButtonClick}
       disabled={isNextButtonDisabled}
     >
-      Next Level
+      {t('next-level')}
     </button>
   );
 }
