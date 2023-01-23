@@ -66,9 +66,9 @@ function SignUpForm() {
                     : styles.Form_Input
                 }
               />
-              {touched.email && errors.email ? (
+              {touched.email && errors.email && (
                 <div className={styles.Error}>{t('email-validation')}</div>
-              ) : null}
+              )}
 
               <label htmlFor="password" className={styles.Form_Label}>
                 {t('form-password')}
@@ -102,9 +102,9 @@ function SignUpForm() {
                     : styles.Form_Input
                 }
               />
-              {touched.confirmPassword && errors.confirmPassword ? (
+              {touched.confirmPassword && errors.confirmPassword && (
                 <div className={styles.Error}>{t('email-match-error')}</div>
-              ) : null}
+              )}
 
               <div className={styles.Checkbox_Container}>
                 <Field

@@ -65,9 +65,9 @@ function Login() {
                     : styles.Form_Input
                 }
               />
-              {touched.email && errors.email ? (
+              {touched.email && errors.email && (
                 <div className={styles.Error}>{t('email-match-error')}</div>
-              ) : null}
+              )}
 
               <label htmlFor="password" className={styles.Form_Label}>
                 {t('form-password')}
@@ -82,9 +82,9 @@ function Login() {
                     : styles.Form_Input
                 }
               />
-              {touched.password && errors.password ? (
+              {touched.password && errors.password &&  (
                 <div className={styles.Error}>{t('email-reminder-error')}</div>
-              ) : null}
+              )}
               <button
                 className={styles.Btn}
                 type="submit"
