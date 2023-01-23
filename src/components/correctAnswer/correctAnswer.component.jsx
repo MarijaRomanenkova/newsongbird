@@ -17,8 +17,7 @@ const HIDDEN__ANSWER = '******';
 
 function CorrectAnswer() {
   const { i18n } = useTranslation();
-  // eslint-disable-next-line prefer-destructuring
-  const language = i18n.language;
+  const { language } = i18n;
   const currentLevel = useSelector(selectCurrentLevel);
   const birdsData = useSelector(selectBirdsData);
   const correctAnswerID = useSelector(selectCorrectAnswerID);
@@ -28,13 +27,13 @@ function CorrectAnswer() {
   let currentCategoryOptions = [];
   let correctAnswerObject = {};
 
-  function findByIndex(option, index) {
+  function findCurrentLevelByIndex(option, index) {
     return index === currentLevel;
   }
 
   if (dataByLanguage && currentLevel) {
     currentCategoryOptions = dataByLanguage.find((option, index) =>
-      findByIndex(option, index)
+      findCurrentLevelByIndex(option, index)
     );
     correctAnswerObject = currentCategoryOptions.find(
       (option) => option.id === correctAnswerID

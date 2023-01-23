@@ -1,4 +1,3 @@
-/* eslint-disable prefer-destructuring */
 import React, { useState, useEffect } from 'react';
 import { useSound } from 'use-sound';
 import { useSelector, useDispatch } from 'react-redux';
@@ -39,10 +38,10 @@ function AnswerOptions() {
   const [currentCategoryOptions, setCurrentCategoryOptions] = useState([]);
   const [currentChosenAnswer, setCurrentChosenAnswer] = useState({});
 
-  const language = i18n.language;
+  const { language } = i18n;
   const dataByLanguage = birdsData[language];
 
-  function findByIndex(option, index) {
+  function findCurrentLevelByIndex(option, index) {
     return index === currentLevel;
   }
 
@@ -50,7 +49,7 @@ function AnswerOptions() {
     if (currentLevel && dataByLanguage) {
       setCurrentCategoryOptions(
         dataByLanguage
-          .find((option, index) => findByIndex(option, index))
+          .find((option, index) => findCurrentLevelByIndex(option, index))
           .map((option) => {
             if (option.id === correctAnswerID) {
               return {

@@ -1,4 +1,3 @@
-/* eslint-disable prefer-destructuring */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
@@ -36,7 +35,7 @@ function getCorrectAnswerID(currentLevelArrayLength) {
 export const gameSlice = createSlice({
   name: 'game',
   initialState,
-  reducers: {    
+  reducers: {
     switchToNextLevel: (state) => {
       state.currentLevel += 1;
       state.correctAnswerID = getCorrectAnswerID(

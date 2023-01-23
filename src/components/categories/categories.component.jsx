@@ -1,4 +1,3 @@
-/* eslint-disable prefer-destructuring */
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -9,7 +8,7 @@ import styles from 'components/categories/categories.module.scss';
 
 function Categories() {
   const { i18n } = useTranslation();
-  const language = i18n.language;
+  const { language } = i18n;
   const currentLevel = useSelector(selectCurrentLevel);
   const birdsData = useSelector(selectBirdsData);
   const categoryNames = birdsData[language];

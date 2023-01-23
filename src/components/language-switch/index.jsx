@@ -8,16 +8,13 @@ import styles from './index.module.scss';
 function LanguageSwitch() {
   const { i18n } = useTranslation();
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
   return (
     <div className={styles.LanguageSwitch_Container}>
       {languageList.map(({ name, img, code }) => (
         <button
           key={code}
           value={code}
-          onClick={() => changeLanguage(code)}
+          onClick={() => i18n.changeLanguage(code)}
           type="button"
           className={styles.LanguageSwitch_Flag}
         >

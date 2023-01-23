@@ -15,7 +15,7 @@ function GameOver() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const MAXIMUM_TOTAL_SCORE = MAXIMUM_SCORE_PER_LEVEL * (currentLevel - 2);
+  const MAXIMUM_TOTAL_SCORE = MAXIMUM_SCORE_PER_LEVEL * currentLevel;
 
   return (
     <div className={styles.GameOver_Container}>
