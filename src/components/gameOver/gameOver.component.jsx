@@ -1,4 +1,3 @@
-/* eslint-disable object-shorthand */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -23,8 +22,8 @@ function GameOver() {
       <h1 className={styles.Gamever_Title}>{t('game-over-title')}</h1>
       <h5 className={styles.GameOver_Text}>
         {t('game-over-text', {
-          score: score,
-          MAXIMUM_TOTAL_SCORE: MAXIMUM_TOTAL_SCORE,
+          score,
+          MAXIMUM_TOTAL_SCORE,
         })}
       </h5>
 
