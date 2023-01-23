@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 /* eslint-disable prefer-destructuring */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
@@ -7,10 +6,10 @@ import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
 import { axiosInstance } from '../axiosInstance';
 
 const initialState = {
-  birdsData: {}, 
+  birdsData: {},
   isRequestLoading: true,
-  currentLevel: 1,  
-  correctAnswerID: 0,  
+  currentLevel: 1,
+  correctAnswerID: 0,
   numberOfWrongAnswers: 0,
   score: 0,
   isCorrectAnswerChosen: false,
@@ -39,9 +38,10 @@ export const gameSlice = createSlice({
   initialState,
   reducers: {    
     switchToNextLevel: (state) => {
-      state.currentLevel += 1;      
+      state.currentLevel += 1;
       state.correctAnswerID = getCorrectAnswerID(
-      state.birdsData.ru[state.currentLevel].length); 
+        state.birdsData.ru[state.currentLevel].length
+      );
       state.isCorrectAnswerChosen = false;
       state.numberOfWrongAnswers = 0;
     },
@@ -58,12 +58,11 @@ export const gameSlice = createSlice({
     },
 
     answerWasChosen: (state) => {
-      state.numberOfWrongAnswers += 1;       
-      
+      state.numberOfWrongAnswers += 1;
     },
 
     resetTheGame: (state) => {
-      state.currentLevel = 1;      
+      state.currentLevel = 1;
       state.correctAnswerID = getCorrectAnswerID(state.birdsData.ru[1].length);
       state.numberOfWrongAnswers = 0;
       state.score = 0;
@@ -78,7 +77,7 @@ export const gameSlice = createSlice({
       })
       .addCase(getBirdsData.fulfilled, (state, action) => {
         state.birdsData = action.payload;
-        state.correctAnswerID = getCorrectAnswerID(action.payload.ru[1].length);          
+        state.correctAnswerID = getCorrectAnswerID(action.payload.ru[1].length);
         state.isRequestLoading = false;
       })
       .addCase(getBirdsData.rejected, (state) => {

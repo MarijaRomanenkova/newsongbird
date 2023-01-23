@@ -1,5 +1,4 @@
 /* eslint-disable prefer-destructuring */
-/* eslint-disable no-inner-declarations */
 import React, { useState, useEffect } from 'react';
 import { useSound } from 'use-sound';
 import { useSelector, useDispatch } from 'react-redux';
@@ -25,9 +24,8 @@ import styles from './answerOptions.module.scss';
 
 function AnswerOptions() {
   const dispatch = useDispatch();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
-  const language = i18n.language;
   const currentLevel = useSelector(selectCurrentLevel);
   const birdsData = useSelector(selectBirdsData);
   const correctAnswerID = useSelector(selectCorrectAnswerID);
@@ -38,9 +36,11 @@ function AnswerOptions() {
     incorrectAnswerChosenSoundOGG
   );
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
-
-  const dataByLanguage = birdsData[language];
   const [currentCategoryOptions, setCurrentCategoryOptions] = useState([]);
+  const [currentChosenAnswer, setCurrentChosenAnswer] = useState({});
+
+  const language = i18n.language;
+  const dataByLanguage = birdsData[language];
 
   function findByIndex(option, index) {
     return index === currentLevel;
@@ -70,8 +70,6 @@ function AnswerOptions() {
       );
     }
   }, [currentLevel, dataByLanguage]);
-
-  const [currentChosenAnswer, setCurrentChosenAnswer] = useState({});
 
   function handleAnswerOptionClick(id) {
     setCurrentChosenAnswer(
@@ -141,10 +139,10 @@ function AnswerOptions() {
         {!currentChosenAnswer.id && (
           <div className={styles.AnswerOptionDetails_Dummy}>
             <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
-              Послушайте плеер.
+              {t('game-rules-text')}
             </h4>
             <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
-              Выберите птицу из списка
+              {t('game-rules-text-2')}
             </h4>
           </div>
         )}

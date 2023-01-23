@@ -313,10 +313,10 @@
     [
       "Apšilimas",
       "Žvirbliniai",
-      "miško paukščiai",
+      "Miško paukščiai",
       "Giesmininkai",
       "Plėšrūnai paukščiai",
-      "jūros paukščiai"
+      "Jūros paukščiai"
     ],
     [
       {
@@ -379,25 +379,25 @@
       },
       {
         "id":2,
-        "name":"Rookas",
+        "name":"Juodvarnis",
         "species":"Corvus frugilegus",
-        "description":"Rookai yra labai protingi ir greito proto paukščiai. Snapo pagalba kuria ir naudoja paprasčiausius įrankius. Rooks turi išvystytą traktoriaus garsų refleksą. Išgirdę „barškėjimą“ jie skrenda į garsą – traktorius aria žemę, vadinasi, šioje vietoje yra daug maisto.",
+        "description":"Juodvarniai yra labai protingi ir greito proto paukščiai. Snapo pagalba kuria ir naudoja paprasčiausius įrankius. Juodvarnis turi išvystytą traktoriaus garsų refleksą. Išgirdę „barškėjimą“ jie skrenda į garsą – traktorius aria žemę, vadinasi, šioje vietoje yra daug maisto.",
         "image":"https://live.staticflickr.com//65535//49347123322_291c86b016.jpg",
         "audio":"https://www.xeno-canto.org/sounds/uploaded/RLRHCUIPIY/XC512540-gawron%20Suble%2019.12.19%20%2012.35.mp3"
       },
       {
         "id":3,
-        "name":"džekas",
-        "species":"Coloeus monedula",
-        "description":"Žodis „jackdaw“ kilęs iš senosios slavų kalbos ir verčiamas kaip „juodas“. Šis žodis dažnai vartojamas kalbant apie varnas ar kitus juodus paukščius. Lotyniškas žandikaulių pavadinimas „monedula“ siejamas su žodžiais moneta, reiškiančiais paukščio meilę blizgantiems ir ryškiems daiktams.",
+        "name":"Kuosos",
+        "species":"Kuosos",
+        "description":"Genties pavadinimo žodis „coloeus“ yra naujosios lotynų kalbos skolinys iš antikinės graikų kalbos, reiškiančio kuosos „koloiós“ Šis žodis dažnai vartojamas kalbant apie varnas ar kitus juodus paukščius. Lotyniškas pavadinimas „monedula“ siejamas su žodžiais moneta, reiškiančiais paukščio meilę blizgantiems ir ryškiems daiktams.",
         "image":"https://live.staticflickr.com//65535//49237149586_993cf685c5.jpg",
         "audio":"https://www.xeno-canto.org/sounds/uploaded/GYAUIPUVNM/XC510498-Coloeus%20monedula_2019.11.13_11.55_01.mp3"
       },
       {
         "id":4,
-        "name":"strazdas giesmininkas",
+        "name":"Strazdas Giesmininkas",
         "species":"Turdus philomelos",
-        "description":"Drozdas yra geriausias dainininkas iš žvirblių būrio. Daina susideda tik iš gražių skambių švilpukų ir trumpų trilių. Dažniausiai tai galima išgirsti ryte ir vakare. Kurkliai gieda visą lizdo laiką.",
+        "description":"Strazdas yra geriausias dainininkas iš žvirblių būrio. Daina susideda tik iš gražių skambių švilpukų ir trumpų trilių. Dažniausiai tai galima išgirsti ryte ir vakare. Kurkliai gieda visą lizdo laiką.",
         "image":"https://live.staticflickr.com/65535/48979125763_e2534f54bd.jpg",
         "audio":"https://www.xeno-canto.org/sounds/uploaded/BLMSIUFTFU/XC513326-190704_1146_TF-Glogow.mp3"
       },
@@ -411,7 +411,7 @@
       },
       {
         "id":6,
-        "name":"Jay",
+        "name":"Kėkštas",
         "species":"Garrulus glandarius",
         "description":"Kai kėkštas nerimauja, kuokštas ant galvos susiraukšlėja. Paukštis bando sukurti bauginantį vaizdą. Jays sugeba mėgdžioti kitų paukščių, gyvūnų balsus ir žmonių kuriamus garsus. Žiemai jie gamina dideles gilių ir riešutų atsargas.",
         "image":"https://live.staticflickr.com//65535//49369678956_9a7465c7f4.jpg",
@@ -437,9 +437,9 @@
       },
       {
         "id":3,
-        "name":"balandis",
+        "name":"Balandis",
         "species":"Streptopelia turtur",
-        "description":"Balandė gyvena mišriuose ir plačialapiuose miškuose, taip pat miestų parkuose ir miesteliuose. Paukščiai dažnai renkasi gyvenimo vietas šalia žmonių ir lengvai pripranta prie žmonių. Dėl melodingo malonaus balandžių dainavimo jie dažnai auginami namuose.",
+        "description":"Balandis gyvena mišriuose ir plačialapiuose miškuose, taip pat miestų parkuose ir miesteliuose. Paukščiai dažnai renkasi gyvenimo vietas šalia žmonių ir lengvai pripranta prie žmonių. Dėl melodingo malonaus balandžių dainavimo jie dažnai auginami namuose.",
         "image":"https://live.staticflickr.com/65535/48063004977_84252f9ceb.jpg",
         "audio":"https://www.xeno-canto.org/sounds/uploaded/ZNCDXTUOFL/XC324106-Turkawka_Streptopelia_turtur_Poland_Jarek_Matusiak_2011625_07.mp3"
       },
@@ -453,17 +453,17 @@
       },
       {
         "id":5,
-        "name":"Hoopoe",
+        "name":"Kukutis",
         "species":"Upupa epops",
-        "description":"Hoopoe mieliau gyvena atvirame kraštovaizdyje su atskirais medžiais ar giraitėmis. Patogiausios paukščiui yra miško stepė ir savana. Būrelis gali pasirinkti gyvenamąją vietą šalia žmogaus: ganyklas, vynuogynus, daržus.",
+        "description":"Kukučiai mieliau gyvena atvirame kraštovaizdyje su atskirais medžiais ar giraitėmis. Patogiausios paukščiui yra miško stepė ir savana. Būrelis gali pasirinkti gyvenamąją vietą šalia žmogaus: ganyklas, vynuogynus, daržus.",
         "image":"https://live.staticflickr.com//65535//49226383598_6f8be86a06.jpg",
         "audio":"https://www.xeno-canto.org/sounds/uploaded/ZNCDXTUOFL/XC477326-dudek%20%282%29.mp3"
       },
       {
         "id":6,
-        "name":"greitas",
+        "name":"Čiurlys",
         "species":"Apus apus",
-        "description":"Sviftą galima pamatyti beveik kiekviename planetos kampelyje. Jie gyvena tiek miškuose, tiek atvirose vietose. Swifts gyvena dideliais pulkais. Didelės šių paukščių kolonijos gali būti matomos miestuose ar pakrantės uolose.",
+        "description":"Čiurlį galima pamatyti beveik kiekviename planetos kampelyje. Jie gyvena tiek miškuose, tiek atvirose vietose. Čiurlys gyvena dideliais pulkais. Didelės šių paukščių kolonijos gali būti matomos miestuose ar pakrantės uolose.",
         "image":"https://live.staticflickr.com//65535//48386150031_7b749df74b.jpg",
         "audio":"https://www.xeno-canto.org/sounds/uploaded/TMUAWSDHDJ/XC511871-G.mp3"
       }
@@ -471,9 +471,9 @@
     [
       {
         "id":1,
-        "name":"lervas",
+        "name":"Dirvinis vieversys",
         "species":"Alauda arvensis",
-        "description":"Liaurai yra migruojantys paukščiai. Nuo rugsėjo pradžios skrenda į pietus. Jie grįžta kovo pradžioje, nepriklausomai nuo to, ar sniegas ištirpo, ar ne. Atvykę lekiukai nustatė pavasario pradžią ir laiką, kada atėjo laikas arti žemę.",
+        "description":"Dirviniai vieversiai yra migruojantys paukščiai. Nuo rugsėjo pradžios skrenda į pietus. Jie grįžta kovo pradžioje, nepriklausomai nuo to, ar sniegas ištirpo, ar ne. Atvykę lekiukai nustatė pavasario pradžią ir laiką, kada atėjo laikas arti žemę.",
         "image":"https://live.staticflickr.com/65535/47105096764_f751fba568.jpg",
         "audio":"https://www.xeno-canto.org/sounds/uploaded/ZNCDXTUOFL/XC462158-Skowronek_Alauda_arvensis_Poland_Jarek_Matusiak_%20-006%20skowronek%20%282%29.mp3"
       },
@@ -503,9 +503,9 @@
       },
       {
         "id":5,
-        "name":"vaškas",
+        "name":"Svirbelis",
         "species":"Bombicilla garrulus",
-        "description":"Vaškinis sparnelis turi labai atkaklius nagus, kurie padeda paukščiui išsilaikyti ant šakų ir pešti sunkiausiai gaunamas uogas. Piršlybų metu patinas siūlo patelei uogų ar kitokio skanėsto. Jei patelė tai priima, tada paukščiai sukuria porą.",
+        "description":"Svirbelis turi labai atkaklius nagus, kurie padeda paukščiui išsilaikyti ant šakų ir pešti sunkiausiai gaunamas uogas. Piršlybų metu patinas siūlo patelei uogų ar kitokio skanėsto. Jei patelė tai priima, tada paukščiai sukuria porą.",
         "image":"https://live.staticflickr.com//65535//49367433842_1b06da0e6b.jpg",
         "audio":"https://www.xeno-canto.org/sounds/uploaded/ZNCDXTUOFL/XC517421-AB-004%20%282%29%20jemio%C5%82uszka.mp3"
       },
@@ -537,7 +537,7 @@
       },
       {
         "id":3,
-        "name":"Lun",
+        "name":"Lunas",
         "species":"Cyaneus cirkas",
         "description":"Lunas yra mažas sakalas. Minta daugiausia į peles panašiais graužikais, jo mitybos pagrindas – pelėnai, žiurkėnai ir pelės. Harrier plunksna gali būti pelenų pilka. Su tokiu paukščiu siejamas palyginimas „žilaplaukis kaip haris“.",
         "image":"https://live.staticflickr.com/4480/37240531151_b74619c99d.jpg",
@@ -622,11 +622,11 @@
   "en":[
     [
       "Warm up",
-      "passerines",
-      "forest birds",
+      "Passerines",
+      "Forest birds",
       "Songbirds",
       "Predator birds",
-      "sea ​​birds"
+      "Sea ​​birds"
     ],
     [
       {
@@ -705,7 +705,7 @@
       },
       {
         "id":4,
-        "name":"song thrush",
+        "name":"Song Thrush",
         "species":"Turdus philomelos",
         "description":"Drozd is the best singer from the sparrow squad. The song consists only of beautiful sonorous whistles and short trills. Most often it can be heard in the morning and evening. Thrushes sing during the entire nesting period.",
         "image":"https://live.staticflickr.com/65535/48979125763_e2534f54bd.jpg",
@@ -747,7 +747,7 @@
       },
       {
         "id":3,
-        "name":"dove",
+        "name":"Dove",
         "species":"Streptopelia turtur",
         "description":"The dove lives in mixed and broad-leaved forests, as well as in city parks and towns. Birds often choose places of life next to humans and easily get used to people. Due to the melodic pleasant singing of turtle doves, they are often bred at home.",
         "image":"https://live.staticflickr.com/65535/48063004977_84252f9ceb.jpg",
@@ -771,7 +771,7 @@
       },
       {
         "id":6,
-        "name":"swift",
+        "name":"Swift",
         "species":"Apus apus",
         "description":"Swift can be seen in almost every corner of the planet. They live both in forest areas and in open areas. Swifts live in large flocks. Large colonies of these birds can be seen in cities or on coastal cliffs.",
         "image":"https://live.staticflickr.com//65535//48386150031_7b749df74b.jpg",
@@ -781,7 +781,7 @@
     [
       {
         "id":1,
-        "name":"lark",
+        "name":"Lark",
         "species":"Alauda arvensis",
         "description":"Larks are migratory birds. From the beginning of September, they fly south. They return at the beginning of March, regardless of whether the snow has melted or not. By the arrival of the larks, they determined the onset of spring and the time when it was time to plow the land.",
         "image":"https://live.staticflickr.com/65535/47105096764_f751fba568.jpg",
@@ -813,7 +813,7 @@
       },
       {
         "id":5,
-        "name":"waxwing",
+        "name":"Waxwing",
         "species":"Bombicilla garrulus",
         "description":"The waxwing has very tenacious claws, which helps the bird to stay on the branches and peck at the berries that are the hardest to get. During courtship, the male offers the female a berry or other treat. If the female accepts it, then the birds create a pair.",
         "image":"https://live.staticflickr.com//65535//49367433842_1b06da0e6b.jpg",
