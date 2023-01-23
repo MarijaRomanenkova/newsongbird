@@ -19,14 +19,27 @@ function CorrectAnswer() {
   const { i18n } = useTranslation();
   // eslint-disable-next-line prefer-destructuring
   const language = i18n.language;
-  const correctAnswerID = useSelector(selectCorrectAnswerID);
-  const birdsData = useSelector(selectBirdsData);
   const currentLevel = useSelector(selectCurrentLevel);
-  const currentAnswerOptions = birdsData[language][currentLevel];
-  const correctAnswerObject =
-    currentAnswerOptions.find((option) => option.id === correctAnswerID) || {};
-
+  const birdsData = useSelector(selectBirdsData);
+  const correctAnswerID = useSelector(selectCorrectAnswerID);
   const isCorrectAnswerChosen = useSelector(selectIsCorrectAnswerChosen);
+
+  const languageData = birdsData[language];
+  let currentCategoryOptions = {};
+  let correctAnswerObject = {};
+
+  function findByIndex(option, index) {
+    return index === currentLevel;
+  }
+
+  if (languageData && currentLevel) {
+    currentCategoryOptions = languageData.find((option, index) =>
+      findByIndex(option, index)
+    );
+    correctAnswerObject = currentCategoryOptions.find(
+      (option) => option.id === correctAnswerID
+    );
+  }
 
   const AudioPlayerREF = useRef();
   const pauseAudioPlayer = () => {
@@ -60,19 +73,20 @@ function CorrectAnswer() {
       />
       <div className={styles.correctAnswer_Box}>
         <h1 className={styles.correctAnswer_Title}>{answerToRender.name}</h1>
-
-        <AudioPlayer
-          layout="horizontal-reverse"
-          src={correctAnswerObject.audio}
-          autoPlay={false}
-          autoPlayAfterSrcChange={false}
-          showJumpControls={false}
-          showFilledProgress
-          volumeControls
-          customAdditionalControls={[]}
-          customVolumeControls={[]}
-          ref={AudioPlayerREF}
-        />
+        {correctAnswerObject.audio && (
+          <AudioPlayer
+            layout="horizontal-reverse"
+            src={correctAnswerObject.audio}
+            autoPlay={false}
+            autoPlayAfterSrcChange={false}
+            showJumpControls={false}
+            showFilledProgress
+            volumeControls
+            customAdditionalControls={[]}
+            customVolumeControls={[]}
+            ref={AudioPlayerREF}
+          />
+        )}
       </div>
     </div>
   );
