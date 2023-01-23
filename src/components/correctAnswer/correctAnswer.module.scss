@@ -13,6 +13,7 @@
     height: 155px;
     border-radius: 0.625rem;
     object-fit: cover;
+    
     @include mini {
       display: none;
     }
@@ -21,6 +22,7 @@
   &_Box {
     margin-left: 2rem;
     width: 100%;
+
     @include mini {
       margin: auto;
       width: 85%;
