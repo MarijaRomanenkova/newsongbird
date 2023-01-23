@@ -24,16 +24,16 @@ function CorrectAnswer() {
   const correctAnswerID = useSelector(selectCorrectAnswerID);
   const isCorrectAnswerChosen = useSelector(selectIsCorrectAnswerChosen);
 
-  const languageData = birdsData[language];
-  let currentCategoryOptions = {};
+  const dataByLanguage = birdsData[language];
+  let currentCategoryOptions = [];
   let correctAnswerObject = {};
 
   function findByIndex(option, index) {
     return index === currentLevel;
   }
 
-  if (languageData && currentLevel) {
-    currentCategoryOptions = languageData.find((option, index) =>
+  if (dataByLanguage && currentLevel) {
+    currentCategoryOptions = dataByLanguage.find((option, index) =>
       findByIndex(option, index)
     );
     correctAnswerObject = currentCategoryOptions.find(

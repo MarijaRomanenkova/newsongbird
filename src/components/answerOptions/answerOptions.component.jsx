@@ -1,6 +1,6 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-inner-declarations */
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSound } from 'use-sound';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
@@ -27,12 +27,10 @@ import styles from './answerOptions.module.scss';
 function AnswerOptions() {
   const dispatch = useDispatch();
   const { i18n } = useTranslation();
-  const language = i18n.language;
 
+  const language = i18n.language;
   const currentLevel = useSelector(selectCurrentLevel);
   const birdsData = useSelector(selectBirdsData);
-  const currentCategoryOptions = birdsData[language][currentLevel];
-
   const correctAnswerID = useSelector(selectCorrectAnswerID);
   const currentChosenAnswer = useSelector(selectCurrentChosenAnswer);
   const isGameOver = useSelector(selectIsGameOver);
@@ -41,40 +39,54 @@ function AnswerOptions() {
   const [playIncorrectAnswerChosenSound] = useSound(
     incorrectAnswerChosenSoundOGG
   );
-
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 
+  const dataByLanguage = birdsData[language];
+  // const [currentLanguageOptionsArray, setCurrentLanguageOptionsArray] = useState([]);
+  const [currentCategoryOptions, setCurrentCategoryOptions] = useState([]);
+
+  function findByIndex(option, index) {
+    return index === currentLevel;
+  }
+
   useEffect(() => {
-    currentCategoryOptions.map((option) => {
-      if (option.id === correctAnswerID) {
-        return {
-          ...option,
-          uniqueID: nanoid(),
-          isTouched: false,
-          isCorrectAnswer: true,
-        };
-      }
-      return {
-        ...option,
-        uniqueID: nanoid(),
-        isTouched: false,
-        isCorrectAnswer: false,
-      };
-    });
-  }, [currentLevel]);
+    if (currentLevel && dataByLanguage) {
+      setCurrentCategoryOptions(
+        dataByLanguage
+          .find((option, index) => findByIndex(option, index))
+          .map((option) => {
+            if (option.id === correctAnswerID) {
+              return {
+                ...option,
+                uniqueID: nanoid(),
+                isTouched: false,
+                isCorrectAnswer: true,
+              };
+            }
+            return {
+              ...option,
+              uniqueID: nanoid(),
+              isTouched: false,
+              isCorrectAnswer: false,
+            };
+          })
+      );
+    }
+  }, [currentLevel, dataByLanguage]);
 
   function handleAnswerOptionClick(id) {
     if (!isNextButtonDisabled) {
       return;
     }
     dispatch(answerWasChosen(id));
-
-    currentCategoryOptions.map((option) => {
-      if (option.id === id) {
-        return { ...option, isTouched: true };
-      }
-      return { ...option };
-    });
+    setCurrentCategoryOptions(
+      currentCategoryOptions.map((option) => {
+        if (option.id === id) {
+          return { ...option, isTouched: true };
+        }
+        return { ...option };
+      })
+    );
 
     if (id === correctAnswerID) {
       dispatch(correctAnswerChosen());
@@ -83,6 +95,7 @@ function AnswerOptions() {
         setIsNextButtonDisabled(false);
       }
     }
+
     playIncorrectAnswerChosenSound();
   }
 
@@ -95,7 +108,8 @@ function AnswerOptions() {
     <>
       <div className={styles.AnswerOptions_Container}>
         <div className={styles.AnswerOptionsList_Container}>
-          {currentCategoryOptions &&
+          {dataByLanguage &&
+            currentLevel &&
             currentCategoryOptions.map((option) => (
               <button
                 key={option.uniqueID}
