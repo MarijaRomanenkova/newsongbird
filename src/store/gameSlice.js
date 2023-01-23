@@ -6,15 +6,11 @@ import { toast } from 'react-toastify';
 import { MAXIMUM_SCORE_PER_LEVEL } from 'gameSettings/gameSettings';
 import { axiosInstance } from '../axiosInstance';
 
-
-
 const initialState = {
   birdsData: {}, 
   isRequestLoading: true,
   currentLevel: 1,  
-  correctAnswerID: 0,
-  correctAnswerObject: {},
-  currentChosenAnswer: {},
+  correctAnswerID: 0,  
   numberOfWrongAnswers: 0,
   score: 0,
   isCorrectAnswerChosen: false,
@@ -41,8 +37,7 @@ function getCorrectAnswerID(currentLevelArrayLength) {
 export const gameSlice = createSlice({
   name: 'game',
   initialState,
-  reducers: {
-    
+  reducers: {    
     switchToNextLevel: (state) => {
       state.currentLevel += 1;      
       state.correctAnswerID = getCorrectAnswerID(
@@ -62,18 +57,14 @@ export const gameSlice = createSlice({
       }
     },
 
-    answerWasChosen: (state, action) => {
+    answerWasChosen: (state) => {
       state.numberOfWrongAnswers += 1;       
-      state.currentChosenAnswer = state.currentCategoryOptions.find(
-        (option) => option.id === action.payload
-      ); 
+      
     },
 
     resetTheGame: (state) => {
-      state.currentLevel = 1;
-      state.currentCategoryOptions = state.birdsData.ru[1];
-      state.correctAnswerID = getCorrectAnswerID(state.birdsData.ru[1].length);                
-      state.currentChosenAnswer = {};
+      state.currentLevel = 1;      
+      state.correctAnswerID = getCorrectAnswerID(state.birdsData.ru[1].length);
       state.numberOfWrongAnswers = 0;
       state.score = 0;
       state.isCorrectAnswerChosen = false;
@@ -108,14 +99,7 @@ export const selectIsCorrectAnswerChosen = (state) =>
   state.game.isCorrectAnswerChosen;
 export const selectIsGameOver = (state) => state.game.isGameOver;
 export const selectIsRequestLoading = (state) => state.game.isRequestLoading;
-
-export const selectCorrectAnswerObject = (state) =>
-  state.game.correctAnswerObject;
-export const selectCurrentChosenAnswer = (state) =>
-  state.game.currentChosenAnswer;
 export const selectCorrectAnswerID = (state) => state.game.correctAnswerID;
-
 export const selectBirdsData = (state) => state.game.birdsData;
-
 
 export default gameSlice.reducer;

@@ -12,7 +12,6 @@ import Circle from 'components/circle/circle.component';
 import NextButton from 'components/nextButton/nextButton.component';
 import {
   selectCorrectAnswerID,
-  selectCurrentChosenAnswer,
   selectIsGameOver,
   switchToNextLevel,
   correctAnswerChosen,
@@ -32,7 +31,6 @@ function AnswerOptions() {
   const currentLevel = useSelector(selectCurrentLevel);
   const birdsData = useSelector(selectBirdsData);
   const correctAnswerID = useSelector(selectCorrectAnswerID);
-  const currentChosenAnswer = useSelector(selectCurrentChosenAnswer);
   const isGameOver = useSelector(selectIsGameOver);
 
   const [playCorrectAnswerChosenSound] = useSound(correctAnswerChosenSoundOGG);
@@ -42,7 +40,6 @@ function AnswerOptions() {
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 
   const dataByLanguage = birdsData[language];
-  // const [currentLanguageOptionsArray, setCurrentLanguageOptionsArray] = useState([]);
   const [currentCategoryOptions, setCurrentCategoryOptions] = useState([]);
 
   function findByIndex(option, index) {
@@ -74,7 +71,12 @@ function AnswerOptions() {
     }
   }, [currentLevel, dataByLanguage]);
 
+  const [currentChosenAnswer, setCurrentChosenAnswer] = useState({});
+
   function handleAnswerOptionClick(id) {
+    setCurrentChosenAnswer(
+      currentCategoryOptions.find((option) => option.id === id)
+    );
     if (!isNextButtonDisabled) {
       return;
     }
