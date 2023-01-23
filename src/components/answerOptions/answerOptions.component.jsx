@@ -1,7 +1,9 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-inner-declarations */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSound } from 'use-sound';
 import { useSelector, useDispatch } from 'react-redux';
+import { nanoid } from 'nanoid';
 
 import correctAnswerChosenSoundOGG from 'assets/sounds/correctAnswerChosenSound.ogg';
 import incorrectAnswerChosenSoundOGG from 'assets/sounds/incorrectAnswerChosenSound.ogg';
@@ -9,21 +11,31 @@ import AnswerOptionDetails from 'components/answerOptionDetails/answerOptionDeta
 import Circle from 'components/circle/circle.component';
 import NextButton from 'components/nextButton/nextButton.component';
 import {
-  selectCurrentCategoryOptions,
   selectCorrectAnswerID,
   selectCurrentChosenAnswer,
   selectIsGameOver,
   switchToNextLevel,
   correctAnswerChosen,
   answerWasChosen,
+  selectBirdsData,
+  selectCurrentLevel,
 } from 'store/gameSlice';
+import { useTranslation } from 'react-i18next';
 
 import styles from './answerOptions.module.scss';
 
 function AnswerOptions() {
   const dispatch = useDispatch();
+  const { i18n } = useTranslation();
+  const language = i18n.language;
 
-  const currentCategoryOptions = useSelector(selectCurrentCategoryOptions);
+  const birdsData = useSelector(selectBirdsData);
+  const currentLevel = useSelector(selectCurrentLevel);
+
+  const [currentCategoryOptions, setCurrentCategoryOptions] = useState(
+    birdsData[language][currentLevel]
+  );
+
   const correctAnswerID = useSelector(selectCorrectAnswerID);
   const currentChosenAnswer = useSelector(selectCurrentChosenAnswer);
   const isGameOver = useSelector(selectIsGameOver);
@@ -35,11 +47,40 @@ function AnswerOptions() {
 
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
 
+  useEffect(() => {
+    setCurrentCategoryOptions(() =>
+      currentCategoryOptions.map((option) => {
+        if (option.id === correctAnswerID) {
+          return {
+            ...option,
+            uniqueID: nanoid(),
+            isTouched: false,
+            isCorrectAnswer: true,
+          };
+        }
+        return {
+          ...option,
+          uniqueID: nanoid(),
+          isTouched: false,
+          isCorrectAnswer: false,
+        };
+      })
+    );
+  }, [currentLevel]);
+
   function handleAnswerOptionClick(id) {
     if (!isNextButtonDisabled) {
       return;
     }
     dispatch(answerWasChosen(id));
+    setCurrentCategoryOptions(() =>
+      currentCategoryOptions.map((option) => {
+        if (option.id === id) {
+          return { ...option, isTouched: true };
+        }
+        return { ...option };
+      })
+    );
     if (id === correctAnswerID) {
       dispatch(correctAnswerChosen());
       playCorrectAnswerChosenSound();

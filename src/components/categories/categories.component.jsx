@@ -3,18 +3,14 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import {
-  selectCurrentLevel,
-  // selectCategoriesNames,
-  selectBirdsData,
-} from 'store/gameSlice';
+import { selectCurrentLevel, selectBirdsData } from 'store/gameSlice';
 
 import styles from 'components/categories/categories.module.scss';
 
 function Categories() {
   const { i18n } = useTranslation();
   const language = i18n.language;
-  const currentLevel = useSelector(selectCurrentLevel); 
+  const currentLevel = useSelector(selectCurrentLevel);
   const birdsData = useSelector(selectBirdsData);
   const categoryNames = birdsData[language];
   return (
