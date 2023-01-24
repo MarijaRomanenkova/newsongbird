@@ -41,7 +41,6 @@ function AnswerOptions() {
 
   const { language } = i18n;
   const currentCategoryOptionsByLanguage = birdsData[language];
-
   function findCurrentLevelByIndex(option, index) {
     return index === currentLevel;
   }
