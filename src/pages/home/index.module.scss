@@ -1,8 +1,6 @@
-@import 'shared/scss-source/variables.scss';
-@import 'shared/scss-source/mixins.scss';
-
 .Game_Container {
   max-width: 960px;
   padding: 0 1rem;
-  margin: 0 auto;
+  margin: auto;
+  position: relative;
 }

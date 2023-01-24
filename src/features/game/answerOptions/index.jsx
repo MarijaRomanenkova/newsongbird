@@ -1,7 +1,8 @@
 /* eslint-disable no-inner-declarations */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSound } from 'use-sound';
 import { useSelector, useDispatch } from 'react-redux';
+import { nanoid } from 'nanoid';
 
 import correctAnswerChosenSoundOGG from 'shared/assets/sounds/correctAnswerChosenSound.ogg';
 import incorrectAnswerChosenSoundOGG from 'shared/assets/sounds/incorrectAnswerChosenSound.ogg';
@@ -9,37 +10,84 @@ import AnswerOptionDetails from 'features/game/answerOptionDetails/index';
 import Circle from 'shared/ui/circle/index';
 import Button from 'shared/ui/button/index';
 import {
-  selectCurrentCategoryOptions,
   selectCorrectAnswerID,
-  selectCurrentChosenAnswer,
   selectIsGameOver,
   switchToNextLevel,
   correctAnswerChosen,
   answerWasChosen,
+  selectBirdsData,
+  selectCurrentLevel,
 } from 'features/game/gameSlice';
+import { useTranslation } from 'react-i18next';
 
 import styles from './index.module.scss';
 
 function AnswerOptions() {
   const dispatch = useDispatch();
+  const { t, i18n } = useTranslation();
 
-  const currentCategoryOptions = useSelector(selectCurrentCategoryOptions);
+  const currentLevel = useSelector(selectCurrentLevel);
+  const birdsData = useSelector(selectBirdsData);
   const correctAnswerID = useSelector(selectCorrectAnswerID);
-  const currentChosenAnswer = useSelector(selectCurrentChosenAnswer);
   const isGameOver = useSelector(selectIsGameOver);
 
   const [playCorrectAnswerChosenSound] = useSound(correctAnswerChosenSoundOGG);
   const [playIncorrectAnswerChosenSound] = useSound(
     incorrectAnswerChosenSoundOGG
   );
-
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
+  const [currentCategoryOptions, setCurrentCategoryOptions] = useState([]);
+  const [currentChosenAnswer, setCurrentChosenAnswer] = useState({});
+
+  const { language } = i18n;
+  const currentCategoryOptionsByLanguage = birdsData[language];
+
+  function findCurrentLevelByIndex(option, index) {
+    return index === currentLevel;
+  }
+
+  useEffect(() => {
+    if (currentLevel && currentCategoryOptionsByLanguage) {
+      setCurrentCategoryOptions(
+        currentCategoryOptionsByLanguage
+          .find((option, index) => findCurrentLevelByIndex(option, index))
+          .map((option) => {
+            if (option.id === correctAnswerID) {
+              return {
+                ...option,
+                uniqueID: nanoid(),
+                isTouched: false,
+                isCorrectAnswer: true,
+              };
+            }
+            return {
+              ...option,
+              uniqueID: nanoid(),
+              isTouched: false,
+              isCorrectAnswer: false,
+            };
+          })
+      );
+    }
+  }, [currentLevel, currentCategoryOptionsByLanguage]);
 
   function handleAnswerOptionClick(id) {
+    setCurrentChosenAnswer(
+      currentCategoryOptions.find((option) => option.id === id)
+    );
     if (!isNextButtonDisabled) {
       return;
     }
     dispatch(answerWasChosen(id));
+    setCurrentCategoryOptions(
+      currentCategoryOptions.map((option) => {
+        if (option.id === id) {
+          return { ...option, isTouched: true };
+        }
+        return { ...option };
+      })
+    );
+
     if (id === correctAnswerID) {
       dispatch(correctAnswerChosen());
       playCorrectAnswerChosenSound();
@@ -47,6 +95,7 @@ function AnswerOptions() {
         setIsNextButtonDisabled(false);
       }
     }
+
     playIncorrectAnswerChosenSound();
   }
 
@@ -100,7 +149,7 @@ function AnswerOptions() {
         bolean={isGameOver}
         isDisabled={isNextButtonDisabled}
         handleClick={handleNextButtonClick}
-        name="Next Level"
+        name={t('next-level')}
         type="button"
       />
     </>

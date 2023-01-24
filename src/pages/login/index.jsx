@@ -1,18 +1,16 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Field, Form } from 'formik';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import { availableRoutesList } from 'app/routes/available-routes-list';
-import Button from 'shared/ui/button';
 import { LoginSchema } from './schema';
-
 
 import styles from './index.module.scss';
 
 function Login() {
+  const { t } = useTranslation();
   return (
     <div className={styles.Form_Container}>
       <div className={styles.Form_Wrapper}>
@@ -23,7 +21,7 @@ function Login() {
               isActive ? styles.Form_Link_Active : styles.Form_Link
             }
           >
-            Login
+            {t('login')}
           </NavLink>
           <NavLink
             to={availableRoutesList.SIGN_UP}
@@ -31,7 +29,7 @@ function Login() {
               isActive ? styles.Form_Link_Active : styles.Form_Link
             }
           >
-            SignUp
+            {t('signup')}
           </NavLink>
         </div>
 
@@ -45,19 +43,15 @@ function Login() {
           validationSchema={LoginSchema}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              toast.success(JSON.stringify(values, null, 2), {
-                draggable: true,
-                position: toast.POSITION.TOP_CENTER,
-                autoClose: 5000,
-              });
+              toast.success(JSON.stringify(values, null, 1));
               setSubmitting(false);
-            }, 400);
+            }, 5000);
           }}
         >
-          {({ errors, touched, handleSubmit }) => (
+          {({ errors, touched, dirty, isSubmitting }) => (
             <Form>
               <label htmlFor="email" className={styles.Form_Label}>
-                Email Address
+                {t('email')}
               </label>
               <Field
                 name="email"
@@ -69,12 +63,12 @@ function Login() {
                     : styles.Form_Input
                 }
               />
-              <ErrorMessage name="email" className={styles.Error}>
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
+              {touched.email && errors.email && (
+                <div className={styles.Error}>{t('email-match-error')}</div>
+              )}
 
               <label htmlFor="password" className={styles.Form_Label}>
-                Password
+                {t('form-password')}
               </label>
               <Field
                 name="password"
@@ -86,16 +80,16 @@ function Login() {
                     : styles.Form_Input
                 }
               />
-              <ErrorMessage name="password" className={styles.Error}>
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
-              <Button
+              {touched.password && errors.password && (
+                <div className={styles.Error}>{t('email-reminder-error')}</div>
+              )}
+              <button
                 className={styles.Btn}
                 type="submit"
-                name="Submit"
-                isDisabled={false}
-                handleClick={handleSubmit}
-              />
+                disabled={!dirty || isSubmitting || Object.keys(errors).length}
+              >
+                {t('submit')}
+              </button>
             </Form>
           )}
         </Formik>

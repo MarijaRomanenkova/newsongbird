@@ -9,7 +9,6 @@ import { selectIsGameOver } from 'features/game/gameSlice';
 
 function Game() {
   const isGameOver = useSelector(selectIsGameOver);
-
   return (
     <>
       {isGameOver && <GameOver />}

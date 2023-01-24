@@ -1,5 +1,3 @@
-@import 'shared/scss-source/variables.scss';
-@import 'shared/scss-source/mixins.scss';
 .Disabled {
   display: inline-block;
   @include toRem(margin-bottom, 32);

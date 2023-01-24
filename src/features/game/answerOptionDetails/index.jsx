@@ -28,17 +28,19 @@ function AnswerOptionDetails({ image, name, description, species, audio }) {
       <div>
         <h2 className={styles.AnswerOptionDetails_Name_Text}>{name}</h2>
         <h4 className={styles.AnswerOptionDetails_Species_Text}>{species}</h4>
-        <AudioPlayer
-          layout="horizontal-reverse"
-          src={audio}
-          autoPlay={false}
-          autoPlayAfterSrcChange={false}
-          showJumpControls={false}
-          showFilledProgress
-          customAdditionalControls={[]}
-          customVolumeControls={[]}
-          ref={AudioPlayerREF}
-        />
+        {audio && (
+          <AudioPlayer
+            layout="horizontal-reverse"
+            src={audio}
+            autoPlay={false}
+            autoPlayAfterSrcChange={false}
+            showJumpControls={false}
+            showFilledProgress
+            customAdditionalControls={[]}
+            customVolumeControls={[]}
+            ref={AudioPlayerREF}
+          />
+        )}
       </div>
       <div className={styles.AnswerOptionDetails_Description}>
         {description}

@@ -1,18 +1,18 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Field, Form } from 'formik';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { SignUpSchema } from 'pages/signup/schema';
-import Button from 'shared/ui/button';
 import { availableRoutesList } from 'app/routes/available-routes-list';
+import { SignUpSchema } from './schema';
 
 import styles from './index.module.scss';
 
 function SignUpForm() {
+  const { t } = useTranslation();
   return (
     <div className={styles.Form_Container}>
       <div className={styles.Form_Wrapper}>
@@ -23,7 +23,7 @@ function SignUpForm() {
               isActive ? styles.Form_Link_Active : styles.Form_Link
             }
           >
-            Login
+            {t('login')}
           </NavLink>
           <NavLink
             to={availableRoutesList.SIGN_UP}
@@ -31,7 +31,7 @@ function SignUpForm() {
               isActive ? styles.Form_Link_Active : styles.Form_Link
             }
           >
-            SignUp
+            {t('signup')}
           </NavLink>
         </div>
 
@@ -47,13 +47,13 @@ function SignUpForm() {
             setTimeout(() => {
               toast.success(JSON.stringify(values, null, 2));
               setSubmitting(false);
-            }, 400);
+            }, 5000);
           }}
         >
-          {({ errors, touched, dirty, handleSubmit }) => (
+          {({ errors, touched, dirty, isSubmitting }) => (
             <Form>
               <label htmlFor="email" className={styles.Form_Label}>
-                Email Address
+                {t('email')}
               </label>
               <Field
                 name="email"
@@ -65,12 +65,12 @@ function SignUpForm() {
                     : styles.Form_Input
                 }
               />
-              <ErrorMessage name="email" className={styles.Error}>
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
+              {touched.email && errors.email && (
+                <div className={styles.Error}>{t('email-validation')}</div>
+              )}
 
               <label htmlFor="password" className={styles.Form_Label}>
-                Password
+                {t('form-password')}
               </label>
               <Field
                 name="password"
@@ -82,16 +82,18 @@ function SignUpForm() {
                     : styles.Form_Input
                 }
               />
-              <ErrorMessage name="password" className={styles.Error}>
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
+              {touched.password && errors.password ? (
+                <div className={styles.Error}>
+                  {t('password-creation-error')}
+                </div>
+              ) : null}
 
-              <label htmlFor="confirmPassword" className={styles.Form_Label}>
-                Confirm Password
+              <label htmlFor="confirm-password" className={styles.Form_Label}>
+                {t('form-password-confirmation')}
               </label>
               <Field
                 name="confirmPassword"
-                id="confirmPassword"
+                id="confirm-password"
                 type="password"
                 className={
                   errors.confirmPassword && touched.confirmPassword
@@ -99,13 +101,10 @@ function SignUpForm() {
                     : styles.Form_Input
                 }
               />
-              <ErrorMessage name="confirmPassword" className={styles.Error}>
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
+              {touched.confirmPassword && errors.confirmPassword && (
+                <div className={styles.Error}>{t('email-match-error')}</div>
+              )}
 
-              <ErrorMessage name="acceptTerms" className={styles.Error}>
-                {(msg) => <div>{msg}</div>}
-              </ErrorMessage>
               <div className={styles.Checkbox_Container}>
                 <Field
                   name="acceptTerms"
@@ -116,23 +115,20 @@ function SignUpForm() {
                 />
 
                 <label htmlFor="acceptTerms" className={styles.Checkbox_Label}>
-                  By creating an account you agree to the{' '}
+                  {t('signup-message')}
                   <a href="#" className={styles.Checkbox_Label_Link}>
-                    terms and conditions
-                  </a>{' '}
-                  applicable to our sevice and acknowledge that your personal
-                  data will be used in accordance with our privacy policy and
-                  you will receive emails and communications about jobs,
-                  industry news, new products and related topics.
+                    {t('signup-link')}
+                  </a>
+                  {t('signup-message-2')}
                 </label>
               </div>
-             
-              <Button
+              <button
+                className={styles.Btn}
+                disabled={!dirty || isSubmitting || Object.keys(errors).length}
                 type="submit"
-                name="Submit"
-                isDisabled={!dirty || Object.keys(errors).length}
-                handleClick={handleSubmit}
-              />
+              >
+                {t('submit')}
+              </button>
             </Form>
           )}
         </Formik>

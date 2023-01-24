@@ -1,6 +1,3 @@
-@import 'shared/scss-source/variables.scss';
-@import 'shared/scss-source/mixins.scss';
-
 .Form {
   &_Container {
     margin: 2rem auto;
@@ -14,6 +11,7 @@
     font-weight: 400;
     max-width: 500px;
     overflow: hidden;
+    
     @include mobile {
       padding: 1rem;
     }
@@ -44,6 +42,7 @@
 
   &_Link {
     text-decoration: none;
+    text-transform: capitalize;
     font-weight: 600;
     font-size: 1.2rem;
     padding-bottom: 0.5rem;

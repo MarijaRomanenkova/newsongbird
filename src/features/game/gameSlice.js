@@ -1,21 +1,14 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable prefer-destructuring */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 
 import { MAXIMUM_SCORE_PER_LEVEL } from 'features/game/gameSettings';
 import { axiosInstance } from 'shared/axiosInstance';
 
 const initialState = {
-  birdsData: [],
-  categoriesNames: [],
+  birdsData: {},
   isRequestLoading: true,
   currentLevel: 1,
-  currentCategoryOptions: [],
   correctAnswerID: 0,
-  correctAnswerObject: {},
-  currentChosenAnswer: {},
   numberOfWrongAnswers: 0,
   score: 0,
   isCorrectAnswerChosen: false,
@@ -25,50 +18,29 @@ const initialState = {
 export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
   try {
     const response = await axiosInstance.get('');
-    const dataWithUniqueIds = response.data.birds.map((array) =>
-      array.map((item) => {
-        if (typeof item === 'string') {
-          return { name: item, uniqueID: nanoid() };
-        }
-        return {
-          ...item,
-          uniqueID: nanoid(),
-          isTouched: false,
-          isCorrectAnswer: false,
-        };
-      })
-    );
-    return dataWithUniqueIds;
+    return response.data;
   } catch (error) {
     return toast.error('Error', error);
   }
 });
 
-const getCorrectAnswerID = (currentLevelArrayLength) => {
+function getCorrectAnswerID(currentLevelArrayLength) {
   const maximumNumber = currentLevelArrayLength;
   const minimumNumber = 1;
-  const randomNumber =
-    Math.floor(Math.random() * (maximumNumber - minimumNumber + 1)) +
+  const randomNumber = Math.floor(Math.random() * (maximumNumber - minimumNumber + 1)) +
     minimumNumber;
   return randomNumber;
-};
+}
 
 export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
     switchToNextLevel: (state) => {
-      state.currentLevel += 1;      
+      state.currentLevel += 1;
       state.correctAnswerID = getCorrectAnswerID(
-        state.birdsData[state.currentLevel].length);  
-      state.currentCategoryOptions = state.currentCategoryOptions.map(
-        (option) => {
-          if (option.id === state.correctAnswerID) {
-            return { ...option, isTouched: false, isCorrectAnswer: true };
-          }
-          return { ...option, isTouched: false, isCorrectAnswer: false };
-        }
-      );            
+        state.birdsData.ru[state.currentLevel].length
+      );
       state.isCorrectAnswerChosen = false;
       state.numberOfWrongAnswers = 0;
     },
@@ -79,39 +51,18 @@ export const gameSlice = createSlice({
         state.score +=
           MAXIMUM_SCORE_PER_LEVEL - (state.numberOfWrongAnswers - 1);
       }
-      if (state.currentLevel > state.birdsData.length - 2) {
+      if (state.currentLevel > state.birdsData.ru.length - 2) {
         state.isGameOver = true;
       }
     },
 
-    answerWasChosen: (state, action) => {
-      state.numberOfWrongAnswers += 1; 
-      state.currentCategoryOptions = state.currentCategoryOptions.map(
-        (option) => {
-          if (option.id === action.payload) {
-            return { ...option, isTouched: true };
-          }
-          return { ...option };
-        }
-      );
-      state.currentChosenAnswer = state.currentCategoryOptions.find(
-        (option) => option.id === action.payload
-      ); 
+    answerWasChosen: (state) => {
+      state.numberOfWrongAnswers += 1;
     },
 
     resetTheGame: (state) => {
       state.currentLevel = 1;
-      state.currentCategoryOptions = state.birdsData[1];
-      state.correctAnswerID = getCorrectAnswerID(state.birdsData[1].length);
-      state.currentCategoryOptions = state.currentCategoryOptions.map(
-        (option) => {
-          if (option.id === state.correctAnswerID) {
-            return { ...option, isCorrectAnswer: true };
-          }
-          return { ...option };
-        }
-      );   
-      state.currentChosenAnswer = {};
+      state.correctAnswerID = getCorrectAnswerID(state.birdsData.ru[1].length);
       state.numberOfWrongAnswers = 0;
       state.score = 0;
       state.isCorrectAnswerChosen = false;
@@ -125,17 +76,7 @@ export const gameSlice = createSlice({
       })
       .addCase(getBirdsData.fulfilled, (state, action) => {
         state.birdsData = action.payload;
-        // eslint-disable-next-line prefer-destructuring
-        state.categoriesNames = action.payload[0];
-        state.correctAnswerID = getCorrectAnswerID(action.payload[1].length);
-        state.currentCategoryOptions = action.payload[state.currentLevel].map(
-          (option) => {
-            if (option.id === state.correctAnswerID) {
-              return { ...option, isCorrectAnswer: true };
-            }
-            return { ...option };
-          }
-        );   
+        state.correctAnswerID = getCorrectAnswerID(action.payload.ru[1].length);
         state.isRequestLoading = false;
       })
       .addCase(getBirdsData.rejected, (state) => {
@@ -156,13 +97,7 @@ export const selectIsCorrectAnswerChosen = (state) =>
   state.game.isCorrectAnswerChosen;
 export const selectIsGameOver = (state) => state.game.isGameOver;
 export const selectIsRequestLoading = (state) => state.game.isRequestLoading;
-export const selectCategoriesNames = (state) => state.game.categoriesNames;
-export const selectCurrentCategoryOptions = (state) =>
-  state.game.currentCategoryOptions;
-export const selectCorrectAnswerObject = (state) =>
-  state.game.correctAnswerObject;
-export const selectCurrentChosenAnswer = (state) =>
-  state.game.currentChosenAnswer;
 export const selectCorrectAnswerID = (state) => state.game.correctAnswerID;
+export const selectBirdsData = (state) => state.game.birdsData;
 
 export default gameSlice.reducer;
