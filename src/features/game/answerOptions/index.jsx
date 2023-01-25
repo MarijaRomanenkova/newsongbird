@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSound } from 'use-sound';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
+import { useTranslation } from 'react-i18next';
 
 import correctAnswerChosenSoundOGG from 'shared/assets/sounds/correctAnswerChosenSound.ogg';
 import incorrectAnswerChosenSoundOGG from 'shared/assets/sounds/incorrectAnswerChosenSound.ogg';
@@ -18,7 +19,6 @@ import {
   selectBirdsData,
   selectCurrentLevel,
 } from 'features/game/gameSlice';
-import { useTranslation } from 'react-i18next';
 
 import styles from './index.module.scss';
 
@@ -126,10 +126,10 @@ function AnswerOptions() {
 
         {currentChosenAnswer.id && (
           <AnswerOptionDetails
-            name={currentChosenAnswer.name}
-            image={currentChosenAnswer.image}
-            description={currentChosenAnswer.description}
-            audio={currentChosenAnswer.audio}
+            currentChosenAnswerName={currentChosenAnswer.name}
+            currentChosenAnswerImage={currentChosenAnswer.image}
+            currentChosenAnswerDescription={currentChosenAnswer.description}
+            currentChosenAnswerAudio={currentChosenAnswer.audio}
             species={currentChosenAnswer.species}
           />
         )}
@@ -145,7 +145,7 @@ function AnswerOptions() {
         )}
       </div>
       <Button
-        bolean={isGameOver}
+        isHidden={isGameOver}
         isDisabled={isNextButtonDisabled}
         handleClick={handleNextButtonClick}
         name={t('next-level')}

@@ -26,7 +26,7 @@
     "react-router-dom": "^6.4.5",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.1",
-    "sass-resources-loader": "^2.2.5",   
+    "sass-resources-loader": "^2.2.5",
     "use-sound": "^4.0.1",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
@@ -57,7 +57,7 @@
     ]
   },
   "devDependencies": {
-    "@craco/craco": "^7.0.0",    
+    "@craco/craco": "^7.0.0",
     "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^8.0.0",
     "eslint-config-airbnb": "^19.0.4",

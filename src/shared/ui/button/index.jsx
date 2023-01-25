@@ -3,9 +3,9 @@ import cx from 'classnames';
 
 import styles from './index.module.scss';
 
-function Button({ bolean, isDisabled, handleClick, name }) {
+function Button({ isHidden, isDisabled, handleClick, name }) {
   const buttonClasses = cx({
-    [styles.Hidden]: bolean,
+    [styles.Hidden]: isHidden,
     [styles.Disabled]: isDisabled,
     [styles.Btn]: !isDisabled,
   });

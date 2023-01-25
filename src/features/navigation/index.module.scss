@@ -12,8 +12,8 @@
     }
 
     @include mini {
-     flex-direction: column-reverse;
-     align-items: center;
+      flex-direction: column-reverse;
+      align-items: center;
       text-align: center;
       margin: 0 auto;
     }
@@ -28,7 +28,7 @@
 
     @include mini {
       margin: auto;
-      justify-content: space-between;      
+      justify-content: space-between;
       width: 100%;
       margin-bottom: 0;
     }
@@ -46,7 +46,7 @@
     }
     @include mini {
       padding: 3px 5px;
-    }    
+    }
   }
 
   &_Link:active {
@@ -55,15 +55,15 @@
 
   &_LanguageSwitch_Wrapper {
     margin-left: 15px;
-    
+
     @include mini {
       margin-left: 10px;
-    }     
+    }
   }
 
-  &_Score_Wrapper {    
-    white-space: nowrap; 
-    margin-left: 5px;         
+  &_Score_Wrapper {
+    white-space: nowrap;
+    margin-left: 5px;
   }
 }
 
@@ -72,7 +72,7 @@
   @include mobile {
     max-width: 150px;
   }
-  
+
   @include mini {
     max-width: 100px;
   }

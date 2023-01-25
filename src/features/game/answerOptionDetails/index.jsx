@@ -6,7 +6,13 @@ import { selectIsCorrectAnswerChosen } from 'features/game/gameSlice';
 
 import styles from './index.module.scss';
 
-function AnswerOptionDetails({ image, name, description, species, audio }) {
+function AnswerOptionDetails({
+  currentChosenAnswerImage,
+  currentChosenAnswerName,
+  currentChosenAnswerDescription,
+  currentChosenAnswerSpecies,
+  currentChosenAnswerAudio,
+}) {
   const isCorrectAnswerChosen = useSelector(selectIsCorrectAnswerChosen);
 
   const AudioPlayerREF = useRef();
@@ -22,16 +28,20 @@ function AnswerOptionDetails({ image, name, description, species, audio }) {
     <div className={styles.AnswerOptionDetails_Container}>
       <img
         className={styles.AnswerOptionDetails_Image}
-        src={image}
-        alt={name}
+        src={currentChosenAnswerImage}
+        alt={currentChosenAnswerName}
       />
       <div>
-        <h2 className={styles.AnswerOptionDetails_Name_Text}>{name}</h2>
-        <h4 className={styles.AnswerOptionDetails_Species_Text}>{species}</h4>
-        {audio && (
+        <h2 className={styles.AnswerOptionDetails_Name_Text}>
+          {currentChosenAnswerName}
+        </h2>
+        <h4 className={styles.AnswerOptionDetails_Species_Text}>
+          {currentChosenAnswerSpecies}
+        </h4>
+        {currentChosenAnswerAudio && (
           <AudioPlayer
             layout="horizontal-reverse"
-            src={audio}
+            src={currentChosenAnswerAudio}
             autoPlay={false}
             autoPlayAfterSrcChange={false}
             showJumpControls={false}
@@ -43,7 +53,7 @@ function AnswerOptionDetails({ image, name, description, species, audio }) {
         )}
       </div>
       <div className={styles.AnswerOptionDetails_Description}>
-        {description}
+        {currentChosenAnswerDescription}
       </div>
     </div>
   );

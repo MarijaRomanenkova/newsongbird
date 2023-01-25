@@ -36,7 +36,7 @@ function GameOver() {
         <>
           <h5 className={styles.GameOver_Text}>{t('game-over-text-2')}</h5>
           <Button
-            bolean={false}
+            isHidden={false}
             type="button"
             handleClick={() => dispatch(resetTheGame())}
             name={t('game-over-button')}
