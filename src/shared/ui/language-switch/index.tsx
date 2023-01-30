@@ -1,27 +1,20 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
 
-import { languageList } from 'shared/languageList';
-import { switchLanguage } from 'features/game/gameSlice';
+import languageList from 'shared/languageList';
 
 import styles from './index.module.scss';
 
-function LanguageSwitch() {
+const LanguageSwitch = () => {
   const { i18n } = useTranslation();
-  const dispatch = useDispatch();
-  function handleSwitch(code) {
-    i18n.changeLanguage(code);
-    dispatch(switchLanguage(code));
-  }
 
   return (
     <div className={styles.LanguageSwitch_Container}>
-      {languageList.map(({ name, img, code }) => (
+      {languageList.map(({ name: string, img: any, code: string }) => (
         <button
           key={code}
           value={code}
-          onClick={() => handleSwitch(code)}
+          onClick={() => i18n.changeLanguage(code)}
           type="button"
           className={styles.LanguageSwitch_Flag}
         >
@@ -30,6 +23,6 @@ function LanguageSwitch() {
       ))}
     </div>
   );
-}
+};
 
 export default LanguageSwitch;

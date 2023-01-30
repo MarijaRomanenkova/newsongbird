@@ -1,13 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from 'app/hooks';
 import { useTranslation } from 'react-i18next';
 
 import { selectScore } from 'features/game/gameSlice';
 
 import styles from './index.module.scss';
 
-function Score() {
-  const score = useSelector(selectScore);
+const Score = () => {
+  const score = useAppSelector(selectScore);
   const { t } = useTranslation();
 
   return (
@@ -18,6 +18,6 @@ function Score() {
       </p>
     </div>
   );
-}
+};
 
 export default Score;

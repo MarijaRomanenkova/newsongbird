@@ -1,10 +1,24 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { RootState } from 'app/store';
 import { toast } from 'react-toastify';
 
 import { MAXIMUM_SCORE_PER_LEVEL } from 'features/game/gameSettings';
 import { axiosInstance } from 'shared/axiosInstance';
+import { BirdsData } from 'shared/interfaces';
 
-const initialState = {
+interface GameState {
+  language: string;
+  birdsData: BirdsData;
+  isRequestLoading: boolean;
+  currentLevel: number;
+  correctAnswerID: number;
+  numberOfWrongAnswers: number;
+  score: number;
+  isCorrectAnswerChosen: boolean;
+  isGameOver: boolean;
+}
+
+const initialState: GameState = {
   language: 'en',
   birdsData: {},
   isRequestLoading: true,
@@ -19,13 +33,13 @@ const initialState = {
 export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
   try {
     const response = await axiosInstance.get('');
-    return response.data;
-  } catch (error) {
+    return response.data as BirdsData;
+  } catch (error: any) {
     return toast.error('Error', error);
   }
 });
 
-function getCorrectAnswerID(currentLevelArrayLength) {
+function getCorrectAnswerID(currentLevelArrayLength: number): number {
   const maximumNumber = currentLevelArrayLength;
   const minimumNumber = 1;
   const randomNumber =
@@ -44,7 +58,7 @@ export const gameSlice = createSlice({
     switchToNextLevel: (state) => {
       state.currentLevel += 1;
       state.correctAnswerID = getCorrectAnswerID(
-        state.birdsData.ru[state.currentLevel].length
+        state.birdsData[state.language][state.currentLevel].length
       );
       state.isCorrectAnswerChosen = false;
       state.numberOfWrongAnswers = 0;
@@ -97,13 +111,18 @@ export const {
   resetTheGame,
   switchLanguage,
 } = gameSlice.actions;
-export const selectCurrentLevel = (state) => state.game.currentLevel;
-export const selectScore = (state) => state.game.score;
-export const selectIsCorrectAnswerChosen = (state) =>
+export const selectCurrentLevel = (state: RootState): number =>
+  state.game.currentLevel;
+export const selectScore = (state: RootState): number => state.game.score;
+export const selectIsCorrectAnswerChosen = (state: RootState): boolean =>
   state.game.isCorrectAnswerChosen;
-export const selectIsGameOver = (state) => state.game.isGameOver;
-export const selectIsRequestLoading = (state) => state.game.isRequestLoading;
-export const selectCorrectAnswerID = (state) => state.game.correctAnswerID;
-export const selectBirdsData = (state) => state.game.birdsData;
+export const selectIsGameOver = (state: RootState): boolean =>
+  state.game.isGameOver;
+export const selectIsRequestLoading = (state: RootState): boolean =>
+  state.game.isRequestLoading;
+export const selectCorrectAnswerID = (state: RootState): number =>
+  state.game.correctAnswerID;
+export const selectBirdsData = (state: RootState): BirdsData =>
+  state.game.birdsData;
 
 export default gameSlice.reducer;

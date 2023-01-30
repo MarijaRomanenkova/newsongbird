@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { availableRoutesList } from 'app/routes/available-routes-list';
+import availableRoutesList from 'app/routes/available-routes-list';
 
 import styles from './index.module.scss';
 
-function NotFound() {
+const NotFound: React.FC = () => {
   const { t } = useTranslation();
   return (
     <div className={styles.NotFound_Container}>
@@ -19,6 +19,6 @@ function NotFound() {
       </div>
     </div>
   );
-}
+};
 
 export default NotFound;

@@ -1,9 +1,16 @@
-/* eslint-disable import/prefer-default-export */
 import flagLTsourceSVG from 'shared/assets/flagLTsourceSVG.svg';
 import flagRUsourceSVG from 'shared/assets/flagRUsourceSVG.svg';
 import flagGBsourceSVG from 'shared/assets/flagGBsourceSVG.svg';
 
-export const languageList = [
+interface LanguageItem {
+  name: string;
+  code: string;
+  img: any;
+}
+
+interface LanguageList extends Array<LanguageItem> {}
+
+const languageList: LanguageList = [
   {
     name: 'English',
     code: 'en',
@@ -20,3 +27,5 @@ export const languageList = [
     img: flagLTsourceSVG,
   },
 ];
+
+export default languageList;

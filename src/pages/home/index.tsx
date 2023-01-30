@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from 'app/hooks';
 
 import Game from 'features/game/index';
 import Loader from 'shared/ui/loader';
@@ -7,9 +7,9 @@ import { getBirdsData, selectIsRequestLoading } from 'features/game/gameSlice';
 
 import styles from './index.module.scss';
 
-function Home() {
-  const isRequestLoading = useSelector(selectIsRequestLoading);
-  const dispatch = useDispatch();
+const Home: React.FC = () => {
+  const isRequestLoading = useAppSelector(selectIsRequestLoading);
+  const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getBirdsData());
   }, []);
@@ -20,6 +20,6 @@ function Home() {
       <Game />
     </div>
   );
-}
+};
 
 export default Home;
