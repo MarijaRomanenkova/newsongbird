@@ -1,17 +1,15 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import 'react-toastify/dist/ReactToastify.css';
 
-import availableRoutesList from 'app/routes/available-routes-list';
-import { SignUpSchema } from './schema';
+import { availableRoutesList } from 'app/routes/available-routes-list';
+import { LoginSchema } from './schema';
 
 import styles from './index.module.scss';
 
-const SignUpForm: React.FC = () => {
+function Login() {
   const { t } = useTranslation();
   return (
     <div className={styles.Form_Container}>
@@ -42,10 +40,10 @@ const SignUpForm: React.FC = () => {
             confirmPassword: '',
             acceptTerms: false,
           }}
-          validationSchema={SignUpSchema}
+          validationSchema={LoginSchema}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              toast.success(JSON.stringify(values, null, 2));
+              toast.success(JSON.stringify(values, null, 1));
               setSubmitting(false);
             }, 5000);
           }}
@@ -66,7 +64,7 @@ const SignUpForm: React.FC = () => {
                 }
               />
               {touched.email && errors.email && (
-                <div className={styles.Error}>{t('email-validation')}</div>
+                <div className={styles.Error}>{t('email-match-error')}</div>
               )}
 
               <label htmlFor="password" className={styles.Form_Label}>
@@ -82,52 +80,13 @@ const SignUpForm: React.FC = () => {
                     : styles.Form_Input
                 }
               />
-              {touched.password && errors.password ? (
-                <div className={styles.Error}>
-                  {t('password-creation-error')}
-                </div>
-              ) : null}
-
-              <label htmlFor="confirm-password" className={styles.Form_Label}>
-                {t('form-password-confirmation')}
-              </label>
-              <Field
-                name="confirmPassword"
-                id="confirm-password"
-                type="password"
-                className={
-                  errors.confirmPassword && touched.confirmPassword
-                    ? styles.Form_Input_Error
-                    : styles.Form_Input
-                }
-              />
-              {touched.confirmPassword && errors.confirmPassword && (
-                <div className={styles.Error}>{t('email-match-error')}</div>
+              {touched.password && errors.password && (
+                <div className={styles.Error}>{t('email-reminder-error')}</div>
               )}
-
-              <div className={styles.Checkbox_Container}>
-                <Field
-                  name="acceptTerms"
-                  control="checkbox"
-                  type="checkbox"
-                  id="acceptTerms"
-                  className="styles.Checkbox_Container_Box"
-                />
-
-                <label htmlFor="acceptTerms" className={styles.Checkbox_Label}>
-                  {t('signup-message')}
-                  <a href="#" className={styles.Checkbox_Label_Link}>
-                    {t('signup-link')}
-                  </a>
-                  {t('signup-message-2')}
-                </label>
-              </div>
               <button
                 className={styles.Btn}
-                disabled={
-                  !dirty || isSubmitting || Object.keys(errors).length > 0
-                }
                 type="submit"
+                disabled={!dirty || isSubmitting || Object.keys(errors).length}
               >
                 {t('submit')}
               </button>
@@ -137,6 +96,6 @@ const SignUpForm: React.FC = () => {
       </div>
     </div>
   );
-};
+}
 
-export default SignUpForm;
+export default Login;

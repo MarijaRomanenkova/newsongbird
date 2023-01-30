@@ -5,15 +5,15 @@ import { ToastContainer, Zoom } from 'react-toastify';
 import Navigation from 'features/navigation';
 import NotFound from 'pages/notfound';
 import Loader from 'shared/ui/loader';
-import availableRoutesList from 'app/routes/available-routes-list';
+import { availableRoutesList } from 'app/routes/available-routes-list';
 
 import 'react-toastify/dist/ReactToastify.css';
 
 const Home = lazy(() => import('pages/home'));
 const SignUp = lazy(() => import('pages/signup'));
-const Login = lazy(() => import('pages/login'));
+const Login = lazy(() => import('pages/login/'));
 
-const AppRoute: React.FC = () => {
+function AppRoutes() {
   return (
     <>
       <Navigation />
@@ -48,6 +48,6 @@ const AppRoute: React.FC = () => {
       <ToastContainer transition={Zoom} limit={2} />
     </>
   );
-};
+}
 
-export default AppRoute;
+export default AppRoutes;

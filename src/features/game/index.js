@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppSelector } from 'app/hooks';
+import { useSelector } from 'react-redux';
 
 import Categories from 'features/game/categories';
 import CorrectAnswer from 'features/game/correctAnswer';
@@ -7,8 +7,8 @@ import AnswerOptions from 'features/game/answerOptions';
 import GameOver from 'features/game/gameOver';
 import { selectIsGameOver } from 'features/game/gameSlice';
 
-const Game: React.FC = () => {
-  const isGameOver = useAppSelector(selectIsGameOver);
+function Game() {
+  const isGameOver = useSelector(selectIsGameOver);
   return (
     <>
       {isGameOver && <GameOver />}
@@ -21,6 +21,6 @@ const Game: React.FC = () => {
       )}
     </>
   );
-};
+}
 
 export default Game;

@@ -1,13 +1,8 @@
 import React, { useRef } from 'react';
-import H5AudioPlayer from 'react-h5-audio-player';
-import { useAppSelector } from 'app/hooks';
+import AudioPlayer from 'react-h5-audio-player';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import {
-  Option,
-  BirdsDataByLanguage,
-  AnswerOptionsArray,
-} from 'shared/interfaces';
 import {
   selectIsCorrectAnswerChosen,
   selectCorrectAnswerID,
@@ -20,51 +15,41 @@ import styles from './index.module.scss';
 
 const HIDDEN__ANSWER = '******';
 
-interface AnswerToRender {
-  image: any;
-  name: string;
-  alt: string;
-}
-
-const CorrectAnswer: React.FC = () => {
+function CorrectAnswer() {
   const { i18n } = useTranslation();
   const { language } = i18n;
-  const currentLevel: number = useAppSelector(selectCurrentLevel);
-  const birdsData = useAppSelector(selectBirdsData);
-  const correctAnswerID: number = useAppSelector(selectCorrectAnswerID);
-  const isCorrectAnswerChosen: boolean = useAppSelector(
-    selectIsCorrectAnswerChosen
-  );
-  const currentCategoryOptionsByLanguage: BirdsDataByLanguage =
-    birdsData[language];
+  const currentLevel = useSelector(selectCurrentLevel);
+  const birdsData = useSelector(selectBirdsData);
+  const correctAnswerID = useSelector(selectCorrectAnswerID);
+  const isCorrectAnswerChosen = useSelector(selectIsCorrectAnswerChosen);
 
-  let currentCategoryOptions: AnswerOptionsArray | [] = [];
-  let correctAnswerObject: Option | {} = {};
-  function findCurrentLevelByIndex(option: Option, index: number): boolean {
+  const currentCategoryOptionsByLanguage = birdsData[language];
+  let currentCategoryOptions = [];
+  let correctAnswerObject = {};
+
+  function findCurrentLevelByIndex(option, index) {
     return index === currentLevel;
   }
 
   if (currentCategoryOptionsByLanguage && currentLevel) {
     currentCategoryOptions = currentCategoryOptionsByLanguage.find(
-      (option: Option, index: number) => findCurrentLevelByIndex(option, index)
+      (option, index) => findCurrentLevelByIndex(option, index)
     );
     correctAnswerObject = currentCategoryOptions.find(
-      (option: Option): boolean => option.id === correctAnswerID
+      (option) => option.id === correctAnswerID
     );
   }
 
-  const AudioPlayerREF: any = useRef < H5AudioPlayer > null;
+  const AudioPlayerREF = useRef();
   const pauseAudioPlayer = () => {
-    if (AudioPlayerREF !== null) {
-      AudioPlayerREF.current.audio.current.pause();
-    }
+    AudioPlayerREF.current.audio.current.pause();
   };
 
   if (isCorrectAnswerChosen) {
     pauseAudioPlayer();
   }
 
-  let answerToRender: AnswerToRender = {
+  let answerToRender = {
     image: imageHiddenCorrectAnswerJPG,
     name: HIDDEN__ANSWER,
     alt: 'bird',
@@ -88,7 +73,7 @@ const CorrectAnswer: React.FC = () => {
       <div className={styles.correctAnswer_Box}>
         <h1 className={styles.correctAnswer_Title}>{answerToRender.name}</h1>
         {correctAnswerObject.audio && (
-          <H5AudioPlayer
+          <AudioPlayer
             layout="horizontal-reverse"
             src={correctAnswerObject.audio}
             autoPlay={false}
@@ -104,6 +89,6 @@ const CorrectAnswer: React.FC = () => {
       </div>
     </div>
   );
-};
+}
 
 export default CorrectAnswer;

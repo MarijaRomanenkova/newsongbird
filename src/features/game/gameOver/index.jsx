@@ -1,6 +1,6 @@
 import React from 'react';
 import Confetti from 'react-confetti';
-import { useAppSelector, useAppDispatch } from 'app/hooks';
+import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { MAXIMUM_SCORE_PER_LEVEL } from 'features/game/gameSettings';
@@ -13,13 +13,13 @@ import Button from 'shared/ui/button';
 
 import styles from './index.module.scss';
 
-const GameOver = () => {
-  const currentLevel = useAppSelector(selectCurrentLevel);
-  const score = useAppSelector(selectScore);
-  const dispatch = useAppDispatch();
+function GameOver() {
+  const currentLevel = useSelector(selectCurrentLevel);
+  const score = useSelector(selectScore);
+  const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const MAXIMUM_TOTAL_SCORE: number = MAXIMUM_SCORE_PER_LEVEL * currentLevel;
+  const MAXIMUM_TOTAL_SCORE = MAXIMUM_SCORE_PER_LEVEL * currentLevel;
 
   return (
     <div className={styles.GameOver_Container}>
@@ -36,7 +36,8 @@ const GameOver = () => {
         <>
           <h5 className={styles.GameOver_Text}>{t('game-over-text-2')}</h5>
           <Button
-            isDisabled={false}
+            isHidden={false}
+            type="button"
             handleClick={() => dispatch(resetTheGame())}
             name={t('game-over-button')}
           />
@@ -44,6 +45,6 @@ const GameOver = () => {
       )}
     </div>
   );
-};
+}
 
 export default GameOver;

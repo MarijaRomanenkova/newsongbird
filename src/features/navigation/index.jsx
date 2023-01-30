@@ -4,12 +4,12 @@ import { useTranslation } from 'react-i18next';
 
 import logoSourceSVG from 'shared/assets/logoSourceSVG.svg';
 import Score from 'features/game/score';
-import availableRoutesList from 'app/routes/available-routes-list';
-import LanguageSwitch from 'shared/ui/language-switch';
+import { availableRoutesList } from 'app/routes/available-routes-list';
+import LanguageSwitch from 'shared/ui/language-switch/index';
 
 import styles from './index.module.scss';
 
-const Navigation: React.FC = () => {
+function Navigation({ handleClick }) {
   const { t } = useTranslation();
   return (
     <nav className={styles.Navigation_Container}>
@@ -39,11 +39,11 @@ const Navigation: React.FC = () => {
           </NavLink>
         </div>
         <div className={styles.Navigation_LanguageSwitch_Wrapper}>
-          <LanguageSwitch />
+          <LanguageSwitch handleClick={handleClick} />
         </div>
       </div>
     </nav>
   );
-};
+}
 
 export default Navigation;
