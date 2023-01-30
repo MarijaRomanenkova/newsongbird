@@ -4,12 +4,12 @@ import { useTranslation } from 'react-i18next';
 
 import logoSourceSVG from 'shared/assets/logoSourceSVG.svg';
 import Score from 'features/game/score';
-import availableRoutesList from 'app/routes/available-routes-list';
+import { availableRoutesList } from 'app/routes/available-routes-list';
 import LanguageSwitch from 'shared/ui/language-switch';
 
 import styles from './index.module.scss';
 
-const Navigation: React.FC = () => {
+const Navigation = (): JSX.Element => {
   const { t } = useTranslation();
   return (
     <nav className={styles.Navigation_Container}>

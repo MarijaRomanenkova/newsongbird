@@ -6,7 +6,7 @@ import { selectScore } from 'features/game/gameSlice';
 
 import styles from './index.module.scss';
 
-const Score = () => {
+const Score = (): JSX.Element => {
   const score = useAppSelector(selectScore);
   const { t } = useTranslation();
 

@@ -12,7 +12,6 @@ type Props = {
   species: string;
   description: string;
   audio: string;
-  styles?: string;
 };
 
 const AnswerOptionDetails = ({
@@ -21,13 +20,12 @@ const AnswerOptionDetails = ({
   description,
   species,
   audio,
-  styles,
-}: Props) => {
+}: Props): JSX.Element => {
   const isCorrectAnswerChosen: boolean = useAppSelector(
     selectIsCorrectAnswerChosen
   );
 
-  const AudioPlayerREF: any = useRef < H5AudioPlayer > null;
+  const AudioPlayerREF: any = useRef<H5AudioPlayer>(null);
   const pauseAudioPlayer = () => {
     if (AudioPlayerREF !== null) {
       AudioPlayerREF.current.audio.current.pause();

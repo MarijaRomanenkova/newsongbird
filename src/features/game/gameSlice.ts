@@ -52,7 +52,7 @@ export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    switchLanguage: (state, action) => {
+    switchLanguage: (state, action: PayloadAction<string>) => {
       state.language = action.payload;
     },
     switchToNextLevel: (state) => {
@@ -63,22 +63,9 @@ export const gameSlice = createSlice({
       state.isCorrectAnswerChosen = false;
       state.numberOfWrongAnswers = 0;
     },
-
-    correctAnswerChosen: (state) => {
-      state.isCorrectAnswerChosen = true;
-      if (state.numberOfWrongAnswers < MAXIMUM_SCORE_PER_LEVEL) {
-        state.score +=
-          MAXIMUM_SCORE_PER_LEVEL - (state.numberOfWrongAnswers - 1);
-      }
-      if (state.currentLevel > state.birdsData.ru.length - 2) {
-        state.isGameOver = true;
-      }
-    },
-
     answerWasChosen: (state) => {
       state.numberOfWrongAnswers += 1;
     },
-
     resetTheGame: (state) => {
       state.currentLevel = 1;
       state.correctAnswerID = getCorrectAnswerID(
@@ -89,15 +76,26 @@ export const gameSlice = createSlice({
       state.isCorrectAnswerChosen = false;
       state.isGameOver = false;
     },
+
+    correctAnswerChosen: (state) => {
+      state.isCorrectAnswerChosen = true;
+      if (state.numberOfWrongAnswers < MAXIMUM_SCORE_PER_LEVEL) {
+        state.score +=
+          MAXIMUM_SCORE_PER_LEVEL - (state.numberOfWrongAnswers - 1);
+      }
+      if (state.currentLevel > state.birdsData[state.language].length - 2) {
+        state.isGameOver = true;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(getBirdsData.pending, (state) => {
         state.isRequestLoading = true;
       })
-      .addCase(getBirdsData.fulfilled, (state, { payload }: PayloadAction) => {
-        state.birdsData = payload;
-        state.correctAnswerID = getCorrectAnswerID(payload.ru[1].length);
+      .addCase(getBirdsData.fulfilled, (state, action) => {
+        state.birdsData = action.payload;
+        state.correctAnswerID = getCorrectAnswerID(action.payload.ru[1].length);
         state.isRequestLoading = false;
       })
       .addCase(getBirdsData.rejected, (state) => {

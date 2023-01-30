@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import 'react-toastify/dist/ReactToastify.css';
 
-import availableRoutesList from 'app/routes/available-routes-list';
+import { availableRoutesList } from 'app/routes/available-routes-list';
 import { SignUpSchema } from './schema';
 
 import styles from './index.module.scss';

@@ -9,7 +9,11 @@ interface ButtonProps {
   name: any;
 }
 
-const Button = ({ isDisabled, handleClick, name }: ButtonProps) => {
+const Button = ({
+  isDisabled,
+  handleClick,
+  name,
+}: ButtonProps): JSX.Element => {
   const buttonClasses = cx({
     [styles.Btn]: isDisabled,
     [styles.Btn_Active]: !isDisabled,

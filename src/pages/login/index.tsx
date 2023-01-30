@@ -4,7 +4,7 @@ import { Formik, Field, Form } from 'formik';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
-import availableRoutesList from 'app/routes/available-routes-list';
+import { availableRoutesList } from 'app/routes/available-routes-list';
 import { LoginSchema } from './schema';
 
 import styles from './index.module.scss';

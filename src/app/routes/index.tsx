@@ -5,7 +5,7 @@ import { ToastContainer, Zoom } from 'react-toastify';
 import Navigation from 'features/navigation';
 import NotFound from 'pages/notfound';
 import Loader from 'shared/ui/loader';
-import availableRoutesList from 'app/routes/available-routes-list';
+import { availableRoutesList } from 'app/routes/available-routes-list';
 
 import 'react-toastify/dist/ReactToastify.css';
 

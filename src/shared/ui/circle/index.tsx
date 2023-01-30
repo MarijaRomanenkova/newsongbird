@@ -8,7 +8,7 @@ interface Props {
   isCorrectAnswer: boolean;
 }
 
-const Circle = ({ isTouched, isCorrectAnswer }: Props) => {
+const Circle = ({ isTouched, isCorrectAnswer }: Props): JSX.Element => {
   const circleStyles = cx({
     [styles.Circle_Basic]: !isTouched,
     [styles.Circle_CorrectOption]: isTouched && isCorrectAnswer,

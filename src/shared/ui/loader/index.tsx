@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './index.module.scss';
 
-const Loader: React.FC = () => {
+const Loader = (): JSX.Element => {
   return (
     <div className={styles.Loader_Container}>
       <div className={styles.Loader_Spinner} />

@@ -7,7 +7,7 @@ import AnswerOptions from 'features/game/answerOptions';
 import GameOver from 'features/game/gameOver';
 import { selectIsGameOver } from 'features/game/gameSlice';
 
-const Game: React.FC = () => {
+const Game = (): JSX.Element => {
   const isGameOver = useAppSelector(selectIsGameOver);
   return (
     <>

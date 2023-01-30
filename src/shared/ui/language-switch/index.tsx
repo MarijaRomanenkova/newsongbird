@@ -5,7 +5,7 @@ import languageList from 'shared/languageList';
 
 import styles from './index.module.scss';
 
-const LanguageSwitch = () => {
+const LanguageSwitch = (): JSX.Element => {
   const { i18n } = useTranslation();
 
   return (

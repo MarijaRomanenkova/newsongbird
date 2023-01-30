@@ -4,11 +4,9 @@ interface AvailabaleRoutesList {
   SIGN_UP: string;
   NOT_FOUND: string;
 }
-const availableRoutesList: AvailabaleRoutesList = {
+export const availableRoutesList: AvailabaleRoutesList = {
   HOME: '/',
   LOGIN: '/login',
   SIGN_UP: '/sign-up',
   NOT_FOUND: '*',
 };
-
-export default availableRoutesList;

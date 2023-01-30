@@ -13,7 +13,7 @@ import Button from 'shared/ui/button';
 
 import styles from './index.module.scss';
 
-const GameOver = () => {
+const GameOver = (): JSX.Element => {
   const currentLevel = useAppSelector(selectCurrentLevel);
   const score = useAppSelector(selectScore);
   const dispatch = useAppDispatch();
