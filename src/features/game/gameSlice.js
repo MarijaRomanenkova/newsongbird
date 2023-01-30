@@ -5,6 +5,7 @@ import { MAXIMUM_SCORE_PER_LEVEL } from 'features/game/gameSettings';
 import { axiosInstance } from 'shared/axiosInstance';
 
 const initialState = {
+  language: 'en',
   birdsData: {},
   isRequestLoading: true,
   currentLevel: 1,
@@ -27,7 +28,8 @@ export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
 function getCorrectAnswerID(currentLevelArrayLength) {
   const maximumNumber = currentLevelArrayLength;
   const minimumNumber = 1;
-  const randomNumber = Math.floor(Math.random() * (maximumNumber - minimumNumber + 1)) +
+  const randomNumber =
+    Math.floor(Math.random() * (maximumNumber - minimumNumber + 1)) +
     minimumNumber;
   return randomNumber;
 }
@@ -36,6 +38,9 @@ export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
+    switchLanguage: (state, action) => {
+      state.language = action.payload;
+    },
     switchToNextLevel: (state) => {
       state.currentLevel += 1;
       state.correctAnswerID = getCorrectAnswerID(
@@ -90,6 +95,7 @@ export const {
   correctAnswerChosen,
   answerWasChosen,
   resetTheGame,
+  switchLanguage,
 } = gameSlice.actions;
 export const selectCurrentLevel = (state) => state.game.currentLevel;
 export const selectScore = (state) => state.game.score;
