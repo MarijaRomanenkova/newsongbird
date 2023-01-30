@@ -44,7 +44,7 @@ export const gameSlice = createSlice({
     switchToNextLevel: (state) => {
       state.currentLevel += 1;
       state.correctAnswerID = getCorrectAnswerID(
-        state.birdsData.ru[state.currentLevel].length
+        state.birdsData[state.language][state.currentLevel].length
       );
       state.isCorrectAnswerChosen = false;
       state.numberOfWrongAnswers = 0;
@@ -56,7 +56,7 @@ export const gameSlice = createSlice({
         state.score +=
           MAXIMUM_SCORE_PER_LEVEL - (state.numberOfWrongAnswers - 1);
       }
-      if (state.currentLevel > state.birdsData.ru.length - 2) {
+      if (state.currentLevel > state.birdsData[state.language].length - 2) {
         state.isGameOver = true;
       }
     },
@@ -67,7 +67,9 @@ export const gameSlice = createSlice({
 
     resetTheGame: (state) => {
       state.currentLevel = 1;
-      state.correctAnswerID = getCorrectAnswerID(state.birdsData.ru[1].length);
+      state.correctAnswerID = getCorrectAnswerID(
+        state.birdsData[state.language][1].length
+      );
       state.numberOfWrongAnswers = 0;
       state.score = 0;
       state.isCorrectAnswerChosen = false;
