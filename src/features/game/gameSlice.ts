@@ -1,9 +1,9 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from 'app/store';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { RootState } from 'app/store';
 import { toast } from 'react-toastify';
 
 import { MAXIMUM_SCORE_PER_LEVEL } from 'features/game/gameSettings';
-import axiosInstance from 'shared/axiosInstance';
+import { axiosInstance } from 'shared/axiosInstance';
 import { BirdsData } from 'shared/interfaces';
 
 interface GameState {
@@ -81,9 +81,7 @@ export const gameSlice = createSlice({
 
     resetTheGame: (state) => {
       state.currentLevel = 1;
-      state.correctAnswerID = getCorrectAnswerID(
-        state.birdsData[state.language][1].length
-      );
+      state.correctAnswerID = getCorrectAnswerID(state.birdsData.ru[1].length);
       state.numberOfWrongAnswers = 0;
       state.score = 0;
       state.isCorrectAnswerChosen = false;
@@ -95,9 +93,9 @@ export const gameSlice = createSlice({
       .addCase(getBirdsData.pending, (state) => {
         state.isRequestLoading = true;
       })
-      .addCase(getBirdsData.fulfilled, (state, { payload }: PayloadAction) => {
-        state.birdsData = payload;
-        state.correctAnswerID = getCorrectAnswerID(payload.ru[1].length);
+      .addCase(getBirdsData.fulfilled, (state, action) => {
+        state.birdsData = action.payload;
+        state.correctAnswerID = getCorrectAnswerID(action.payload.ru[1].length);
         state.isRequestLoading = false;
       })
       .addCase(getBirdsData.rejected, (state) => {
