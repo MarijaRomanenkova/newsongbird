@@ -10,7 +10,7 @@ const LanguageSwitch = () => {
 
   return (
     <div className={styles.LanguageSwitch_Container}>
-      {languageList.map(({ name: string, img: any, code: string }) => (
+      {languageList.map(({ name, img, code }) => (
         <button
           key={code}
           value={code}

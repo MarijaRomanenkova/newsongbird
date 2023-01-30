@@ -6,7 +6,6 @@ import styles from './index.module.scss';
 interface Props {
   isTouched: boolean;
   isCorrectAnswer: boolean;
-  styles?: { [key: string]: string };
 }
 
 const Circle = ({ isTouched, isCorrectAnswer }: Props) => {

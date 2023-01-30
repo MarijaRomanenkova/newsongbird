@@ -53,7 +53,7 @@ const CorrectAnswer: React.FC = () => {
     );
   }
 
-  const AudioPlayerREF: any = useRef < H5AudioPlayer > null;
+  const AudioPlayerREF: any = useRef<H5AudioPlayer>(null);
   const pauseAudioPlayer = () => {
     if (AudioPlayerREF !== null) {
       AudioPlayerREF.current.audio.current.pause();

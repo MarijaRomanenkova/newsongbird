@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from 'react';
-import classnames from 'classnames';
+import cx from 'classnames';
 
 import styles from './index.module.scss';
 
@@ -7,11 +7,10 @@ interface ButtonProps {
   isDisabled: boolean;
   handleClick: MouseEventHandler;
   name: any;
-  styles?: { [key: string]: string };
 }
 
-const Button = ({ isDisabled, handleClick, name, styles }: ButtonProps) => {
-  const buttonClasses = classnames(styles, {
+const Button = ({ isDisabled, handleClick, name }: ButtonProps) => {
+  const buttonClasses = cx({
     [styles.Btn]: isDisabled,
     [styles.Btn_Active]: !isDisabled,
   });
