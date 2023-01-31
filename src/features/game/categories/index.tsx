@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { JSXElementConstructor, ReactNode } from 'react';
 import { useAppSelector } from 'app/hooks';
 import { useTranslation } from 'react-i18next';
 
@@ -7,12 +7,12 @@ import { AnswerOptionsArray, Option } from 'shared/interfaces';
 
 import styles from './index.module.scss';
 
-const Categories: Function = (): ReactNode[] => {
+const Categories: React.FC = () => {
   const { i18n } = useTranslation();
   const { language } = i18n;
   const currentLevel = useAppSelector(selectCurrentLevel);
   const birdsData = useAppSelector(selectBirdsData);
-  const categoryNames: AnswerOptionsArray = birdsData[language];
+  const categoryNames = birdsData[language];
   return (
     <div className={styles.Categories__Container}>
       {categoryNames &&

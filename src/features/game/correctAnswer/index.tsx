@@ -42,7 +42,7 @@ const CorrectAnswer: React.FC = () => {
     return index === currentLevel;
   }
 
-  let currentCategoryOptions;
+  let currentCategoryOptions: string[] | AnswerOptionsArray;
   let correctAnswerObject;
 
   if (currentCategoryOptionsByLanguage && currentLevel) {

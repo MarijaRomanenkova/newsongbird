@@ -19,7 +19,12 @@ import {
   selectBirdsData,
   selectCurrentLevel,
 } from 'features/game/gameSlice';
-import { Option, CurrentAnswerOptionsArray } from 'shared/interfaces';
+import {
+  Option,
+  CurrentAnswerOptionsArray,
+  AnswerOptionsArray,
+  OptionWithAdditionalProps,
+} from 'shared/interfaces';
 
 import styles from './index.module.scss';
 
@@ -44,7 +49,10 @@ function AnswerOptions() {
 
   const { language } = i18n;
   const currentCategoryOptionsByLanguage = birdsData[language];
-  function findCurrentLevelByIndex(option: Option, index: number): boolean {
+  function findCurrentLevelByIndex(
+    level: AnswerOptionsArray,
+    index: number
+  ): boolean {
     return index === currentLevel;
   }
 
@@ -52,8 +60,8 @@ function AnswerOptions() {
     if (currentLevel && currentCategoryOptionsByLanguage) {
       setCurrentCategoryOptions(
         currentCategoryOptionsByLanguage
-          .find((option, index) => findCurrentLevelByIndex(option, index))
-          .map((option) => {
+          .find((level, index) => findCurrentLevelByIndex(level, index))
+          .map((option: OptionWithAdditionalProps) => {
             if (option.id === correctAnswerID) {
               return {
                 ...option,
@@ -73,16 +81,16 @@ function AnswerOptions() {
     }
   }, [currentLevel, currentCategoryOptionsByLanguage]);
 
-  function handleAnswerOptionClick(id) {
+  function handleAnswerOptionClick(id: number) {
     setCurrentChosenAnswer(
-      currentCategoryOptions.find((option) => option.id === id)
+      currentCategoryOptions.find((option: Option): boolean => option.id === id)
     );
     if (!isNextButtonDisabled) {
       return;
     }
     dispatch(answerWasChosen(id));
     setCurrentCategoryOptions(
-      currentCategoryOptions.map((option) => {
+      currentCategoryOptions.map((option: OptionWithAdditionalProps) => {
         if (option.id === id) {
           return { ...option, isTouched: true };
         }
@@ -110,21 +118,23 @@ function AnswerOptions() {
     <>
       <div className={styles.AnswerOptions_Container}>
         <div className={styles.AnswerOptionsList_Container}>
-          {currentCategoryOptions.map((option) => (
-            <button
-              key={option.uniqueID}
-              className={styles.AnswerOptionsList_Option}
-              type="button"
-              onClick={() => handleAnswerOptionClick(option.id)}
-              disabled={!isNextButtonDisabled}
-            >
-              <Circle
-                isTouched={option.isTouched}
-                isCorrectAnswer={option.isCorrectAnswer}
-              />
-              {option.name}
-            </button>
-          ))}
+          {currentCategoryOptions.map(
+            (option: OptionWithAdditionalProps): HTMLButtonElement => (
+              <button
+                key={option.uniqueID}
+                className={styles.AnswerOptionsList_Option}
+                type="button"
+                onClick={() => handleAnswerOptionClick(option.id)}
+                disabled={!isNextButtonDisabled}
+              >
+                <Circle
+                  isTouched={option.isTouched}
+                  isCorrectAnswer={option.isCorrectAnswer}
+                />
+                {option.name}
+              </button>
+            )
+          )}
         </div>
 
         {currentChosenAnswer.id && (
@@ -148,11 +158,9 @@ function AnswerOptions() {
         )}
       </div>
       <Button
-        isHidden={isGameOver}
         isDisabled={isNextButtonDisabled}
         handleClick={handleNextButtonClick}
         name={t('next-level')}
-        type="button"
       />
     </>
   );

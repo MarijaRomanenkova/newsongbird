@@ -6,14 +6,13 @@ import { selectIsCorrectAnswerChosen } from 'features/game/gameSlice';
 
 import styles from './index.module.scss';
 
-type Props = {
+interface AnswerOptionDetailsProps {
   image: string;
   name: any;
   species: string;
   description: string;
   audio: string;
-  styles?: string;
-};
+}
 
 const AnswerOptionDetails = ({
   image,
@@ -21,8 +20,7 @@ const AnswerOptionDetails = ({
   description,
   species,
   audio,
-  styles,
-}: Props) => {
+}: AnswerOptionDetailsProps) => {
   const isCorrectAnswerChosen: boolean = useAppSelector(
     selectIsCorrectAnswerChosen
   );
