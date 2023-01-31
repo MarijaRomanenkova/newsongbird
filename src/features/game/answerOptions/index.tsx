@@ -28,7 +28,7 @@ import {
 
 import styles from './index.module.scss';
 
-function AnswerOptions() {
+const AnswerOptions: React.FC = () => {
   const dispatch = useAppDispatch();
   const { t, i18n } = useTranslation();
 
@@ -164,6 +164,6 @@ function AnswerOptions() {
       />
     </>
   );
-}
+};
 
 export default AnswerOptions;

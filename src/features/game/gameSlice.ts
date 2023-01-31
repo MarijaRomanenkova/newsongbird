@@ -58,7 +58,8 @@ export const gameSlice = createSlice({
     switchToNextLevel: (state) => {
       state.currentLevel += 1;
       state.correctAnswerID = getCorrectAnswerID(
-        state.birdsData[state.language][state.currentLevel].length
+        Object.values(state.birdsData[state.language][state.currentLevel])
+          .length
       );
       state.isCorrectAnswerChosen = false;
       state.numberOfWrongAnswers = 0;
@@ -69,7 +70,8 @@ export const gameSlice = createSlice({
     resetTheGame: (state) => {
       state.currentLevel = 1;
       state.correctAnswerID = getCorrectAnswerID(
-        state.birdsData[state.language][1].length
+        Object.values(state.birdsData[state.language][state.currentLevel])
+          .length
       );
       state.numberOfWrongAnswers = 0;
       state.score = 0;
@@ -93,9 +95,10 @@ export const gameSlice = createSlice({
       .addCase(getBirdsData.pending, (state) => {
         state.isRequestLoading = true;
       })
-      .addCase(getBirdsData.fulfilled, (state, action) => {
-        state.birdsData = action.payload;
-        state.correctAnswerID = getCorrectAnswerID(action.payload.ru[1].length);
+      .addCase(getBirdsData.fulfilled, (state, { payload }) => {
+        state.birdsData = payload;
+        state.correctAnswerID = getCorrectAnswerID(Object.values(payload[state.language][1]).length;);
+        
         state.isRequestLoading = false;
       })
       .addCase(getBirdsData.rejected, (state) => {
