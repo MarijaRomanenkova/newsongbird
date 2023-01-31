@@ -1,10 +1,10 @@
 /* eslint-disable no-inner-declarations */
 import React, { useState, useEffect } from 'react';
 import { useSound } from 'use-sound';
-import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { nanoid } from 'nanoid';
 import { useTranslation } from 'react-i18next';
 
+import { useAppSelector, useAppDispatch } from 'app/hooks';
 import correctAnswerChosenSoundOGG from 'shared/assets/sounds/correctAnswerChosenSound.ogg';
 import incorrectAnswerChosenSoundOGG from 'shared/assets/sounds/incorrectAnswerChosenSound.ogg';
 import AnswerOptionDetails from 'features/game/answerOptionDetails/index';
@@ -21,9 +21,8 @@ import {
 } from 'features/game/gameSlice';
 import {
   Option,
-  CurrentAnswerOptionsArray,
   AnswerOptionsArray,
-  OptionWithAdditionalProps,
+  CategoryOptionsByLanguage,
 } from 'shared/interfaces';
 
 import styles from './index.module.scss';
@@ -44,15 +43,12 @@ const AnswerOptions: React.FC = () => {
   const [isNextButtonDisabled, setIsNextButtonDisabled] =
     useState<boolean>(true);
   const [currentCategoryOptions, setCurrentCategoryOptions] =
-    useState<CurrentAnswerOptionsArray>([]);
+    useState<AnswerOptionsArray>([]);
   const [currentChosenAnswer, setCurrentChosenAnswer] = useState<Option>();
 
   const { language } = i18n;
   const currentCategoryOptionsByLanguage = birdsData[language];
-  function findCurrentLevelByIndex(
-    level: AnswerOptionsArray,
-    index: number
-  ): boolean {
+  function findCurrentLevelByIndex(level: any, index: number): boolean {
     return index === currentLevel;
   }
 
@@ -61,7 +57,7 @@ const AnswerOptions: React.FC = () => {
       setCurrentCategoryOptions(
         currentCategoryOptionsByLanguage
           .find((level, index) => findCurrentLevelByIndex(level, index))
-          .map((option: OptionWithAdditionalProps) => {
+          .map((option: Option) => {
             if (option.id === correctAnswerID) {
               return {
                 ...option,
@@ -81,16 +77,16 @@ const AnswerOptions: React.FC = () => {
     }
   }, [currentLevel, currentCategoryOptionsByLanguage]);
 
-  function handleAnswerOptionClick(id: number) {
+  function handleAnswerOptionClick(id: number | string): void {
     setCurrentChosenAnswer(
       currentCategoryOptions.find((option: Option): boolean => option.id === id)
     );
     if (!isNextButtonDisabled) {
       return;
     }
-    dispatch(answerWasChosen(id));
+    dispatch(answerWasChosen());
     setCurrentCategoryOptions(
-      currentCategoryOptions.map((option: OptionWithAdditionalProps) => {
+      currentCategoryOptions.map((option: Option) => {
         if (option.id === id) {
           return { ...option, isTouched: true };
         }
@@ -118,23 +114,21 @@ const AnswerOptions: React.FC = () => {
     <>
       <div className={styles.AnswerOptions_Container}>
         <div className={styles.AnswerOptionsList_Container}>
-          {currentCategoryOptions.map(
-            (option: OptionWithAdditionalProps): HTMLButtonElement => (
-              <button
-                key={option.uniqueID}
-                className={styles.AnswerOptionsList_Option}
-                type="button"
-                onClick={() => handleAnswerOptionClick(option.id)}
-                disabled={!isNextButtonDisabled}
-              >
-                <Circle
-                  isTouched={option.isTouched}
-                  isCorrectAnswer={option.isCorrectAnswer}
-                />
-                {option.name}
-              </button>
-            )
-          )}
+          {currentCategoryOptions.map((option: Option) => (
+            <button
+              key={option.uniqueID}
+              className={styles.AnswerOptionsList_Option}
+              type="button"
+              onClick={() => handleAnswerOptionClick(option.id)}
+              disabled={!isNextButtonDisabled}
+            >
+              <Circle
+                isTouched={option.isTouched}
+                isCorrectAnswer={option.isCorrectAnswer}
+              />
+              {option.name}
+            </button>
+          ))}
         </div>
 
         {currentChosenAnswer.id && (

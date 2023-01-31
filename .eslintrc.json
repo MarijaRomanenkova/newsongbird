@@ -25,13 +25,16 @@
   "plugins": ["react", "prettier"],
   "rules": {
     "prettier/prettier": "warn",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [
+      1,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
     "react/state-in-constructor": "off",
     "react/prop-types": "off",
     "no-param-reassign": [
       "error",
       { "props": true, "ignorePropertyModificationsFor": ["state"] }
     ],
-    "import/prefer-default-export": false
+    "import/prefer-default-export": 0
   }
 }

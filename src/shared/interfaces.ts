@@ -5,25 +5,18 @@ export interface Option {
   description: string;
   image: string;
   audio: string;
-}
-
-export interface OptionWithAdditionalProps extends Option {
   uniqueID?: string;
-  isTouched: boolean;
-  isCorrectAnswer: boolean;
+  isTouched?: boolean;
+  isCorrectAnswer?: boolean;
 }
 
 export interface AnswerOptionsArray {
   [key: number]: Option;
 }
 
-export interface CurrentAnswerOptionsArray {
-  [key: number]: OptionWithAdditionalProps[];
-}
-
-export interface BirdsDataByLanguage {
+export interface CategoryOptionsByLanguage {
   [key: number]: string[] | AnswerOptionsArray[];
 }
 export interface BirdsData {
-  [propertyName: string]: BirdsDataByLanguage[];
+  [propertyName: string]: CategoryOptionsByLanguage[];
 }

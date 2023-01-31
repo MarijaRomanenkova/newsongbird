@@ -4,8 +4,8 @@ import cx from 'classnames';
 import styles from './index.module.scss';
 
 interface CircleProps {
-  isTouched: boolean;
-  isCorrectAnswer: boolean;
+  isTouched: boolean | undefined;
+  isCorrectAnswer: boolean | undefined;
 }
 
 const Circle = ({ isTouched, isCorrectAnswer }: CircleProps): JSX.Element => {
