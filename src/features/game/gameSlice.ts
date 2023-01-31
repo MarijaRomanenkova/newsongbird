@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from 'app/store';
 import { toast } from 'react-toastify';
 
+import { RootState, AppThunk } from 'app/store';
 import { MAXIMUM_SCORE_PER_LEVEL } from 'features/game/gameSettings';
 import axiosInstance from 'shared/axiosInstance';
 import { BirdsData } from 'shared/interfaces';
