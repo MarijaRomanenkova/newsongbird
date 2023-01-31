@@ -33,7 +33,7 @@ const initialState: GameState = {
 export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
   try {
     const response = await axiosInstance.get('');
-    return response.data as BirdsData;
+    return response.data;
   } catch (error: any) {
     return toast.error('Error', error);
   }
@@ -95,12 +95,17 @@ export const gameSlice = createSlice({
       .addCase(getBirdsData.pending, (state) => {
         state.isRequestLoading = true;
       })
-      .addCase(getBirdsData.fulfilled, (state, { payload }) => {
-        state.birdsData = payload;
-        state.correctAnswerID = getCorrectAnswerID(Object.values(payload[state.language][1]).length;);
-        
-        state.isRequestLoading = false;
-      })
+      .addCase(
+        getBirdsData.fulfilled,
+        (state, action: PayloadAction<BirdsData>) => {
+          state.birdsData = action.payload;
+          state.correctAnswerID = getCorrectAnswerID(
+            Object.values(action.payload[state.language][1]).length
+          );
+
+          state.isRequestLoading = false;
+        }
+      )
       .addCase(getBirdsData.rejected, (state) => {
         state.isRequestLoading = false;
       });
