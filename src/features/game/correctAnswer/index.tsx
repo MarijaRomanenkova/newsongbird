@@ -35,8 +35,7 @@ const CorrectAnswer: React.FC = () => {
   const isCorrectAnswerChosen: boolean = useAppSelector(
     selectIsCorrectAnswerChosen
   );
-  const currentCategoryOptionsByLanguage: BirdsDataByLanguage =
-    birdsData[language];
+  const currentCategoryOptionsByLanguage = birdsData[language];
 
   let currentCategoryOptions: AnswerOptionsArray | [] = [];
   let correctAnswerObject: Option | {} = {};

@@ -20,10 +20,9 @@ export interface CurrentAnswerOptionsArray
 
 export interface CategoriesNames extends Array<string> {}
 
-export type BirdsDataByLanguage = Array<CategoriesNames | AnswerOptionsArray>;
-
-export type BirdsData = {
-  ru?: BirdsDataByLanguage[];
-  lt?: BirdsDataByLanguage[];
-  en?: BirdsDataByLanguage[];
-};
+export interface BirdsDataByLanguage {
+  [key: number]: string[] | AnswerOptionsArray[];
+}
+export interface BirdsData {
+  [propertyName: string]: BirdsDataByLanguage[];
+}
