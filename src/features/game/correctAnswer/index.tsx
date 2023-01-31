@@ -29,27 +29,28 @@ interface AnswerToRender {
 const CorrectAnswer: React.FC = () => {
   const { i18n } = useTranslation();
   const { language } = i18n;
-  const currentLevel: number = useAppSelector(selectCurrentLevel);
+  const currentLevel = useAppSelector(selectCurrentLevel);
   const birdsData = useAppSelector(selectBirdsData);
-  const correctAnswerID: number = useAppSelector(selectCorrectAnswerID);
-  const isCorrectAnswerChosen: boolean = useAppSelector(
-    selectIsCorrectAnswerChosen
-  );
+  const correctAnswerID = useAppSelector(selectCorrectAnswerID);
+  const isCorrectAnswerChosen = useAppSelector(selectIsCorrectAnswerChosen);
   const currentCategoryOptionsByLanguage = birdsData[language];
 
-  let currentCategoryOptions: AnswerOptionsArray | [] = [];
-  let correctAnswerObject: Option | {} = {};
-  function findCurrentLevelByIndex(option: Option, index: number): boolean {
+  function findCurrentLevelByIndex(
+    category: string[] | AnswerOptionsArray,
+    index: number
+  ): boolean {
     return index === currentLevel;
   }
 
+  let currentCategoryOptions;
+  let correctAnswerObject;
+
   if (currentCategoryOptionsByLanguage && currentLevel) {
     currentCategoryOptions = currentCategoryOptionsByLanguage.find(
-      (option: Option, index: number): number =>
-        findCurrentLevelByIndex(option, index)
+      (category, index) => findCurrentLevelByIndex(category, index)
     );
     correctAnswerObject = currentCategoryOptions.find(
-      (option: Option): boolean => option.id === correctAnswerID
+      (option: Option) => option.id === correctAnswerID
     );
   }
 

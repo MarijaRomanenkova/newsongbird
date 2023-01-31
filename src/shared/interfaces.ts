@@ -1,5 +1,5 @@
 export interface Option {
-  id: number | string;
+  id: number;
   name: string;
   species: string;
   description: string;
@@ -13,12 +13,13 @@ export interface OptionWithAdditionalProps extends Option {
   isCorrectAnswer: boolean;
 }
 
-export interface AnswerOptionsArray extends Array<Option> {}
+export interface AnswerOptionsArray {
+  [key: number]: Option;
+}
 
-export interface CurrentAnswerOptionsArray
-  extends Array<OptionWithAdditionalProps> {}
-
-export interface CategoriesNames extends Array<string> {}
+export interface CurrentAnswerOptionsArray {
+  [key: number]: OptionWithAdditionalProps[];
+}
 
 export interface BirdsDataByLanguage {
   [key: number]: string[] | AnswerOptionsArray[];
