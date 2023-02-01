@@ -22,7 +22,7 @@ import { Option } from 'shared/interfaces';
 
 import styles from './index.module.scss';
 
-function AnswerOptions() {
+function AnswerOptions(): JSX.Element {
   const dispatch = useAppDispatch();
   const { t, i18n } = useTranslation();
 
@@ -37,8 +37,9 @@ function AnswerOptions() {
   );
   const [isNextButtonDisabled, setIsNextButtonDisabled] =
     useState<boolean>(true);
-  const [currentCategoryOptions, setCurrentCategoryOptions] =
-    useState<Option[]>();
+  const [currentCategoryOptions, setCurrentCategoryOptions] = useState<
+    Option[]
+  >([]);
   const [currentChosenAnswer, setCurrentChosenAnswer] = useState<Option>();
 
   const { language } = i18n;
@@ -79,24 +80,16 @@ function AnswerOptions() {
     return result;
   };
 
-  let touchedOptions;
-  if (Array.isArray(newCategoryOptionsByLanguage)) {
-      touchedOptions = newCategoryOptionsByLanguage
-
-
   const touchedCategoryOptions = (id: number): Option[] => {
-    let touchedOptions: Option[];
-    if (Array.isArray(newCategoryOptionsByLanguage)) {
-      touchedOptions = newCategoryOptionsByLanguage.map(
-        (option: Option): Option => {
-          if (option.id === id) {
-            return { ...option, isTouched: true };
-          }
-          return { ...option };
+    const Options: Option[] = currentCategoryOptions.map(
+      (option: Option): Option => {
+        if (option.id === id) {
+          return { ...option, isTouched: true };
         }
-      );
-      return touchedOptions;
-    }
+        return { ...option };
+      }
+    );
+    return Options;
   };
 
   useEffect(() => {
@@ -105,7 +98,7 @@ function AnswerOptions() {
     }
   }, [currentLevel, currentCategoryOptionsByLanguage]);
 
-  function handleAnswerOptionClick(id: number): void {
+  const handleAnswerOptionClick = (id: number): void => {
     if (currentCategoryOptions) {
       setCurrentChosenAnswer(findChosenAnswerById(id));
     }
@@ -113,7 +106,10 @@ function AnswerOptions() {
       return;
     }
     dispatch(answerWasChosen());
-    if (Array.isArray(currentCategoryOptions)) {
+    if (
+      Array.isArray(currentCategoryOptions) &&
+      currentCategoryOptions.length > 0
+    ) {
       setCurrentCategoryOptions(touchedCategoryOptions(id));
     }
 
@@ -126,7 +122,7 @@ function AnswerOptions() {
     }
 
     playIncorrectAnswerChosenSound();
-  }
+  };
 
   const handleNextButtonClick = () => {
     setIsNextButtonDisabled(true);
@@ -183,5 +179,4 @@ function AnswerOptions() {
     </>
   );
 }
-
 export default AnswerOptions;

@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 import React, { useEffect } from 'react';
 
 import { useTranslation } from 'react-i18next';
@@ -16,7 +17,7 @@ function Categories() {
   let categoryNames: string[] | [] = [];
   useEffect(() => {
     if (Object.keys(birdsData).length > 0)
-      [categoryNames] = birdsData[language][0];
+      categoryNames = birdsData[language][0];
   }, [birdsData]);
 
   return (
