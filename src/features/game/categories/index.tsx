@@ -12,7 +12,6 @@ const Categories: React.FC = () => {
   const { language } = i18n;
   const currentLevel = useAppSelector(selectCurrentLevel);
   const birdsData = useAppSelector(selectBirdsData);
-  console.log(birdsData);
 
   let categoryNames: string[] | [] = [];
   useEffect(() => {
@@ -20,7 +19,6 @@ const Categories: React.FC = () => {
       categoryNames = birdsData[language][0];
   }, [birdsData]);
 
-  console.log(categoryNames);
   return (
     <div className={styles.Categories__Container}>
       {categoryNames.length > 0 &&
