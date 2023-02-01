@@ -4,16 +4,27 @@
     "es2021": true,
     "node": true
   },
-
-  "extends": ["plugin:react/recommended", "airbnb", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "root": true,
+  "plugins": [
+    "react",
+    "prettier",
+    "eslint-plugin-import",
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "prettier",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript"
+  ],
   "settings": {
     "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      },
-      "babel-module": {
-        "root": ["./src"]
-      }
+      "typescript": {} // this loads <rootdir>/tsconfig.json to eslint
+    },
+    "babel-module": {
+      "root": ["./src"]
     }
   },
   "overrides": [],
@@ -24,7 +35,7 @@
       "jsx": true
     }
   },
-  "plugins": ["react", "prettier", "eslint-plugin-import"],
+
   "rules": {
     "prettier/prettier": "warn",
     "react/jsx-filename-extension": [
@@ -37,6 +48,16 @@
       "error",
       { "props": true, "ignorePropertyModificationsFor": ["state"] }
     ],
-    "import/prefer-default-export": 0
+    "import/prefer-default-export": 0,
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
   }
 }

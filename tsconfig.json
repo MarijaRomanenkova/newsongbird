@@ -16,7 +16,10 @@
     "noEmit": true,
     "pretty": true,
     "jsx": "react-jsx",
-    "baseUrl": "src",
+    "baseUrl": "./src",
+    "paths": {
+      "#/*": ["./*"]
+    },
     "plugins": [
       {
         "name": "typescript-plugin-css-modules"
