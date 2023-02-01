@@ -3,7 +3,7 @@ import { useAppSelector } from 'app/hooks';
 import { useTranslation } from 'react-i18next';
 
 import { selectCurrentLevel, selectBirdsData } from 'features/game/gameSlice';
-import { AnswerOptionsArray, Option } from 'shared/interfaces';
+import { Option } from 'shared/interfaces';
 
 import styles from './index.module.scss';
 
@@ -12,7 +12,7 @@ const Categories: React.FC = () => {
   const { language } = i18n;
   const currentLevel = useAppSelector(selectCurrentLevel);
   const birdsData = useAppSelector(selectBirdsData);
-  const categoryNames = birdsData[language][0];
+  const categoryNames: string[] = birdsData[language][0];
 
   return (
     <div className={styles.Categories__Container}>
