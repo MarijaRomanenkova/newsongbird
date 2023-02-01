@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef } from 'react';
 import H5AudioPlayer from 'react-h5-audio-player';
 import { useTranslation } from 'react-i18next';
@@ -7,6 +8,7 @@ import {
   selectCorrectAnswerID,
   selectBirdsData,
   selectCurrentLevel,
+  selectIsRequestLoading,
 } from 'features/game/gameSlice';
 import { useAppSelector } from 'app/hooks';
 import imageHiddenCorrectAnswerJPG from 'shared/assets/imageHiddenCorrectAnswerJPG.jpg';
@@ -23,7 +25,7 @@ interface AnswerToRender {
   alt: string;
 }
 
-const CorrectAnswer: React.FC = () => {
+function CorrectAnswer() {
   const { i18n } = useTranslation();
   const { language } = i18n;
   const currentLevel = useAppSelector(selectCurrentLevel);
@@ -31,6 +33,11 @@ const CorrectAnswer: React.FC = () => {
   const correctAnswerID = useAppSelector(selectCorrectAnswerID);
   const isCorrectAnswerChosen = useAppSelector(selectIsCorrectAnswerChosen);
   const currentCategoryOptionsByLanguage = birdsData[language];
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const isRequestLoading = useAppSelector(selectIsRequestLoading);
+  console.log('birdsData', birdsData);
+  console.log('isRequestLoading', isRequestLoading);
 
   function findCurrentLevelByIndex(category: any, index: number): boolean {
     return index === currentLevel;
@@ -98,6 +105,6 @@ const CorrectAnswer: React.FC = () => {
       </div>
     </div>
   );
-};
+}
 
 export default CorrectAnswer;
