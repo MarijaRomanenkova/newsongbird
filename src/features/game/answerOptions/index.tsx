@@ -21,13 +21,12 @@ import {
 } from 'features/game/gameSlice';
 import {
   Option,
-  AnswerOptionsArray,
-  CategoryOptionsByLanguage,
+  AnswerOptionsArray,  
 } from 'shared/interfaces';
 
 import styles from './index.module.scss';
 
-const AnswerOptions: React.FC = () => {
+const AnswerOptions: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { t, i18n } = useTranslation();
 
@@ -43,44 +42,55 @@ const AnswerOptions: React.FC = () => {
   const [isNextButtonDisabled, setIsNextButtonDisabled] =
     useState<boolean>(true);
   const [currentCategoryOptions, setCurrentCategoryOptions] =
-    useState<AnswerOptionsArray>([]);
+    useState<AnswerOptionsArray>();
   const [currentChosenAnswer, setCurrentChosenAnswer] = useState<Option>();
 
   const { language } = i18n;
-  const currentCategoryOptionsByLanguage = birdsData[language];
+  const currentCategoryOptionsByLanguage =
+    birdsData[language];
 
   function findCurrentLevelByIndex(level: [], index: number): boolean {
     return index === currentLevel;
   }
 
-  useEffect(() => {
-    if (currentLevel && currentCategoryOptionsByLanguage.length > 1) {
-      const newCategoryOptionsByLanguage = currentCategoryOptionsByLanguage?
-        .find((level: [], index: number) => findCurrentLevelByIndex(level, index))
-        .map((option: Option) => {
-          if (option.id === correctAnswerID) {
-            return {
-              ...option,
-              uniqueID: nanoid(),
-              isTouched: false,
-              isCorrectAnswer: true,
-            };
-          }
+  const newCategoryOptionsByLanguage = () => {
+    const result = currentCategoryOptionsByLanguage
+      ?.find((level: [], index: number) =>
+        findCurrentLevelByIndex(level, index)
+      )
+      .map((option: Option) => {
+        if (option.id === correctAnswerID) {
           return {
             ...option,
             uniqueID: nanoid(),
             isTouched: false,
-            isCorrectAnswer: false,
+            isCorrectAnswer: true,
           };
-        });
+        }
+        return {
+          ...option,
+          uniqueID: nanoid(),
+          isTouched: false,
+          isCorrectAnswer: false,
+        };
+      
+      });
+    return result;
+  };
+  useEffect(() => {
+    if (currentLevel && newCategoryOptionsByLanguage.length > 1) {
       setCurrentCategoryOptions(newCategoryOptionsByLanguage);
     }
   }, [currentLevel, currentCategoryOptionsByLanguage]);
 
   function handleAnswerOptionClick(id: number | string): void {
-    setCurrentChosenAnswer(
-      currentCategoryOptions.find((option: Option): boolean => option.id === id)
-    );
+    if (currentCategoryOptions) {
+      setCurrentChosenAnswer(
+        currentCategoryOptions.find(
+          (option: Option): boolean => option.id === id
+        )
+      );
+    }
     if (!isNextButtonDisabled) {
       return;
     }
@@ -131,7 +141,7 @@ const AnswerOptions: React.FC = () => {
           ))}
         </div>
 
-        {currentChosenAnswer?.id && (
+        {currentChosenAnswer?. && (
           <AnswerOptionDetails
             currentChosenAnswerName={currentChosenAnswer.name}
             currentChosenAnswerImage={currentChosenAnswer.image}
