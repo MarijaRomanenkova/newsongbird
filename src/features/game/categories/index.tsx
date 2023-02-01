@@ -1,4 +1,4 @@
-import React, { JSXElementConstructor, ReactNode } from 'react';
+import React from 'react';
 import { useAppSelector } from 'app/hooks';
 import { useTranslation } from 'react-i18next';
 
