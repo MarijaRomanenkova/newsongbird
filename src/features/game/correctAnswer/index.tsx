@@ -40,7 +40,8 @@ const CorrectAnswer: React.FC = () => {
 
   if (currentCategoryOptionsByLanguage && currentLevel) {
     currentCategoryOptions = currentCategoryOptionsByLanguage.find(
-      (category, index: number) => findCurrentLevelByIndex(category, index)
+      (category: AnswerOptionsArray, index: number) =>
+        findCurrentLevelByIndex(category, index)
     );
     correctAnswerObject = currentCategoryOptions?.find(
       (option: Option) => option.id === correctAnswerID

@@ -17,6 +17,3 @@ export interface AnswerOptionsArray {
 export interface CategoryOptionsByLanguage {
   [key: number]: string[] | AnswerOptionsArray[];
 }
-export interface BirdsData {
-  [propertyName: string]: CategoryOptionsByLanguage[];
-}

@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import { RootState, AppThunk } from 'app/store';
 import { MAXIMUM_SCORE_PER_LEVEL } from 'features/game/gameSettings';
 import axiosInstance from 'shared/axiosInstance';
-import { BirdsData } from 'shared/interfaces';
 
 interface GameState {
   language: string;
@@ -130,7 +129,6 @@ export const selectIsRequestLoading = (state: RootState): boolean =>
   state.game.isRequestLoading;
 export const selectCorrectAnswerID = (state: RootState): number =>
   state.game.correctAnswerID;
-export const selectBirdsData = (state: RootState): BirdsData =>
-  state.game.birdsData;
+export const selectBirdsData = (state: RootState) => state.game.birdsData;
 
 export default gameSlice.reducer;
