@@ -8,13 +8,13 @@ interface CircleProps {
   isCorrectAnswer: boolean | undefined;
 }
 
-const Circle = ({ isTouched, isCorrectAnswer }: CircleProps): JSX.Element => {
+function Circle({ isTouched, isCorrectAnswer }: CircleProps): JSX.Element {
   const circleStyles = cx({
     [styles.Circle_Basic]: !isTouched,
     [styles.Circle_CorrectOption]: isTouched && isCorrectAnswer,
     [styles.Circle_IncorrectOption]: isTouched && !isCorrectAnswer,
   });
   return <span className={circleStyles} />;
-};
+}
 
 export default Circle;

@@ -7,7 +7,7 @@ import AnswerOptions from 'features/game/answerOptions';
 import GameOver from 'features/game/gameOver';
 import { selectIsGameOver } from 'features/game/gameSlice';
 
-const Game = (): JSX.Element => {
+function Game() {
   const isGameOver = useAppSelector(selectIsGameOver);
   return (
     <>
@@ -21,6 +21,6 @@ const Game = (): JSX.Element => {
       )}
     </>
   );
-};
+}
 
 export default Game;

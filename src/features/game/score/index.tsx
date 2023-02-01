@@ -6,7 +6,7 @@ import { useAppSelector } from 'app/hooks';
 
 import styles from './index.module.scss';
 
-const Score = (): JSX.Element => {
+function Score() {
   const score = useAppSelector(selectScore);
   const { t } = useTranslation();
 
@@ -18,6 +18,6 @@ const Score = (): JSX.Element => {
       </p>
     </div>
   );
-};
+}
 
 export default Score;

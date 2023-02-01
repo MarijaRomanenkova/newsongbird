@@ -6,14 +6,11 @@ import styles from './index.module.scss';
 interface ButtonProps {
   isDisabled: boolean;
   handleClick: MouseEventHandler;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   text: any;
 }
 
-const Button = ({
-  isDisabled,
-  handleClick,
-  text,
-}: ButtonProps): JSX.Element => {
+function Button({ isDisabled, handleClick, text }: ButtonProps): JSX.Element {
   const buttonClasses = cx({
     [styles.Btn]: isDisabled,
     [styles.Btn_Active]: !isDisabled,
@@ -24,6 +21,6 @@ const Button = ({
       {text}
     </button>
   );
-};
+}
 
 export default Button;

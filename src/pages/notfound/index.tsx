@@ -6,7 +6,7 @@ import { availableRoutesList } from 'app/routes/available-routes-list';
 
 import styles from './index.module.scss';
 
-const NotFound: React.FC = () => {
+function NotFound() {
   const { t } = useTranslation();
   return (
     <div className={styles.NotFound_Container}>
@@ -19,6 +19,6 @@ const NotFound: React.FC = () => {
       </div>
     </div>
   );
-};
+}
 
 export default NotFound;

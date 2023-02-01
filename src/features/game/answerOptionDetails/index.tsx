@@ -14,13 +14,13 @@ interface AnswerOptionDetailsProps {
   currentChosenAnswerDescription: string;
 }
 
-const AnswerOptionDetails = ({
+function AnswerOptionDetails({
   currentChosenAnswerImage,
   currentChosenAnswerName,
   currentChosenAnswerDescription,
   currentChosenAnswerSpecies,
   currentChosenAnswerAudio,
-}: AnswerOptionDetailsProps) => {
+}: AnswerOptionDetailsProps) {
   const isCorrectAnswerChosen: boolean = useAppSelector(
     selectIsCorrectAnswerChosen
   );
@@ -69,6 +69,6 @@ const AnswerOptionDetails = ({
       </div>
     </div>
   );
-};
+}
 
 export default AnswerOptionDetails;

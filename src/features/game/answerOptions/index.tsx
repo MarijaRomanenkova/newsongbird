@@ -22,7 +22,7 @@ import { Option } from 'shared/interfaces';
 
 import styles from './index.module.scss';
 
-const AnswerOptions: React.FC = (): JSX.Element => {
+function AnswerOptions() {
   const dispatch = useAppDispatch();
   const { t, i18n } = useTranslation();
 
@@ -79,7 +79,12 @@ const AnswerOptions: React.FC = (): JSX.Element => {
     return result;
   };
 
-  const touchedCategoryOptions = (id: number): Option[] | undefined => {
+  let touchedOptions;
+  if (Array.isArray(newCategoryOptionsByLanguage)) {
+      touchedOptions = newCategoryOptionsByLanguage
+
+
+  const touchedCategoryOptions = (id: number): Option[] => {
     let touchedOptions: Option[];
     if (Array.isArray(newCategoryOptionsByLanguage)) {
       touchedOptions = newCategoryOptionsByLanguage.map(
@@ -177,6 +182,6 @@ const AnswerOptions: React.FC = (): JSX.Element => {
       />
     </>
   );
-};
+}
 
 export default AnswerOptions;

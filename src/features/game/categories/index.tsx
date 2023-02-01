@@ -7,7 +7,7 @@ import { useAppSelector } from 'app/hooks';
 
 import styles from './index.module.scss';
 
-const Categories: React.FC = () => {
+function Categories() {
   const { i18n } = useTranslation();
   const { language } = i18n;
   const currentLevel = useAppSelector(selectCurrentLevel);
@@ -16,7 +16,7 @@ const Categories: React.FC = () => {
   let categoryNames: string[] | [] = [];
   useEffect(() => {
     if (Object.keys(birdsData).length > 0)
-      categoryNames = birdsData[language][0];
+      [categoryNames] = birdsData[language][0];
   }, [birdsData]);
 
   return (
@@ -36,6 +36,6 @@ const Categories: React.FC = () => {
         ))}
     </div>
   );
-};
+}
 
 export default Categories;

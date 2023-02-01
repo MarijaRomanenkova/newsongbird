@@ -7,11 +7,12 @@ import { useAppSelector, useAppDispatch } from 'app/hooks';
 
 import styles from './index.module.scss';
 
-const Home: React.FC = () => {
+function Home() {
   const isRequestLoading = useAppSelector(selectIsRequestLoading);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getBirdsData());
+    console.log('we are moving');
   }, []);
 
   return (
@@ -20,6 +21,6 @@ const Home: React.FC = () => {
       <Game />
     </div>
   );
-};
+}
 
 export default Home;
