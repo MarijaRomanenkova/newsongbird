@@ -8,7 +8,7 @@ import { BirdsData } from 'shared/interfaces';
 
 interface GameState {
   language: string;
-  birdsData: BirdsData;
+  birdsData: any;
   isRequestLoading: boolean;
   currentLevel: number;
   correctAnswerID: number;

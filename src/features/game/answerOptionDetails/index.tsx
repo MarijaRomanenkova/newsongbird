@@ -7,19 +7,19 @@ import { selectIsCorrectAnswerChosen } from 'features/game/gameSlice';
 import styles from './index.module.scss';
 
 interface AnswerOptionDetailsProps {
-  image: string;
-  name: any;
-  species: string;
-  description: string;
-  audio: string;
+  currentChosenAnswerImage: string;
+  currentChosenAnswerName: any;
+  currentChosenAnswerSpecies: string;
+  currentChosenAnswerAudio: string;
+  currentChosenAnswerDescription: string;
 }
 
 const AnswerOptionDetails = ({
-  image,
-  name,
-  description,
-  species,
-  audio,
+  currentChosenAnswerImage,
+  currentChosenAnswerName,
+  currentChosenAnswerDescription,
+  currentChosenAnswerSpecies,
+  currentChosenAnswerAudio,
 }: AnswerOptionDetailsProps) => {
   const isCorrectAnswerChosen: boolean = useAppSelector(
     selectIsCorrectAnswerChosen
@@ -40,16 +40,20 @@ const AnswerOptionDetails = ({
     <div className={styles.AnswerOptionDetails_Container}>
       <img
         className={styles.AnswerOptionDetails_Image}
-        src={image}
-        alt={name}
+        src={currentChosenAnswerImage}
+        alt={currentChosenAnswerName}
       />
       <div>
-        <h2 className={styles.AnswerOptionDetails_Name_Text}>{name}</h2>
-        <h4 className={styles.AnswerOptionDetails_Species_Text}>{species}</h4>
-        {audio && (
+        <h2 className={styles.AnswerOptionDetails_Name_Text}>
+          {currentChosenAnswerName}
+        </h2>
+        <h4 className={styles.AnswerOptionDetails_Species_Text}>
+          {currentChosenAnswerSpecies}
+        </h4>
+        {currentChosenAnswerAudio && (
           <H5AudioPlayer
             layout="horizontal-reverse"
-            src={audio}
+            src={currentChosenAnswerAudio}
             autoPlay={false}
             autoPlayAfterSrcChange={false}
             showJumpControls={false}
@@ -61,7 +65,7 @@ const AnswerOptionDetails = ({
         )}
       </div>
       <div className={styles.AnswerOptionDetails_Description}>
-        {description}
+        {currentChosenAnswerDescription}
       </div>
     </div>
   );

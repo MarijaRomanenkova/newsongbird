@@ -12,11 +12,12 @@ const Categories: React.FC = () => {
   const { language } = i18n;
   const currentLevel = useAppSelector(selectCurrentLevel);
   const birdsData = useAppSelector(selectBirdsData);
-  const categoryNames = birdsData[language];
+  const categoryNames = birdsData[language][0];
+
   return (
     <div className={styles.Categories__Container}>
       {categoryNames &&
-        categoryNames[0].map((category: string, index: number) => (
+        categoryNames.map((category: string, index: number) => (
           <div
             key={category}
             className={

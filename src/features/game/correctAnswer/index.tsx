@@ -35,21 +35,18 @@ const CorrectAnswer: React.FC = () => {
   const isCorrectAnswerChosen = useAppSelector(selectIsCorrectAnswerChosen);
   const currentCategoryOptionsByLanguage = birdsData[language];
 
-  function findCurrentLevelByIndex(
-    category: string[] | AnswerOptionsArray,
-    index: number
-  ): boolean {
+  function findCurrentLevelByIndex(category: any, index: number): boolean {
     return index === currentLevel;
   }
 
-  let currentCategoryOptions: string[] | AnswerOptionsArray;
+  let currentCategoryOptions;
   let correctAnswerObject;
 
   if (currentCategoryOptionsByLanguage && currentLevel) {
     currentCategoryOptions = currentCategoryOptionsByLanguage.find(
-      (category, index) => findCurrentLevelByIndex(category, index)
+      (category, index: number) => findCurrentLevelByIndex(category, index)
     );
-    correctAnswerObject = currentCategoryOptions.find(
+    correctAnswerObject = currentCategoryOptions?.find(
       (option: Option) => option.id === correctAnswerID
     );
   }

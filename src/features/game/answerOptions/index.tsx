@@ -48,32 +48,32 @@ const AnswerOptions: React.FC = () => {
 
   const { language } = i18n;
   const currentCategoryOptionsByLanguage = birdsData[language];
-  function findCurrentLevelByIndex(level: any, index: number): boolean {
+
+  function findCurrentLevelByIndex(level: [], index: number): boolean {
     return index === currentLevel;
   }
 
   useEffect(() => {
-    if (currentLevel && currentCategoryOptionsByLanguage) {
-      setCurrentCategoryOptions(
-        currentCategoryOptionsByLanguage
-          .find((level, index) => findCurrentLevelByIndex(level, index))
-          .map((option: Option) => {
-            if (option.id === correctAnswerID) {
-              return {
-                ...option,
-                uniqueID: nanoid(),
-                isTouched: false,
-                isCorrectAnswer: true,
-              };
-            }
+    if (currentLevel && currentCategoryOptionsByLanguage.length > 1) {
+      const newCategoryOptionsByLanguage = currentCategoryOptionsByLanguage?
+        .find((level: [], index: number) => findCurrentLevelByIndex(level, index))
+        .map((option: Option) => {
+          if (option.id === correctAnswerID) {
             return {
               ...option,
               uniqueID: nanoid(),
               isTouched: false,
-              isCorrectAnswer: false,
+              isCorrectAnswer: true,
             };
-          })
-      );
+          }
+          return {
+            ...option,
+            uniqueID: nanoid(),
+            isTouched: false,
+            isCorrectAnswer: false,
+          };
+        });
+      setCurrentCategoryOptions(newCategoryOptionsByLanguage);
     }
   }, [currentLevel, currentCategoryOptionsByLanguage]);
 
@@ -131,16 +131,16 @@ const AnswerOptions: React.FC = () => {
           ))}
         </div>
 
-        {currentChosenAnswer.id && (
+        {currentChosenAnswer?.id && (
           <AnswerOptionDetails
             currentChosenAnswerName={currentChosenAnswer.name}
             currentChosenAnswerImage={currentChosenAnswer.image}
             currentChosenAnswerDescription={currentChosenAnswer.description}
             currentChosenAnswerAudio={currentChosenAnswer.audio}
-            species={currentChosenAnswer.species}
+            currentChosenAnswerSpecies={currentChosenAnswer.species}
           />
         )}
-        {!currentChosenAnswer.id && (
+        {!currentChosenAnswer?.id && (
           <div className={styles.AnswerOptionDetails_Dummy}>
             <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
               Послушайте плеер.
