@@ -3,7 +3,6 @@ import { useAppSelector } from 'app/hooks';
 import { useTranslation } from 'react-i18next';
 
 import { selectCurrentLevel, selectBirdsData } from 'features/game/gameSlice';
-import { Option } from 'shared/interfaces';
 
 import styles from './index.module.scss';
 

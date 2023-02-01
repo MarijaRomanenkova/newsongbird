@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-import { RootState, AppThunk } from 'app/store';
+import { RootState } from 'app/store';
 import { MAXIMUM_SCORE_PER_LEVEL } from 'features/game/gameSettings';
 import axiosInstance from 'shared/axiosInstance';
 
@@ -51,7 +51,7 @@ export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    switchLanguage: (state, action: PayloadAction<string>) => {
+    switchLanguage: (state, action) => {
       state.language = action.payload;
     },
     switchToNextLevel: (state) => {
@@ -94,17 +94,14 @@ export const gameSlice = createSlice({
       .addCase(getBirdsData.pending, (state) => {
         state.isRequestLoading = true;
       })
-      .addCase(
-        getBirdsData.fulfilled,
-        (state, action: PayloadAction<BirdsData>) => {
-          state.birdsData = action.payload;
-          state.correctAnswerID = getCorrectAnswerID(
-            Object.values(action.payload[state.language][1]).length
-          );
+      .addCase(getBirdsData.fulfilled, (state, action) => {
+        state.birdsData = action.payload;
+        state.correctAnswerID = getCorrectAnswerID(
+          Object.values(action.payload[state.language][1]).length
+        );
 
-          state.isRequestLoading = false;
-        }
-      )
+        state.isRequestLoading = false;
+      })
       .addCase(getBirdsData.rejected, (state) => {
         state.isRequestLoading = false;
       });
