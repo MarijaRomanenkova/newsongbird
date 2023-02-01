@@ -3,12 +3,6 @@ import { useSound } from 'use-sound';
 import { nanoid } from 'nanoid';
 import { useTranslation } from 'react-i18next';
 
-import { useAppSelector, useAppDispatch } from 'app/hooks';
-import correctAnswerChosenSoundOGG from 'shared/assets/sounds/correctAnswerChosenSound.ogg';
-import incorrectAnswerChosenSoundOGG from 'shared/assets/sounds/incorrectAnswerChosenSound.ogg';
-import AnswerOptionDetails from 'features/game/answerOptionDetails/index';
-import Circle from 'shared/ui/circle/index';
-import Button from 'shared/ui/button/index';
 import {
   selectCorrectAnswerID,
   selectIsGameOver,
@@ -18,6 +12,12 @@ import {
   selectBirdsData,
   selectCurrentLevel,
 } from 'features/game/gameSlice';
+import { useAppSelector, useAppDispatch } from 'app/hooks';
+import correctAnswerChosenSoundOGG from 'shared/assets/sounds/correctAnswerChosenSound.ogg';
+import incorrectAnswerChosenSoundOGG from 'shared/assets/sounds/incorrectAnswerChosenSound.ogg';
+import AnswerOptionDetails from 'features/game/answerOptionDetails/index';
+import Circle from 'shared/ui/circle/index';
+import Button from 'shared/ui/button/index';
 import { Option } from 'shared/interfaces';
 
 import styles from './index.module.scss';
@@ -173,7 +173,7 @@ const AnswerOptions: React.FC = (): JSX.Element => {
       <Button
         isDisabled={isNextButtonDisabled}
         handleClick={handleNextButtonClick}
-        name={t('next-level')}
+        text={t('next-level')}
       />
     </>
   );

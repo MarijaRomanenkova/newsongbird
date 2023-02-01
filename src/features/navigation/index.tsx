@@ -3,13 +3,13 @@ import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import logoSourceSVG from 'shared/assets/logoSourceSVG.svg';
-import Score from 'features/game/score';
+import Score from 'features/game/score/index';
 import { availableRoutesList } from 'app/routes/available-routes-list';
-import LanguageSwitch from 'shared/ui/language-switch';
+import LanguageSwitch from 'shared/ui/language-switch/index';
 
 import styles from './index.module.scss';
 
-const Navigation = (): JSX.Element => {
+function Navigation() {
   const { t } = useTranslation();
   return (
     <nav className={styles.Navigation_Container}>
@@ -44,6 +44,6 @@ const Navigation = (): JSX.Element => {
       </div>
     </nav>
   );
-};
+}
 
 export default Navigation;

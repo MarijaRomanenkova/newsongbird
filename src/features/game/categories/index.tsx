@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -12,8 +12,15 @@ const Categories: React.FC = () => {
   const { language } = i18n;
   const currentLevel = useAppSelector(selectCurrentLevel);
   const birdsData = useAppSelector(selectBirdsData);
-  const categoryNames: string[] = birdsData[language][0];
+  console.log(birdsData);
 
+  let categoryNames: string[] | [] = [];
+  useEffect(() => {
+    if (Object.keys(birdsData).length > 0)
+      categoryNames = birdsData[language][0];
+  }, [birdsData]);
+
+  console.log(categoryNames);
   return (
     <div className={styles.Categories__Container}>
       {categoryNames.length > 0 &&

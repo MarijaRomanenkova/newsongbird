@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import languageList from 'shared/languageList';
+import { languageList } from 'shared/languageList';
 
 import styles from './index.module.scss';
 

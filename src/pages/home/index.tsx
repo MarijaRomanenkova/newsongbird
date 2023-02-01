@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from 'app/hooks';
 
 import Game from 'features/game/index';
 import Loader from 'shared/ui/loader';
 import { getBirdsData, selectIsRequestLoading } from 'features/game/gameSlice';
+import { useAppSelector, useAppDispatch } from 'app/hooks';
 
 import styles from './index.module.scss';
 

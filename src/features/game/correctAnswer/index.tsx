@@ -1,15 +1,14 @@
 import React, { useRef } from 'react';
 import H5AudioPlayer from 'react-h5-audio-player';
-import { useAppSelector } from 'app/hooks';
 import { useTranslation } from 'react-i18next';
 
-import { Option } from 'shared/interfaces';
 import {
   selectIsCorrectAnswerChosen,
   selectCorrectAnswerID,
   selectBirdsData,
   selectCurrentLevel,
 } from 'features/game/gameSlice';
+import { useAppSelector } from 'app/hooks';
 import imageHiddenCorrectAnswerJPG from 'shared/assets/imageHiddenCorrectAnswerJPG.jpg';
 
 import styles from './index.module.scss';

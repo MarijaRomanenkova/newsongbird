@@ -6,13 +6,13 @@ import styles from './index.module.scss';
 interface ButtonProps {
   isDisabled: boolean;
   handleClick: MouseEventHandler;
-  name: any;
+  text: any;
 }
 
 const Button = ({
   isDisabled,
   handleClick,
-  name,
+  text,
 }: ButtonProps): JSX.Element => {
   const buttonClasses = cx({
     [styles.Btn]: isDisabled,
@@ -21,7 +21,7 @@ const Button = ({
 
   return (
     <button className={buttonClasses} type="button" onClick={handleClick}>
-      {name}
+      {text}
     </button>
   );
 };

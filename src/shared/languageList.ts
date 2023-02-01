@@ -8,9 +8,7 @@ interface LanguageItem {
   img: any;
 }
 
-interface LanguageList extends Array<LanguageItem> {}
-
-const languageList: LanguageList = [
+export const languageList: LanguageItem[] = [
   {
     name: 'English',
     code: 'en',
@@ -27,5 +25,3 @@ const languageList: LanguageList = [
     img: flagLTsourceSVG,
   },
 ];
-
-export default languageList;

@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import H5AudioPlayer from 'react-h5-audio-player';
-import { useAppSelector } from 'app/hooks';
 
 import { selectIsCorrectAnswerChosen } from 'features/game/gameSlice';
+import { useAppSelector } from 'app/hooks';
 
 import styles from './index.module.scss';
 
