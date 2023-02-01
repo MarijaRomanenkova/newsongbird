@@ -1,8 +1,9 @@
 import React from 'react';
-import { useAppSelector } from 'app/hooks';
+
 import { useTranslation } from 'react-i18next';
 
 import { selectCurrentLevel, selectBirdsData } from 'features/game/gameSlice';
+import { useAppSelector } from 'app/hooks';
 
 import styles from './index.module.scss';
 
@@ -15,7 +16,7 @@ const Categories: React.FC = () => {
 
   return (
     <div className={styles.Categories__Container}>
-      {categoryNames &&
+      {categoryNames.length > 0 &&
         categoryNames.map((category: string, index: number) => (
           <div
             key={category}
