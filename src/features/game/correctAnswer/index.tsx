@@ -34,25 +34,28 @@ function CorrectAnswer() {
   const isCorrectAnswerChosen = useAppSelector(selectIsCorrectAnswerChosen);
   const currentCategoryOptionsByLanguage = birdsData[language];
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const isRequestLoading = useAppSelector(selectIsRequestLoading);
-  console.log('birdsData', birdsData);
-  console.log('isRequestLoading', isRequestLoading);
-
   function findCurrentLevelByIndex(category: any, index: number): boolean {
     return index === currentLevel;
   }
 
-  let currentCategoryOptions;
+  let currentCategoryOptions: Option[] = [];
   let correctAnswerObject;
 
   if (currentCategoryOptionsByLanguage && currentLevel) {
     currentCategoryOptions = currentCategoryOptionsByLanguage.find(
       (category: any, index: number) => findCurrentLevelByIndex(category, index)
     );
-    correctAnswerObject = currentCategoryOptions?.find(
-      (option: Option) => option.id === correctAnswerID
+  }
+
+  const findChosenAnswerById = (id: number): Option => {
+    const result = currentCategoryOptionsByLanguage.find(
+      (option: Option): boolean => option.id === id
     );
+    return result;
+  };
+
+  if (currentCategoryOptions.length > 0 && correctAnswerID) {
+    correctAnswerObject = findChosenAnswerById(correctAnswerID);
   }
 
   const AudioPlayerREF: any = useRef<H5AudioPlayer>(null);
@@ -72,7 +75,7 @@ function CorrectAnswer() {
     alt: 'bird',
   };
 
-  if (isCorrectAnswerChosen) {
+  if (isCorrectAnswerChosen && correctAnswerObject !== null) {
     answerToRender = {
       image: correctAnswerObject.image,
       name: correctAnswerObject.name,
@@ -89,19 +92,20 @@ function CorrectAnswer() {
       />
       <div className={styles.correctAnswer_Box}>
         <h1 className={styles.correctAnswer_Title}>{answerToRender.name}</h1>
-        {correctAnswerObject.audio && (
-          <H5AudioPlayer
-            layout="horizontal-reverse"
-            src={correctAnswerObject.audio}
-            autoPlay={false}
-            autoPlayAfterSrcChange={false}
-            showJumpControls={false}
-            showFilledProgress
-            customAdditionalControls={[]}
-            customVolumeControls={[]}
-            ref={AudioPlayerREF}
-          />
-        )}
+        {correctAnswerObject !== null &&
+          correctAnswerObject.audio === string && (
+            <H5AudioPlayer
+              layout="horizontal-reverse"
+              src={correctAnswerObject.audio}
+              autoPlay={false}
+              autoPlayAfterSrcChange={false}
+              showJumpControls={false}
+              showFilledProgress
+              customAdditionalControls={[]}
+              customVolumeControls={[]}
+              ref={AudioPlayerREF}
+            />
+          )}
       </div>
     </div>
   );

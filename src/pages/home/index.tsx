@@ -12,7 +12,6 @@ function Home() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getBirdsData());
-    console.log('we are moving');
   }, []);
 
   return (
