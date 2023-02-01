@@ -9,11 +9,3 @@ export interface Option {
   isTouched?: boolean;
   isCorrectAnswer?: boolean;
 }
-
-export interface AnswerOptionsArray {
-  [key: number]: Option;
-}
-
-export interface CategoryOptionsByLanguage {
-  [key: number]: string[] | AnswerOptionsArray[];
-}

@@ -3,7 +3,7 @@ import H5AudioPlayer from 'react-h5-audio-player';
 import { useAppSelector } from 'app/hooks';
 import { useTranslation } from 'react-i18next';
 
-import { Option, AnswerOptionsArray } from 'shared/interfaces';
+import { Option } from 'shared/interfaces';
 import {
   selectIsCorrectAnswerChosen,
   selectCorrectAnswerID,
@@ -40,7 +40,7 @@ const CorrectAnswer: React.FC = () => {
 
   if (currentCategoryOptionsByLanguage && currentLevel) {
     currentCategoryOptions = currentCategoryOptionsByLanguage.find(
-      (category: AnswerOptionsArray, index: number) =>
+      (category: Option[], index: number) =>
         findCurrentLevelByIndex(category, index)
     );
     correctAnswerObject = currentCategoryOptions?.find(

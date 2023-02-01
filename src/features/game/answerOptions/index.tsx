@@ -1,4 +1,3 @@
-/* eslint-disable no-inner-declarations */
 import React, { useState, useEffect } from 'react';
 import { useSound } from 'use-sound';
 import { nanoid } from 'nanoid';
@@ -19,10 +18,7 @@ import {
   selectBirdsData,
   selectCurrentLevel,
 } from 'features/game/gameSlice';
-import {
-  Option,
-  AnswerOptionsArray,  
-} from 'shared/interfaces';
+import { Option } from 'shared/interfaces';
 
 import styles from './index.module.scss';
 
@@ -42,20 +38,26 @@ const AnswerOptions: React.FC = (): JSX.Element => {
   const [isNextButtonDisabled, setIsNextButtonDisabled] =
     useState<boolean>(true);
   const [currentCategoryOptions, setCurrentCategoryOptions] =
-    useState<AnswerOptionsArray>();
+    useState<Option[]>();
   const [currentChosenAnswer, setCurrentChosenAnswer] = useState<Option>();
 
   const { language } = i18n;
-  const currentCategoryOptionsByLanguage =
-    birdsData[language];
+  const currentCategoryOptionsByLanguage = birdsData[language];
 
-  function findCurrentLevelByIndex(level: [], index: number): boolean {
+  function findCurrentLevelByIndex(level: Option[], index: number): boolean {
     return index === currentLevel;
   }
 
-  const newCategoryOptionsByLanguage = () => {
-    const result = currentCategoryOptionsByLanguage
-      ?.find((level: [], index: number) =>
+  const findChosenAnswerById = (id: number): Option => {
+    const result = currentCategoryOptionsByLanguage.find(
+      (option: Option): boolean => option.id === id
+    );
+    return result;
+  };
+
+  const newCategoryOptionsByLanguage = (): Option[] => {
+    const result: Option[] = currentCategoryOptionsByLanguage
+      ?.find((level: Option[], index: number) =>
         findCurrentLevelByIndex(level, index)
       )
       .map((option: Option) => {
@@ -73,36 +75,38 @@ const AnswerOptions: React.FC = (): JSX.Element => {
           isTouched: false,
           isCorrectAnswer: false,
         };
-      
       });
     return result;
   };
+
+  const setTouchedCategoryOptions = (id: number): Option[] => {
+    let touchedOptions: Option[];
+    if (Array.isArray(newCategoryOptionsByLanguage)) {
+      touchedOptions = newCategoryOptionsByLanguage.map((option: Option) => {
+        if (option.id === id) {
+          return { ...option, isTouched: true };
+        }
+        return { ...option };
+      });
+      return touchedOptions;
+    }
+  };
+
   useEffect(() => {
     if (currentLevel && newCategoryOptionsByLanguage.length > 1) {
       setCurrentCategoryOptions(newCategoryOptionsByLanguage);
     }
   }, [currentLevel, currentCategoryOptionsByLanguage]);
 
-  function handleAnswerOptionClick(id: number | string): void {
+  function handleAnswerOptionClick(id: number): void {
     if (currentCategoryOptions) {
-      setCurrentChosenAnswer(
-        currentCategoryOptions.find(
-          (option: Option): boolean => option.id === id
-        )
-      );
+      setCurrentChosenAnswer(findChosenAnswerById(id));
     }
     if (!isNextButtonDisabled) {
       return;
     }
     dispatch(answerWasChosen());
-    setCurrentCategoryOptions(
-      currentCategoryOptions.map((option: Option) => {
-        if (option.id === id) {
-          return { ...option, isTouched: true };
-        }
-        return { ...option };
-      })
-    );
+    setCurrentCategoryOptions(setTouchedCategoryOptions(id));
 
     if (id === correctAnswerID) {
       dispatch(correctAnswerChosen());
@@ -124,24 +128,25 @@ const AnswerOptions: React.FC = (): JSX.Element => {
     <>
       <div className={styles.AnswerOptions_Container}>
         <div className={styles.AnswerOptionsList_Container}>
-          {currentCategoryOptions.map((option: Option) => (
-            <button
-              key={option.uniqueID}
-              className={styles.AnswerOptionsList_Option}
-              type="button"
-              onClick={() => handleAnswerOptionClick(option.id)}
-              disabled={!isNextButtonDisabled}
-            >
-              <Circle
-                isTouched={option.isTouched}
-                isCorrectAnswer={option.isCorrectAnswer}
-              />
-              {option.name}
-            </button>
-          ))}
+          {currentCategoryOptions &&
+            currentCategoryOptions.map((option: Option) => (
+              <button
+                key={option.uniqueID}
+                className={styles.AnswerOptionsList_Option}
+                type="button"
+                onClick={() => handleAnswerOptionClick(option.id)}
+                disabled={!isNextButtonDisabled}
+              >
+                <Circle
+                  isTouched={option.isTouched}
+                  isCorrectAnswer={option.isCorrectAnswer}
+                />
+                {option.name}
+              </button>
+            ))}
         </div>
 
-        {currentChosenAnswer?. && (
+        {currentChosenAnswer && (
           <AnswerOptionDetails
             currentChosenAnswerName={currentChosenAnswer.name}
             currentChosenAnswerImage={currentChosenAnswer.image}
