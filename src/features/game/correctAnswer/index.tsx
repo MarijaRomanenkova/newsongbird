@@ -3,11 +3,7 @@ import H5AudioPlayer from 'react-h5-audio-player';
 import { useAppSelector } from 'app/hooks';
 import { useTranslation } from 'react-i18next';
 
-import {
-  Option,
-  BirdsDataByLanguage,
-  AnswerOptionsArray,
-} from 'shared/interfaces';
+import { Option, AnswerOptionsArray } from 'shared/interfaces';
 import {
   selectIsCorrectAnswerChosen,
   selectCorrectAnswerID,
@@ -93,7 +89,6 @@ const CorrectAnswer: React.FC = () => {
             autoPlayAfterSrcChange={false}
             showJumpControls={false}
             showFilledProgress
-            volumeControls
             customAdditionalControls={[]}
             customVolumeControls={[]}
             ref={AudioPlayerREF}
