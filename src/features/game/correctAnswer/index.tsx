@@ -11,6 +11,8 @@ import {
 import { useAppSelector } from 'app/hooks';
 import imageHiddenCorrectAnswerJPG from 'shared/assets/imageHiddenCorrectAnswerJPG.jpg';
 
+import { Option } from 'shared/interfaces';
+
 import styles from './index.module.scss';
 
 const HIDDEN__ANSWER = '******';
@@ -39,8 +41,7 @@ const CorrectAnswer: React.FC = () => {
 
   if (currentCategoryOptionsByLanguage && currentLevel) {
     currentCategoryOptions = currentCategoryOptionsByLanguage.find(
-      (category: Option[], index: number) =>
-        findCurrentLevelByIndex(category, index)
+      (category: any, index: number) => findCurrentLevelByIndex(category, index)
     );
     correctAnswerObject = currentCategoryOptions?.find(
       (option: Option) => option.id === correctAnswerID
