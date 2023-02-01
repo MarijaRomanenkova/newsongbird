@@ -8,7 +8,9 @@
   "extends": ["plugin:react/recommended", "airbnb", "prettier"],
   "settings": {
     "import/resolver": {
-      "node": {},
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
       "babel-module": {
         "root": ["./src"]
       }
