@@ -79,15 +79,17 @@ const AnswerOptions: React.FC = (): JSX.Element => {
     return result;
   };
 
-  const setTouchedCategoryOptions = (id: number): Option[] => {
+  const touchedCategoryOptions = (id: number): Option[] | undefined => {
     let touchedOptions: Option[];
     if (Array.isArray(newCategoryOptionsByLanguage)) {
-      touchedOptions = newCategoryOptionsByLanguage.map((option: Option) => {
-        if (option.id === id) {
-          return { ...option, isTouched: true };
+      touchedOptions = newCategoryOptionsByLanguage.map(
+        (option: Option): Option => {
+          if (option.id === id) {
+            return { ...option, isTouched: true };
+          }
+          return { ...option };
         }
-        return { ...option };
-      });
+      );
       return touchedOptions;
     }
   };
@@ -106,7 +108,9 @@ const AnswerOptions: React.FC = (): JSX.Element => {
       return;
     }
     dispatch(answerWasChosen());
-    setCurrentCategoryOptions(setTouchedCategoryOptions(id));
+    if (Array.isArray(currentCategoryOptions)) {
+      setCurrentCategoryOptions(touchedCategoryOptions(id));
+    }
 
     if (id === correctAnswerID) {
       dispatch(correctAnswerChosen());
