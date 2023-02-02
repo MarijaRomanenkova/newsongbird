@@ -16,15 +16,12 @@
     "noEmit": true,
     "pretty": true,
     "jsx": "react-jsx",
-    "baseUrl": "./src",
-    "paths": {
-      "*": ["./*"]
-    },
     "plugins": [
       {
         "name": "typescript-plugin-css-modules"
       }
     ]
   },
-  "include": ["src", "types/*"]
+  "include": ["src", "types/*"],
+  "extends": "./tsconfig.paths.json"
 }
