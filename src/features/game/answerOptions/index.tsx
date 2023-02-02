@@ -29,7 +29,6 @@ function AnswerOptions(): JSX.Element {
   const currentLevel = useAppSelector(selectCurrentLevel);
   const birdsData = useAppSelector(selectBirdsData);
   const correctAnswerID = useAppSelector(selectCorrectAnswerID);
-  console.log(correctAnswerID);
   const isGameOver = useAppSelector(selectIsGameOver);
 
   const [playCorrectAnswerChosenSound] = useSound(correctAnswerChosenSoundOGG);
@@ -41,6 +40,8 @@ function AnswerOptions(): JSX.Element {
   const [currentCategoryOptions, setCurrentCategoryOptions] = useState<
     Option[]
   >([]);
+  const [thisCategoryOptionsByLanguage, setThisCategoryOptionsByLanguage] =
+    useState<Option[]>([]);
   const [currentChosenAnswer, setCurrentChosenAnswer] = useState<Option>();
 
   const { language } = i18n;
@@ -58,9 +59,6 @@ function AnswerOptions(): JSX.Element {
     return result;
   };
 
-  const [thisCategoryOptionsByLanguage, setThisCategoryOptionsByLanguage] =
-    useState<Option[]>([]);
-
   useEffect(() => {
     if (currentCategoryOptionsByLanguage && currentLevel) {
       setThisCategoryOptionsByLanguage(
@@ -70,7 +68,7 @@ function AnswerOptions(): JSX.Element {
         )
       );
     }
-  }, [currentCategoryOptionsByLanguage]);
+  }, [currentCategoryOptionsByLanguage, currentLevel]);
 
   useEffect(() => {
     if (correctAnswerID > 0) {
