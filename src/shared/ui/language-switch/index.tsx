@@ -5,7 +5,7 @@ import { languageList } from 'shared/languageList';
 
 import styles from './index.module.scss';
 
-const LanguageSwitch = (): JSX.Element => {
+function LanguageSwitch() {
   const { i18n } = useTranslation();
 
   return (
@@ -23,6 +23,6 @@ const LanguageSwitch = (): JSX.Element => {
       ))}
     </div>
   );
-};
+}
 
 export default LanguageSwitch;

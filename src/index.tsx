@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { store } from './app/store';
 import App from './app/routes';
-import './i18next';
+import './i18n';
 import reportWebVitals from './reportWebVitals';
 
 import './index.css';

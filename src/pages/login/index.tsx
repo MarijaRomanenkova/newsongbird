@@ -9,7 +9,7 @@ import { LoginSchema } from './schema';
 
 import styles from './index.module.scss';
 
-const Login: React.FC = () => {
+function Login() {
   const { t } = useTranslation();
   return (
     <div className={styles.Form_Container}>
@@ -98,6 +98,6 @@ const Login: React.FC = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Login;

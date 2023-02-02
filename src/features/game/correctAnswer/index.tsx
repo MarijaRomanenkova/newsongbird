@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useRef } from 'react';
+import React, { useRef, ReactElement } from 'react';
 import H5AudioPlayer from 'react-h5-audio-player';
 import { useTranslation } from 'react-i18next';
 
@@ -24,7 +24,7 @@ interface AnswerToRender {
   alt: string;
 }
 
-function CorrectAnswer() {
+function CorrectAnswer(): ReactElement {
   const { i18n } = useTranslation();
   const { language } = i18n;
   const currentLevel = useAppSelector(selectCurrentLevel);
@@ -33,9 +33,8 @@ function CorrectAnswer() {
   const isCorrectAnswerChosen = useAppSelector(selectIsCorrectAnswerChosen);
   const currentCategoryOptionsByLanguage = birdsData[language];
 
-  function findCurrentLevelByIndex(category: any, index: number): boolean {
-    return index === currentLevel;
-  }
+  const findCurrentLevelByIndex = (category: any, index: number): boolean =>
+    index === currentLevel;
 
   let currentCategoryOptions: Option[] = [];
   let correctAnswerObject: Option = {
@@ -49,7 +48,8 @@ function CorrectAnswer() {
 
   if (currentCategoryOptionsByLanguage && currentLevel) {
     currentCategoryOptions = currentCategoryOptionsByLanguage.find(
-      (category: any, index: number) => findCurrentLevelByIndex(category, index)
+      (category: Option[], index: number) =>
+        findCurrentLevelByIndex(category, index)
     );
   }
 
@@ -57,7 +57,6 @@ function CorrectAnswer() {
     correctAnswerObject = currentCategoryOptionsByLanguage.find(
       (option: Option): boolean => option.id === correctAnswerID
     );
-    return correctAnswerObject;
   }
 
   const AudioPlayerREF: any = useRef<H5AudioPlayer>(null);
