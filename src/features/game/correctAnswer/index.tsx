@@ -8,7 +8,6 @@ import {
   selectCorrectAnswerID,
   selectBirdsData,
   selectCurrentLevel,
-  selectIsRequestLoading,
 } from 'features/game/gameSlice';
 import { useAppSelector } from 'app/hooks';
 import imageHiddenCorrectAnswerJPG from 'shared/assets/imageHiddenCorrectAnswerJPG.jpg';
@@ -39,7 +38,14 @@ function CorrectAnswer() {
   }
 
   let currentCategoryOptions: Option[] = [];
-  let correctAnswerObject;
+  let correctAnswerObject: Option = {
+    name: '',
+    id: 0,
+    species: '',
+    description: '',
+    image: '',
+    audio: '',
+  };
 
   if (currentCategoryOptionsByLanguage && currentLevel) {
     currentCategoryOptions = currentCategoryOptionsByLanguage.find(
@@ -47,15 +53,11 @@ function CorrectAnswer() {
     );
   }
 
-  const findChosenAnswerById = (id: number): Option => {
-    const result = currentCategoryOptionsByLanguage.find(
-      (option: Option): boolean => option.id === id
-    );
-    return result;
-  };
-
   if (currentCategoryOptions.length > 0 && correctAnswerID) {
-    correctAnswerObject = findChosenAnswerById(correctAnswerID);
+    correctAnswerObject = currentCategoryOptionsByLanguage.find(
+      (option: Option): boolean => option.id === correctAnswerID
+    );
+    return correctAnswerObject;
   }
 
   const AudioPlayerREF: any = useRef<H5AudioPlayer>(null);
@@ -75,7 +77,7 @@ function CorrectAnswer() {
     alt: 'bird',
   };
 
-  if (isCorrectAnswerChosen && correctAnswerObject !== null) {
+  if (isCorrectAnswerChosen && correctAnswerObject.id) {
     answerToRender = {
       image: correctAnswerObject.image,
       name: correctAnswerObject.name,
@@ -92,20 +94,19 @@ function CorrectAnswer() {
       />
       <div className={styles.correctAnswer_Box}>
         <h1 className={styles.correctAnswer_Title}>{answerToRender.name}</h1>
-        {correctAnswerObject !== null &&
-          correctAnswerObject.audio === string && (
-            <H5AudioPlayer
-              layout="horizontal-reverse"
-              src={correctAnswerObject.audio}
-              autoPlay={false}
-              autoPlayAfterSrcChange={false}
-              showJumpControls={false}
-              showFilledProgress
-              customAdditionalControls={[]}
-              customVolumeControls={[]}
-              ref={AudioPlayerREF}
-            />
-          )}
+        {correctAnswerObject.audio.length > 0 && (
+          <H5AudioPlayer
+            layout="horizontal-reverse"
+            src={correctAnswerObject.audio}
+            autoPlay={false}
+            autoPlayAfterSrcChange={false}
+            showJumpControls={false}
+            showFilledProgress
+            customAdditionalControls={[]}
+            customVolumeControls={[]}
+            ref={AudioPlayerREF}
+          />
+        )}
       </div>
     </div>
   );
