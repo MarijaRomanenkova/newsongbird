@@ -29,6 +29,7 @@ function AnswerOptions(): JSX.Element {
   const currentLevel = useAppSelector(selectCurrentLevel);
   const birdsData = useAppSelector(selectBirdsData);
   const correctAnswerID = useAppSelector(selectCorrectAnswerID);
+  console.log(correctAnswerID);
   const isGameOver = useAppSelector(selectIsGameOver);
 
   const [playCorrectAnswerChosenSound] = useSound(correctAnswerChosenSoundOGG);
@@ -57,53 +58,47 @@ function AnswerOptions(): JSX.Element {
     return result;
   };
 
-  let thisCategoryOptionsByLanguage: Option[] = [];
+  const [thisCategoryOptionsByLanguage, setThisCategoryOptionsByLanguage] =
+    useState<Option[]>([]);
 
-  if (currentCategoryOptionsByLanguage && currentLevel) {
-    thisCategoryOptionsByLanguage = currentCategoryOptionsByLanguage.find(
-      (category: Option[], index: number) =>
-        findCurrentLevelOptionsByIndex(category, index)
-    );
-  }
+  useEffect(() => {
+    if (currentCategoryOptionsByLanguage && currentLevel) {
+      setThisCategoryOptionsByLanguage(
+        currentCategoryOptionsByLanguage.find(
+          (category: Option[], index: number) =>
+            findCurrentLevelOptionsByIndex(category, index)
+        )
+      );
+    }
+  }, [currentCategoryOptionsByLanguage]);
 
-  if (thisCategoryOptionsByLanguage.length > 0 && correctAnswerID) {
-    thisCategoryOptionsByLanguage = thisCategoryOptionsByLanguage.map(
-      (option: Option) => {
-        if (option.id === correctAnswerID) {
+  useEffect(() => {
+    if (correctAnswerID > 0) {
+      setCurrentCategoryOptions(
+        thisCategoryOptionsByLanguage.map((option: Option) => {
+          if (option.id === correctAnswerID) {
+            return {
+              ...option,
+              uniqueID: nanoid(),
+              isTouched: false,
+              isCorrectAnswer: true,
+            };
+          }
           return {
             ...option,
             uniqueID: nanoid(),
             isTouched: false,
-            isCorrectAnswer: true,
+            isCorrectAnswer: false,
           };
-        }
-        return {
-          ...option,
-          uniqueID: nanoid(),
-          isTouched: false,
-          isCorrectAnswer: false,
-        };
-      }
-    );
-  }
-
-  const touchedCategoryOptions = (id: number): Option[] => {
-    const Options: Option[] = currentCategoryOptions.map(
-      (option: Option): Option => {
-        if (option.id === id) {
-          return { ...option, isTouched: true };
-        }
-        return { ...option };
-      }
-    );
-    return Options;
-  };
-
-  useEffect(() => {
-    if (currentLevel && thisCategoryOptionsByLanguage.length > 1) {
-      setCurrentCategoryOptions(thisCategoryOptionsByLanguage);
+        })
+      );
     }
-  }, [currentLevel, currentCategoryOptionsByLanguage]);
+  }, [thisCategoryOptionsByLanguage]);
+
+  // const touchedCategoryOptions = (id: number): Option[] => {
+  //   const Options: Option[] =
+  //   return Options;
+  // };
 
   const handleAnswerOptionClick = (id: number): void => {
     setCurrentChosenAnswer(findChosenAnswerById(id));
@@ -111,7 +106,14 @@ function AnswerOptions(): JSX.Element {
       return;
     }
     dispatch(answerWasChosen());
-    setCurrentCategoryOptions(touchedCategoryOptions(id));
+    setCurrentCategoryOptions(
+      currentCategoryOptions.map((option: Option): Option => {
+        if (option.id === id) {
+          return { ...option, isTouched: true };
+        }
+        return { ...option };
+      })
+    );
 
     if (id === correctAnswerID) {
       dispatch(correctAnswerChosen());
@@ -133,6 +135,7 @@ function AnswerOptions(): JSX.Element {
       <div className={styles.AnswerOptions_Container}>
         <div className={styles.AnswerOptionsList_Container}>
           {currentCategoryOptions &&
+            thisCategoryOptionsByLanguage.length > 0 &&
             currentCategoryOptions.map((option: Option) => (
               <button
                 key={option.uniqueID}

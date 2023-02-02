@@ -11,7 +11,7 @@ import { SignUpSchema } from './schema';
 
 import styles from './index.module.scss';
 
-const SignUpForm: React.FC = () => {
+function SignUpForm() {
   const { t } = useTranslation();
   return (
     <div className={styles.Form_Container}>
@@ -137,6 +137,6 @@ const SignUpForm: React.FC = () => {
       </div>
     </div>
   );
-};
+}
 
 export default SignUpForm;

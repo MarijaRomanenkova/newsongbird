@@ -98,7 +98,7 @@ export const gameSlice = createSlice({
       })
       .addCase(getBirdsData.fulfilled, (state, action) => {
         state.birdsData = action.payload;
-        state.correctAnswerID = getCorrectAnswerID(action.payload.ru[1]);
+        state.correctAnswerID = getCorrectAnswerID(action.payload.ru[1].length);
         state.isRequestLoading = false;
       })
       .addCase(getBirdsData.rejected, (state) => {
