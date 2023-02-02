@@ -45,23 +45,30 @@ function AnswerOptions(): JSX.Element {
   const { language } = i18n;
   const currentCategoryOptionsByLanguage = birdsData[language];
 
-  function findCurrentLevelByIndex(level: Option[], index: number): boolean {
-    return index === currentLevel;
-  }
+  const findCurrentLevelOptionsByIndex = (
+    level: Option[],
+    index: number
+  ): boolean => index === currentLevel;
 
-  const findChosenAnswerById = (id: number): Option => {
-    const result = currentCategoryOptionsByLanguage.find(
+  const findChosenAnswerById = (id: number) => {
+    const result = currentCategoryOptions.find(
       (option: Option): boolean => option.id === id
     );
     return result;
   };
 
-  const newCategoryOptionsByLanguage = (): Option[] => {
-    const result: Option[] = currentCategoryOptionsByLanguage
-      ?.find((level: Option[], index: number) =>
-        findCurrentLevelByIndex(level, index)
-      )
-      .map((option: Option) => {
+  let thisCategoryOptionsByLanguage: Option[] = [];
+
+  if (currentCategoryOptionsByLanguage && currentLevel) {
+    thisCategoryOptionsByLanguage = currentCategoryOptionsByLanguage.find(
+      (category: Option[], index: number) =>
+        findCurrentLevelOptionsByIndex(category, index)
+    );
+  }
+
+  if (thisCategoryOptionsByLanguage.length > 0 && correctAnswerID) {
+    thisCategoryOptionsByLanguage = thisCategoryOptionsByLanguage.map(
+      (option: Option) => {
         if (option.id === correctAnswerID) {
           return {
             ...option,
@@ -76,9 +83,9 @@ function AnswerOptions(): JSX.Element {
           isTouched: false,
           isCorrectAnswer: false,
         };
-      });
-    return result;
-  };
+      }
+    );
+  }
 
   const touchedCategoryOptions = (id: number): Option[] => {
     const Options: Option[] = currentCategoryOptions.map(
@@ -93,25 +100,18 @@ function AnswerOptions(): JSX.Element {
   };
 
   useEffect(() => {
-    if (currentLevel && newCategoryOptionsByLanguage.length > 1) {
-      setCurrentCategoryOptions(newCategoryOptionsByLanguage);
+    if (currentLevel && thisCategoryOptionsByLanguage.length > 1) {
+      setCurrentCategoryOptions(thisCategoryOptionsByLanguage);
     }
   }, [currentLevel, currentCategoryOptionsByLanguage]);
 
   const handleAnswerOptionClick = (id: number): void => {
-    if (currentCategoryOptions) {
-      setCurrentChosenAnswer(findChosenAnswerById(id));
-    }
+    setCurrentChosenAnswer(findChosenAnswerById(id));
     if (!isNextButtonDisabled) {
       return;
     }
     dispatch(answerWasChosen());
-    if (
-      Array.isArray(currentCategoryOptions) &&
-      currentCategoryOptions.length > 0
-    ) {
-      setCurrentCategoryOptions(touchedCategoryOptions(id));
-    }
+    setCurrentCategoryOptions(touchedCategoryOptions(id));
 
     if (id === correctAnswerID) {
       dispatch(correctAnswerChosen());
@@ -120,7 +120,6 @@ function AnswerOptions(): JSX.Element {
         setIsNextButtonDisabled(false);
       }
     }
-
     playIncorrectAnswerChosenSound();
   };
 
@@ -128,7 +127,7 @@ function AnswerOptions(): JSX.Element {
     setIsNextButtonDisabled(true);
     dispatch(switchToNextLevel());
   };
-
+  console.log('currentCategoryOptions', currentCategoryOptions);
   return (
     <>
       <div className={styles.AnswerOptions_Container}>
