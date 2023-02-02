@@ -93,11 +93,6 @@ function AnswerOptions(): JSX.Element {
     }
   }, [thisCategoryOptionsByLanguage]);
 
-  // const touchedCategoryOptions = (id: number): Option[] => {
-  //   const Options: Option[] =
-  //   return Options;
-  // };
-
   const handleAnswerOptionClick = (id: number): void => {
     setCurrentChosenAnswer(findChosenAnswerById(id));
     if (!isNextButtonDisabled) {
@@ -127,7 +122,7 @@ function AnswerOptions(): JSX.Element {
     setIsNextButtonDisabled(true);
     dispatch(switchToNextLevel());
   };
-  console.log('currentCategoryOptions', currentCategoryOptions);
+
   return (
     <>
       <div className={styles.AnswerOptions_Container}>
