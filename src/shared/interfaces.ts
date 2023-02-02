@@ -1,5 +1,5 @@
 export interface Option {
-  id: number;
+  id?: number;
   name: string;
   species: string;
   description: string;
