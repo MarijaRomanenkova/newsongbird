@@ -36,6 +36,9 @@ function CorrectAnswer(): ReactElement {
   const findCurrentLevelByIndex = (category: any, index: number): boolean =>
     index === currentLevel;
 
+  const findCurrentObjectById = (option: Option): boolean =>
+    option.id === correctAnswerID;
+
   let currentCategoryOptions: Option[] = [];
   let correctAnswerObject: Option = {
     name: '',
@@ -53,10 +56,13 @@ function CorrectAnswer(): ReactElement {
     );
   }
 
-  if (currentCategoryOptions.length > 0 && correctAnswerID) {
-    correctAnswerObject = currentCategoryOptionsByLanguage.find(
-      (option: Option): boolean => option.id === correctAnswerID
+  if (Array.isArray(currentCategoryOptions) && correctAnswerID > 0) {
+    const result = currentCategoryOptions.find((option: Option) =>
+      findCurrentObjectById(option)
     );
+    if (result) {
+      correctAnswerObject = result;
+    }
   }
 
   const AudioPlayerREF: any = useRef<H5AudioPlayer>(null);
@@ -93,7 +99,7 @@ function CorrectAnswer(): ReactElement {
       />
       <div className={styles.correctAnswer_Box}>
         <h1 className={styles.correctAnswer_Title}>{answerToRender.name}</h1>
-        {correctAnswerObject.audio.length > 0 && (
+        {correctAnswerObject.audio && correctAnswerObject.audio.length > 0 && (
           <H5AudioPlayer
             layout="horizontal-reverse"
             src={correctAnswerObject.audio}
