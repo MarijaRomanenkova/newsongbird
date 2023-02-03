@@ -29,9 +29,15 @@ module.exports = {
     'valid-jsdoc': 'off',
     'react/boolean-prop-naming': 'error',
     'react/sort-prop-types': 'error',
-    'import/newline-after-import': ['error'],
+    'import/newline-after-import': 'error',
     'unused-imports/no-unused-imports': 'error',
-    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_.+',
+        varsIgnorePattern: '^_.+',
+      },
+    ],
     'import/order': [
       'error',
       {
