@@ -63,18 +63,16 @@ function CorrectAnswer(): ReactElement {
     }
   }
 
-  const AudioPlayerREF: any = useRef<H5AudioPlayer>(null);
+  const AudioPlayerREF: any = useRef < H5AudioPlayer > null;
   const pauseAudioPlayer = () => {
-    if (AudioPlayerREF !== null) {
-      AudioPlayerREF.current.audio.current.pause();
-    }
+    AudioPlayerREF.current.audio.current.pause();
   };
 
   if (isCorrectAnswerChosen) {
     pauseAudioPlayer();
   }
 
-  let answerToRender: AnswerToRender = {
+  let answerToRender = {
     image: imageHiddenCorrectAnswerJPG,
     name: HIDDEN__ANSWER,
     alt: 'bird',

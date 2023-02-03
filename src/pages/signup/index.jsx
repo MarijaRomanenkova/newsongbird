@@ -123,9 +123,7 @@ function SignUpForm() {
               </div>
               <button
                 className={styles.Btn}
-                disabled={
-                  !dirty || isSubmitting || Object.keys(errors).length > 0
-                }
+                disabled={!dirty || isSubmitting || Object.keys(errors).length}
                 type="submit"
               >
                 {t('submit')}

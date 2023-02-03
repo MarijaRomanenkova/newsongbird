@@ -19,7 +19,7 @@ function GameOver() {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
-  const MAXIMUM_TOTAL_SCORE: number = MAXIMUM_SCORE_PER_LEVEL * currentLevel;
+  const MAXIMUM_TOTAL_SCORE = MAXIMUM_SCORE_PER_LEVEL * currentLevel;
 
   return (
     <div className={styles.GameOver_Container}>
@@ -36,7 +36,8 @@ function GameOver() {
         <>
           <h5 className={styles.GameOver_Text}>{t('game-over-text-2')}</h5>
           <Button
-            isDisabled={false}
+            isHidden={false}
+            type="button"
             handleClick={() => dispatch(resetTheGame())}
             text={t('game-over-button')}
           />

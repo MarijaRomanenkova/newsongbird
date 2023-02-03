@@ -86,9 +86,7 @@ function Login() {
               <button
                 className={styles.Btn}
                 type="submit"
-                disabled={
-                  !dirty || isSubmitting || Object.keys(errors).length > 0
-                }
+                disabled={!dirty || isSubmitting || Object.keys(errors).length}
               >
                 {t('submit')}
               </button>
