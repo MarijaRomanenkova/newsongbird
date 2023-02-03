@@ -1,24 +1,23 @@
-/* eslint-disable prefer-destructuring */
-import React, { useEffect } from 'react';
-
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { selectCurrentLevel, selectBirdsData } from 'features/game/gameSlice';
+import { selectBirdsData, selectCurrentLevel } from 'features/game/gameSlice';
 import { useAppSelector } from 'app/hooks';
+import { LEVEL_STORING_CATEGORIES_NAMES } from 'features/game/gameSettings';
 
 import styles from './index.module.scss';
 
 function Categories() {
   const { i18n } = useTranslation();
   const { language } = i18n;
-  const currentLevel = useAppSelector(selectCurrentLevel);
   const birdsData = useAppSelector(selectBirdsData);
+  const currentLevel = useAppSelector(selectCurrentLevel);
 
   let categoryNames: string[] | [] = [];
-  useEffect(() => {
-    if (Object.keys(birdsData).length > 0)
-      categoryNames = birdsData[language][0];
-  }, [birdsData]);
+
+  if (Object.keys(birdsData).length > 0) {
+    categoryNames = birdsData[language][LEVEL_STORING_CATEGORIES_NAMES];
+  }
 
   return (
     <div className={styles.Categories__Container}>

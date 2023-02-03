@@ -30,7 +30,8 @@ function AnswerOptions(): JSX.Element {
   const birdsData = useAppSelector(selectBirdsData);
   const correctAnswerID = useAppSelector(selectCorrectAnswerID);
   const isGameOver = useAppSelector(selectIsGameOver);
-
+  const { language } = i18n;
+  const currentCategoryOptionsByLanguage = birdsData[language];
   const [playCorrectAnswerChosenSound] = useSound(correctAnswerChosenSoundOGG);
   const [playIncorrectAnswerChosenSound] = useSound(
     incorrectAnswerChosenSoundOGG
@@ -44,14 +45,6 @@ function AnswerOptions(): JSX.Element {
     useState<Option[]>([]);
   const [currentChosenAnswer, setCurrentChosenAnswer] = useState<Option>();
 
-  const { language } = i18n;
-  const currentCategoryOptionsByLanguage = birdsData[language];
-
-  const findCurrentLevelOptionsByIndex = (
-    level: Option[],
-    index: number
-  ): boolean => index === currentLevel;
-
   const findChosenAnswerById = (id: number) => {
     const result = currentCategoryOptions.find(
       (option: Option): boolean => option.id === id
@@ -60,6 +53,11 @@ function AnswerOptions(): JSX.Element {
   };
 
   useEffect(() => {
+    const findCurrentLevelOptionsByIndex = (
+      level: Option[],
+      index: number
+    ): boolean => index === currentLevel;
+
     if (currentCategoryOptionsByLanguage && currentLevel) {
       setThisCategoryOptionsByLanguage(
         currentCategoryOptionsByLanguage.find(
@@ -91,7 +89,7 @@ function AnswerOptions(): JSX.Element {
         })
       );
     }
-  }, [thisCategoryOptionsByLanguage]);
+  }, [thisCategoryOptionsByLanguage, correctAnswerID]);
 
   const handleAnswerOptionClick = (id: number): void => {
     setCurrentChosenAnswer(findChosenAnswerById(id));
