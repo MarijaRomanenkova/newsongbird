@@ -6,7 +6,6 @@ import styles from './index.module.scss';
 interface ButtonProps {
   isDisabled: boolean;
   handleClick: MouseEventHandler;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   text: any;
 }
 

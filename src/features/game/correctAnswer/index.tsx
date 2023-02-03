@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef, ReactElement } from 'react';
 import H5AudioPlayer from 'react-h5-audio-player';
 import { useTranslation } from 'react-i18next';
