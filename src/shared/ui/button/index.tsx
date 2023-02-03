@@ -6,7 +6,7 @@ import styles from './index.module.scss';
 interface ButtonProps {
   isDisabled: boolean;
   handleClick: MouseEventHandler;
-  text: any;
+  text: string;
 }
 
 function Button({ isDisabled, handleClick, text }: ButtonProps): JSX.Element {

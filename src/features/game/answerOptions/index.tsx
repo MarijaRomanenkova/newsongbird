@@ -53,16 +53,10 @@ function AnswerOptions(): JSX.Element {
   };
 
   useEffect(() => {
-    const findCurrentLevelOptionsByIndex = (
-      level: Option[],
-      index: number
-    ): boolean => index === currentLevel;
-
     if (currentCategoryOptionsByLanguage && currentLevel) {
       setThisCategoryOptionsByLanguage(
         currentCategoryOptionsByLanguage.find(
-          (category: Option[], index: number) =>
-            findCurrentLevelOptionsByIndex(category, index)
+          (level: Option[], index: number): boolean => index === currentLevel
         )
       );
     }
