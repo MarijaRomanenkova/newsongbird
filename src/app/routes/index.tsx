@@ -50,4 +50,4 @@ function AppRoute() {
   );
 }
 
-export default AppRoutes;
+export default AppRoute;

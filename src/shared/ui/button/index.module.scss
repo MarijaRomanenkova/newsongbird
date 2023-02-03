@@ -1,4 +1,4 @@
-.Disabled {
+.Btn {
   display: inline-block;
   @include toRem(margin-bottom, 32);
   color: $white;
@@ -23,8 +23,8 @@
   }
 }
 
-.Btn {
-  @extend .Disabled;
+.Btn_Active {
+  @extend .Btn;
   cursor: pointer;
   background-color: $green;
   transition: 0.3s ease;

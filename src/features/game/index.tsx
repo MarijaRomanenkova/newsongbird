@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from 'app/hooks';
 
 import Categories from 'features/game/categories';
 import CorrectAnswer from 'features/game/correctAnswer';
