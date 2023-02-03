@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["es5", "es6", "dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -16,6 +16,7 @@
     "noEmit": true,
     "pretty": true,
     "jsx": "react-jsx",
+    "baseUrl": "src",
     "plugins": [
       {
         "name": "typescript-plugin-css-modules"
@@ -23,5 +24,5 @@
     ]
   },
   "include": ["src", "types/*"],
-  "extends": "./tsconfig.paths.json"
+  "exclude": ["./node_modules/**/*"]
 }

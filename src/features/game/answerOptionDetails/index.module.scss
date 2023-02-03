@@ -11,7 +11,7 @@
     width: auto;
     height: 100%;
     overflow: hidden;
-    
+
     @include mini {
       display: none;
     }
