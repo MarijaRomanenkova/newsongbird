@@ -3,7 +3,12 @@ import cx from 'classnames';
 
 import styles from './index.module.scss';
 
-function Circle({ isTouched, isCorrectAnswer }) {
+interface CircleProps {
+  isTouched: boolean | undefined;
+  isCorrectAnswer: boolean | undefined;
+}
+
+function Circle({ isTouched, isCorrectAnswer }: CircleProps): JSX.Element {
   const circleStyles = cx({
     [styles.Circle_Basic]: !isTouched,
     [styles.Circle_CorrectOption]: isTouched && isCorrectAnswer,

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
@@ -116,7 +115,7 @@ function SignUpForm() {
 
                 <label htmlFor="acceptTerms" className={styles.Checkbox_Label}>
                   {t('signup-message')}
-                  <a href="#" className={styles.Checkbox_Label_Link}>
+                  <a href="/" className={styles.Checkbox_Label_Link}>
                     {t('signup-link')}
                   </a>
                   {t('signup-message-2')}

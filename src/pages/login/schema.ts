@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import * as yup from 'yup';
 
 // not less than 5 charecters, contains at least one uppercase and lowercase letter, and one special charecter//

@@ -13,7 +13,7 @@
     height: 155px;
     border-radius: 0.625rem;
     object-fit: cover;
-    
+
     @include mini {
       display: none;
     }
