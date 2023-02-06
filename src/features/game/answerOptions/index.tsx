@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import { useSound } from 'use-sound';
 import { nanoid } from 'nanoid';
 import { useTranslation } from 'react-i18next';
@@ -116,7 +117,7 @@ function AnswerOptions(): JSX.Element {
   };
 
   return (
-    <>
+    <div>
       <div className={styles.AnswerOptions_Container}>
         <div className={styles.AnswerOptionsList_Container}>
           {currentCategoryOptions &&
@@ -163,7 +164,7 @@ function AnswerOptions(): JSX.Element {
         handleClick={handleNextButtonClick}
         text={t('next-level')}
       />
-    </>
+    </div>
   );
 }
 export default AnswerOptions;
