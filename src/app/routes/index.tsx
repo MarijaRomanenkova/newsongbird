@@ -13,7 +13,7 @@ const Home = lazy(() => import('pages/home/index'));
 const SignUp = lazy(() => import('pages/signup/index'));
 const Login = lazy(() => import('pages/login/index'));
 
-function AppRoutes() {
+function AppRoute() {
   return (
     <>
       <Navigation />
@@ -50,4 +50,4 @@ function AppRoutes() {
   );
 }
 
-export default AppRoutes;
+export default AppRoute;
