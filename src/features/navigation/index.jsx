@@ -39,7 +39,7 @@ function Navigation() {
           </NavLink>
         </div>
         <div className={styles.Navigation_LanguageSwitch_Wrapper}>
-          <LanguageSwitch />
+          <LanguageSwitch handleClick={handleClick} />
         </div>
       </div>
     </nav>

@@ -38,7 +38,7 @@ export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
   }
 });
 
-function getCorrectAnswerID(currentLevelArrayLength: number): number {
+function getCorrectAnswerID(currentLevelArrayLength) {
   const maximumNumber = currentLevelArrayLength;
   const minimumNumber = 1;
   const randomNumber =
@@ -112,10 +112,9 @@ export const {
   resetTheGame,
   switchLanguage,
 } = gameSlice.actions;
-export const selectCurrentLevel = (state: RootState): number =>
-  state.game.currentLevel;
-export const selectScore = (state: RootState): number => state.game.score;
-export const selectIsCorrectAnswerChosen = (state: RootState): boolean =>
+export const selectCurrentLevel = (state) => state.game.currentLevel;
+export const selectScore = (state) => state.game.score;
+export const selectIsCorrectAnswerChosen = (state) =>
   state.game.isCorrectAnswerChosen;
 export const selectIsGameOver = (state: RootState): boolean =>
   state.game.isGameOver;
