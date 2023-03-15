@@ -11,7 +11,9 @@ import {
   answerWasChosen,
   selectBirdsData,
   selectCurrentLevel,
+  selectLanguage,
 } from 'features/game/gameSlice';
+
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 import correctAnswerChosenSoundOGG from 'shared/assets/sounds/correctAnswerChosenSound.ogg';
 import incorrectAnswerChosenSoundOGG from 'shared/assets/sounds/incorrectAnswerChosenSound.ogg';
@@ -30,19 +32,19 @@ function AnswerOptions(): JSX.Element {
   const birdsData = useAppSelector(selectBirdsData);
   const correctAnswerID = useAppSelector(selectCorrectAnswerID);
   const isGameOver = useAppSelector(selectIsGameOver);
+  const dataLanguage = useAppSelector(selectLanguage);
+
   const { language } = i18n;
-  const currentCategoryOptionsByLanguage = birdsData[language];
+  const currentCategoryOptionsByLanguage = birdsData[dataLanguage];
+
   const [playCorrectAnswerChosenSound] = useSound(correctAnswerChosenSoundOGG);
-  const [playIncorrectAnswerChosenSound] = useSound(
-    incorrectAnswerChosenSoundOGG
-  );
-  const [isNextButtonDisabled, setIsNextButtonDisabled] =
-    useState<boolean>(true);
-  const [currentCategoryOptions, setCurrentCategoryOptions] = useState<
+  const [playIncorrectAnswerChosenSound] = useSound(incorrectAnswerChosenSoundOGG);
+
+  const [isNextButtonDisabled, setIsNextButtonDisabled] = useState<boolean>(true);
+  const [currentCategoryOptions, setCurrentCategoryOptions] = useState<Option[]>([]);
+  const [thisCategoryOptionsByLanguage, setThisCategoryOptionsByLanguage] = useState<
     Option[]
   >([]);
-  const [thisCategoryOptionsByLanguage, setThisCategoryOptionsByLanguage] =
-    useState<Option[]>([]);
   const [currentChosenAnswer, setCurrentChosenAnswer] = useState<Option>();
 
   const findChosenAnswerById = (id: number) => {
@@ -149,9 +151,7 @@ function AnswerOptions(): JSX.Element {
         )}
         {!currentChosenAnswer?.id && (
           <div className={styles.AnswerOptionDetails_Dummy}>
-            <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
-              Послушайте плеер.
-            </h4>
+            <h4 className={styles.AnswerOptionDetails_Dummy_Text}>Послушайте плеер.</h4>
             <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
               Выберите птицу из списка
             </h4>

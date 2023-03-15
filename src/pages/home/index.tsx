@@ -12,7 +12,7 @@ function Home() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getBirdsData());
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className={styles.Game_Container}>

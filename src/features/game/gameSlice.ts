@@ -42,8 +42,7 @@ function getCorrectAnswerID(currentLevelArrayLength: number): number {
   const maximumNumber = currentLevelArrayLength;
   const minimumNumber = 1;
   const randomNumber =
-    Math.floor(Math.random() * (maximumNumber - minimumNumber + 1)) +
-    minimumNumber;
+    Math.floor(Math.random() * (maximumNumber - minimumNumber + 1)) + minimumNumber;
   return randomNumber;
 }
 
@@ -57,8 +56,7 @@ export const gameSlice = createSlice({
     switchToNextLevel: (state) => {
       state.currentLevel += 1;
       state.correctAnswerID = getCorrectAnswerID(
-        Object.values(state.birdsData[state.language][state.currentLevel])
-          .length
+        Object.values(state.birdsData[state.language][state.currentLevel]).length
       );
       state.isCorrectAnswerChosen = false;
       state.numberOfWrongAnswers = 0;
@@ -69,8 +67,7 @@ export const gameSlice = createSlice({
     resetTheGame: (state) => {
       state.currentLevel = 1;
       state.correctAnswerID = getCorrectAnswerID(
-        Object.values(state.birdsData[state.language][state.currentLevel])
-          .length
+        Object.values(state.birdsData[state.language][state.currentLevel]).length
       );
       state.numberOfWrongAnswers = 0;
       state.score = 0;
@@ -81,8 +78,7 @@ export const gameSlice = createSlice({
     correctAnswerChosen: (state) => {
       state.isCorrectAnswerChosen = true;
       if (state.numberOfWrongAnswers < MAXIMUM_SCORE_PER_LEVEL) {
-        state.score +=
-          MAXIMUM_SCORE_PER_LEVEL - (state.numberOfWrongAnswers - 1);
+        state.score += MAXIMUM_SCORE_PER_LEVEL - (state.numberOfWrongAnswers - 1);
       }
       if (state.currentLevel > state.birdsData[state.language].length - 2) {
         state.isGameOver = true;
@@ -112,17 +108,16 @@ export const {
   resetTheGame,
   switchLanguage,
 } = gameSlice.actions;
-export const selectCurrentLevel = (state: RootState): number =>
-  state.game.currentLevel;
+export const selectCurrentLevel = (state: RootState): number => state.game.currentLevel;
 export const selectScore = (state: RootState): number => state.game.score;
 export const selectIsCorrectAnswerChosen = (state: RootState): boolean =>
   state.game.isCorrectAnswerChosen;
-export const selectIsGameOver = (state: RootState): boolean =>
-  state.game.isGameOver;
+export const selectIsGameOver = (state: RootState): boolean => state.game.isGameOver;
 export const selectIsRequestLoading = (state: RootState): boolean =>
   state.game.isRequestLoading;
 export const selectCorrectAnswerID = (state: RootState): number =>
   state.game.correctAnswerID;
 export const selectBirdsData = (state: RootState) => state.game.birdsData;
+export const selectLanguage = (state: RootState) => state.game.language;
 
 export default gameSlice.reducer;

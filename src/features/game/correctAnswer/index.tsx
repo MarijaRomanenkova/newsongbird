@@ -1,12 +1,12 @@
 import React, { useRef, ReactElement } from 'react';
 import H5AudioPlayer from 'react-h5-audio-player';
-import { useTranslation } from 'react-i18next';
 
 import {
   selectIsCorrectAnswerChosen,
   selectCorrectAnswerID,
   selectBirdsData,
   selectCurrentLevel,
+  selectLanguage,
 } from 'features/game/gameSlice';
 import { useAppSelector } from 'app/hooks';
 import imageHiddenCorrectAnswerJPG from 'shared/assets/imageHiddenCorrectAnswerJPG.jpg';
@@ -24,16 +24,16 @@ interface AnswerToRender {
 }
 
 function CorrectAnswer(): ReactElement {
-  const { i18n } = useTranslation();
-  const { language } = i18n;
+  const language = useAppSelector(selectLanguage);
   const currentLevel = useAppSelector(selectCurrentLevel);
   const birdsData = useAppSelector(selectBirdsData);
   const correctAnswerID = useAppSelector(selectCorrectAnswerID);
   const isCorrectAnswerChosen = useAppSelector(selectIsCorrectAnswerChosen);
   const currentCategoryOptionsByLanguage = birdsData[language];
 
-  const findCurrentLevelByIndex = (index: number): boolean =>
-    index === currentLevel;
+  console.log('language', language);
+
+  const findCurrentLevelByIndex = (index: number): boolean => index === currentLevel;
 
   const findCurrentObjectById = (option: Option): boolean =>
     option.id === correctAnswerID;
@@ -53,6 +53,8 @@ function CorrectAnswer(): ReactElement {
       (category: Option[], index: number) => findCurrentLevelByIndex(index)
     );
   }
+
+  console.log('currentCategoryOptions', currentCategoryOptions);
 
   if (Array.isArray(currentCategoryOptions) && correctAnswerID > 0) {
     const result = currentCategoryOptions.find((option: Option) =>
@@ -87,6 +89,8 @@ function CorrectAnswer(): ReactElement {
       alt: correctAnswerObject.name,
     };
   }
+
+  console.log('correctAnswerObject', correctAnswerObject);
 
   return (
     <div className={styles.correctAnswer_Container}>

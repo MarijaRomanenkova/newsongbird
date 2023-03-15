@@ -4,7 +4,7 @@
   "semi": true,
   "singleQuote": true,
   "endOfLine": "auto",
-  "printWidth": 80,
-  "bracketSpacing": true,    
+  "printWidth": 90,
+  "bracketSpacing": true,
   "formatOnSave": true
 }
