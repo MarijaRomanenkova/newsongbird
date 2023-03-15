@@ -151,9 +151,11 @@ function AnswerOptions(): JSX.Element {
         )}
         {!currentChosenAnswer?.id && (
           <div className={styles.AnswerOptionDetails_Dummy}>
-            <h4 className={styles.AnswerOptionDetails_Dummy_Text}>Послушайте плеер.</h4>
             <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
-              Выберите птицу из списка
+              {t('game-rules-text')}
+            </h4>
+            <h4 className={styles.AnswerOptionDetails_Dummy_Text}>
+              {t('game-rules-text-2')}
             </h4>
           </div>
         )}
