@@ -31,8 +31,6 @@ function CorrectAnswer(): ReactElement {
   const isCorrectAnswerChosen = useAppSelector(selectIsCorrectAnswerChosen);
   const currentCategoryOptionsByLanguage = birdsData[language];
 
-  console.log('language', language);
-
   const findCurrentLevelByIndex = (index: number): boolean => index === currentLevel;
 
   const findCurrentObjectById = (option: Option): boolean =>
@@ -53,8 +51,6 @@ function CorrectAnswer(): ReactElement {
       (category: Option[], index: number) => findCurrentLevelByIndex(index)
     );
   }
-
-  console.log('currentCategoryOptions', currentCategoryOptions);
 
   if (Array.isArray(currentCategoryOptions) && correctAnswerID > 0) {
     const result = currentCategoryOptions.find((option: Option) =>
