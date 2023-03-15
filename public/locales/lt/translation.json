@@ -17,7 +17,7 @@
   "form-password-confirmation": "Patvirtinti slaptažodį",
   "signup-message": "Kurdami paskyrą sutinkate su",
   "signup-link": "mūsų paslaugai taikomomis sąlygomis",
-  "signup-message-2": "ir patvirtinate, kad jūsų asmeniniai duomenys bus naudojami pagal mūsų privatumo politiką leidžiantį siusti jums el. laiškus ir pranešimus apie darbus, pramonės naujienos, naujus produktus ir susijusias temas.",
+  "signup-message-2": "ir patvirtinate, kad jūsų asmeniniai duomenys bus naudojami pagal mūsų privatumo politiką leidžiantį siusti jums el. laiškus.",
   "email-validation": "Įveskite galiojantį el. pašto adresą",
   "email-reminder-error": "jūsų slaptažodis turi būti mažiausiai 5 simbolių ilgio, jame yra bent vienas specialiųsis simbolis, mažosios ir viena didžioji raidė",
   "email-match-error": "Slaptažodžiai turi sutapti",
