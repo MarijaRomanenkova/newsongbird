@@ -34,7 +34,6 @@ function AnswerOptions(): JSX.Element {
   const isGameOver = useAppSelector(selectIsGameOver);
   const dataLanguage = useAppSelector(selectLanguage);
 
-  const { language } = i18n;
   const currentCategoryOptionsByLanguage = birdsData[dataLanguage];
 
   const [playCorrectAnswerChosenSound] = useSound(correctAnswerChosenSoundOGG);
@@ -48,7 +47,7 @@ function AnswerOptions(): JSX.Element {
   const [currentChosenAnswer, setCurrentChosenAnswer] = useState<Option>();
 
   const findChosenAnswerById = (id: number) => {
-    const result = currentCategoryOptions.find(
+    const result = thisCategoryOptionsByLanguage.find(
       (option: Option): boolean => option.id === id
     );
     return result;
@@ -63,6 +62,12 @@ function AnswerOptions(): JSX.Element {
       );
     }
   }, [currentCategoryOptionsByLanguage, currentLevel]);
+
+  useEffect(() => {
+    if (currentChosenAnswer?.id) {
+      setCurrentChosenAnswer(findChosenAnswerById(currentChosenAnswer.id));
+    }
+  }, [thisCategoryOptionsByLanguage]);
 
   useEffect(() => {
     if (correctAnswerID > 0) {
