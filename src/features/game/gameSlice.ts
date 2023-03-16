@@ -18,7 +18,7 @@ interface GameState {
 }
 
 const initialState: GameState = {
-  language: 'en',
+  language: 'lt',
   birdsData: {},
   isRequestLoading: true,
   currentLevel: 1,
