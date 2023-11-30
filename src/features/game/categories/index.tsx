@@ -14,7 +14,6 @@ function Categories() {
   const currentLevel = useAppSelector(selectCurrentLevel);
 
   let categoryNames: string[] | [] = [];
-  console.log(categoryNames);
 
   if (Object.keys(birdsData).length > 0 && LEVEL_STORING_CATEGORIES_NAMES) {
     categoryNames = birdsData[language][LEVEL_STORING_CATEGORIES_NAMES];

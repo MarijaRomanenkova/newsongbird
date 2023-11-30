@@ -1,14 +1,15 @@
 import React, { useRef, ReactElement } from 'react';
 import H5AudioPlayer from 'react-h5-audio-player';
+import { useTranslation } from 'react-i18next';
 
 import {
   selectIsCorrectAnswerChosen,
   selectCorrectAnswerID,
   selectBirdsData,
-  selectCurrentLevel,
-  selectLanguage,
+  selectCurrentLevel
 } from 'features/game/gameSlice';
 import { useAppSelector } from 'app/hooks';
+
 import imageHiddenCorrectAnswerJPG from 'shared/assets/imageHiddenCorrectAnswerJPG.jpg';
 
 import { Option } from 'shared/interfaces';
@@ -24,7 +25,9 @@ interface AnswerToRender {
 }
 
 function CorrectAnswer(): ReactElement {
-  const language = useAppSelector(selectLanguage);
+  const { i18n } = useTranslation();
+
+  const { language } = i18n;
   const currentLevel = useAppSelector(selectCurrentLevel);
   const birdsData = useAppSelector(selectBirdsData);
   const correctAnswerID = useAppSelector(selectCorrectAnswerID);

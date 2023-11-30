@@ -10,8 +10,7 @@ import {
   correctAnswerChosen,
   answerWasChosen,
   selectBirdsData,
-  selectCurrentLevel,
-  selectLanguage,
+  selectCurrentLevel
 } from 'features/game/gameSlice';
 
 import { useAppSelector, useAppDispatch } from 'app/hooks';
@@ -32,14 +31,17 @@ function AnswerOptions(): JSX.Element {
   const birdsData = useAppSelector(selectBirdsData);
   const correctAnswerID = useAppSelector(selectCorrectAnswerID);
   const isGameOver = useAppSelector(selectIsGameOver);
-  const dataLanguage = useAppSelector(selectLanguage);
+  const { language } = i18n;
 
-  const currentCategoryOptionsByLanguage = birdsData[dataLanguage];
+  const currentCategoryOptionsByLanguage = birdsData[language];
 
   const [playCorrectAnswerChosenSound] = useSound(correctAnswerChosenSoundOGG);
   const [playIncorrectAnswerChosenSound] = useSound(incorrectAnswerChosenSoundOGG);
 
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState<boolean>(true);
+
+  console.log('isDisabled', isNextButtonDisabled);
+  
   const [currentCategoryOptions, setCurrentCategoryOptions] = useState<Option[]>([]);
   const [thisCategoryOptionsByLanguage, setThisCategoryOptionsByLanguage] = useState<
     Option[]
@@ -67,7 +69,8 @@ function AnswerOptions(): JSX.Element {
     if (currentChosenAnswer?.id) {
       setCurrentChosenAnswer(findChosenAnswerById(currentChosenAnswer.id));
     }
-  }, [thisCategoryOptionsByLanguage]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [findChosenAnswerById, thisCategoryOptionsByLanguage]);
 
   useEffect(() => {
     if (correctAnswerID > 0) {
@@ -110,6 +113,7 @@ function AnswerOptions(): JSX.Element {
     if (id === correctAnswerID) {
       dispatch(correctAnswerChosen());
       playCorrectAnswerChosenSound();
+      setIsNextButtonDisabled(false);
       if (!isGameOver) {
         setIsNextButtonDisabled(false);
       }
@@ -119,6 +123,7 @@ function AnswerOptions(): JSX.Element {
 
   const handleNextButtonClick = () => {
     setIsNextButtonDisabled(true);
+    setCurrentChosenAnswer(undefined);
     dispatch(switchToNextLevel());
   };
 

@@ -18,7 +18,7 @@ interface GameState {
 }
 
 const initialState: GameState = {
-  language: 'lt',
+  language: 'en',
   birdsData: {},
   isRequestLoading: true,
   currentLevel: 1,
@@ -60,6 +60,7 @@ export const gameSlice = createSlice({
       );
       state.isCorrectAnswerChosen = false;
       state.numberOfWrongAnswers = 0;
+
     },
     answerWasChosen: (state) => {
       state.numberOfWrongAnswers += 1;
