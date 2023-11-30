@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import {
   selectIsCorrectAnswerChosen,
+  selectIsGameOver,
   selectCorrectAnswerID,
   selectBirdsData,
   selectCurrentLevel
@@ -26,12 +27,13 @@ interface AnswerToRender {
 
 function CorrectAnswer(): ReactElement {
   const { i18n } = useTranslation();
-
   const { language } = i18n;
+
   const currentLevel = useAppSelector(selectCurrentLevel);
   const birdsData = useAppSelector(selectBirdsData);
   const correctAnswerID = useAppSelector(selectCorrectAnswerID);
   const isCorrectAnswerChosen = useAppSelector(selectIsCorrectAnswerChosen);
+  const isGameOver = useAppSelector(selectIsGameOver);
   const currentCategoryOptionsByLanguage = birdsData[language];
 
   const findCurrentLevelByIndex = (index: number): boolean => index === currentLevel;
@@ -66,12 +68,12 @@ function CorrectAnswer(): ReactElement {
 
   const AudioPlayerREF: any = useRef<H5AudioPlayer>(null);
   const pauseAudioPlayer = () => {
-    if (AudioPlayerREF !== null) {
+    if (AudioPlayerREF !== null && AudioPlayerREF.length) {
       AudioPlayerREF.current.audio.current.pause();
     }
   };
 
-  if (isCorrectAnswerChosen) {
+  if (isCorrectAnswerChosen || isGameOver) {
     pauseAudioPlayer();
   }
 
@@ -88,8 +90,6 @@ function CorrectAnswer(): ReactElement {
       alt: correctAnswerObject.name,
     };
   }
-
-  console.log('correctAnswerObject', correctAnswerObject);
 
   return (
     <div className={styles.correctAnswer_Container}>

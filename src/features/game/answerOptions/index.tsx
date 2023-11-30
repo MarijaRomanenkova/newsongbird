@@ -41,7 +41,7 @@ function AnswerOptions(): JSX.Element {
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState<boolean>(true);
 
   console.log('isDisabled', isNextButtonDisabled);
-  
+
   const [currentCategoryOptions, setCurrentCategoryOptions] = useState<Option[]>([]);
   const [thisCategoryOptionsByLanguage, setThisCategoryOptionsByLanguage] = useState<
     Option[]
@@ -64,6 +64,7 @@ function AnswerOptions(): JSX.Element {
       );
     }
   }, [currentCategoryOptionsByLanguage, currentLevel]);
+  
 
   useEffect(() => {
     if (currentChosenAnswer?.id) {
@@ -73,6 +74,7 @@ function AnswerOptions(): JSX.Element {
   }, [findChosenAnswerById, thisCategoryOptionsByLanguage]);
 
   useEffect(() => {
+    setIsNextButtonDisabled(true);
     if (correctAnswerID > 0) {
       setCurrentCategoryOptions(
         thisCategoryOptionsByLanguage.map((option: Option) => {
@@ -94,6 +96,8 @@ function AnswerOptions(): JSX.Element {
       );
     }
   }, [thisCategoryOptionsByLanguage, correctAnswerID]);
+
+
 
   const handleAnswerOptionClick = (id: number): void => {
     setCurrentChosenAnswer(findChosenAnswerById(id));

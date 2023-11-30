@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import H5AudioPlayer from 'react-h5-audio-player';
 
-import { selectIsCorrectAnswerChosen } from 'features/game/gameSlice';
+import { selectIsCorrectAnswerChosen, selectIsGameOver } from 'features/game/gameSlice';
 import { useAppSelector } from 'app/hooks';
 
 import styles from './index.module.scss';
@@ -25,14 +25,18 @@ function AnswerOptionDetails({
     selectIsCorrectAnswerChosen
   );
 
+  const isGameOver: boolean = useAppSelector(
+    selectIsGameOver
+  );
+
   const AudioPlayerREF: any = useRef<H5AudioPlayer>(null);
   const pauseAudioPlayer = () => {
-    if (AudioPlayerREF !== null) {
+    if (AudioPlayerREF !== null && AudioPlayerREF.length) {
       AudioPlayerREF.current.audio.current.pause();
     }
   };
 
-  if (isCorrectAnswerChosen) {
+  if (isCorrectAnswerChosen || isGameOver) {
     pauseAudioPlayer();
   }
 
@@ -50,7 +54,7 @@ function AnswerOptionDetails({
         <h4 className={styles.AnswerOptionDetails_Species_Text}>
           {currentChosenAnswerSpecies}
         </h4>
-        {currentChosenAnswerAudio && (
+        {currentChosenAnswerAudio && currentChosenAnswerAudio.length > 0 && (
           <H5AudioPlayer
             layout="horizontal-reverse"
             src={currentChosenAnswerAudio}

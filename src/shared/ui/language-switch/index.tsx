@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { languageList } from 'shared/languageList';
-import { switchLanguage } from 'features/game/gameSlice';
+import { switchLanguage, resetTheGame } from 'features/game/gameSlice';
 
 import styles from './index.module.scss';
 
@@ -14,6 +14,7 @@ function LanguageSwitch() {
   function handleSwitch(code: string) {
     i18n.changeLanguage(code);
     dispatch(switchLanguage(code));
+    dispatch(resetTheGame());
   }
 
   return (
