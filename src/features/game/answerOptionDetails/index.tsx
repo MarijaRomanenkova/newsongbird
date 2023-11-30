@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, {useRef } from 'react';
 import H5AudioPlayer from 'react-h5-audio-player';
 
-import { selectIsCorrectAnswerChosen, selectIsGameOver } from 'features/game/gameSlice';
-import { useAppSelector } from 'app/hooks';
+import { useAppSelector, useAppDispatch  } from 'app/hooks';
+import { selectIsCorrectAnswerChosen, selectIsGameOver, selectStopPlayingAnswerDetailsAudio, audioPlayerStarted } from 'features/game/gameSlice';
+
 
 import styles from './index.module.scss';
 
@@ -20,6 +21,7 @@ function AnswerOptionDetails({
   currentChosenAnswerDescription,
   currentChosenAnswerSpecies,
   currentChosenAnswerAudio,
+  
 }: AnswerOptionDetailsProps) {
   const isCorrectAnswerChosen: boolean = useAppSelector(
     selectIsCorrectAnswerChosen
@@ -29,6 +31,10 @@ function AnswerOptionDetails({
     selectIsGameOver
   );
 
+  const dispatch = useAppDispatch();
+
+  const isStopPlayingAnswerDetailsAudio = useAppSelector(selectStopPlayingAnswerDetailsAudio);
+
   const AudioPlayerREF: any = useRef<H5AudioPlayer>(null);
   const pauseAudioPlayer = () => {
     if (AudioPlayerREF !== null && AudioPlayerREF.length) {
@@ -36,8 +42,15 @@ function AnswerOptionDetails({
     }
   };
 
-  if (isCorrectAnswerChosen || isGameOver) {
+  if (isCorrectAnswerChosen || isGameOver || isStopPlayingAnswerDetailsAudio) {
     pauseAudioPlayer();
+  }
+
+
+
+  const playAudio = () : void => {
+    dispatch(audioPlayerStarted('stopQuestionAudio'));
+    console.log('Answer component: stopQuestionAudio');
   }
 
   return (
@@ -59,6 +72,7 @@ function AnswerOptionDetails({
             layout="horizontal-reverse"
             src={currentChosenAnswerAudio}
             autoPlay={false}
+            onPlay={() => playAudio()}
             autoPlayAfterSrcChange={false}
             showJumpControls={false}
             showFilledProgress

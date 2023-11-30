@@ -31,6 +31,7 @@ function AnswerOptions(): JSX.Element {
   const birdsData = useAppSelector(selectBirdsData);
   const correctAnswerID = useAppSelector(selectCorrectAnswerID);
   const isGameOver = useAppSelector(selectIsGameOver);
+  
   const { language } = i18n;
 
   const currentCategoryOptionsByLanguage = birdsData[language];
@@ -39,8 +40,6 @@ function AnswerOptions(): JSX.Element {
   const [playIncorrectAnswerChosenSound] = useSound(incorrectAnswerChosenSoundOGG);
 
   const [isNextButtonDisabled, setIsNextButtonDisabled] = useState<boolean>(true);
-
-  console.log('isDisabled', isNextButtonDisabled);
 
   const [currentCategoryOptions, setCurrentCategoryOptions] = useState<Option[]>([]);
   const [thisCategoryOptionsByLanguage, setThisCategoryOptionsByLanguage] = useState<
@@ -130,6 +129,7 @@ function AnswerOptions(): JSX.Element {
     setCurrentChosenAnswer(undefined);
     dispatch(switchToNextLevel());
   };
+  
 
   return (
     <>

@@ -2,14 +2,18 @@ import React, { useRef, ReactElement } from 'react';
 import H5AudioPlayer from 'react-h5-audio-player';
 import { useTranslation } from 'react-i18next';
 
+import { useAppSelector, useAppDispatch } from 'app/hooks';
+
 import {
   selectIsCorrectAnswerChosen,
   selectIsGameOver,
   selectCorrectAnswerID,
   selectBirdsData,
-  selectCurrentLevel
+  selectCurrentLevel,
+  audioPlayerStarted,
+  selectStopPlayingQuestionAudio
 } from 'features/game/gameSlice';
-import { useAppSelector } from 'app/hooks';
+
 
 import imageHiddenCorrectAnswerJPG from 'shared/assets/imageHiddenCorrectAnswerJPG.jpg';
 
@@ -29,12 +33,16 @@ function CorrectAnswer(): ReactElement {
   const { i18n } = useTranslation();
   const { language } = i18n;
 
+  const dispatch = useAppDispatch();
+
   const currentLevel = useAppSelector(selectCurrentLevel);
   const birdsData = useAppSelector(selectBirdsData);
   const correctAnswerID = useAppSelector(selectCorrectAnswerID);
   const isCorrectAnswerChosen = useAppSelector(selectIsCorrectAnswerChosen);
   const isGameOver = useAppSelector(selectIsGameOver);
   const currentCategoryOptionsByLanguage = birdsData[language];
+
+  const isStopPlayingQuestionAudio = useAppSelector(selectStopPlayingQuestionAudio);
 
   const findCurrentLevelByIndex = (index: number): boolean => index === currentLevel;
 
@@ -73,7 +81,7 @@ function CorrectAnswer(): ReactElement {
     }
   };
 
-  if (isCorrectAnswerChosen || isGameOver) {
+  if (isCorrectAnswerChosen || isGameOver || isStopPlayingQuestionAudio) {
     pauseAudioPlayer();
   }
 
@@ -91,6 +99,11 @@ function CorrectAnswer(): ReactElement {
     };
   }
 
+  const playAudio = (): void => {
+    dispatch(audioPlayerStarted('stopAnswearDetailsAudio'));
+    console.log('Question: stop play audio and dispatch here');
+  }
+
   return (
     <div className={styles.correctAnswer_Container}>
       <img
@@ -105,6 +118,7 @@ function CorrectAnswer(): ReactElement {
             layout="horizontal-reverse"
             src={correctAnswerObject.audio}
             autoPlay={false}
+            onPlay={(e) => playAudio}
             autoPlayAfterSrcChange={false}
             showJumpControls={false}
             showFilledProgress

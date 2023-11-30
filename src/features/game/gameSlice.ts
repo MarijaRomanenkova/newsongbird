@@ -15,6 +15,8 @@ interface GameState {
   score: number;
   isCorrectAnswerChosen: boolean;
   isGameOver: boolean;
+  stopPlayingQuestionAudio: boolean;
+  stopPlayingAnswerDetailsAudio: boolean;
 }
 
 const initialState: GameState = {
@@ -27,6 +29,8 @@ const initialState: GameState = {
   score: 0,
   isCorrectAnswerChosen: false,
   isGameOver: false,
+  stopPlayingQuestionAudio: false,
+  stopPlayingAnswerDetailsAudio: false,
 };
 
 export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
@@ -52,6 +56,17 @@ export const gameSlice = createSlice({
   reducers: {
     switchLanguage: (state, action) => {
       state.language = action.payload;
+    },
+    audioPlayerStarted: (state, action)=> {
+      if(action.payload === 'stopAnswearDetailsAudio'){
+        state.stopPlayingQuestionAudio = false;
+        state.stopPlayingAnswerDetailsAudio = true;
+      }
+      if(action.payload === 'stopQuestionAudio'){
+        state.stopPlayingQuestionAudio = true;
+        state.stopPlayingAnswerDetailsAudio = false;
+      }
+      
     },
     switchToNextLevel: (state) => {
       state.currentLevel += 1;
@@ -108,6 +123,7 @@ export const {
   answerWasChosen,
   resetTheGame,
   switchLanguage,
+  audioPlayerStarted
 } = gameSlice.actions;
 export const selectCurrentLevel = (state: RootState): number => state.game.currentLevel;
 export const selectScore = (state: RootState): number => state.game.score;
@@ -120,5 +136,7 @@ export const selectCorrectAnswerID = (state: RootState): number =>
   state.game.correctAnswerID;
 export const selectBirdsData = (state: RootState) => state.game.birdsData;
 export const selectLanguage = (state: RootState) => state.game.language;
+export const selectStopPlayingQuestionAudio = (state: RootState): boolean => state.game.stopPlayingQuestionAudio;
+export const selectStopPlayingAnswerDetailsAudio = (state: RootState): boolean => state.game.stopPlayingAnswerDetailsAudio;
 
 export default gameSlice.reducer;
