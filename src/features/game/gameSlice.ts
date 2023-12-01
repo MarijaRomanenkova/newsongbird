@@ -57,16 +57,13 @@ export const gameSlice = createSlice({
     switchLanguage: (state, action) => {
       state.language = action.payload;
     },
-    audioPlayerStarted: (state, action)=> {
-      if(action.payload === 'stopAnswearDetailsAudio'){
-        state.stopPlayingQuestionAudio = false;
-        state.stopPlayingAnswerDetailsAudio = true;
-      }
-      if(action.payload === 'stopQuestionAudio'){
-        state.stopPlayingQuestionAudio = true;
-        state.stopPlayingAnswerDetailsAudio = false;
-      }
-      
+    stopCorrectAnswerAudio: (state)=> {
+      state.stopPlayingQuestionAudio = true;
+      state.stopPlayingAnswerDetailsAudio = false;
+    },
+    stopAnswearDetailsAudio: (state)=> {
+      state.stopPlayingQuestionAudio = false;
+      state.stopPlayingAnswerDetailsAudio = true;
     },
     switchToNextLevel: (state) => {
       state.currentLevel += 1;
@@ -123,8 +120,10 @@ export const {
   answerWasChosen,
   resetTheGame,
   switchLanguage,
-  audioPlayerStarted
+  stopCorrectAnswerAudio,
+  stopAnswearDetailsAudio
 } = gameSlice.actions;
+
 export const selectCurrentLevel = (state: RootState): number => state.game.currentLevel;
 export const selectScore = (state: RootState): number => state.game.score;
 export const selectIsCorrectAnswerChosen = (state: RootState): boolean =>

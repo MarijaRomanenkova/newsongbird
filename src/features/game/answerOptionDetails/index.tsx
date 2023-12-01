@@ -1,8 +1,8 @@
-import React, {useRef } from 'react';
+import React, {useEffect, useRef } from 'react';
 import H5AudioPlayer from 'react-h5-audio-player';
 
 import { useAppSelector, useAppDispatch  } from 'app/hooks';
-import { selectIsCorrectAnswerChosen, selectIsGameOver, selectStopPlayingAnswerDetailsAudio, audioPlayerStarted } from 'features/game/gameSlice';
+import { selectIsCorrectAnswerChosen, selectIsGameOver, selectStopPlayingAnswerDetailsAudio, stopCorrectAnswerAudio } from 'features/game/gameSlice';
 
 
 import styles from './index.module.scss';
@@ -36,21 +36,23 @@ function AnswerOptionDetails({
   const isStopPlayingAnswerDetailsAudio = useAppSelector(selectStopPlayingAnswerDetailsAudio);
 
   const AudioPlayerREF: any = useRef<H5AudioPlayer>(null);
-  const pauseAudioPlayer = () => {
+  const pauseAudioPlayer = (): void => {
     if (AudioPlayerREF !== null && AudioPlayerREF.length) {
       AudioPlayerREF.current.audio.current.pause();
     }
   };
 
-  if (isCorrectAnswerChosen || isGameOver || isStopPlayingAnswerDetailsAudio) {
+  
+
+  useEffect(() => {
     pauseAudioPlayer();
-  }
-
-
+    console.log('isStopPlayingAnswerDetailsAudio', isStopPlayingAnswerDetailsAudio);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isCorrectAnswerChosen, isGameOver ,isStopPlayingAnswerDetailsAudio]);
 
   const playAudio = () : void => {
-    dispatch(audioPlayerStarted('stopQuestionAudio'));
-    console.log('Answer component: stopQuestionAudio');
+    dispatch(stopCorrectAnswerAudio());
+    console.log('Answer component: dispatched stopCorrectAnswerAudio');
   }
 
   return (

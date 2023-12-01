@@ -1,4 +1,4 @@
-import React, { useRef, ReactElement } from 'react';
+import React, { useEffect, useRef, ReactElement } from 'react';
 import H5AudioPlayer from 'react-h5-audio-player';
 import { useTranslation } from 'react-i18next';
 
@@ -10,8 +10,8 @@ import {
   selectCorrectAnswerID,
   selectBirdsData,
   selectCurrentLevel,
-  audioPlayerStarted,
-  selectStopPlayingQuestionAudio
+  selectStopPlayingQuestionAudio,
+  stopAnswearDetailsAudio
 } from 'features/game/gameSlice';
 
 
@@ -81,9 +81,7 @@ function CorrectAnswer(): ReactElement {
     }
   };
 
-  if (isCorrectAnswerChosen || isGameOver || isStopPlayingQuestionAudio) {
-    pauseAudioPlayer();
-  }
+  
 
   let answerToRender: AnswerToRender = {
     image: imageHiddenCorrectAnswerJPG,
@@ -100,9 +98,15 @@ function CorrectAnswer(): ReactElement {
   }
 
   const playAudio = (): void => {
-    dispatch(audioPlayerStarted('stopAnswearDetailsAudio'));
+    dispatch(stopAnswearDetailsAudio());
     console.log('Question: stop play audio and dispatch here');
   }
+
+  useEffect(() => {
+    pauseAudioPlayer();
+    console.log('isStopPlayingQuestionAudio', isStopPlayingQuestionAudio);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isCorrectAnswerChosen, isGameOver ,isStopPlayingQuestionAudio]);
 
   return (
     <div className={styles.correctAnswer_Container}>

@@ -16,7 +16,6 @@
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.1.1",
     "nanoid": "^4.0.0",
-    "node-sass": "^7.0.3",
     "react": "^18.2.0",
     "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
@@ -26,6 +25,7 @@
     "react-router-dom": "^6.4.5",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.1",
+    "sass": "^1.69.5",
     "use-sound": "^4.0.1",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
