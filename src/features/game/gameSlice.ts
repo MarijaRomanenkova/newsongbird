@@ -15,8 +15,8 @@ interface GameState {
   score: number;
   isCorrectAnswerChosen: boolean;
   isGameOver: boolean;
-  stopPlayingQuestionAudio: boolean;
-  stopPlayingAnswerDetailsAudio: boolean;
+  isStopPlayingQuestionAudio: boolean;
+  isStopPlayingAnswerDetailsAudio: boolean;
 }
 
 const initialState: GameState = {
@@ -29,8 +29,8 @@ const initialState: GameState = {
   score: 0,
   isCorrectAnswerChosen: false,
   isGameOver: false,
-  stopPlayingQuestionAudio: false,
-  stopPlayingAnswerDetailsAudio: false,
+  isStopPlayingQuestionAudio: false,
+  isStopPlayingAnswerDetailsAudio: false,
 };
 
 export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
@@ -38,7 +38,7 @@ export const getBirdsData = createAsyncThunk('game/getBirdsData', async () => {
     const response = await axiosInstance.get('');
     return response.data;
   } catch (error: any) {
-    return toast.error('Error', error);
+    return toast.error('Error on getting data', error);
   }
 });
 
@@ -58,12 +58,12 @@ export const gameSlice = createSlice({
       state.language = action.payload;
     },
     stopCorrectAnswerAudio: (state)=> {
-      state.stopPlayingQuestionAudio = true;
-      state.stopPlayingAnswerDetailsAudio = false;
+      state.isStopPlayingQuestionAudio = true;
+      state.isStopPlayingAnswerDetailsAudio = false;
     },
     stopAnswearDetailsAudio: (state)=> {
-      state.stopPlayingQuestionAudio = false;
-      state.stopPlayingAnswerDetailsAudio = true;
+      state.isStopPlayingQuestionAudio = false;
+      state.isStopPlayingAnswerDetailsAudio = true;
     },
     switchToNextLevel: (state) => {
       state.currentLevel += 1;
@@ -135,7 +135,7 @@ export const selectCorrectAnswerID = (state: RootState): number =>
   state.game.correctAnswerID;
 export const selectBirdsData = (state: RootState) => state.game.birdsData;
 export const selectLanguage = (state: RootState) => state.game.language;
-export const selectStopPlayingQuestionAudio = (state: RootState): boolean => state.game.stopPlayingQuestionAudio;
-export const selectStopPlayingAnswerDetailsAudio = (state: RootState): boolean => state.game.stopPlayingAnswerDetailsAudio;
+export const selectStopPlayingQuestionAudio = (state: RootState): boolean => state.game.isStopPlayingQuestionAudio;
+export const selectStopPlayingAnswerDetailsAudio = (state: RootState): boolean => state.game.isStopPlayingAnswerDetailsAudio;
 
 export default gameSlice.reducer;

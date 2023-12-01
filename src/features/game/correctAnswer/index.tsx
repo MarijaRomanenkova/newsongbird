@@ -99,12 +99,12 @@ function CorrectAnswer(): ReactElement {
 
   const playAudio = (): void => {
     dispatch(stopAnswearDetailsAudio());
-    console.log('Question: stop play audio and dispatch here');
+    console.log('Stop initiated on Correct Ansswer Comp :');
   }
 
   useEffect(() => {
     pauseAudioPlayer();
-    console.log('isStopPlayingQuestionAudio', isStopPlayingQuestionAudio);
+    console.log('Correct Answer got message to pause audio:');
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCorrectAnswerChosen, isGameOver ,isStopPlayingQuestionAudio]);
 

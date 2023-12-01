@@ -36,23 +36,31 @@ function AnswerOptionDetails({
   const isStopPlayingAnswerDetailsAudio = useAppSelector(selectStopPlayingAnswerDetailsAudio);
 
   const AudioPlayerREF: any = useRef<H5AudioPlayer>(null);
-  const pauseAudioPlayer = (): void => {
+  
+  const pauseAudioPlayer = () => {
     if (AudioPlayerREF !== null && AudioPlayerREF.length) {
       AudioPlayerREF.current.audio.current.pause();
+      console.log('ref in pause:' , AudioPlayerREF)
+    } else {
+      console.log("no valid ref in correct answer")
     }
+    
   };
 
+  if (isCorrectAnswerChosen || isGameOver || isStopPlayingAnswerDetailsAudio) {
+    pauseAudioPlayer();
+  }
   
-
   useEffect(() => {
     pauseAudioPlayer();
-    console.log('isStopPlayingAnswerDetailsAudio', isStopPlayingAnswerDetailsAudio);
+    console.log(' Answer Details got message to pause audio:', AudioPlayerREF);
+    console.log('isCorrectAnswerChosen', isCorrectAnswerChosen, AudioPlayerREF);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCorrectAnswerChosen, isGameOver ,isStopPlayingAnswerDetailsAudio]);
 
   const playAudio = () : void => {
     dispatch(stopCorrectAnswerAudio());
-    console.log('Answer component: dispatched stopCorrectAnswerAudio');
+    console.log('Answer component: dispatched stopCorrectAnswerAudio', AudioPlayerREF);
   }
 
   return (
@@ -74,7 +82,7 @@ function AnswerOptionDetails({
             layout="horizontal-reverse"
             src={currentChosenAnswerAudio}
             autoPlay={false}
-            onPlay={() => playAudio()}
+            onPlay={playAudio}
             autoPlayAfterSrcChange={false}
             showJumpControls={false}
             showFilledProgress
